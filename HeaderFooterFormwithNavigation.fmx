@@ -1,0 +1,706 @@
+object HeaderFooterwithNavigation: THeaderFooterwithNavigation
+  Left = 0
+  Top = 0
+  Caption = 'Tether'
+  ClientHeight = 548
+  ClientWidth = 320
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [dkDesktop]
+  OnCreate = FormCreate
+  OnKeyUp = FormKeyUp
+  DesignerMobile = True
+  DesignerWidth = 320
+  DesignerHeight = 568
+  DesignerDeviceName = 'iPhone5'
+  DesignerOrientation = 0
+  DesignerOSVersion = '7'
+  object TabControl1: TTabControl
+    Align = alClient
+    FullSize = True
+    Height = 548.000000000000000000
+    TabHeight = 49.000000000000000000
+    TabIndex = 0
+    TabOrder = 0
+    TabPosition = tpNone
+    Width = 320.000000000000000000
+    object TabJoin: TTabItem
+      WordWrap = False
+      Height = 8.000000000000000000
+      IsSelected = True
+      Position.X = 131.000000000000000000
+      Position.Y = 529.000000000000000000
+      TabOrder = 0
+      Text = 'TabJoin'
+      Width = 8.000000000000000000
+      object TopToolBar1: TToolBar
+        Anchors = []
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+      end
+      object Panel1: TPanel
+        Align = alHorzCenter
+        Height = 504.000000000000000000
+        Position.Y = 44.000000000000000000
+        Width = 321.000000000000000000
+        TabOrder = 1
+        object Panel3: TPanel
+          Align = alTop
+          Height = 197.000000000000000000
+          Position.Y = 161.000000000000000000
+          Width = 321.000000000000000000
+          TabOrder = 0
+          object edtEMail: TEdit
+            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            TabOrder = 0
+            Position.X = 75.000000000000000000
+            Position.Y = 54.000000000000000000
+            Width = 229.000000000000000000
+            Height = 30.000000000000000000
+            Margins.Left = 90.000000000000000000
+            Margins.Right = 10.000000000000000000
+            KillFocusByReturn = False
+          end
+          object edtTripID: TEdit
+            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            TabOrder = 1
+            Position.X = 75.000000000000000000
+            Position.Y = 11.000000000000000000
+            Width = 229.000000000000000000
+            Height = 30.000000000000000000
+            Margins.Left = 90.000000000000000000
+            Margins.Right = 10.000000000000000000
+            KillFocusByReturn = False
+          end
+          object edtTripPIN: TEdit
+            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            TabOrder = 2
+            Position.X = 75.000000000000000000
+            Position.Y = 99.000000000000000000
+            Width = 111.000000000000000000
+            Height = 30.000000000000000000
+            Margins.Left = 90.000000000000000000
+            Margins.Right = 10.000000000000000000
+            KillFocusByReturn = False
+          end
+          object Label4: TLabel
+            Height = 30.000000000000000000
+            Position.X = 18.000000000000000000
+            Position.Y = 11.000000000000000000
+            Text = 'Trip ID'
+            Width = 65.000000000000000000
+            Trimming = ttCharacter
+          end
+          object Label5: TLabel
+            Height = 30.000000000000000000
+            Position.X = 18.000000000000000000
+            Position.Y = 54.000000000000000000
+            Text = 'eMail'
+            Width = 49.000000000000000000
+            Trimming = ttCharacter
+          end
+          object Label6: TLabel
+            Height = 30.000000000000000000
+            Position.X = 18.000000000000000000
+            Position.Y = 99.000000000000000000
+            Text = 'PIN'
+            Width = 57.000000000000000000
+            Trimming = ttCharacter
+          end
+          object btnJoinTrip: TButton
+            Height = 57.000000000000000000
+            Position.X = 71.000000000000000000
+            Position.Y = 144.000000000000000000
+            TabOrder = 6
+            Text = 'Join The Trip'
+            Trimming = ttCharacter
+            Width = 145.000000000000000000
+            OnClick = JoinTrip
+          end
+        end
+        object Panel7: TPanel
+          Align = alTop
+          Height = 161.000000000000000000
+          Width = 321.000000000000000000
+          TabOrder = 1
+          object Image1: TImage
+            MultiResBitmap = <
+              item
+                Width = 120
+                Height = 120
+                PNG = {
+                  89504E470D0A1A0A0000000D4948445200000078000000780806000000396436
+                  D2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                  037449444154785EED9DBB6E134114861D7A242E6F000F400312050D15505340
+                  4F81681142088932052D12978202D170A928B80851220A1048F000D0D1812878
+                  00F39FCCACE49859670DB267F6CBFF297FE6C47156CE7EBBC7B34E32D9984E26
+                  7A3354F6E4D140B16038160CC782E158301C0B8663C1702C188E05C3B1603816
+                  0CC782E158301C0B8663C1702C188E05C3B16038160CC782E158301C0B8663C1
+                  709A12FC52D998C937A5750E28DDE33D1637344653829FE7B1E3431E5BE5A7F2
+                  2B955B7C545A3B289BFACB86381B6677D818B9A75C4C6513347306477B1EBBDC
+                  E07E1E5BA119C1F3ED79ACB4D6A69B11FC388F04DEE4B1059A104C69CF1D2DB5
+                  E926042FDB9E4F29379517CA5B256689F379A40CE192F24399FFFAB82DB61DDB
+                  89FB1C5686D2549BD63733AD9DFD4A7A28FD89FB48EA543BBEB88D5274206858
+                  9CCF8A8A4191F041DB8C68365DDCC6BA138FA6F889754567A186C539A72C23B6
+                  CB10197AB77442B4CE6895FD39AAA8A89EEA2DFA611EFB88161913B0835B1FB5
+                  C109E5BD12ADBB8F68D35F525995AA82E395A027A92C1272CFA7B239E280BBA3
+                  2C92FC348F35A92A78D1E544CB726709C97A0A29B2E8E05D1755053FCBE33CD7
+                  9531C8EDB8AD9466D95F95DA6DBA9AE0BEF6ACC9C9643395A321DAF58354FE45
+                  ED365D4D705F7B6EEDB5DCA1C4C4ABF47C5CBB4D57135C6ACFD19A8FA472945C
+                  5174BDBE8DDA6DBA8AE0527B8E1D733995A3E590722D95DBA8D9A6AB082EB5E7
+                  686F2D5DEBFE2B17F2384BCD365D4570A93D9776CC18898374FEB9B8669BAEF2
+                  1B1DD1A2E395A077CA27659FB28A1F179E565EA7B297557CF321F3AC12570427
+                  95E34AADB9057A31D25A825BA2DA2CDAAC070B8663C1702C188E05C3B1603816
+                  0CC782E158301C0B8663C1702C188E05C3B16038160CC782E158301C0B8663C1
+                  702C188E05C3B16038160CC782E158301C0B8663C1702C188E05C3B16038160C
+                  C782E158301C0B8663C1702C18CEAE17DCC29ACEAB64D70BFE9D472A58C1B116
+                  D74E4B2805AFF248052BF8461E77E2AE426ED3A885D042D477E59632E4ECED88
+                  855063F9C133CA5E65CC2BDECE336AC14356B2FB5FE2FF335D4DE528F165121C
+                  0B8663C170D0ABCD1A9FC1782C188E05C3B16038160CC782E158301C0B8663C1
+                  702C188E05C3B16038160CC782E158301C0B8663C1702C188E05C3B16038160C
+                  C782E158301C0B8663C1702C188E05C3B1603493C91F945711F9BBF62AB70000
+                  000049454E44AE426082}
+                FileName = 'C:\Projects\tetherapp\tetherapp2.bmp'
+              end>
+            Height = 120.000000000000000000
+            Position.X = 104.000000000000000000
+            Position.Y = 24.000000000000000000
+            Width = 120.000000000000000000
+          end
+        end
+      end
+    end
+    object TabTrip: TTabItem
+      WordWrap = False
+      Height = 8.000000000000000000
+      IsSelected = False
+      Position.X = 141.000000000000000000
+      Position.Y = 529.000000000000000000
+      TabOrder = 1
+      Text = 'TabTrip'
+      Width = 8.000000000000000000
+      object TopToolBar4: TToolBar
+        Align = alMostTop
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+        object Label8: TLabel
+          Align = alContents
+          Height = 44.000000000000000000
+          Text = 'Trip'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+        object SpeedButton1: TSpeedButton
+          Align = alRight
+          Height = 44.000000000000000000
+          Position.X = 247.000000000000000000
+          Text = 'Check'
+          Trimming = ttCharacter
+          Width = 73.000000000000000000
+          OnClick = SpeedButton1Click
+        end
+        object SpeedButton4: TSpeedButton
+          Align = alLeft
+          Height = 44.000000000000000000
+          Trimming = ttCharacter
+          Width = 64.000000000000000000
+        end
+      end
+      object Panel2: TPanel
+        Align = alClient
+        Height = 504.000000000000000000
+        Width = 320.000000000000000000
+        TabOrder = 1
+        object mmoNotes: TMemo
+          Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
+          Align = alClient
+          Height = 97.000000000000000000
+          Margins.Left = 20.000000000000000000
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 20.000000000000000000
+          Margins.Bottom = 10.000000000000000000
+          TabOrder = 0
+          Visible = False
+          Width = 305.000000000000000000
+        end
+        object ListBox2: TListBox
+          Align = alTop
+          Height = 273.000000000000000000
+          TabOrder = 1
+          Width = 320.000000000000000000
+          DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          object ListBoxItem4: TListBoxItem
+            Height = 44.000000000000000000
+            StyleLookup = 'listboxitemnodetail'
+            Text = 'Trip to'
+            Width = 320.000000000000000000
+            object lblName: TLabel
+              Align = alVertCenter
+              Font.Style = [fsBold]
+              StyledSettings = [ssFamily, ssSize, ssFontColor]
+              Height = 30.000000000000000000
+              Margins.Left = 100.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 100.000000000000000000
+              Position.Y = 7.000000000000000000
+              Text = '...'
+              Width = 210.000000000000000000
+              Trimming = ttCharacter
+            end
+          end
+          object ListBoxItem5: TListBoxItem
+            Height = 44.000000000000000000
+            Position.Y = 44.000000000000000000
+            StyleLookup = 'listboxitemnodetail'
+            Text = 'Departing'
+            Width = 320.000000000000000000
+            object lblDeparting: TLabel
+              Align = alVertCenter
+              Font.Style = [fsBold]
+              StyledSettings = [ssFamily, ssSize, ssFontColor]
+              Height = 30.000000000000000000
+              Margins.Left = 100.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 100.000000000000000000
+              Position.Y = 7.000000000000000000
+              Text = '...'
+              Width = 210.000000000000000000
+              Trimming = ttCharacter
+            end
+          end
+          object ListBoxItem6: TListBoxItem
+            Height = 44.000000000000000000
+            Position.Y = 88.000000000000000000
+            StyleLookup = 'listboxitemnodetail'
+            Text = 'Arriving'
+            Width = 320.000000000000000000
+            object lblArriving: TLabel
+              Align = alVertCenter
+              Font.Style = [fsBold]
+              StyledSettings = [ssFamily, ssSize, ssFontColor]
+              Height = 30.000000000000000000
+              Margins.Left = 100.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 100.000000000000000000
+              Position.Y = 7.000000000000000000
+              Text = '...'
+              Width = 210.000000000000000000
+              Trimming = ttCharacter
+            end
+          end
+          object ListBoxItem7: TListBoxItem
+            Height = 44.000000000000000000
+            Position.Y = 132.000000000000000000
+            StyleLookup = 'listboxitemnodetail'
+            Text = 'Leaving'
+            Width = 320.000000000000000000
+            object lblLeaving: TLabel
+              Align = alVertCenter
+              Font.Style = [fsBold]
+              StyledSettings = [ssFamily, ssSize, ssFontColor]
+              Height = 30.000000000000000000
+              Margins.Left = 100.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 100.000000000000000000
+              Position.Y = 7.000000000000000000
+              Text = '...'
+              Width = 210.000000000000000000
+              Trimming = ttCharacter
+            end
+          end
+          object ListBoxItem8: TListBoxItem
+            Height = 44.000000000000000000
+            Position.Y = 176.000000000000000000
+            StyleLookup = 'listboxitemnodetail'
+            Text = 'Started'
+            Width = 320.000000000000000000
+            object lblStarted: TLabel
+              Align = alVertCenter
+              Font.Style = [fsBold]
+              StyledSettings = [ssFamily, ssSize, ssFontColor]
+              Height = 30.000000000000000000
+              Margins.Left = 100.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 100.000000000000000000
+              Position.Y = 7.000000000000000000
+              Text = '...'
+              Width = 210.000000000000000000
+              Trimming = ttCharacter
+            end
+          end
+          object ListBoxItem9: TListBoxItem
+            Height = 44.000000000000000000
+            Position.Y = 220.000000000000000000
+            StyleLookup = 'listboxitemnodetail'
+            Text = 'Leader'
+            Width = 320.000000000000000000
+            object lblLeader: TLabel
+              Align = alVertCenter
+              Font.Style = [fsBold]
+              StyledSettings = [ssFamily, ssSize, ssFontColor]
+              Height = 30.000000000000000000
+              Margins.Left = 100.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Position.X = 100.000000000000000000
+              Position.Y = 7.000000000000000000
+              Text = '...'
+              Width = 210.000000000000000000
+              Trimming = ttCharacter
+            end
+          end
+        end
+      end
+    end
+    object TabCheck: TTabItem
+      WordWrap = False
+      Height = 8.000000000000000000
+      IsSelected = False
+      Position.X = 151.000000000000000000
+      Position.Y = 529.000000000000000000
+      TabOrder = 2
+      Text = 'TabCheck'
+      Trimming = ttCharacter
+      Width = 8.000000000000000000
+      object ToolBar2: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+        object Label15: TLabel
+          Align = alContents
+          Height = 44.000000000000000000
+          Text = 'Check In'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+        object SpeedButton6: TSpeedButton
+          Align = alLeft
+          Height = 44.000000000000000000
+          StyleLookup = 'backtoolbutton'
+          Text = 'Trip'
+          Trimming = ttCharacter
+          Width = 73.000000000000000000
+          OnClick = SpeedButton6Click
+        end
+        object SpeedButton5: TSpeedButton
+          Align = alRight
+          Height = 44.000000000000000000
+          Position.X = 247.000000000000000000
+          Text = 'Map'
+          Trimming = ttCharacter
+          Width = 73.000000000000000000
+          OnClick = SpeedButton5Click
+        end
+      end
+      object Panel4: TPanel
+        Align = alTop
+        Height = 61.000000000000000000
+        Position.Y = 44.000000000000000000
+        Width = 320.000000000000000000
+        TabOrder = 1
+        object Panel6: TPanel
+          Align = alClient
+          Height = 61.000000000000000000
+          Width = 256.000000000000000000
+          TabOrder = 0
+          object edtStatus: TEdit
+            Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+            Align = alFit
+            TabOrder = 0
+            Width = 246.000000000000000000
+            Height = 30.000000000000000000
+            Margins.Left = 10.000000000000000000
+            TextPrompt = 'Enter a comment...'
+            KillFocusByReturn = False
+          end
+        end
+        object sbSend: TSpeedButton
+          Align = alRight
+          Height = 61.000000000000000000
+          Position.X = 256.000000000000000000
+          Text = 'Send'
+          Trimming = ttCharacter
+          Width = 64.000000000000000000
+          OnClick = sbSendClick
+        end
+      end
+      object lbParticipants: TListBox
+        Align = alClient
+        Height = 443.000000000000000000
+        TabOrder = 2
+        Width = 320.000000000000000000
+        DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+      end
+    end
+    object TabMap: TTabItem
+      WordWrap = False
+      Height = 8.000000000000000000
+      IsSelected = False
+      Position.X = 161.000000000000000000
+      Position.Y = 529.000000000000000000
+      TabOrder = 3
+      Text = 'TabMap'
+      Width = 8.000000000000000000
+      object WebBrowser1: TWebBrowser
+        Align = alClient
+        Height = 504.000000000000000000
+        Width = 320.000000000000000000
+      end
+      object ToolBar1: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+        object Label12: TLabel
+          Align = alContents
+          Height = 44.000000000000000000
+          Text = 'Map'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+        object SpeedButton2: TSpeedButton
+          Align = alLeft
+          Height = 44.000000000000000000
+          StyleLookup = 'backtoolbutton'
+          Text = 'Check'
+          Trimming = ttCharacter
+          Width = 73.000000000000000000
+          OnClick = SpeedButton2Click
+        end
+        object SpeedButton3: TSpeedButton
+          Align = alRight
+          Height = 44.000000000000000000
+          Position.X = 247.000000000000000000
+          Text = 'Trip'
+          Trimming = ttCharacter
+          Width = 73.000000000000000000
+          OnClick = SpeedButton3Click
+        end
+      end
+    end
+    object TabSignIn: TTabItem
+      WordWrap = False
+      Height = 8.000000000000000000
+      IsSelected = False
+      Position.X = 171.000000000000000000
+      Position.Y = 529.000000000000000000
+      TabOrder = 4
+      Text = 'TabSignIn'
+      Trimming = ttCharacter
+      Width = 8.000000000000000000
+      object TopToolBar3: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+        object Label1: TLabel
+          Align = alClient
+          Height = 44.000000000000000000
+          Text = 'Sign In'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+      end
+    end
+    object TabSettings: TTabItem
+      WordWrap = False
+      Height = 8.000000000000000000
+      IsSelected = False
+      Position.X = 181.000000000000000000
+      Position.Y = 529.000000000000000000
+      TabOrder = 5
+      Text = 'TabSettings'
+      Trimming = ttCharacter
+      Width = 8.000000000000000000
+      object TopToolBar2: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 0
+        Width = 320.000000000000000000
+        object Label2: TLabel
+          Align = alClient
+          Height = 44.000000000000000000
+          Text = 'Settings'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
+      end
+      object Panel5: TPanel
+        Align = alHorzCenter
+        Height = 504.000000000000000000
+        Position.Y = 44.000000000000000000
+        Width = 320.000000000000000000
+        TabOrder = 1
+        object Label13: TLabel
+          Height = 30.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 24.000000000000000000
+          Text = 'Check In Every'
+          Width = 150.000000000000000000
+          Trimming = ttCharacter
+        end
+        object sbCheckIn: TSpinBox
+          Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+          TabOrder = 1
+          Cursor = crIBeam
+          Min = 1.000000000000000000
+          Max = 60.000000000000000000
+          Value = 5.000000000000000000
+          Position.X = 168.000000000000000000
+          Position.Y = 24.000000000000000000
+          Width = 134.000000000000000000
+          Height = 30.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          OnChange = sbCheckInChange
+        end
+        object Label14: TLabel
+          Height = 30.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 80.000000000000000000
+          Text = 'Update Map Every'
+          Width = 150.000000000000000000
+          Trimming = ttCharacter
+        end
+        object sbMapping: TSpinBox
+          Touch.InteractiveGestures = [igLongTap, igDoubleTap]
+          TabOrder = 3
+          Cursor = crIBeam
+          Min = 1.000000000000000000
+          Max = 60.000000000000000000
+          Value = 2.000000000000000000
+          Position.X = 168.000000000000000000
+          Position.Y = 78.000000000000000000
+          Width = 134.000000000000000000
+          Height = 30.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Margins.Right = 10.000000000000000000
+          OnChange = sbMappingChange
+        end
+      end
+    end
+  end
+  object LocationSensor1: TLocationSensor
+    Accuracy = 5.000000000000000000
+    Distance = 10.000000000000000000
+    OnLocationChanged = LocationSensor1LocationChanged
+    Left = 688
+    Top = 56
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 60000
+    OnTimer = Timer1Timer
+    Left = 656
+    Top = 56
+  end
+  object ActionList1: TActionList
+    Left = 624
+    Top = 56
+    object ChangeTabAction1: TChangeTabAction
+      Category = 'Tab'
+      CustomText = 'Tether'
+    end
+    object ChangeTabAction2: TChangeTabAction
+      Category = 'Tab'
+      CustomText = 'Join a Trip'
+      Tab = TabJoin
+    end
+    object ChangeTabAction3: TChangeTabAction
+      Category = 'Tab'
+      Tab = TabTrip
+      Direction = tdReversed
+    end
+    object ChangeTabAction4: TChangeTabAction
+      Category = 'Tab'
+      CustomText = 'Sign In'
+      Tab = TabSignIn
+    end
+    object ChangeTabAction5: TChangeTabAction
+      Category = 'Tab'
+      CustomText = 'Settings'
+      Tab = TabSettings
+    end
+    object ChangeTabAction6: TChangeTabAction
+      Category = 'Tab'
+      Tab = TabMap
+      Transition = ttSlide
+    end
+    object ChangeTabAction7: TChangeTabAction
+      Category = 'Tab'
+      Tab = TabCheck
+      Direction = tdReversed
+    end
+    object ChangeTabAction8: TChangeTabAction
+      Category = 'Tab'
+      Tab = TabCheck
+    end
+  end
+  object RESTClient1: TRESTClient
+    Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    BaseURL = 'http://192.168.2.201'
+    Params = <>
+    HandleRedirects = True
+    Left = 624
+    Top = 113
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <
+      item
+        name = 'email'
+      end
+      item
+        name = 'pin'
+      end>
+    Resource = 'apis/[id]/join.json'
+    Response = RESTResponse1
+    OnAfterExecute = RESTRequest1AfterExecute
+    Left = 656
+    Top = 113
+  end
+  object RESTResponse1: TRESTResponse
+    Left = 688
+    Top = 113
+  end
+  object RESTRequest2: TRESTRequest
+    Client = RESTClient1
+    Params = <
+      item
+        name = 'email'
+      end
+      item
+        name = 'pin'
+      end
+      item
+        name = 'token'
+      end
+      item
+        name = 'lat'
+      end
+      item
+        name = 'long'
+      end
+      item
+        name = 'status'
+      end>
+    Resource = 'apis/[id]/checkin.json'
+    Response = RESTResponse2
+    OnAfterExecute = RESTRequest2AfterExecute
+    Left = 656
+    Top = 168
+  end
+  object RESTResponse2: TRESTResponse
+    Left = 688
+    Top = 168
+  end
+end
