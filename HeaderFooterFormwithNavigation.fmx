@@ -38,6 +38,53 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Height = 44.000000000000000000
         TabOrder = 0
         Width = 320.000000000000000000
+        object btnSettings: TSpeedButton
+          Align = alRight
+          Height = 44.000000000000000000
+          Position.X = 276.000000000000000000
+          StyleLookup = 'detailstoolbutton'
+          Text = 'btnSettings'
+          Trimming = ttCharacter
+          Width = 44.000000000000000000
+          OnClick = btnSettingsClick
+        end
+        object Image1: TImage
+          MultiResBitmap = <
+            item
+              Width = 60
+              Height = 60
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+                72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                01C4494441546843ED9ABD6AC25014C7FF2D2A2911D12A82209480AFE01B74EA
+                0B747475E963B8767675ECD6492CF8063A7728828B935002C5B4628436B12769
+                1A2AFDB847A1C7F303CDB9D7E8CD2FF71FBF92A3C77AE31507C4312D0F061596
+                8E0A4B4785A5A3C2D25161E9F0082FE728CF2628BB1E7570E0A33B0F5E7336C7
+                907A3860F9F1307427B8E4744DD1AA34706D51C3108619F6D0DFA16C48EF856F
+                0073E1B58F7B2A9384B312A427713B4327470F46D8B5D43A0D8C8B5F4CA5E7B1
+                C5DA5878BA5C6044F50692F849049BD9F41E009C7C3D787E7AE73CA1BFA4D210
+                43611F77CF892D09654B36354CC8A25DFD2CCD156B33E1B587DB15D5B90AC62C
+                B211A1740D2D6A71C5DA48F823CE163AA745389B9A131B57F131CD136B23E138
+                CE7609EDCC7BC98D932FC5B3CC116B23E128CEAD13CE28A749CC3243AC8D8407
+                9542705FC005D397826D38561ECD609C9B7A15E7D4F757CCDEB4AC6AF01162BE
+                11DF922962C0348E99F03F4485A5A3C2D25161E9A8B07454583A2A2C1D15968E
+                0A4B478577C70A0FD17FD8C4C84F75EC81BD094F172E7A54C7782EBA6BAAF7C4
+                4EAFB5FCED6954CED3A2DB38B86358AFA6958E0A4B4785A5A3C2D25161E9A8B0
+                74545836C01B5A777553E5E248CC0000000049454E44AE426082}
+              FileName = 'C:\Projects\tetherapp\tetherapp.bmp'
+            end>
+          Align = alLeft
+          Height = 44.000000000000000000
+          Width = 60.000000000000000000
+        end
+        object Label3: TLabel
+          Align = alContents
+          Height = 44.000000000000000000
+          Text = 'Tether'
+          TextAlign = taCenter
+          Width = 320.000000000000000000
+          Trimming = ttCharacter
+        end
       end
       object Panel1: TPanel
         Align = alHorzCenter
@@ -48,7 +95,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object Panel3: TPanel
           Align = alTop
           Height = 197.000000000000000000
-          Position.Y = 161.000000000000000000
           Width = 321.000000000000000000
           TabOrder = 0
           object edtEMail: TEdit
@@ -110,63 +156,45 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           end
           object btnJoinTrip: TButton
             Height = 57.000000000000000000
-            Position.X = 71.000000000000000000
-            Position.Y = 144.000000000000000000
+            Position.X = 64.000000000000000000
+            Position.Y = 136.000000000000000000
             TabOrder = 6
             Text = 'Join The Trip'
             Trimming = ttCharacter
-            Width = 145.000000000000000000
+            Width = 128.000000000000000000
             OnClick = JoinTrip
           end
-        end
-        object Panel7: TPanel
-          Align = alTop
-          Height = 161.000000000000000000
-          Width = 321.000000000000000000
-          TabOrder = 1
-          object Image1: TImage
-            MultiResBitmap = <
-              item
-                Width = 120
-                Height = 120
-                PNG = {
-                  89504E470D0A1A0A0000000D4948445200000078000000780806000000396436
-                  D2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                  037449444154785EED9DBB6E134114861D7A242E6F000F400312050D15505340
-                  4F81681142088932052D12978202D170A928B80851220A1048F000D0D1812878
-                  00F39FCCACE49859670DB267F6CBFF297FE6C47156CE7EBBC7B34E32D9984E26
-                  7A3354F6E4D140B16038160CC782E158301C0B8663C1702C188E05C3B1603816
-                  0CC782E158301C0B8663C1702C188E05C3B16038160CC782E158301C0B8663C1
-                  709A12FC52D998C937A5750E28DDE33D1637344653829FE7B1E3431E5BE5A7F2
-                  2B955B7C545A3B289BFACB86381B6677D818B9A75C4C6513347306477B1EBBDC
-                  E07E1E5BA119C1F3ED79ACB4D6A69B11FC388F04DEE4B1059A104C69CF1D2DB5
-                  E926042FDB9E4F29379517CA5B256689F379A40CE192F24399FFFAB82DB61DDB
-                  89FB1C5686D2549BD63733AD9DFD4A7A28FD89FB48EA543BBEB88D5274206858
-                  9CCF8A8A4191F041DB8C68365DDCC6BA138FA6F889754567A186C539A72C23B6
-                  CB10197AB77442B4CE6895FD39AAA8A89EEA2DFA611EFB88161913B0835B1FB5
-                  C109E5BD12ADBB8F68D35F525995AA82E395A027A92C1272CFA7B239E280BBA3
-                  2C92FC348F35A92A78D1E544CB726709C97A0A29B2E8E05D1755053FCBE33CD7
-                  9531C8EDB8AD9466D95F95DA6DBA9AE0BEF6ACC9C9643395A321DAF58354FE45
-                  ED365D4D705F7B6EEDB5DCA1C4C4ABF47C5CBB4D57135C6ACFD19A8FA472945C
-                  5174BDBE8DDA6DBA8AE0527B8E1D733995A3E590722D95DBA8D9A6AB082EB5E7
-                  686F2D5DEBFE2B17F2384BCD365D4570A93D9776CC18898374FEB9B8669BAEF2
-                  1B1DD1A2E395A077CA27659FB28A1F179E565EA7B297557CF321F3AC12570427
-                  95E34AADB9057A31D25A825BA2DA2CDAAC070B8663C1702C188E05C3B1603816
-                  0CC782E158301C0B8663C1702C188E05C3B16038160CC782E158301C0B8663C1
-                  702C188E05C3B16038160CC782E158301C0B8663C1702C188E05C3B16038160C
-                  C782E158301C0B8663C1702C18CEAE17DCC29ACEAB64D70BFE9D472A58C1B116
-                  D74E4B2805AFF248052BF8461E77E2AE426ED3A885D042D477E59632E4ECED88
-                  855063F9C133CA5E65CC2BDECE336AC14356B2FB5FE2FF335D4DE528F165121C
-                  0B8663C170D0ABCD1A9FC1782C188E05C3B16038160CC782E158301C0B8663C1
-                  702C188E05C3B16038160CC782E158301C0B8663C1702C188E05C3B16038160C
-                  C782E158301C0B8663C1702C188E05C3B1603493C91F945711F9BBF62AB70000
-                  000049454E44AE426082}
-                FileName = 'C:\Projects\tetherapp\tetherapp2.bmp'
-              end>
+          object cpJoinError: TCalloutPanel
             Height = 120.000000000000000000
-            Position.X = 104.000000000000000000
-            Position.Y = 24.000000000000000000
-            Width = 120.000000000000000000
+            Padding.Top = 11.000000000000000000
+            Position.X = 184.000000000000000000
+            Position.Y = 104.000000000000000000
+            Visible = False
+            Width = 128.000000000000000000
+            TabOrder = 7
+            CalloutWidth = 23.000000000000000000
+            CalloutLength = 11.000000000000000000
+            CalloutPosition = cpLeft
+            object Label7: TLabel
+              Font.Size = 12.000000000000000000
+              StyledSettings = [ssFamily, ssStyle, ssFontColor]
+              Height = 65.000000000000000000
+              Position.X = 16.000000000000000000
+              Position.Y = 3.000000000000000000
+              Text = 'Oops, you weren'#39't able to join the trip.'
+              Width = 104.000000000000000000
+              Trimming = ttCharacter
+            end
+            object Label9: TLabel
+              Font.Size = 12.000000000000000000
+              StyledSettings = [ssFamily, ssStyle, ssFontColor]
+              Height = 57.000000000000000000
+              Position.X = 16.000000000000000000
+              Position.Y = 56.000000000000000000
+              Text = 'Check your trip info and try again.'
+              Width = 97.000000000000000000
+              Trimming = ttCharacter
+            end
           end
         end
       end
@@ -585,6 +613,16 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Left = 10.000000000000000000
           Margins.Right = 10.000000000000000000
           OnChange = sbMappingChange
+        end
+        object btnSettingsDone: TButton
+          Height = 44.000000000000000000
+          Position.X = 112.000000000000000000
+          Position.Y = 128.000000000000000000
+          TabOrder = 4
+          Text = 'Done'
+          Trimming = ttCharacter
+          Width = 73.000000000000000000
+          OnClick = btnSettingsDoneClick
         end
       end
     end

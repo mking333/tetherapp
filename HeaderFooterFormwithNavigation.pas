@@ -90,8 +90,13 @@ type
     Label5: TLabel;
     Label6: TLabel;
     btnJoinTrip: TButton;
-    Panel7: TPanel;
+    btnSettings: TSpeedButton;
     Image1: TImage;
+    Label3: TLabel;
+    btnSettingsDone: TButton;
+    cpJoinError: TCalloutPanel;
+    Label7: TLabel;
+    Label9: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -112,6 +117,8 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
+    procedure btnSettingsClick(Sender: TObject);
+    procedure btnSettingsDoneClick(Sender: TObject);
   private
     { Private declarations }
     startTime: TDate;
@@ -218,62 +225,71 @@ var
   Start: string;
   Leader: string;
   Token: TJSONValue;
-  Error: TJSONValue;
+  Result: string;
   Participant: TJSONObject;
   ParticipantName: TJSONValue;
   i: integer;
 begin
   Response := RESTResponse1.JsonValue as TJSONObject;
   Trip := Response.Get('trip').JsonValue as TJSONObject;
-  Name := Trip.Get('name').JsonValue;
-  Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
-  Depart := Trip.Get('depart').JsonValue.ToString.Replace('"', '');
-  Start := Trip.Get('start').JsonValue.ToString.Replace('"', '');
-  Token := Trip.Get('token').JsonValue;
-  Error := Trip.Get('error').JsonValue;
-  Participant := Trip.Get('participant').JsonValue as TJSONObject;
-  ParticipantName := Participant.Get('name').JsonValue;
-  Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
-
-  tripToken := Token.ToString.Replace('"', '');
-  lblName.Text := Name.ToString.Replace('"', '');
-  lblDeparting.Text := Depart;
-  if Start = '' then
-    lblStarted.Text := 'The trip has not yet started.'
-  else
-    lblStarted.Text := 'The trip has started.';
-
-  if Leader = 'yes' then
-    lblLeader.Text := 'You are the leader.'
-  else
-    lblLeader.Text := '';
-
-  if Notes.Length > 0 then
+  Result := Trip.Get('result').JsonValue.ToString.Replace('"', '');
+  if Result <> 'success' then
   begin
-    mmoNotes.Text := Notes;
-    mmoNotes.Visible := True;
+    cpJoinError.Visible := True;
   end
   else
   begin
-    mmoNotes.Text := '';
-    mmoNotes.Visible := False;
+    cpJoinError.Visible := False;
+
+    Name := Trip.Get('name').JsonValue;
+    Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
+    Depart := Trip.Get('depart').JsonValue.ToString.Replace('"', '');
+    Start := Trip.Get('start').JsonValue.ToString.Replace('"', '');
+    Token := Trip.Get('token').JsonValue;
+    Participant := Trip.Get('participant').JsonValue as TJSONObject;
+    ParticipantName := Participant.Get('name').JsonValue;
+    Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
+
+    tripToken := Token.ToString.Replace('"', '');
+    lblName.Text := Name.ToString.Replace('"', '');
+    lblDeparting.Text := Depart;
+    if Start = '' then
+      lblStarted.Text := 'The trip has not yet started.'
+    else
+      lblStarted.Text := 'The trip has started.';
+
+    if Leader = 'yes' then
+      lblLeader.Text := 'You are the leader.'
+    else
+      lblLeader.Text := '';
+
+    if Notes.Length > 0 then
+    begin
+      mmoNotes.Text := Notes;
+      mmoNotes.Visible := True;
+    end
+    else
+    begin
+      mmoNotes.Text := '';
+      mmoNotes.Visible := False;
+    end;
+
+    TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide);
+
+    //for i := 0 to Participants.Size - 1 do
+    //begin
+    //  Participant := Participants.Get(i) as TJSONObject;
+    //  ParticipantName := Participant.Get('name').JsonValue;
+
+    //  mmoParticipants.Lines.Add(ParticipantName.ToString.Replace('"', ''));
+    //end;
+
+    CheckIn(self, 'Joined Trip');
+    Mapping(self);
+
+    Timer1.Enabled := True;
+    startTime := Now;
   end;
-
-  TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide);
-
-  //for i := 0 to Participants.Size - 1 do
-  //begin
-  //  Participant := Participants.Get(i) as TJSONObject;
-  //  ParticipantName := Participant.Get('name').JsonValue;
-
-  //  mmoParticipants.Lines.Add(ParticipantName.ToString.Replace('"', ''));
-  //end;
-
-  CheckIn(self, 'Joined Trip');
-  Mapping(self);
-
-  Timer1.Enabled := True;
-  startTime := Now;
 end;
 
 procedure THeaderFooterwithNavigation.RESTRequest2AfterExecute(
@@ -287,7 +303,7 @@ var
   Start: string;
   Leader: string;
   Token: TJSONValue;
-  Error: TJSONValue;
+  Result: TJSONValue;
   Participant: TJSONObject;
   ParticipantName: string;
   ParticipantStatus: string;
@@ -299,7 +315,7 @@ begin
   Trip := Response.Get('trip').JsonValue as TJSONObject;
   Name := Trip.Get('name').JsonValue;
   Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
-  Error := Trip.Get('error').JsonValue;
+  Result := Trip.Get('result').JsonValue;
   Participant := Trip.Get('participant').JsonValue as TJSONObject;
   ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
   Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
@@ -384,6 +400,16 @@ end;
 procedure THeaderFooterwithNavigation.btnJoinClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide);
+end;
+
+procedure THeaderFooterwithNavigation.btnSettingsClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabSettings, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+end;
+
+procedure THeaderFooterwithNavigation.btnSettingsDoneClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
 end;
 
 procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string);
