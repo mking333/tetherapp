@@ -20,14 +20,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabPosition = tpNone
     Width = 320.000000000000000000
     object TabJoin: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       Position.X = 131.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 0
@@ -202,7 +202,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabTrip: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       Position.X = 141.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 1
@@ -233,8 +233,10 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object SpeedButton4: TSpeedButton
           Align = alLeft
           Height = 44.000000000000000000
+          Text = 'Quit'
           Trimming = ttCharacter
           Width = 64.000000000000000000
+          OnClick = SpeedButton4Click
         end
       end
       object Panel2: TPanel

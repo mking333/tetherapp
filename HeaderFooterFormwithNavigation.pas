@@ -119,6 +119,7 @@ type
     procedure SpeedButton5Click(Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnSettingsDoneClick(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
   private
     { Private declarations }
     startTime: TDate;
@@ -368,6 +369,13 @@ end;
 procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton4Click(Sender: TObject);
+begin
+  CheckIn(self, 'Quit Trip');
+  Timer1.Enabled := False;
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton5Click(Sender: TObject);
