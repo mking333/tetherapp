@@ -20,14 +20,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabPosition = tpNone
     Width = 320.000000000000000000
     object TabJoin: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       Position.X = 131.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 0
@@ -100,9 +100,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object edtEMail: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
             TabOrder = 0
-            Position.X = 75.000000000000000000
+            Position.X = 80.000000000000000000
             Position.Y = 54.000000000000000000
-            Width = 229.000000000000000000
+            Width = 224.000000000000000000
             Height = 30.000000000000000000
             Margins.Left = 90.000000000000000000
             Margins.Right = 10.000000000000000000
@@ -111,9 +111,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object edtTripID: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
             TabOrder = 1
-            Position.X = 75.000000000000000000
+            Position.X = 80.000000000000000000
             Position.Y = 11.000000000000000000
-            Width = 229.000000000000000000
+            Width = 224.000000000000000000
             Height = 30.000000000000000000
             Margins.Left = 90.000000000000000000
             Margins.Right = 10.000000000000000000
@@ -122,9 +122,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object edtTripPIN: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
             TabOrder = 2
-            Position.X = 75.000000000000000000
+            Position.X = 80.000000000000000000
             Position.Y = 99.000000000000000000
-            Width = 111.000000000000000000
+            Width = 106.000000000000000000
             Height = 30.000000000000000000
             Margins.Left = 90.000000000000000000
             Margins.Right = 10.000000000000000000
@@ -195,6 +195,67 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Width = 97.000000000000000000
               Trimming = ttCharacter
             end
+            object CalloutPanel1: TCalloutPanel
+              Height = 120.000000000000000000
+              Padding.Top = 11.000000000000000000
+              Visible = False
+              Width = 128.000000000000000000
+              TabOrder = 2
+              CalloutWidth = 23.000000000000000000
+              CalloutLength = 11.000000000000000000
+              CalloutPosition = cpLeft
+              object Label10: TLabel
+                Font.Size = 12.000000000000000000
+                StyledSettings = [ssFamily, ssStyle, ssFontColor]
+                Height = 65.000000000000000000
+                Position.X = 16.000000000000000000
+                Position.Y = 3.000000000000000000
+                Text = 'Oops, you weren'#39't able to join the trip.'
+                Width = 104.000000000000000000
+                Trimming = ttCharacter
+              end
+              object Label11: TLabel
+                Font.Size = 12.000000000000000000
+                StyledSettings = [ssFamily, ssStyle, ssFontColor]
+                Height = 57.000000000000000000
+                Position.X = 16.000000000000000000
+                Position.Y = 64.000000000000000000
+                Text = 'Check your trip info and try again.'
+                Width = 105.000000000000000000
+                Trimming = ttCharacter
+              end
+            end
+          end
+        end
+        object cpNetworkError: TCalloutPanel
+          Height = 89.000000000000000000
+          Padding.Top = 11.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 184.000000000000000000
+          Visible = False
+          Width = 289.000000000000000000
+          TabOrder = 1
+          CalloutWidth = 23.000000000000000000
+          CalloutLength = 11.000000000000000000
+          object Label16: TLabel
+            Font.Size = 12.000000000000000000
+            StyledSettings = [ssFamily, ssStyle, ssFontColor]
+            Height = 41.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 16.000000000000000000
+            Text = 'Oops, something went wrong connecting to the server.'
+            Width = 273.000000000000000000
+            Trimming = ttCharacter
+          end
+          object Label17: TLabel
+            Font.Size = 12.000000000000000000
+            StyledSettings = [ssFamily, ssStyle, ssFontColor]
+            Height = 33.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 56.000000000000000000
+            Text = 'Check your internet connection and try again.'
+            Width = 273.000000000000000000
+            Trimming = ttCharacter
           end
         end
       end
@@ -202,7 +263,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabTrip: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       Position.X = 141.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 1
@@ -451,8 +512,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object sbSend: TSpeedButton
           Align = alRight
-          Height = 61.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 256.000000000000000000
+          Position.Y = 8.000000000000000000
           Text = 'Send'
           Trimming = ttCharacter
           Width = 64.000000000000000000
@@ -690,6 +752,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     BaseURL = 'http://192.168.2.201'
     Params = <>
     HandleRedirects = True
+    OnHTTPProtocolError = RESTClient1HTTPProtocolError
     Left = 624
     Top = 113
   end
@@ -705,6 +768,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Resource = 'apis/[id]/join.json'
     Response = RESTResponse1
     OnAfterExecute = RESTRequest1AfterExecute
+    OnHTTPProtocolError = RESTRequest1HTTPProtocolError
     Left = 656
     Top = 113
   end
@@ -736,6 +800,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Resource = 'apis/[id]/checkin.json'
     Response = RESTResponse2
     OnAfterExecute = RESTRequest2AfterExecute
+    OnHTTPProtocolError = RESTRequest2HTTPProtocolError
     Left = 656
     Top = 168
   end

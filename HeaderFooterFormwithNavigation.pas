@@ -97,6 +97,12 @@ type
     cpJoinError: TCalloutPanel;
     Label7: TLabel;
     Label9: TLabel;
+    CalloutPanel1: TCalloutPanel;
+    Label10: TLabel;
+    Label11: TLabel;
+    cpNetworkError: TCalloutPanel;
+    Label16: TLabel;
+    Label17: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -120,6 +126,9 @@ type
     procedure btnSettingsClick(Sender: TObject);
     procedure btnSettingsDoneClick(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
+    procedure RESTClient1HTTPProtocolError(Sender: TCustomRESTClient);
+    procedure RESTRequest2HTTPProtocolError(Sender: TCustomRESTRequest);
+    procedure RESTRequest1HTTPProtocolError(Sender: TCustomRESTRequest);
   private
     { Private declarations }
     startTime: TDate;
@@ -141,6 +150,9 @@ procedure THeaderFooterwithNavigation.JoinTrip(Sender: TObject);
 var
   ini: TIniFile;
 begin
+  cpNetworkError.Visible := False;
+  cpJoinError.Visible := False;
+
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
   ini.WriteString('login', 'email', edtEMail.Text);
   ini.WriteString('login', 'trip', edtTripID.Text);
@@ -213,6 +225,14 @@ begin
       Key := 0;
     end;
   end;
+end;
+
+procedure THeaderFooterwithNavigation.RESTClient1HTTPProtocolError(
+  Sender: TCustomRESTClient);
+begin
+  Timer1.Enabled := False;
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  cpNetworkError.Visible := True;
 end;
 
 procedure THeaderFooterwithNavigation.RESTRequest1AfterExecute(
@@ -293,6 +313,14 @@ begin
   end;
 end;
 
+procedure THeaderFooterwithNavigation.RESTRequest1HTTPProtocolError(
+  Sender: TCustomRESTRequest);
+begin
+  Timer1.Enabled := False;
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  cpNetworkError.Visible := True;
+end;
+
 procedure THeaderFooterwithNavigation.RESTRequest2AfterExecute(
   Sender: TCustomRESTRequest);
 var
@@ -308,7 +336,10 @@ var
   Participant: TJSONObject;
   ParticipantName: string;
   ParticipantStatus: string;
+  ParticipantCheckIn: string;
   Participants: TJSONArray;
+  LocalDate: TDateTime;
+  CheckInDate: string;
   i: integer;
   PartListItem: TListBoxItem;
 begin
@@ -319,6 +350,7 @@ begin
   Result := Trip.Get('result').JsonValue;
   Participant := Trip.Get('participant').JsonValue as TJSONObject;
   ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+  ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
   Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
 
   Participants := Trip.Get('participants').JsonValue as TJSONArray;
@@ -328,14 +360,32 @@ begin
     Participant := Participants.Get(i) as TJSONObject;
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
+    ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
+    if ParticipantCheckIn <> '' then
+    begin
+      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(ParticipantCheckIn));
+      CheckInDate := DateTimeToStr(LocalDate);
+    end
+    else
+    begin
+      CheckInDate := ''
+    end;
 
     PartListItem := TListBoxItem.Create(lbParticipants);
-    PartListItem.Text := ParticipantName;
+    PartListItem.Text := ParticipantName + ': ' + ParticipantStatus;
     PartListItem.ItemData.Accessory := TListBoxItemData.TAccessory.aMore;
-    PartListItem.ItemData.Detail := ParticipantStatus;
+    PartListItem.ItemData.Detail := CheckInDate;
 
     lbParticipants.AddObject(PartListItem);
   end;
+end;
+
+procedure THeaderFooterwithNavigation.RESTRequest2HTTPProtocolError(
+  Sender: TCustomRESTRequest);
+begin
+  Timer1.Enabled := False;
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  cpNetworkError.Visible := True;
 end;
 
 procedure THeaderFooterwithNavigation.sbCheckInChange(Sender: TObject);
