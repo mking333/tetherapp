@@ -20,14 +20,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabPosition = tpNone
     Width = 320.000000000000000000
     object TabJoin: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       Position.X = 131.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 0
@@ -230,10 +230,10 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object cpNetworkError: TCalloutPanel
           Height = 89.000000000000000000
           Padding.Top = 11.000000000000000000
-          Position.X = 16.000000000000000000
-          Position.Y = 184.000000000000000000
+          Position.X = 8.000000000000000000
+          Position.Y = 176.000000000000000000
           Visible = False
-          Width = 289.000000000000000000
+          Width = 257.000000000000000000
           TabOrder = 1
           CalloutWidth = 23.000000000000000000
           CalloutLength = 11.000000000000000000
@@ -244,7 +244,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.X = 8.000000000000000000
             Position.Y = 16.000000000000000000
             Text = 'Oops, something went wrong connecting to the server.'
-            Width = 273.000000000000000000
+            Width = 249.000000000000000000
             Trimming = ttCharacter
           end
           object Label17: TLabel
@@ -254,7 +254,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.X = 8.000000000000000000
             Position.Y = 56.000000000000000000
             Text = 'Check your internet connection and try again.'
-            Width = 273.000000000000000000
+            Width = 249.000000000000000000
             Trimming = ttCharacter
           end
         end
@@ -263,7 +263,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabTrip: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       Position.X = 141.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 1
@@ -512,9 +512,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object sbSend: TSpeedButton
           Align = alRight
-          Height = 44.000000000000000000
+          Height = 61.000000000000000000
           Position.X = 256.000000000000000000
-          Position.Y = 8.000000000000000000
           Text = 'Send'
           Trimming = ttCharacter
           Width = 64.000000000000000000

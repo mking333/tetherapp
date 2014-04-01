@@ -243,6 +243,8 @@ var
   Name: TJSONValue;
   Notes: string;
   Depart: string;
+  Arrive: string;
+  Leave: string;
   Start: string;
   Leader: string;
   Token: TJSONValue;
@@ -250,6 +252,11 @@ var
   Participant: TJSONObject;
   ParticipantName: TJSONValue;
   i: integer;
+  LocalDate: TDateTime;
+  DepartingDate: string;
+  ArrivingDate: string;
+  LeavingDate: string;
+  StartingDate: string;
 begin
   Response := RESTResponse1.JsonValue as TJSONObject;
   Trip := Response.Get('trip').JsonValue as TJSONObject;
@@ -265,6 +272,8 @@ begin
     Name := Trip.Get('name').JsonValue;
     Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
     Depart := Trip.Get('depart').JsonValue.ToString.Replace('"', '');
+    Arrive := Trip.Get('arrive').JsonValue.ToString.Replace('"', '');
+    Leave := Trip.Get('leave').JsonValue.ToString.Replace('"', '');
     Start := Trip.Get('start').JsonValue.ToString.Replace('"', '');
     Token := Trip.Get('token').JsonValue;
     Participant := Trip.Get('participant').JsonValue as TJSONObject;
@@ -273,11 +282,33 @@ begin
 
     tripToken := Token.ToString.Replace('"', '');
     lblName.Text := Name.ToString.Replace('"', '');
-    lblDeparting.Text := Depart;
+
+    if Depart <> '' then
+    begin
+      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Depart));
+      DepartingDate := DateTimeToStr(LocalDate);
+      lblDeparting.Text := 'We should depart at ' + DepartingDate;
+    end;
+    if Arrive <> '' then
+    begin
+      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Arrive));
+      ArrivingDate := DateTimeToStr(LocalDate);
+      lblArriving.Text := 'We plan to arrive at ' + ArrivingDate;
+    end;
+    if Leave <> '' then
+    begin
+      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Leave));
+      LeavingDate := DateTimeToStr(LocalDate);
+      lblLeaving.Text := 'We will leave for home at ' + LeavingDate;
+    end;
     if Start = '' then
       lblStarted.Text := 'The trip has not yet started.'
     else
-      lblStarted.Text := 'The trip has started.';
+    begin
+      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Start));
+      StartingDate := DateTimeToStr(LocalDate);
+      lblStarted.Text := 'The trip started at ' + StartingDate;
+    end;
 
     if Leader = 'yes' then
       lblLeader.Text := 'You are the leader.'
