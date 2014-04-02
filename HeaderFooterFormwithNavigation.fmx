@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 0
     TabPosition = tpNone
     Width = 320.000000000000000000
@@ -263,7 +263,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabTrip: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       Position.X = 141.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 1
@@ -450,7 +450,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabCheck: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       Position.X = 151.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 2
@@ -512,8 +512,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object sbSend: TSpeedButton
           Align = alRight
-          Height = 61.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 256.000000000000000000
+          Position.Y = 8.000000000000000000
           Text = 'Send'
           Trimming = ttCharacter
           Width = 64.000000000000000000
@@ -528,6 +529,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
         DefaultItemStyles.GroupHeaderStyle = ''
         DefaultItemStyles.GroupFooterStyle = ''
+        OnItemClick = lbParticipantsItemClick
       end
     end
     object TabMap: TTabItem

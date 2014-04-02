@@ -111,6 +111,7 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure CheckIn(Sender: TObject; Status: string);
     procedure Mapping(Sender: TObject);
+    procedure MapName(Sender: TObject; Name: string);
     procedure LocationSensor1LocationChanged(Sender: TObject; const OldLocation,
       NewLocation: TLocationCoord2D);
     procedure SpeedButton3Click(Sender: TObject);
@@ -129,6 +130,8 @@ type
     procedure RESTClient1HTTPProtocolError(Sender: TCustomRESTClient);
     procedure RESTRequest2HTTPProtocolError(Sender: TCustomRESTRequest);
     procedure RESTRequest1HTTPProtocolError(Sender: TCustomRESTRequest);
+    procedure lbParticipantsItemClick(const Sender: TCustomListBox;
+      const Item: TListBoxItem);
   private
     { Private declarations }
     startTime: TDate;
@@ -166,6 +169,23 @@ begin
   RestRequest1.Resource := 'apis/[id]/join.json';
   RestRequest1.Resource := RestRequest1.Resource.Replace('[id]', edtTripID.Text);
   RestRequest1.Execute;
+end;
+
+procedure THeaderFooterwithNavigation.lbParticipantsItemClick(
+  const Sender: TCustomListBox; const Item: TListBoxItem);
+var
+  ParticipantName: string;
+  ColonPos: integer;
+  SelectName: string;
+begin
+  ParticipantName := Item.ItemData.Text;
+  ColonPos := Pos(':', ParticipantName);
+  if ColonPos = 0 then
+    SelectName := ParticipantName
+  else
+    SelectName := ParticipantName.Substring(0, ColonPos - 1);
+
+  MapName(self, SelectName);
 end;
 
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
@@ -406,6 +426,7 @@ begin
     PartListItem.Text := ParticipantName + ': ' + ParticipantStatus;
     PartListItem.ItemData.Accessory := TListBoxItemData.TAccessory.aMore;
     PartListItem.ItemData.Detail := CheckInDate;
+    PartListItem.ItemData.Text := ParticipantName + ': ' + ParticipantStatus;
 
     lbParticipants.AddObject(PartListItem);
   end;
@@ -520,6 +541,15 @@ var
 begin
   URLString := Format('http://192.168.2.201/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000))]);
   WebBrowser1.Navigate(URLString);
+end;
+
+procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
+var
+  URLString: string;
+begin
+  URLString := Format('http://192.168.2.201/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000)), Name]);
+  WebBrowser1.Navigate(URLString);
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
 end.
