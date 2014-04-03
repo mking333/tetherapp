@@ -11,7 +11,8 @@ uses
   REST.Utils, REST.Types, REST.Json, DATA.DBXJSON,
   FMX.Layouts, FMX.Memo, FMX.Sensors,
   FMX.WebBrowser, FMX.ListBox, FMX.ListView.Types, FMX.ListView, FMX.Objects,
-  System.IOUtils;
+  System.IOUtils,
+  XSBuiltins;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -305,29 +306,29 @@ begin
 
     if Depart <> '' then
     begin
-      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Depart));
-      DepartingDate := DateTimeToStr(LocalDate);
-      lblDeparting.Text := 'We should depart at ' + DepartingDate;
+      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Depart, True));
+      DepartingDate := FormatDateTime('ddddd t', LocalDate);
+      lblDeparting.Text := DepartingDate;
     end;
     if Arrive <> '' then
     begin
-      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Arrive));
-      ArrivingDate := DateTimeToStr(LocalDate);
-      lblArriving.Text := 'We plan to arrive at ' + ArrivingDate;
+      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Arrive, True));
+      ArrivingDate := FormatDateTime('ddddd t', LocalDate);
+      lblArriving.Text := ArrivingDate;
     end;
     if Leave <> '' then
     begin
-      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Leave));
-      LeavingDate := DateTimeToStr(LocalDate);
-      lblLeaving.Text := 'We will leave for home at ' + LeavingDate;
+      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Leave, True));
+      LeavingDate := FormatDateTime('ddddd t', LocalDate);
+      lblLeaving.Text := LeavingDate;
     end;
     if Start = '' then
       lblStarted.Text := 'The trip has not yet started.'
     else
     begin
-      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(Start));
-      StartingDate := DateTimeToStr(LocalDate);
-      lblStarted.Text := 'The trip started at ' + StartingDate;
+      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Start, True));
+      StartingDate := FormatDateTime('ddddd t', LocalDate);
+      lblStarted.Text := StartingDate;
     end;
 
     if Leader = 'yes' then
@@ -414,8 +415,8 @@ begin
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
     if ParticipantCheckIn <> '' then
     begin
-      LocalDate := TTimeZone.Local.ToLocalTime(StrToDateTime(ParticipantCheckIn));
-      CheckInDate := DateTimeToStr(LocalDate);
+      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(ParticipantCheckIn, True));
+      CheckInDate := FormatDateTime('ddddd t', LocalDate);
     end
     else
     begin
