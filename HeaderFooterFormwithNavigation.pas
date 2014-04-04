@@ -334,7 +334,12 @@ begin
     if Leader = 'yes' then
       lblLeader.Text := 'You are the leader.'
     else
-      lblLeader.Text := '';
+    begin
+      if Start = '' then
+        lblLeader.Text := 'Trip will begin when the leader joins.'
+      else
+        lblLeader.Text := '';
+    end;
 
     if Notes.Length > 0 then
     begin
@@ -540,7 +545,7 @@ procedure THeaderFooterwithNavigation.Mapping(Sender: TObject);
 var
   URLString: string;
 begin
-  URLString := Format('http://192.168.2.201/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000))]);
+  URLString := Format('http://www.triptether.com/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000))]);
   WebBrowser1.Navigate(URLString);
 end;
 
@@ -548,7 +553,7 @@ procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
 var
   URLString: string;
 begin
-  URLString := Format('http://192.168.2.201/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000)), Name]);
+  URLString := Format('http://www.triptether.com/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000)), Name]);
   WebBrowser1.Navigate(URLString);
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;

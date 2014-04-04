@@ -750,7 +750,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   end
   object RESTClient1: TRESTClient
     Accept = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-    BaseURL = 'http://192.168.2.201'
+    BaseURL = 'http://www.triptether.com'
     Params = <>
     HandleRedirects = True
     OnHTTPProtocolError = RESTClient1HTTPProtocolError

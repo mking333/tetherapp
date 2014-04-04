@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2014/03/05 17:06:36.000.991,C:\Projects\tetherapp\HeaderFooterNavigation.dproj=C:\Projects\tetherapp\tetherapp.dproj</Transaction>
+    <Transaction>2014/03/05 17:06:36.000.991,C:\Projects\tetherapp\tetherapp.dproj=C:\Projects\tetherapp\HeaderFooterNavigation.dproj</Transaction>
   </Transactions>
-	<MobileDevice>%iosdevice%e44a7a5ab1d5c7f3a03179f4b5f3d8804ee35e6b</MobileDevice>
-	<BT_BuildType>Debug</BT_BuildType>
+	<MobileDevice>D5OKCY022956</MobileDevice>
+	<BT_BuildType>Adhoc</BT_BuildType>
 </BorlandProject>
