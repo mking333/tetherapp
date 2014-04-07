@@ -104,6 +104,9 @@ type
     cpNetworkError: TCalloutPanel;
     Label16: TLabel;
     Label17: TLabel;
+    Label18: TLabel;
+    swLocationUpdates: TSwitch;
+    MotionSensor1: TMotionSensor;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -133,6 +136,10 @@ type
     procedure RESTRequest1HTTPProtocolError(Sender: TCustomRESTRequest);
     procedure lbParticipantsItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
+    procedure swLocationUpdatesClick(Sender: TObject);
+    procedure StartUpdating(Sender: TObject);
+    procedure StopUpdating(Sender: TObject);
+    procedure MotionSensor1DataChanged(Sender: TObject);
   private
     { Private declarations }
     startTime: TDate;
@@ -163,7 +170,7 @@ begin
   ini.WriteString('login', 'pin', edtTripPIN.Text);
   ini.Free;
 
-  LocationSensor1.Active := True;
+  //LocationSensor1.Active := True;
 
   RestRequest1.Params.ParameterByName('email').Value := edtEMail.Text;
   RestRequest1.Params.ParameterByName('pin').Value := edtTripPIN.Text;
@@ -197,18 +204,12 @@ begin
   currentLat := FloatToStrF(NewLocation.Latitude, ffGeneral, 8, 4);
   currentLong := FloatToStrF(NewLocation.Longitude, ffGeneral, 8, 4);
 
-  //RestRequest2.Resource := RestRequest2.Resource.Replace('+id+', edtTripID.Text);
-  //RestRequest2.Params.ParameterByName('email').Value := edtEMail.Text;
-  //RestRequest2.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-  //RestRequest2.Params.ParameterByName('token').Value := tripToken;
-  //RestRequest2.Params.ParameterByName('lat').Value := FloatToStrF(NewLocation.Latitude, ffGeneral, 8, 4);
-  //RestRequest2.Params.ParameterByName('long').Value := FloatToStrF(NewLocation.Longitude, ffGeneral, 8, 4);
-  //RestRequest2.Params.ParameterByName('status').Value := 'Sensor status';
-  //RestRequest2.Execute;
-
-  //CheckIn(self);
-  //if TabControl1.ActiveTab = TabMap then
-  //  Mapping(self);
+  if swLocationUpdates.IsChecked = True then
+  begin
+    CheckIn(self, '');
+    if TabControl1.ActiveTab = TabMap then
+      Mapping(self);
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.FormCreate(Sender: TObject);
@@ -223,6 +224,7 @@ begin
 {$ENDIF}
 
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  swLocationUpdates.IsChecked := ini.ReadBool('settings', 'updates', True);
   sbCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
   sbMapping.Value := ini.ReadInteger('settings', 'mapping', 2);
 
@@ -251,7 +253,8 @@ end;
 procedure THeaderFooterwithNavigation.RESTClient1HTTPProtocolError(
   Sender: TCustomRESTClient);
 begin
-  Timer1.Enabled := False;
+  StopUpdating(self);
+
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
   cpNetworkError.Visible := True;
 end;
@@ -365,7 +368,7 @@ begin
     CheckIn(self, 'Joined Trip');
     Mapping(self);
 
-    Timer1.Enabled := True;
+    StartUpdating(self);
     startTime := Now;
   end;
 end;
@@ -373,7 +376,8 @@ end;
 procedure THeaderFooterwithNavigation.RESTRequest1HTTPProtocolError(
   Sender: TCustomRESTRequest);
 begin
-  Timer1.Enabled := False;
+  StopUpdating(self);
+
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
   cpNetworkError.Visible := True;
 end;
@@ -441,7 +445,8 @@ end;
 procedure THeaderFooterwithNavigation.RESTRequest2HTTPProtocolError(
   Sender: TCustomRESTRequest);
 begin
-  Timer1.Enabled := False;
+  StopUpdating(self);
+
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
   cpNetworkError.Visible := True;
 end;
@@ -481,8 +486,9 @@ end;
 
 procedure THeaderFooterwithNavigation.SpeedButton4Click(Sender: TObject);
 begin
+  StopUpdating(self);
   CheckIn(self, 'Quit Trip');
-  Timer1.Enabled := False;
+
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
 end;
 
@@ -494,6 +500,15 @@ end;
 procedure THeaderFooterwithNavigation.SpeedButton6Click(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+end;
+
+procedure THeaderFooterwithNavigation.swLocationUpdatesClick(Sender: TObject);
+var
+  ini: TIniFile;
+begin
+  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini.WriteBool('settings', 'updates', swLocationUpdates.IsChecked);
+  ini.Free;
 end;
 
 procedure THeaderFooterwithNavigation.sbSendClick(Sender: TObject);
@@ -549,6 +564,11 @@ begin
   WebBrowser1.Navigate(URLString);
 end;
 
+procedure THeaderFooterwithNavigation.MotionSensor1DataChanged(Sender: TObject);
+begin
+  lblName.Text := FloatToStr(MotionSensor1.Sensor.AccelerationX);
+end;
+
 procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
 var
   URLString: string;
@@ -556,6 +576,19 @@ begin
   URLString := Format('http://www.triptether.com/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000)), Name]);
   WebBrowser1.Navigate(URLString);
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+end;
+
+procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
+begin
+  Timer1.Enabled := True;
+  LocationSensor1.Active := True;
+  MotionSensor1.Active := True;
+end;
+procedure THeaderFooterwithNavigation.StopUpdating(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  LocationSensor1.Active := False;
+  MotionSensor1.Active := False;
 end;
 
 end.
