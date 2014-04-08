@@ -41,13 +41,13 @@ type
     ToolBar1: TToolBar;
     Label12: TLabel;
     WebBrowser1: TWebBrowser;
-    SpeedButton1: TSpeedButton;
+    btnCheckIn: TSpeedButton;
     Timer1: TTimer;
     RESTRequest2: TRESTRequest;
     RESTResponse2: TRESTResponse;
     ChangeTabAction6: TChangeTabAction;
-    SpeedButton2: TSpeedButton;
-    SpeedButton4: TSpeedButton;
+    btnBackCheck: TSpeedButton;
+    btnQuit: TSpeedButton;
     ChangeTabAction3: TChangeTabAction;
     Panel5: TPanel;
     Label13: TLabel;
@@ -56,17 +56,17 @@ type
     TabCheck: TTabItem;
     ToolBar2: TToolBar;
     Label15: TLabel;
-    SpeedButton6: TSpeedButton;
+    btnBackTrip: TSpeedButton;
     ChangeTabAction7: TChangeTabAction;
     ChangeTabAction8: TChangeTabAction;
     Panel4: TPanel;
-    sbSend: TSpeedButton;
+    btnSend: TSpeedButton;
     Panel6: TPanel;
     edtStatus: TEdit;
     lbParticipants: TListBox;
-    sbCheckIn: TSpinBox;
+    spCheckIn: TSpinBox;
     Label14: TLabel;
-    sbMapping: TSpinBox;
+    spMapping: TSpinBox;
     ListBox2: TListBox;
     ListBoxItem4: TListBoxItem;
     ListBoxItem5: TListBoxItem;
@@ -80,8 +80,8 @@ type
     lblStarted: TLabel;
     ListBoxItem9: TListBoxItem;
     lblLeader: TLabel;
-    SpeedButton5: TSpeedButton;
-    SpeedButton3: TSpeedButton;
+    btnMap: TSpeedButton;
+    btnTrip: TSpeedButton;
     Panel1: TPanel;
     Panel3: TPanel;
     edtEMail: TEdit;
@@ -98,15 +98,13 @@ type
     cpJoinError: TCalloutPanel;
     Label7: TLabel;
     Label9: TLabel;
-    CalloutPanel1: TCalloutPanel;
-    Label10: TLabel;
-    Label11: TLabel;
     cpNetworkError: TCalloutPanel;
     Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
     swLocationUpdates: TSwitch;
-    MotionSensor1: TMotionSensor;
+    RESTRequest3: TRESTRequest;
+    RESTResponse3: TRESTResponse;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -118,19 +116,19 @@ type
     procedure MapName(Sender: TObject; Name: string);
     procedure LocationSensor1LocationChanged(Sender: TObject; const OldLocation,
       NewLocation: TLocationCoord2D);
-    procedure SpeedButton3Click(Sender: TObject);
+    procedure btnTripClick(Sender: TObject);
     procedure btnJoinClick(Sender: TObject);
-    procedure sbCheckInChange(Sender: TObject);
-    procedure sbMappingChange(Sender: TObject);
-    procedure sbSendClick(Sender: TObject);
+    procedure spCheckInChange(Sender: TObject);
+    procedure spMappingChange(Sender: TObject);
+    procedure btnSendClick(Sender: TObject);
     procedure RESTRequest2AfterExecute(Sender: TCustomRESTRequest);
-    procedure SpeedButton6Click(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
-    procedure SpeedButton5Click(Sender: TObject);
+    procedure btnBackTripClick(Sender: TObject);
+    procedure btnCheckInClick(Sender: TObject);
+    procedure btnBackCheckClick(Sender: TObject);
+    procedure btnMapClick(Sender: TObject);
     procedure btnSettingsClick(Sender: TObject);
     procedure btnSettingsDoneClick(Sender: TObject);
-    procedure SpeedButton4Click(Sender: TObject);
+    procedure btnQuitClick(Sender: TObject);
     procedure RESTClient1HTTPProtocolError(Sender: TCustomRESTClient);
     procedure RESTRequest2HTTPProtocolError(Sender: TCustomRESTRequest);
     procedure RESTRequest1HTTPProtocolError(Sender: TCustomRESTRequest);
@@ -139,7 +137,6 @@ type
     procedure swLocationUpdatesClick(Sender: TObject);
     procedure StartUpdating(Sender: TObject);
     procedure StopUpdating(Sender: TObject);
-    procedure MotionSensor1DataChanged(Sender: TObject);
   private
     { Private declarations }
     startTime: TDate;
@@ -149,6 +146,10 @@ type
   public
     { Public declarations }
   end;
+
+const
+  APIBASEURL = 'http://192.168.2.201';
+  {APIBASEURL = 'http://www.triptether.com';}
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -223,10 +224,12 @@ begin
   {btnBack.Visible := False;}
 {$ENDIF}
 
+  RestClient1.BaseURL := APIBASEURL;
+
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
   swLocationUpdates.IsChecked := ini.ReadBool('settings', 'updates', True);
-  sbCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
-  sbMapping.Value := ini.ReadInteger('settings', 'mapping', 2);
+  spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
+  spMapping.Value := ini.ReadInteger('settings', 'mapping', 2);
 
   edtEMail.Text := ini.ReadString('login', 'email', '');
   edtTripID.Text := ini.ReadString('login', 'trip', '');
@@ -451,53 +454,60 @@ begin
   cpNetworkError.Visible := True;
 end;
 
-procedure THeaderFooterwithNavigation.sbCheckInChange(Sender: TObject);
+procedure THeaderFooterwithNavigation.spCheckInChange(Sender: TObject);
 var
   ini: TIniFile;
 begin
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteInteger('settings', 'checkin', Trunc(sbCheckIn.Value));
+  ini.WriteInteger('settings', 'checkin', Trunc(spCheckIn.Value));
   ini.Free;
 end;
 
-procedure THeaderFooterwithNavigation.sbMappingChange(Sender: TObject);
+procedure THeaderFooterwithNavigation.spMappingChange(Sender: TObject);
 var
   ini: TIniFile;
 begin
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteInteger('settings', 'mapping', Trunc(sbMapping.Value));
+  ini.WriteInteger('settings', 'mapping', Trunc(spMapping.Value));
   ini.Free;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton1Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnCheckInClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton2Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnTripClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton4Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnQuitClick(Sender: TObject);
 begin
   StopUpdating(self);
   CheckIn(self, 'Quit Trip');
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+
+  RestRequest3.Resource := 'apis/[id]/quit.json';
+  RestRequest3.Resource := RestRequest3.Resource.Replace('[id]', edtTripID.Text);
+  RestRequest3.Params.ParameterByName('email').Value := edtEMail.Text;
+  RestRequest3.Params.ParameterByName('pin').Value := edtTripPIN.Text;
+  RestRequest3.Params.ParameterByName('token').Value := tripToken;
+  RestRequest3.Execute;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton5Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton6Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnBackTripClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
 end;
@@ -511,7 +521,7 @@ begin
   ini.Free;
 end;
 
-procedure THeaderFooterwithNavigation.sbSendClick(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnSendClick(Sender: TObject);
 begin
   CheckIn(self, edtStatus.Text);
 end;
@@ -521,10 +531,10 @@ var
   minute_diff: integer;
 begin
   minute_diff := MinutesBetween(Now, startTime);
-  if (sbCheckIn.Value = 1) or (minute_diff mod Trunc(sbCheckIn.Value) = 0) then
+  if (spCheckIn.Value = 1) or (minute_diff mod Trunc(spCheckIn.Value) = 0) then
     CheckIn(self, edtStatus.Text);
 
-  if (TabControl1.ActiveTab = TabMap) and ((sbMapping.Value = 1) or (minute_diff mod Trunc(sbMapping.Value) = 0)) then
+  if (TabControl1.ActiveTab = TabMap) and ((spMapping.Value = 1) or (minute_diff mod Trunc(spMapping.Value) = 0)) then
     Mapping(self);
 end;
 
@@ -560,20 +570,15 @@ procedure THeaderFooterwithNavigation.Mapping(Sender: TObject);
 var
   URLString: string;
 begin
-  URLString := Format('http://www.triptether.com/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000))]);
+  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000))]);
   WebBrowser1.Navigate(URLString);
-end;
-
-procedure THeaderFooterwithNavigation.MotionSensor1DataChanged(Sender: TObject);
-begin
-  lblName.Text := FloatToStr(MotionSensor1.Sensor.AccelerationX);
 end;
 
 procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
 var
   URLString: string;
 begin
-  URLString := Format('http://www.triptether.com/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000)), Name]);
+  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000)), Name]);
   WebBrowser1.Navigate(URLString);
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
@@ -582,13 +587,11 @@ procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
 begin
   Timer1.Enabled := True;
   LocationSensor1.Active := True;
-  MotionSensor1.Active := True;
 end;
 procedure THeaderFooterwithNavigation.StopUpdating(Sender: TObject);
 begin
   Timer1.Enabled := False;
   LocationSensor1.Active := False;
-  MotionSensor1.Active := False;
 end;
 
 end.

@@ -2,50 +2,58 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   Left = 0
   Top = 0
   Caption = 'Tether'
-  ClientHeight = 1004
-  ClientWidth = 768
+  ClientHeight = 775
+  ClientWidth = 480
   FormFactor.Width = 1440
   FormFactor.Height = 900
   FormFactor.Devices = [dkDesktop]
   OnCreate = FormCreate
   OnKeyUp = FormKeyUp
   DesignerMobile = True
-  DesignerWidth = 768
-  DesignerHeight = 1024
-  DesignerDeviceName = 'iPad'
+  DesignerWidth = 480
+  DesignerHeight = 800
+  DesignerDeviceName = '5.1 WVGA Android Phone'
   DesignerOrientation = 0
-  DesignerOSVersion = '7'
+  DesignerOSVersion = ''
   object TabControl1: TTabControl
     Align = alClient
     FullSize = True
-    Height = 1004.000000000000000000
+    Height = 775.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabPosition = tpNone
-    Width = 768.000000000000000000
+    Width = 480.000000000000000000
     object TabJoin: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = False
-      Position.X = 355.000000000000000000
-      Position.Y = 985.000000000000000000
+      IsSelected = True
+      Position.X = 211.000000000000000000
+      Position.Y = 756.000000000000000000
       TabOrder = 0
       Text = 'TabJoin'
       Width = 8.000000000000000000
       object TopToolBar1: TToolBar
         Anchors = []
-        Height = 44.000000000000000000
+        Height = 48.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 480.000000000000000000
+        object Label3: TLabel
+          Align = alContents
+          Height = 48.000000000000000000
+          Text = 'Tether'
+          TextAlign = taCenter
+          Width = 480.000000000000000000
+          Trimming = ttCharacter
+        end
         object btnSettings: TSpeedButton
           Align = alRight
-          Height = 44.000000000000000000
-          Position.X = 724.000000000000000000
+          Height = 48.000000000000000000
+          Position.X = 432.000000000000000000
           StyleLookup = 'detailstoolbutton'
           Text = 'btnSettings'
           Trimming = ttCharacter
-          Width = 44.000000000000000000
+          Width = 48.000000000000000000
           OnClick = btnSettingsClick
         end
         object Image1: TImage
@@ -74,23 +82,15 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               FileName = 'C:\Projects\tetherapp\tetherapp.bmp'
             end>
           Align = alLeft
-          Height = 44.000000000000000000
+          Height = 48.000000000000000000
           Width = 60.000000000000000000
-        end
-        object Label3: TLabel
-          Align = alContents
-          Height = 44.000000000000000000
-          Text = 'Tether'
-          TextAlign = taCenter
-          Width = 768.000000000000000000
-          Trimming = ttCharacter
         end
       end
       object Panel1: TPanel
         Align = alHorzCenter
-        Height = 960.000000000000000000
-        Position.X = 223.000000000000000000
-        Position.Y = 44.000000000000000000
+        Height = 727.000000000000000000
+        Position.X = 79.000000000000000000
+        Position.Y = 48.000000000000000000
         Width = 321.000000000000000000
         TabOrder = 1
         object Panel3: TPanel
@@ -101,10 +101,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object edtEMail: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
             TabOrder = 0
+            KeyboardType = vktEmailAddress
             Position.X = 80.000000000000000000
             Position.Y = 54.000000000000000000
             Width = 224.000000000000000000
-            Height = 30.000000000000000000
+            Height = 32.000000000000000000
             Margins.Left = 90.000000000000000000
             Margins.Right = 10.000000000000000000
             KillFocusByReturn = False
@@ -112,10 +113,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object edtTripID: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
             TabOrder = 1
+            KeyboardType = vktNumberPad
             Position.X = 80.000000000000000000
             Position.Y = 11.000000000000000000
             Width = 224.000000000000000000
-            Height = 30.000000000000000000
+            Height = 32.000000000000000000
             Margins.Left = 90.000000000000000000
             Margins.Right = 10.000000000000000000
             KillFocusByReturn = False
@@ -123,10 +125,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object edtTripPIN: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
             TabOrder = 2
+            KeyboardType = vktNumberPad
             Position.X = 80.000000000000000000
             Position.Y = 99.000000000000000000
             Width = 106.000000000000000000
-            Height = 30.000000000000000000
+            Height = 32.000000000000000000
             Margins.Left = 90.000000000000000000
             Margins.Right = 10.000000000000000000
             KillFocusByReturn = False
@@ -158,7 +161,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object btnJoinTrip: TButton
             Height = 57.000000000000000000
             Position.X = 8.000000000000000000
-            Position.Y = 136.000000000000000000
+            Position.Y = 152.000000000000000000
             TabOrder = 6
             Text = 'Join The Trip'
             Trimming = ttCharacter
@@ -166,75 +169,44 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             OnClick = JoinTrip
           end
           object cpJoinError: TCalloutPanel
-            Height = 120.000000000000000000
+            Height = 73.000000000000000000
             Padding.Top = 11.000000000000000000
-            Position.X = 184.000000000000000000
-            Position.Y = 104.000000000000000000
+            Position.X = 16.000000000000000000
+            Position.Y = 192.000000000000000000
             Visible = False
-            Width = 128.000000000000000000
+            Width = 289.000000000000000000
             TabOrder = 7
             CalloutWidth = 23.000000000000000000
             CalloutLength = 11.000000000000000000
-            CalloutPosition = cpLeft
             object Label7: TLabel
               Font.Size = 12.000000000000000000
               StyledSettings = [ssFamily, ssStyle, ssFontColor]
-              Height = 65.000000000000000000
-              Position.X = 16.000000000000000000
-              Position.Y = 3.000000000000000000
+              Height = 30.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 11.000000000000000000
               Text = 'Oops, you weren'#39't able to join the trip.'
-              Width = 104.000000000000000000
+              Width = 273.000000000000000000
               Trimming = ttCharacter
             end
             object Label9: TLabel
               Font.Size = 12.000000000000000000
               StyledSettings = [ssFamily, ssStyle, ssFontColor]
-              Height = 57.000000000000000000
-              Position.X = 16.000000000000000000
-              Position.Y = 56.000000000000000000
+              Height = 25.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 40.000000000000000000
               Text = 'Check your trip info and try again.'
-              Width = 97.000000000000000000
+              Width = 265.000000000000000000
               Trimming = ttCharacter
-            end
-            object CalloutPanel1: TCalloutPanel
-              Height = 120.000000000000000000
-              Padding.Top = 11.000000000000000000
-              Visible = False
-              Width = 128.000000000000000000
-              TabOrder = 2
-              CalloutWidth = 23.000000000000000000
-              CalloutLength = 11.000000000000000000
-              CalloutPosition = cpLeft
-              object Label10: TLabel
-                Font.Size = 12.000000000000000000
-                StyledSettings = [ssFamily, ssStyle, ssFontColor]
-                Height = 65.000000000000000000
-                Position.X = 16.000000000000000000
-                Position.Y = 3.000000000000000000
-                Text = 'Oops, you weren'#39't able to join the trip.'
-                Width = 104.000000000000000000
-                Trimming = ttCharacter
-              end
-              object Label11: TLabel
-                Font.Size = 12.000000000000000000
-                StyledSettings = [ssFamily, ssStyle, ssFontColor]
-                Height = 57.000000000000000000
-                Position.X = 16.000000000000000000
-                Position.Y = 64.000000000000000000
-                Text = 'Check your trip info and try again.'
-                Width = 105.000000000000000000
-                Trimming = ttCharacter
-              end
             end
           end
         end
         object cpNetworkError: TCalloutPanel
           Height = 89.000000000000000000
           Padding.Top = 11.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 176.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 192.000000000000000000
           Visible = False
-          Width = 257.000000000000000000
+          Width = 289.000000000000000000
           TabOrder = 1
           CalloutWidth = 23.000000000000000000
           CalloutLength = 11.000000000000000000
@@ -245,7 +217,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.X = 8.000000000000000000
             Position.Y = 16.000000000000000000
             Text = 'Oops, something went wrong connecting to the server.'
-            Width = 249.000000000000000000
+            Width = 273.000000000000000000
             Trimming = ttCharacter
           end
           object Label17: TLabel
@@ -264,47 +236,47 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabTrip: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = True
-      Position.X = 365.000000000000000000
-      Position.Y = 985.000000000000000000
+      IsSelected = False
+      Position.X = 221.000000000000000000
+      Position.Y = 756.000000000000000000
       TabOrder = 1
       Text = 'TabTrip'
       Width = 8.000000000000000000
       object TopToolBar4: TToolBar
         Align = alMostTop
-        Height = 44.000000000000000000
+        Height = 48.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 480.000000000000000000
         object Label8: TLabel
           Align = alContents
-          Height = 44.000000000000000000
+          Height = 48.000000000000000000
           Text = 'Trip'
           TextAlign = taCenter
-          Width = 768.000000000000000000
+          Width = 480.000000000000000000
           Trimming = ttCharacter
         end
-        object SpeedButton1: TSpeedButton
+        object btnCheckIn: TSpeedButton
           Align = alRight
-          Height = 44.000000000000000000
-          Position.X = 680.000000000000000000
+          Height = 48.000000000000000000
+          Position.X = 392.000000000000000000
           Text = 'Check In'
           Trimming = ttCharacter
           Width = 88.000000000000000000
-          OnClick = SpeedButton1Click
+          OnClick = btnCheckInClick
         end
-        object SpeedButton4: TSpeedButton
+        object btnQuit: TSpeedButton
           Align = alLeft
-          Height = 44.000000000000000000
+          Height = 48.000000000000000000
           Text = 'Quit'
           Trimming = ttCharacter
           Width = 64.000000000000000000
-          OnClick = SpeedButton4Click
+          OnClick = btnQuitClick
         end
       end
       object Panel2: TPanel
         Align = alClient
-        Height = 960.000000000000000000
-        Width = 768.000000000000000000
+        Height = 727.000000000000000000
+        Width = 480.000000000000000000
         TabOrder = 1
         object mmoNotes: TMemo
           Touch.InteractiveGestures = [igPan, igLongTap, igDoubleTap]
@@ -322,7 +294,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = alTop
           Height = 273.000000000000000000
           TabOrder = 1
-          Width = 768.000000000000000000
+          Width = 480.000000000000000000
           DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
           DefaultItemStyles.GroupHeaderStyle = ''
           DefaultItemStyles.GroupFooterStyle = ''
@@ -330,7 +302,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Height = 44.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Trip to'
-            Width = 768.000000000000000000
+            Width = 480.000000000000000000
             object lblName: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -341,7 +313,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 658.000000000000000000
+              Width = 370.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -350,7 +322,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 44.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Departing'
-            Width = 768.000000000000000000
+            Width = 480.000000000000000000
             object lblDeparting: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -361,7 +333,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 658.000000000000000000
+              Width = 370.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -370,7 +342,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 88.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Arriving'
-            Width = 768.000000000000000000
+            Width = 480.000000000000000000
             object lblArriving: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -381,7 +353,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 658.000000000000000000
+              Width = 370.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -390,7 +362,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 132.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Leaving'
-            Width = 768.000000000000000000
+            Width = 480.000000000000000000
             object lblLeaving: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -401,7 +373,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 658.000000000000000000
+              Width = 370.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -410,7 +382,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 176.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Started'
-            Width = 768.000000000000000000
+            Width = 480.000000000000000000
             object lblStarted: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -421,7 +393,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 658.000000000000000000
+              Width = 370.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -430,7 +402,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 220.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Leader'
-            Width = 768.000000000000000000
+            Width = 480.000000000000000000
             object lblLeader: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -441,7 +413,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 658.000000000000000000
+              Width = 370.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -452,81 +424,81 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       WordWrap = False
       Height = 8.000000000000000000
       IsSelected = False
-      Position.X = 375.000000000000000000
-      Position.Y = 985.000000000000000000
+      Position.X = 231.000000000000000000
+      Position.Y = 756.000000000000000000
       TabOrder = 2
       Text = 'TabCheck'
       Trimming = ttCharacter
       Width = 8.000000000000000000
       object ToolBar2: TToolBar
-        Height = 44.000000000000000000
+        Height = 48.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 480.000000000000000000
         object Label15: TLabel
           Align = alContents
-          Height = 44.000000000000000000
+          Height = 48.000000000000000000
           Text = 'Check In'
           TextAlign = taCenter
-          Width = 768.000000000000000000
+          Width = 480.000000000000000000
           Trimming = ttCharacter
         end
-        object SpeedButton6: TSpeedButton
+        object btnBackTrip: TSpeedButton
           Align = alLeft
-          Height = 44.000000000000000000
+          Height = 48.000000000000000000
           StyleLookup = 'backtoolbutton'
           Text = 'Trip'
           Trimming = ttCharacter
           Width = 73.000000000000000000
-          OnClick = SpeedButton6Click
+          OnClick = btnBackTripClick
         end
-        object SpeedButton5: TSpeedButton
+        object btnMap: TSpeedButton
           Align = alRight
-          Height = 44.000000000000000000
-          Position.X = 695.000000000000000000
+          Height = 48.000000000000000000
+          Position.X = 407.000000000000000000
           Text = 'Map'
           Trimming = ttCharacter
           Width = 73.000000000000000000
-          OnClick = SpeedButton5Click
+          OnClick = btnMapClick
         end
       end
       object Panel4: TPanel
         Align = alTop
         Height = 61.000000000000000000
-        Position.Y = 44.000000000000000000
-        Width = 768.000000000000000000
+        Position.Y = 48.000000000000000000
+        Width = 480.000000000000000000
         TabOrder = 1
         object Panel6: TPanel
           Align = alClient
           Height = 61.000000000000000000
-          Width = 704.000000000000000000
+          Width = 416.000000000000000000
           TabOrder = 0
           object edtStatus: TEdit
             Touch.InteractiveGestures = [igLongTap, igDoubleTap]
             Align = alFit
             TabOrder = 0
-            Width = 510.533325195312500000
-            Height = 30.000000000000000000
+            Width = 406.000000000000000000
+            Height = 32.000000000000000000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
             KillFocusByReturn = False
           end
         end
-        object sbSend: TSpeedButton
+        object btnSend: TSpeedButton
           Align = alRight
-          Height = 44.000000000000000000
-          Position.X = 704.000000000000000000
-          Position.Y = 8.000000000000000000
+          Height = 48.000000000000000000
+          Position.X = 416.000000000000000000
+          Position.Y = 6.000000000000000000
           Text = 'Send'
           Trimming = ttCharacter
           Width = 64.000000000000000000
-          OnClick = sbSendClick
+          OnClick = btnSendClick
         end
       end
       object lbParticipants: TListBox
         Align = alClient
-        Height = 899.000000000000000000
+        Height = 666.000000000000000000
         TabOrder = 2
-        Width = 768.000000000000000000
+        Width = 480.000000000000000000
         DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
         DefaultItemStyles.GroupHeaderStyle = ''
         DefaultItemStyles.GroupFooterStyle = ''
@@ -537,45 +509,45 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       WordWrap = False
       Height = 8.000000000000000000
       IsSelected = False
-      Position.X = 385.000000000000000000
-      Position.Y = 985.000000000000000000
+      Position.X = 241.000000000000000000
+      Position.Y = 756.000000000000000000
       TabOrder = 3
       Text = 'TabMap'
       Width = 8.000000000000000000
       object WebBrowser1: TWebBrowser
         Align = alClient
-        Height = 960.000000000000000000
-        Width = 768.000000000000000000
+        Height = 731.000000000000000000
+        Width = 480.000000000000000000
       end
       object ToolBar1: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 480.000000000000000000
         object Label12: TLabel
           Align = alContents
           Height = 44.000000000000000000
           Text = 'Map'
           TextAlign = taCenter
-          Width = 768.000000000000000000
+          Width = 480.000000000000000000
           Trimming = ttCharacter
         end
-        object SpeedButton2: TSpeedButton
+        object btnBackCheck: TSpeedButton
           Align = alLeft
           Height = 44.000000000000000000
           StyleLookup = 'backtoolbutton'
           Text = 'Check In'
           Trimming = ttCharacter
           Width = 97.000000000000000000
-          OnClick = SpeedButton2Click
+          OnClick = btnBackCheckClick
         end
-        object SpeedButton3: TSpeedButton
+        object btnTrip: TSpeedButton
           Align = alRight
           Height = 44.000000000000000000
-          Position.X = 695.000000000000000000
+          Position.X = 407.000000000000000000
           Text = 'Trip'
           Trimming = ttCharacter
           Width = 73.000000000000000000
-          OnClick = SpeedButton3Click
+          OnClick = btnTripClick
         end
       end
     end
@@ -583,8 +555,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       WordWrap = False
       Height = 8.000000000000000000
       IsSelected = False
-      Position.X = 395.000000000000000000
-      Position.Y = 985.000000000000000000
+      Position.X = 251.000000000000000000
+      Position.Y = 756.000000000000000000
       TabOrder = 4
       Text = 'TabSignIn'
       Trimming = ttCharacter
@@ -592,13 +564,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object TopToolBar3: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 480.000000000000000000
         object Label1: TLabel
           Align = alClient
           Height = 44.000000000000000000
           Text = 'Sign In'
           TextAlign = taCenter
-          Width = 768.000000000000000000
+          Width = 480.000000000000000000
           Trimming = ttCharacter
         end
       end
@@ -607,30 +579,30 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       WordWrap = False
       Height = 8.000000000000000000
       IsSelected = False
-      Position.X = 405.000000000000000000
-      Position.Y = 985.000000000000000000
+      Position.X = 261.000000000000000000
+      Position.Y = 756.000000000000000000
       TabOrder = 5
       Text = 'TabSettings'
       Trimming = ttCharacter
       Width = 8.000000000000000000
       object TopToolBar2: TToolBar
-        Height = 44.000000000000000000
+        Height = 48.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 480.000000000000000000
         object Label2: TLabel
           Align = alClient
-          Height = 44.000000000000000000
+          Height = 48.000000000000000000
           Text = 'Settings'
           TextAlign = taCenter
-          Width = 768.000000000000000000
+          Width = 480.000000000000000000
           Trimming = ttCharacter
         end
       end
       object Panel5: TPanel
         Align = alHorzCenter
-        Height = 960.000000000000000000
-        Position.X = 224.000000000000000000
-        Position.Y = 44.000000000000000000
+        Height = 727.000000000000000000
+        Position.X = 80.000000000000000000
+        Position.Y = 48.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
         object Label13: TLabel
@@ -642,7 +614,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 150.000000000000000000
           Trimming = ttCharacter
         end
-        object sbCheckIn: TSpinBox
+        object spCheckIn: TSpinBox
           Touch.InteractiveGestures = [igLongTap, igDoubleTap]
           TabOrder = 1
           Cursor = crIBeam
@@ -652,10 +624,10 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 176.000000000000000000
           Position.Y = 80.000000000000000000
           Width = 134.000000000000000000
-          Height = 30.000000000000000000
+          Height = 32.000000000000000000
           Margins.Left = 10.000000000000000000
           Margins.Right = 10.000000000000000000
-          OnChange = sbCheckInChange
+          OnChange = spCheckInChange
         end
         object Label14: TLabel
           Height = 30.000000000000000000
@@ -666,7 +638,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 150.000000000000000000
           Trimming = ttCharacter
         end
-        object sbMapping: TSpinBox
+        object spMapping: TSpinBox
           Touch.InteractiveGestures = [igLongTap, igDoubleTap]
           TabOrder = 3
           Cursor = crIBeam
@@ -676,19 +648,18 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 176.000000000000000000
           Position.Y = 134.000000000000000000
           Width = 134.000000000000000000
-          Height = 30.000000000000000000
+          Height = 32.000000000000000000
           Margins.Left = 10.000000000000000000
           Margins.Right = 10.000000000000000000
-          OnChange = sbMappingChange
+          OnChange = spMappingChange
         end
         object btnSettingsDone: TButton
-          Height = 44.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 184.000000000000000000
+          Height = 57.000000000000000000
+          Position.Y = 188.000000000000000000
           TabOrder = 4
           Text = 'Done'
           Trimming = ttCharacter
-          Width = 305.000000000000000000
+          Width = 320.000000000000000000
           OnClick = btnSettingsDoneClick
         end
         object Label18: TLabel
@@ -700,12 +671,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Trimming = ttCharacter
         end
         object swLocationUpdates: TSwitch
-          Height = 35.000000000000000000
+          Height = 26.000000000000000000
           IsChecked = True
           Position.X = 216.000000000000000000
           Position.Y = 24.000000000000000000
           TabOrder = 6
-          Width = 55.000000000000000000
+          Width = 76.000000000000000000
           OnClick = swLocationUpdatesClick
         end
       end
@@ -830,9 +801,25 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Left = 688
     Top = 168
   end
-  object MotionSensor1: TMotionSensor
-    OnDataChanged = MotionSensor1DataChanged
-    Left = 720
-    Top = 52
+  object RESTRequest3: TRESTRequest
+    Client = RESTClient1
+    Params = <
+      item
+        name = 'email'
+      end
+      item
+        name = 'pin'
+      end
+      item
+        name = 'token'
+      end>
+    Resource = 'apis/[id]/quit.json'
+    Response = RESTResponse3
+    Left = 656
+    Top = 220
+  end
+  object RESTResponse3: TRESTResponse
+    Left = 696
+    Top = 220
   end
 end

@@ -59,9 +59,6 @@ Coordinates=133,10,113,322
 [RESTResponse1]
 Coordinates=10,10,113,322
 
-[SpeedButton1]
-Coordinates=316,410,96,58
-
 [TabSignIn]
 Coordinates=260,478,73,36
 
@@ -89,12 +86,15 @@ Coordinates=999,410,89,36
 [ActionList1]
 Coordinates=706,331,78,36
 
-[SpeedButton4]
-Coordinates=581,10,96,58
-
-[SpeedButton2]
-Coordinates=960,10,96,58
-
 []
 Coordinates=343,478,54,36
+
+[btnQuit]
+Coordinates=581,10,96,58
+
+[btnCheckIn]
+Coordinates=316,410,96,58
+
+[btnBackCheck]
+Coordinates=960,10,96,58
 
