@@ -105,6 +105,7 @@ type
     swLocationUpdates: TSwitch;
     RESTRequest3: TRESTRequest;
     RESTResponse3: TRESTResponse;
+    btnNewTrip: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -137,12 +138,14 @@ type
     procedure swLocationUpdatesClick(Sender: TObject);
     procedure StartUpdating(Sender: TObject);
     procedure StopUpdating(Sender: TObject);
+    procedure btnNewTripClick(Sender: TObject);
   private
     { Private declarations }
     startTime: TDate;
     tripToken: string;
     currentLat: string;
     currentLong: string;
+    checkingIn: boolean;
   public
     { Public declarations }
   end;
@@ -172,11 +175,10 @@ begin
   ini.Free;
 
   //LocationSensor1.Active := True;
-
-  RestRequest1.Params.ParameterByName('email').Value := edtEMail.Text;
-  RestRequest1.Params.ParameterByName('pin').Value := edtTripPIN.Text;
   RestRequest1.Resource := 'apis/[id]/join.json';
   RestRequest1.Resource := RestRequest1.Resource.Replace('[id]', edtTripID.Text);
+  RestRequest1.Params.ParameterByName('email').Value := edtEMail.Text;
+  RestRequest1.Params.ParameterByName('pin').Value := edtTripPIN.Text;
   RestRequest1.Execute;
 end;
 
@@ -197,13 +199,14 @@ begin
   MapName(self, SelectName);
 end;
 
+
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
   Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
 var
   URLString: string;
 begin
-  currentLat := FloatToStrF(NewLocation.Latitude, ffGeneral, 8, 4);
-  currentLong := FloatToStrF(NewLocation.Longitude, ffGeneral, 8, 4);
+  currentLat := FloatToStrF(NewLocation.Latitude, ffGeneral, 10, 6);
+  currentLong := FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
 
   if swLocationUpdates.IsChecked = True then
   begin
@@ -285,6 +288,9 @@ var
   LeavingDate: string;
   StartingDate: string;
 begin
+  if assigned(RESTResponse1.JSONValue) then
+  begin
+
   Response := RESTResponse1.JsonValue as TJSONObject;
   Trip := Response.Get('trip').JsonValue as TJSONObject;
   Result := Trip.Get('result').JsonValue.ToString.Replace('"', '');
@@ -374,6 +380,8 @@ begin
     StartUpdating(self);
     startTime := Now;
   end;
+
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.RESTRequest1HTTPProtocolError(
@@ -401,12 +409,17 @@ var
   ParticipantName: string;
   ParticipantStatus: string;
   ParticipantCheckIn: string;
+  ParticipantJoin: string;
+  ParticipantQuit: string;
   Participants: TJSONArray;
   LocalDate: TDateTime;
   CheckInDate: string;
   i: integer;
   PartListItem: TListBoxItem;
 begin
+  if assigned(RESTResponse2.JSONValue) then
+  begin
+
   Response := RESTResponse2.JsonValue as TJSONObject;
   Trip := Response.Get('trip').JsonValue as TJSONObject;
   Name := Trip.Get('name').JsonValue;
@@ -424,6 +437,8 @@ begin
     Participant := Participants.Get(i) as TJSONObject;
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
+    ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
+    ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
     if ParticipantCheckIn <> '' then
     begin
@@ -439,9 +454,15 @@ begin
     PartListItem.Text := ParticipantName + ': ' + ParticipantStatus;
     PartListItem.ItemData.Accessory := TListBoxItemData.TAccessory.aMore;
     PartListItem.ItemData.Detail := CheckInDate;
+    if ParticipantJoin = '' then
+      PartListItem.ItemData.Detail := 'Has not yet joined the trip.';
+    if ParticipantQuit <> '' then
+      PartListItem.ItemData.Detail := 'Has quit the trip.';
     PartListItem.ItemData.Text := ParticipantName + ': ' + ParticipantStatus;
 
     lbParticipants.AddObject(PartListItem);
+  end;
+
   end;
 end;
 
@@ -474,6 +495,7 @@ end;
 
 procedure THeaderFooterwithNavigation.btnCheckInClick(Sender: TObject);
 begin
+  CheckIn(self, '');
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
@@ -504,7 +526,13 @@ end;
 
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
+  Mapping(self);
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+end;
+
+procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttNone);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackTripClick(Sender: TObject);
@@ -555,15 +583,22 @@ end;
 
 procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string);
 begin
-  RestRequest2.Resource := 'apis/[id]/checkin.json';
-  RestRequest2.Resource := RestRequest2.Resource.Replace('[id]', edtTripID.Text);
-  RestRequest2.Params.ParameterByName('email').Value := edtEMail.Text;
-  RestRequest2.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-  RestRequest2.Params.ParameterByName('token').Value := tripToken;
-  RestRequest2.Params.ParameterByName('lat').Value := currentLat;
-  RestRequest2.Params.ParameterByName('long').Value := currentLong;
-  RestRequest2.Params.ParameterByName('status').Value := Status;
-  RestRequest2.Execute;
+  if not CheckingIn then
+  begin
+    CheckingIn := True;
+
+    RestRequest2.Resource := 'apis/[id]/checkin.json';
+    RestRequest2.Resource := RestRequest2.Resource.Replace('[id]', edtTripID.Text);
+    RestRequest2.Params.ParameterByName('email').Value := edtEMail.Text;
+    RestRequest2.Params.ParameterByName('pin').Value := edtTripPIN.Text;
+    RestRequest2.Params.ParameterByName('token').Value := tripToken;
+    RestRequest2.Params.ParameterByName('lat').Value := currentLat;
+    RestRequest2.Params.ParameterByName('long').Value := currentLong;
+    RestRequest2.Params.ParameterByName('status').Value := Status;
+    RestRequest2.Execute;
+
+    checkingIn := False;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.Mapping(Sender: TObject);
