@@ -1,7 +1,4 @@
-﻿[RESTRequest2]
-Coordinates=256,10,103,212
-
-[Label1]
+﻿[Label1]
 Coordinates=873,410,53,58
 
 [ToolBar1]
@@ -31,9 +28,6 @@ Coordinates=889,478,89,36
 [ChangeTabAction2]
 Coordinates=544,705,124,36
 
-[RESTRequest1]
-Coordinates=369,10,103,124
-
 [WebBrowser1]
 Coordinates=634,478,95,36
 
@@ -52,12 +46,6 @@ Coordinates=482,10,89,80
 
 [Label2]
 Coordinates=936,410,53,58
-
-[RESTResponse2]
-Coordinates=133,10,113,322
-
-[RESTResponse1]
-Coordinates=10,10,113,322
 
 [TabSignIn]
 Coordinates=260,478,73,36
@@ -97,4 +85,16 @@ Coordinates=316,410,96,58
 
 [btnBackCheck]
 Coordinates=960,10,96,58
+
+[JoinRequest]
+Coordinates=369,10,103,124
+
+[JoinResponse]
+Coordinates=10,10,113,322
+
+[CheckinRequest]
+Coordinates=256,10,103,212
+
+[CheckinResponse]
+Coordinates=133,10,113,322
 

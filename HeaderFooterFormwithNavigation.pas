@@ -31,8 +31,8 @@ type
     ChangeTabAction4: TChangeTabAction;
     ChangeTabAction5: TChangeTabAction;
     RESTClient1: TRESTClient;
-    RESTRequest1: TRESTRequest;
-    RESTResponse1: TRESTResponse;
+    JoinRequest: TRESTRequest;
+    JoinResponse: TRESTResponse;
     TabTrip: TTabItem;
     TopToolBar4: TToolBar;
     Label8: TLabel;
@@ -43,8 +43,8 @@ type
     WebBrowser1: TWebBrowser;
     btnCheckIn: TSpeedButton;
     Timer1: TTimer;
-    RESTRequest2: TRESTRequest;
-    RESTResponse2: TRESTResponse;
+    CheckinRequest: TRESTRequest;
+    CheckinResponse: TRESTResponse;
     ChangeTabAction6: TChangeTabAction;
     btnBackCheck: TSpeedButton;
     btnQuit: TSpeedButton;
@@ -103,14 +103,14 @@ type
     Label17: TLabel;
     Label18: TLabel;
     swLocationUpdates: TSwitch;
-    RESTRequest3: TRESTRequest;
-    RESTResponse3: TRESTResponse;
+    QuitRequest: TRESTRequest;
+    QuitResponse: TRESTResponse;
     btnNewTrip: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure JoinTrip(Sender: TObject);
-    procedure RESTRequest1AfterExecute(Sender: TCustomRESTRequest);
+    procedure JoinRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure Timer1Timer(Sender: TObject);
     procedure CheckIn(Sender: TObject; Status: string);
     procedure Mapping(Sender: TObject);
@@ -122,7 +122,7 @@ type
     procedure spCheckInChange(Sender: TObject);
     procedure spMappingChange(Sender: TObject);
     procedure btnSendClick(Sender: TObject);
-    procedure RESTRequest2AfterExecute(Sender: TCustomRESTRequest);
+    procedure CheckinRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure btnBackTripClick(Sender: TObject);
     procedure btnCheckInClick(Sender: TObject);
     procedure btnBackCheckClick(Sender: TObject);
@@ -131,8 +131,8 @@ type
     procedure btnSettingsDoneClick(Sender: TObject);
     procedure btnQuitClick(Sender: TObject);
     procedure RESTClient1HTTPProtocolError(Sender: TCustomRESTClient);
-    procedure RESTRequest2HTTPProtocolError(Sender: TCustomRESTRequest);
-    procedure RESTRequest1HTTPProtocolError(Sender: TCustomRESTRequest);
+    procedure CheckinRequestHTTPProtocolError(Sender: TCustomRESTRequest);
+    procedure JoinRequestHTTPProtocolError(Sender: TCustomRESTRequest);
     procedure lbParticipantsItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
     procedure swLocationUpdatesClick(Sender: TObject);
@@ -175,11 +175,11 @@ begin
   ini.Free;
 
   //LocationSensor1.Active := True;
-  RestRequest1.Resource := 'apis/[id]/join.json';
-  RestRequest1.Resource := RestRequest1.Resource.Replace('[id]', edtTripID.Text);
-  RestRequest1.Params.ParameterByName('email').Value := edtEMail.Text;
-  RestRequest1.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-  RestRequest1.Execute;
+  JoinRequest.Resource := 'apis/[id]/join.json';
+  JoinRequest.Resource := JoinRequest.Resource.Replace('[id]', edtTripID.Text);
+  JoinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
+  JoinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
+  JoinRequest.Execute;
 end;
 
 procedure THeaderFooterwithNavigation.lbParticipantsItemClick(
@@ -265,7 +265,7 @@ begin
   cpNetworkError.Visible := True;
 end;
 
-procedure THeaderFooterwithNavigation.RESTRequest1AfterExecute(
+procedure THeaderFooterwithNavigation.JoinRequestAfterExecute(
   Sender: TCustomRESTRequest);
 var
   Response: TJSONObject;
@@ -288,10 +288,10 @@ var
   LeavingDate: string;
   StartingDate: string;
 begin
-  if assigned(RESTResponse1.JSONValue) then
+  if assigned(JoinResponse.JSONValue) then
   begin
 
-  Response := RESTResponse1.JsonValue as TJSONObject;
+  Response := JoinResponse.JsonValue as TJSONObject;
   Trip := Response.Get('trip').JsonValue as TJSONObject;
   Result := Trip.Get('result').JsonValue.ToString.Replace('"', '');
   if Result <> 'success' then
@@ -384,7 +384,7 @@ begin
   end;
 end;
 
-procedure THeaderFooterwithNavigation.RESTRequest1HTTPProtocolError(
+procedure THeaderFooterwithNavigation.JoinRequestHTTPProtocolError(
   Sender: TCustomRESTRequest);
 begin
   StopUpdating(self);
@@ -393,7 +393,7 @@ begin
   cpNetworkError.Visible := True;
 end;
 
-procedure THeaderFooterwithNavigation.RESTRequest2AfterExecute(
+procedure THeaderFooterwithNavigation.CheckinRequestAfterExecute(
   Sender: TCustomRESTRequest);
 var
   Response: TJSONObject;
@@ -417,10 +417,10 @@ var
   i: integer;
   PartListItem: TListBoxItem;
 begin
-  if assigned(RESTResponse2.JSONValue) then
+  if assigned(CheckinResponse.JSONValue) then
   begin
 
-  Response := RESTResponse2.JsonValue as TJSONObject;
+  Response := CheckinResponse.JsonValue as TJSONObject;
   Trip := Response.Get('trip').JsonValue as TJSONObject;
   Name := Trip.Get('name').JsonValue;
   Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
@@ -466,7 +466,7 @@ begin
   end;
 end;
 
-procedure THeaderFooterwithNavigation.RESTRequest2HTTPProtocolError(
+procedure THeaderFooterwithNavigation.CheckinRequestHTTPProtocolError(
   Sender: TCustomRESTRequest);
 begin
   StopUpdating(self);
@@ -516,12 +516,12 @@ begin
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
 
-  RestRequest3.Resource := 'apis/[id]/quit.json';
-  RestRequest3.Resource := RestRequest3.Resource.Replace('[id]', edtTripID.Text);
-  RestRequest3.Params.ParameterByName('email').Value := edtEMail.Text;
-  RestRequest3.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-  RestRequest3.Params.ParameterByName('token').Value := tripToken;
-  RestRequest3.Execute;
+  QuitRequest.Resource := 'apis/[id]/quit.json';
+  QuitRequest.Resource := QuitRequest.Resource.Replace('[id]', edtTripID.Text);
+  QuitRequest.Params.ParameterByName('email').Value := edtEMail.Text;
+  QuitRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
+  QuitRequest.Params.ParameterByName('token').Value := tripToken;
+  QuitRequest.Execute;
 end;
 
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
@@ -587,15 +587,15 @@ begin
   begin
     CheckingIn := True;
 
-    RestRequest2.Resource := 'apis/[id]/checkin.json';
-    RestRequest2.Resource := RestRequest2.Resource.Replace('[id]', edtTripID.Text);
-    RestRequest2.Params.ParameterByName('email').Value := edtEMail.Text;
-    RestRequest2.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-    RestRequest2.Params.ParameterByName('token').Value := tripToken;
-    RestRequest2.Params.ParameterByName('lat').Value := currentLat;
-    RestRequest2.Params.ParameterByName('long').Value := currentLong;
-    RestRequest2.Params.ParameterByName('status').Value := Status;
-    RestRequest2.Execute;
+    CheckinRequest.Resource := 'apis/[id]/checkin.json';
+    CheckinRequest.Resource := CheckinRequest.Resource.Replace('[id]', edtTripID.Text);
+    CheckinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
+    CheckinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
+    CheckinRequest.Params.ParameterByName('token').Value := tripToken;
+    CheckinRequest.Params.ParameterByName('lat').Value := currentLat;
+    CheckinRequest.Params.ParameterByName('long').Value := currentLong;
+    CheckinRequest.Params.ParameterByName('status').Value := Status;
+    CheckinRequest.Execute;
 
     checkingIn := False;
   end;

@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 775.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 4
     TabOrder = 0
     TabPosition = tpNone
     Width = 480.000000000000000000
@@ -89,7 +89,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = alRight
           Height = 48.000000000000000000
           Position.X = 384.000000000000000000
-          StyleLookup = 'actiontoolbutton'
+          StyleLookup = 'addtoolbutton'
           Text = 'btnNewTrip'
           Trimming = ttCharacter
           Width = 48.000000000000000000
@@ -178,37 +178,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Width = 305.000000000000000000
             OnClick = JoinTrip
           end
-          object cpJoinError: TCalloutPanel
-            Height = 73.000000000000000000
-            Padding.Top = 11.000000000000000000
-            Position.X = 16.000000000000000000
-            Position.Y = 208.000000000000000000
-            Visible = False
-            Width = 289.000000000000000000
-            TabOrder = 7
-            CalloutWidth = 23.000000000000000000
-            CalloutLength = 11.000000000000000000
-            object Label7: TLabel
-              Font.Size = 12.000000000000000000
-              StyledSettings = [ssFamily, ssStyle, ssFontColor]
-              Height = 30.000000000000000000
-              Position.X = 8.000000000000000000
-              Position.Y = 19.000000000000000000
-              Text = 'Oops, you weren'#39't able to join the trip.'
-              Width = 273.000000000000000000
-              Trimming = ttCharacter
-            end
-            object Label9: TLabel
-              Font.Size = 12.000000000000000000
-              StyledSettings = [ssFamily, ssStyle, ssFontColor]
-              Height = 25.000000000000000000
-              Position.X = 8.000000000000000000
-              Position.Y = 40.000000000000000000
-              Text = 'Check your trip info and try again.'
-              Width = 265.000000000000000000
-              Trimming = ttCharacter
-            end
-          end
         end
         object cpNetworkError: TCalloutPanel
           Height = 89.000000000000000000
@@ -241,12 +210,43 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Trimming = ttCharacter
           end
         end
+        object cpJoinError: TCalloutPanel
+          Height = 73.000000000000000000
+          Padding.Top = 11.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 208.000000000000000000
+          Visible = False
+          Width = 289.000000000000000000
+          TabOrder = 2
+          CalloutWidth = 23.000000000000000000
+          CalloutLength = 11.000000000000000000
+          object Label7: TLabel
+            Font.Size = 12.000000000000000000
+            StyledSettings = [ssFamily, ssStyle, ssFontColor]
+            Height = 30.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 19.000000000000000000
+            Text = 'Oops, you weren'#39't able to join the trip.'
+            Width = 273.000000000000000000
+            Trimming = ttCharacter
+          end
+          object Label9: TLabel
+            Font.Size = 12.000000000000000000
+            StyledSettings = [ssFamily, ssStyle, ssFontColor]
+            Height = 25.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 40.000000000000000000
+            Text = 'Check your trip info and try again.'
+            Width = 265.000000000000000000
+            Trimming = ttCharacter
+          end
+        end
       end
     end
     object TabTrip: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       Position.X = 221.000000000000000000
       Position.Y = 756.000000000000000000
       TabOrder = 1
@@ -254,12 +254,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Width = 8.000000000000000000
       object TopToolBar4: TToolBar
         Align = alMostTop
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
         Width = 480.000000000000000000
         object Label8: TLabel
           Align = alContents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Text = 'Trip'
           TextAlign = taCenter
           Width = 480.000000000000000000
@@ -267,7 +267,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnCheckIn: TSpeedButton
           Align = alRight
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 392.000000000000000000
           Text = 'Check In'
           Trimming = ttCharacter
@@ -276,7 +276,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnQuit: TSpeedButton
           Align = alLeft
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Text = 'Quit'
           Trimming = ttCharacter
           Width = 64.000000000000000000
@@ -285,7 +285,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel2: TPanel
         Align = alClient
-        Height = 727.000000000000000000
+        Height = 731.000000000000000000
         Width = 480.000000000000000000
         TabOrder = 1
         object mmoNotes: TMemo
@@ -312,7 +312,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Height = 44.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Trip to'
-            Width = 480.000000000000000000
+            Width = 768.000000000000000000
             object lblName: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -323,7 +323,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 370.000000000000000000
+              Width = 658.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -332,7 +332,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 44.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Departing'
-            Width = 480.000000000000000000
+            Width = 768.000000000000000000
             object lblDeparting: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -343,7 +343,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 370.000000000000000000
+              Width = 658.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -352,7 +352,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 88.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Arriving'
-            Width = 480.000000000000000000
+            Width = 768.000000000000000000
             object lblArriving: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -363,7 +363,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 370.000000000000000000
+              Width = 658.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -372,7 +372,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 132.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Leaving'
-            Width = 480.000000000000000000
+            Width = 768.000000000000000000
             object lblLeaving: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -383,7 +383,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 370.000000000000000000
+              Width = 658.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -392,7 +392,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 176.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Started'
-            Width = 480.000000000000000000
+            Width = 768.000000000000000000
             object lblStarted: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -403,7 +403,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 370.000000000000000000
+              Width = 658.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -412,7 +412,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.Y = 220.000000000000000000
             StyleLookup = 'listboxitemnodetail'
             Text = 'Leader'
-            Width = 480.000000000000000000
+            Width = 768.000000000000000000
             object lblLeader: TLabel
               Align = alVertCenter
               Font.Style = [fsBold]
@@ -423,7 +423,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
               Text = '...'
-              Width = 370.000000000000000000
+              Width = 658.000000000000000000
               Trimming = ttCharacter
             end
           end
@@ -441,12 +441,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Trimming = ttCharacter
       Width = 8.000000000000000000
       object ToolBar2: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
         Width = 480.000000000000000000
         object Label15: TLabel
           Align = alContents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Text = 'Check In'
           TextAlign = taCenter
           Width = 480.000000000000000000
@@ -454,7 +454,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnBackTrip: TSpeedButton
           Align = alLeft
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           StyleLookup = 'backtoolbutton'
           Text = 'Trip'
           Trimming = ttCharacter
@@ -463,7 +463,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnMap: TSpeedButton
           Align = alRight
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 407.000000000000000000
           Text = 'Map'
           Trimming = ttCharacter
@@ -474,7 +474,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Panel4: TPanel
         Align = alTop
         Height = 61.000000000000000000
-        Position.Y = 48.000000000000000000
+        Position.Y = 44.000000000000000000
         Width = 480.000000000000000000
         TabOrder = 1
         object Panel6: TPanel
@@ -487,7 +487,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = alFit
             TabOrder = 0
             Width = 406.000000000000000000
-            Height = 32.000000000000000000
+            Height = 17.727272033691410000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
             KillFocusByReturn = False
@@ -505,7 +505,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object lbParticipants: TListBox
         Align = alClient
-        Height = 666.000000000000000000
+        Height = 670.000000000000000000
         TabOrder = 2
         Width = 480.000000000000000000
         DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
@@ -563,7 +563,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabSignIn: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       Position.X = 251.000000000000000000
       Position.Y = 756.000000000000000000
       TabOrder = 4
@@ -571,12 +571,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Trimming = ttCharacter
       Width = 8.000000000000000000
       object TopToolBar3: TToolBar
-        Height = 44.000000000000000000
+        Height = 48.000000000000000000
         TabOrder = 0
         Width = 480.000000000000000000
         object Label1: TLabel
           Align = alClient
-          Height = 44.000000000000000000
+          Height = 48.000000000000000000
           Text = 'Sign In'
           TextAlign = taCenter
           Width = 480.000000000000000000
@@ -758,7 +758,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Left = 624
     Top = 113
   end
-  object RESTRequest1: TRESTRequest
+  object JoinRequest: TRESTRequest
     Client = RESTClient1
     Params = <
       item
@@ -768,17 +768,17 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         name = 'pin'
       end>
     Resource = 'apis/[id]/join.json'
-    Response = RESTResponse1
-    OnAfterExecute = RESTRequest1AfterExecute
-    OnHTTPProtocolError = RESTRequest1HTTPProtocolError
+    Response = JoinResponse
+    OnAfterExecute = JoinRequestAfterExecute
+    OnHTTPProtocolError = JoinRequestHTTPProtocolError
     Left = 656
     Top = 113
   end
-  object RESTResponse1: TRESTResponse
+  object JoinResponse: TRESTResponse
     Left = 688
     Top = 113
   end
-  object RESTRequest2: TRESTRequest
+  object CheckinRequest: TRESTRequest
     Client = RESTClient1
     Params = <
       item
@@ -800,17 +800,17 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         name = 'status'
       end>
     Resource = 'apis/[id]/checkin.json'
-    Response = RESTResponse2
-    OnAfterExecute = RESTRequest2AfterExecute
-    OnHTTPProtocolError = RESTRequest2HTTPProtocolError
+    Response = CheckinResponse
+    OnAfterExecute = CheckinRequestAfterExecute
+    OnHTTPProtocolError = CheckinRequestHTTPProtocolError
     Left = 656
     Top = 168
   end
-  object RESTResponse2: TRESTResponse
+  object CheckinResponse: TRESTResponse
     Left = 688
     Top = 168
   end
-  object RESTRequest3: TRESTRequest
+  object QuitRequest: TRESTRequest
     Client = RESTClient1
     Params = <
       item
@@ -823,11 +823,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         name = 'token'
       end>
     Resource = 'apis/[id]/quit.json'
-    Response = RESTResponse3
+    Response = QuitResponse
     Left = 656
     Top = 220
   end
-  object RESTResponse3: TRESTResponse
+  object QuitResponse: TRESTResponse
     Left = 696
     Top = 220
   end
