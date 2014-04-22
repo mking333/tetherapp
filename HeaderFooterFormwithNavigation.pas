@@ -12,7 +12,7 @@ uses
   FMX.Layouts, FMX.Memo, FMX.Sensors,
   FMX.WebBrowser, FMX.ListBox, FMX.ListView.Types, FMX.ListView, FMX.Objects,
   System.IOUtils,
-  XSBuiltins;
+  XSBuiltins, FMX.DateTimeCtrls;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -106,6 +106,53 @@ type
     QuitRequest: TRESTRequest;
     QuitResponse: TRESTResponse;
     btnNewTrip: TSpeedButton;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    btnSignUp: TButton;
+    Panel9: TPanel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Line1: TLine;
+    Panel10: TPanel;
+    btnSaveSignIn: TButton;
+    edtSignIn: TEdit;
+    edtPassword: TEdit;
+    TabSignUp: TTabItem;
+    WebBrowser2: TWebBrowser;
+    TabNewTrip: TTabItem;
+    ToolBar3: TToolBar;
+    Label19: TLabel;
+    ToolBar4: TToolBar;
+    Label20: TLabel;
+    Panel11: TPanel;
+    Destination: TLabel;
+    City: TLabel;
+    Departing: TLabel;
+    Arriving: TLabel;
+    Leaving: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    CalendarEdit1: TCalendarEdit;
+    CalendarEdit2: TCalendarEdit;
+    CalendarEdit3: TCalendarEdit;
+    TimeEdit1: TTimeEdit;
+    TimeEdit2: TTimeEdit;
+    TimeEdit3: TTimeEdit;
+    Panel12: TPanel;
+    btnNewTripNext: TButton;
+    TabNewTripNext: TTabItem;
+    ToolBar5: TToolBar;
+    Label22: TLabel;
+    Panel13: TPanel;
+    Panel14: TPanel;
+    btnCreateTrip: TButton;
+    Label21: TLabel;
+    Label23: TLabel;
+    edtPartEmail: TEdit;
+    edtPartName: TEdit;
+    lbNames: TListBox;
+    Panel15: TPanel;
+    btnAddName: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -139,6 +186,10 @@ type
     procedure StartUpdating(Sender: TObject);
     procedure StopUpdating(Sender: TObject);
     procedure btnNewTripClick(Sender: TObject);
+    procedure btnSignUpClick(Sender: TObject);
+    procedure btnSaveSignInClick(Sender: TObject);
+    procedure btnCreateTripClick(Sender: TObject);
+    procedure btnNewTripNextClick(Sender: TObject);
   private
     { Private declarations }
     startTime: TDate;
@@ -151,8 +202,8 @@ type
   end;
 
 const
-  APIBASEURL = 'http://192.168.2.201';
-  {APIBASEURL = 'http://www.triptether.com';}
+  {APIBASEURL = 'http://192.168.2.201';}
+  APIBASEURL = 'http://www.triptether.com';
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -237,6 +288,9 @@ begin
   edtEMail.Text := ini.ReadString('login', 'email', '');
   edtTripID.Text := ini.ReadString('login', 'trip', '');
   edtTripPin.Text := ini.ReadString('login', 'pin', '');
+
+  edtSignIn.Text := ini.ReadString('signin', 'email', '');
+  edtPassword.Text := ini.ReadString('signin', 'pw', '');
 
   ini.Free;
 end;
@@ -499,6 +553,11 @@ begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
+procedure THeaderFooterwithNavigation.btnCreateTripClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+end;
+
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
@@ -507,6 +566,15 @@ end;
 procedure THeaderFooterwithNavigation.btnTripClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+end;
+
+procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
+var
+  URLString: string;
+begin
+  URLString := 'http://www.triptether.com/users/sign_up';
+  WebBrowser2.Navigate(URLString);
+  TabControl1.SetActiveTabWithTransition(TabSignUp, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
 procedure THeaderFooterwithNavigation.btnQuitClick(Sender: TObject);
@@ -532,7 +600,15 @@ end;
 
 procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttNone);
+  if (edtSignIn.Text.Length > 0) and (edtPassword.Text.Length > 0) then
+    TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide)
+  else
+    TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttSlide);
+end;
+
+procedure THeaderFooterwithNavigation.btnNewTripNextClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabNewTripNext, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackTripClick(Sender: TObject);
@@ -547,6 +623,18 @@ begin
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
   ini.WriteBool('settings', 'updates', swLocationUpdates.IsChecked);
   ini.Free;
+end;
+
+procedure THeaderFooterwithNavigation.btnSaveSignInClick(Sender: TObject);
+var
+  ini: TIniFile;
+begin
+  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini.WriteString('signin', 'email', edtSignIn.Text);
+  ini.WriteString('signin', 'pw', edtPassword.Text);
+  ini.Free;
+
+  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide);
 end;
 
 procedure THeaderFooterwithNavigation.btnSendClick(Sender: TObject);
