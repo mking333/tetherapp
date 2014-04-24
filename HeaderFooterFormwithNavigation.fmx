@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 7
+    TabIndex = 4
     TabOrder = 0
     TabPosition = tpNone
     Width = 320.000000000000000000
@@ -486,7 +486,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = alFit
             TabOrder = 0
             Width = 246.000000000000000000
-            Height = 10.909088134765630000
+            Height = 30.000000000000000000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
             KillFocusByReturn = False
@@ -494,8 +494,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnSend: TSpeedButton
           Align = alRight
-          Height = 61.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 256.000000000000000000
+          Position.Y = 8.000000000000000000
           Text = 'Send'
           Trimming = ttCharacter
           Width = 64.000000000000000000
@@ -524,16 +525,16 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Width = 8.000000000000000000
       object WebBrowser1: TWebBrowser
         Align = alClient
-        Height = 500.000000000000000000
+        Height = 504.000000000000000000
         Width = 320.000000000000000000
       end
       object ToolBar1: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
         Width = 320.000000000000000000
         object Label12: TLabel
           Align = alContents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Text = 'Map'
           TextAlign = taCenter
           Width = 320.000000000000000000
@@ -541,7 +542,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnBackCheck: TSpeedButton
           Align = alLeft
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           StyleLookup = 'backtoolbutton'
           Text = 'Check In'
           Trimming = ttCharacter
@@ -550,7 +551,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnTrip: TSpeedButton
           Align = alRight
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 247.000000000000000000
           Text = 'Trip'
           Trimming = ttCharacter
@@ -562,7 +563,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object TabSignIn: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       Position.X = 156.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 4
@@ -574,12 +575,21 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         TabOrder = 0
         Width = 320.000000000000000000
         object Label1: TLabel
-          Align = alClient
+          Align = alContents
           Height = 44.000000000000000000
           Text = 'Sign In'
           TextAlign = taCenter
           Width = 320.000000000000000000
           Trimming = ttCharacter
+        end
+        object btnBackToJoin2: TSpeedButton
+          Align = alLeft
+          Height = 44.000000000000000000
+          StyleLookup = 'arrowlefttoolbutton'
+          Text = 'btnBackToJoin2'
+          Trimming = ttCharacter
+          Width = 44.000000000000000000
+          OnClick = btnBackToJoin2Click
         end
       end
       object Panel7: TPanel
@@ -797,19 +807,28 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         TabOrder = 1
         Width = 320.000000000000000000
         object Label19: TLabel
-          Align = alClient
+          Align = alContents
           Height = 44.000000000000000000
           Text = 'TripTether Sign Up'
           TextAlign = taCenter
           Width = 320.000000000000000000
           Trimming = ttCharacter
         end
+        object btnBackToJoin3: TSpeedButton
+          Align = alLeft
+          Height = 44.000000000000000000
+          StyleLookup = 'arrowlefttoolbutton'
+          Text = 'btnBackToJoin3'
+          Trimming = ttCharacter
+          Width = 44.000000000000000000
+          OnClick = btnBackToJoin3Click
+        end
       end
     end
     object TabNewTrip: TTabItem
       WordWrap = False
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       Position.X = 186.000000000000000000
       Position.Y = 529.000000000000000000
       TabOrder = 7
@@ -821,12 +840,21 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         TabOrder = 0
         Width = 320.000000000000000000
         object Label20: TLabel
-          Align = alClient
+          Align = alContents
           Height = 44.000000000000000000
           Text = 'New Trip'
           TextAlign = taCenter
           Width = 320.000000000000000000
           Trimming = ttCharacter
+        end
+        object btnBackToJoin: TSpeedButton
+          Align = alLeft
+          Height = 44.000000000000000000
+          StyleLookup = 'arrowlefttoolbutton'
+          Text = 'btnBackToJoin'
+          Trimming = ttCharacter
+          Width = 44.000000000000000000
+          OnClick = btnBackToJoinClick
         end
       end
       object Panel11: TPanel
@@ -984,12 +1012,21 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         TabOrder = 0
         Width = 320.000000000000000000
         object Label22: TLabel
-          Align = alClient
+          Align = alContents
           Height = 44.000000000000000000
           Text = 'New Trip Participants'
           TextAlign = taCenter
           Width = 320.000000000000000000
           Trimming = ttCharacter
+        end
+        object btnBackToNew: TSpeedButton
+          Align = alLeft
+          Height = 44.000000000000000000
+          StyleLookup = 'arrowlefttoolbutton'
+          Text = 'btnBackToNew'
+          Trimming = ttCharacter
+          Width = 44.000000000000000000
+          OnClick = btnBackToNewClick
         end
       end
       object Panel13: TPanel
@@ -1032,6 +1069,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object edtPartEmail: TEdit
           Touch.InteractiveGestures = [igLongTap, igDoubleTap]
           TabOrder = 3
+          KeyboardType = vktEmailAddress
           Position.X = 116.000000000000000000
           Position.Y = 62.000000000000000000
           Width = 193.000000000000000000

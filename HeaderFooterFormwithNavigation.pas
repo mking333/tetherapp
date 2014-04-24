@@ -153,6 +153,10 @@ type
     lbNames: TListBox;
     Panel15: TPanel;
     btnAddName: TButton;
+    btnBackToJoin: TSpeedButton;
+    btnBackToNew: TSpeedButton;
+    btnBackToJoin2: TSpeedButton;
+    btnBackToJoin3: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -190,6 +194,10 @@ type
     procedure btnSaveSignInClick(Sender: TObject);
     procedure btnCreateTripClick(Sender: TObject);
     procedure btnNewTripNextClick(Sender: TObject);
+    procedure btnBackToNewClick(Sender: TObject);
+    procedure btnBackToJoinClick(Sender: TObject);
+    procedure btnBackToJoin2Click(Sender: TObject);
+    procedure btnBackToJoin3Click(Sender: TObject);
   private
     { Private declarations }
     startTime: TDate;
@@ -202,8 +210,8 @@ type
   end;
 
 const
-  {APIBASEURL = 'http://192.168.2.201';}
-  APIBASEURL = 'http://www.triptether.com';
+  APIBASEURL = 'http://192.168.2.201';
+  {APIBASEURL = 'http://www.triptether.com';}
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -555,7 +563,7 @@ end;
 
 procedure THeaderFooterwithNavigation.btnCreateTripClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
@@ -609,6 +617,26 @@ end;
 procedure THeaderFooterwithNavigation.btnNewTripNextClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabNewTripNext, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+end;
+
+procedure THeaderFooterwithNavigation.btnBackToJoin2Click(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+end;
+
+procedure THeaderFooterwithNavigation.btnBackToJoin3Click(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+end;
+
+procedure THeaderFooterwithNavigation.btnBackToJoinClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+end;
+
+procedure THeaderFooterwithNavigation.btnBackToNewClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackTripClick(Sender: TObject);
