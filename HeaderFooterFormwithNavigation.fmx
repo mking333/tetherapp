@@ -494,9 +494,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnSend: TSpeedButton
           Align = alRight
-          Height = 44.000000000000000000
+          Height = 61.000000000000000000
           Position.X = 256.000000000000000000
-          Position.Y = 8.000000000000000000
           Text = 'Send'
           Trimming = ttCharacter
           Width = 64.000000000000000000
@@ -678,6 +677,37 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Trimming = ttCharacter
             Width = 73.000000000000000000
             OnClick = btnSaveSignInClick
+          end
+          object cpSignInError: TCalloutPanel
+            Height = 73.000000000000000000
+            Padding.Top = 11.000000000000000000
+            Position.X = 16.000000000000000000
+            Position.Y = 128.000000000000000000
+            Visible = False
+            Width = 289.000000000000000000
+            TabOrder = 1
+            CalloutWidth = 23.000000000000000000
+            CalloutLength = 11.000000000000000000
+            object Label24: TLabel
+              Font.Size = 12.000000000000000000
+              StyledSettings = [ssFamily, ssStyle, ssFontColor]
+              Height = 30.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 19.000000000000000000
+              Text = 'Oops, you weren'#39't able to sign in.'
+              Width = 273.000000000000000000
+              Trimming = ttCharacter
+            end
+            object Label25: TLabel
+              Font.Size = 12.000000000000000000
+              StyledSettings = [ssFamily, ssStyle, ssFontColor]
+              Height = 25.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 40.000000000000000000
+              Text = 'Check your sign in info and try again.'
+              Width = 265.000000000000000000
+              Trimming = ttCharacter
+            end
           end
         end
       end
@@ -1252,5 +1282,24 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   object QuitResponse: TRESTResponse
     Left = 696
     Top = 220
+  end
+  object SignInRequest: TRESTRequest
+    Client = RESTClient1
+    Params = <
+      item
+        name = 'email'
+      end
+      item
+        name = 'pw'
+      end>
+    Resource = 'apis/sign_in.json'
+    Response = SignInResponse
+    OnAfterExecute = SignInRequestAfterExecute
+    Left = 153
+    Top = 332
+  end
+  object SignInResponse: TRESTResponse
+    Left = 217
+    Top = 332
   end
 end

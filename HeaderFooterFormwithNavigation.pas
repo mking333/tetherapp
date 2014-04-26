@@ -157,6 +157,11 @@ type
     btnBackToNew: TSpeedButton;
     btnBackToJoin2: TSpeedButton;
     btnBackToJoin3: TSpeedButton;
+    SignInRequest: TRESTRequest;
+    SignInResponse: TRESTResponse;
+    cpSignInError: TCalloutPanel;
+    Label24: TLabel;
+    Label25: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -198,6 +203,7 @@ type
     procedure btnBackToJoinClick(Sender: TObject);
     procedure btnBackToJoin2Click(Sender: TObject);
     procedure btnBackToJoin3Click(Sender: TObject);
+    procedure SignInRequestAfterExecute(Sender: TCustomRESTRequest);
   private
     { Private declarations }
     startTime: TDate;
@@ -205,6 +211,11 @@ type
     currentLat: string;
     currentLong: string;
     checkingIn: boolean;
+
+    SignInUserId: integer;
+    SignInEmail: string;
+    SignInName: string;
+    SignInToken: string;
   public
     { Public declarations }
   end;
@@ -325,6 +336,36 @@ begin
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
   cpNetworkError.Visible := True;
+end;
+
+procedure THeaderFooterwithNavigation.SignInRequestAfterExecute(
+  Sender: TCustomRESTRequest);
+var
+  Response: TJSONObject;
+  User: TJSONObject;
+  Result: string;
+begin
+  if assigned(SignInResponse.JSONValue) then
+  begin
+    Response := SignInResponse.JsonValue as TJSONObject;
+    User := Response.Get('user').JsonValue as TJSONObject;
+    Result := User.Get('result').JsonValue.ToString.Replace('"', '');
+    if Result <> 'success' then
+    begin
+      cpSignInError.Visible := True;
+    end
+    else
+    begin
+      cpSignInError.Visible := False;
+
+      SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
+      SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
+      SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
+      SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
+
+      TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide);
+    end;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.JoinRequestAfterExecute(
@@ -608,9 +649,11 @@ end;
 
 procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
 begin
+{
   if (edtSignIn.Text.Length > 0) and (edtPassword.Text.Length > 0) then
     TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide)
   else
+}
     TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttSlide);
 end;
 
@@ -662,7 +705,9 @@ begin
   ini.WriteString('signin', 'pw', edtPassword.Text);
   ini.Free;
 
-  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide);
+  SignInRequest.Params.ParameterByName('email').Value := edtSignIn.Text;
+  SignInRequest.Params.ParameterByName('pw').Value := edtPassword.Text;
+  SignInRequest.Execute;
 end;
 
 procedure THeaderFooterwithNavigation.btnSendClick(Sender: TObject);
