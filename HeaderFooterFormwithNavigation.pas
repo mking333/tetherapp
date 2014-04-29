@@ -9,10 +9,11 @@ uses
   FMX.ActnList, FMX.StdCtrls, FMX.MobilePreview, FMX.Edit,
   IPPeerClient, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,
   REST.Utils, REST.Types, REST.Json, DATA.DBXJSON,
-  FMX.Layouts, FMX.Memo, FMX.Sensors,
+  FMX.Layouts, FMX.Memo,
   FMX.WebBrowser, FMX.ListBox, FMX.ListView.Types, FMX.ListView, FMX.Objects,
-  System.IOUtils,
-  XSBuiltins, FMX.DateTimeCtrls;
+  System.IOUtils, System.JSON,
+  XSBuiltins, FMX.DateTimeCtrls, System.Sensors.Components,
+  IdGlobal;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -113,8 +114,6 @@ type
     Label10: TLabel;
     Label11: TLabel;
     Line1: TLine;
-    Panel10: TPanel;
-    btnSaveSignIn: TButton;
     edtSignIn: TEdit;
     edtPassword: TEdit;
     TabSignUp: TTabItem;
@@ -126,21 +125,12 @@ type
     Label20: TLabel;
     Panel11: TPanel;
     Destination: TLabel;
-    City: TLabel;
-    Departing: TLabel;
-    Arriving: TLabel;
-    Leaving: TLabel;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    CalendarEdit1: TCalendarEdit;
-    CalendarEdit2: TCalendarEdit;
-    CalendarEdit3: TCalendarEdit;
-    TimeEdit1: TTimeEdit;
-    TimeEdit2: TTimeEdit;
-    TimeEdit3: TTimeEdit;
+    Location: TLabel;
+    edtTripName: TEdit;
+    edtTripCity: TEdit;
     Panel12: TPanel;
-    btnNewTripNext: TButton;
-    TabNewTripNext: TTabItem;
+    btnNewTripDetails: TButton;
+    TabNewTripParts: TTabItem;
     ToolBar5: TToolBar;
     Label22: TLabel;
     Panel13: TPanel;
@@ -150,7 +140,7 @@ type
     Label23: TLabel;
     edtPartEmail: TEdit;
     edtPartName: TEdit;
-    lbNames: TListBox;
+    lbParts: TListBox;
     Panel15: TPanel;
     btnAddName: TButton;
     btnBackToJoin: TSpeedButton;
@@ -159,9 +149,37 @@ type
     btnBackToJoin3: TSpeedButton;
     SignInRequest: TRESTRequest;
     SignInResponse: TRESTResponse;
+    NewTripRequest: TRESTRequest;
+    NewTripResponse: TRESTResponse;
+    Label26: TLabel;
+    edtTripLocation: TEdit;
+    TabNewTripDetails: TTabItem;
+    ToolBar6: TToolBar;
+    Label27: TLabel;
+    btnBackToNewTrip: TSpeedButton;
+    Panel16: TPanel;
+    mmoTripNotes: TMemo;
+    Label28: TLabel;
+    tmeTripDepart: TTimeEdit;
+    dteTripDepart: TDateEdit;
+    dteTripArrive: TDateEdit;
+    tmeTripArrive: TTimeEdit;
+    Label29: TLabel;
+    dteTripLeave: TDateEdit;
+    tmeTripLeave: TTimeEdit;
+    Label30: TLabel;
+    Panel17: TPanel;
+    btnNewTripParts: TButton;
+    Panel10: TPanel;
     cpSignInError: TCalloutPanel;
     Label24: TLabel;
     Label25: TLabel;
+    btnSaveSignIn: TButton;
+    NewTripPartRequest: TRESTRequest;
+    NewTripPartResponse: TRESTResponse;
+    cpNewTripError: TCalloutPanel;
+    Label31: TLabel;
+    Label32: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -198,12 +216,16 @@ type
     procedure btnSignUpClick(Sender: TObject);
     procedure btnSaveSignInClick(Sender: TObject);
     procedure btnCreateTripClick(Sender: TObject);
-    procedure btnNewTripNextClick(Sender: TObject);
+    procedure btnNewTripDetailsClick(Sender: TObject);
     procedure btnBackToNewClick(Sender: TObject);
     procedure btnBackToJoinClick(Sender: TObject);
     procedure btnBackToJoin2Click(Sender: TObject);
     procedure btnBackToJoin3Click(Sender: TObject);
     procedure SignInRequestAfterExecute(Sender: TCustomRESTRequest);
+    procedure btnNewTripPartsClick(Sender: TObject);
+    procedure btnAddNameClick(Sender: TObject);
+    procedure NewTripRequestAfterExecute(Sender: TCustomRESTRequest);
+    procedure NewTripPartRequestAfterExecute(Sender: TCustomRESTRequest);
   private
     { Private declarations }
     startTime: TDate;
@@ -216,6 +238,18 @@ type
     SignInEmail: string;
     SignInName: string;
     SignInToken: string;
+
+    TripLatitude: string;
+    TripLongitude: string;
+    TripFoundLatLong: boolean;
+
+    NewTripId: integer;
+    NewTripName: string;
+    NewTripToken: string;
+
+    FGeocoder: TGeocoder;
+    procedure OnGeocodeEvent(const Coords: System.TArray<System.Sensors.TLocationCoord2D>);
+    {procedure OnGeocodeReverseEvent(const Address: TCivicAddress);}
   public
     { Public declarations }
   end;
@@ -604,7 +638,27 @@ end;
 
 procedure THeaderFooterwithNavigation.btnCreateTripClick(Sender: TObject);
 begin
+  NewTripPartRequest.Resource := 'apis/[id]/add_part.json';
+  NewTripPartRequest.Resource := NewTripPartRequest.Resource.Replace('[id]', IntToStr(NewTripID));
+  NewTripPartRequest.Params.ParameterByName('token').Value := NewTripToken;
+  NewTripPartRequest.Params.ParameterByName('name').Value := edtPartName.Text;
+  NewTripPartRequest.Params.ParameterByName('email').Value := edtPartEmail.Text;
+  NewTripPartRequest.Execute;
+
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+end;
+
+procedure THeaderFooterwithNavigation.btnAddNameClick(Sender: TObject);
+var
+  PartListItem: TListBoxItem;
+begin
+    PartListItem := TListBoxItem.Create(lbParts);
+    PartListItem.Text := edtPartName.Text;
+    {PartListItem.ItemData.Accessory := TListBoxItemData.TAccessory.aMore;}
+    PartListItem.ItemData.Detail := edtPartEmail.Text;
+    PartListItem.ItemData.Text := edtPartName.Text;
+
+    lbParts.AddObject(PartListItem);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
@@ -657,9 +711,75 @@ begin
     TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttSlide);
 end;
 
-procedure THeaderFooterwithNavigation.btnNewTripNextClick(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnNewTripDetailsClick(Sender: TObject);
+var
+  Address: TCivicAddress;
 begin
-  TabControl1.SetActiveTabWithTransition(TabNewTripNext, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+  // Setup an instance of TGeocoder
+  if not Assigned(FGeocoder) then
+  begin
+    if Assigned(TGeocoder.Current) then
+      FGeocoder := TGeocoder.Current.Create;
+    {if Assigned(FGeocoder) then
+      FGeocoder.OnGeocodeReverse := OnGeocodeReverseEvent;}
+    if Assigned(FGeocoder) then
+      FGeocoder.OnGeocode := OnGeocodeEvent;
+  end;
+
+  Address := TCivicAddress.Create;
+  Address.Address := edtTripLocation.Text + ' ' + edtTripCity.Text;
+  //Address.SubLocality := 'Toronto';
+  //Address.FeatureName := 'Dufferin Mall';
+  if Assigned(FGeocoder) and not FGeocoder.Geocoding then
+    FGeocoder.Geocode(Address);
+end;
+
+procedure THeaderFooterwithNavigation.btnNewTripPartsClick(Sender: TObject);
+var
+  Departing: TDateTime;
+  Arriving: TDateTime;
+  Leaving: TDateTime;
+begin
+  NewTripRequest.Resource := 'apis/[id]/new_trip.json';
+  NewTripRequest.Resource := NewTripRequest.Resource.Replace('[id]', IntToStr(SignInUserID));
+  NewTripRequest.Params.ParameterByName('email').Value := SignInEmail;
+  NewTripRequest.Params.ParameterByName('token').Value := SignInToken;
+  NewTripRequest.Params.ParameterByName('name').Value := edtTripName.Text;
+  NewTripRequest.Params.ParameterByName('location').Value := edtTripLocation.Text + ' ' + edtTripCity.Text;
+  NewTripRequest.Params.ParameterByName('notes').Value := mmoTripNotes.Text;
+  NewTripRequest.Params.ParameterByName('lat').Value := TripLatitude;
+  NewTripRequest.Params.ParameterByName('long').Value := TripLongitude;
+
+  Departing := dteTripDepart.DateTime;
+  ReplaceTime(Departing, tmeTripDepart.DateTime);
+  Arriving := dteTripArrive.DateTime;
+  ReplaceTime(Arriving, tmeTripArrive.DateTime);
+  Leaving := dteTripLeave.DateTime;
+  ReplaceTime(Leaving, tmeTripLeave.DateTime);
+
+  NewTripRequest.Params.ParameterByName('depart').Value := LocalDateTimeToGMT(Departing, False);
+  NewTripRequest.Params.ParameterByName('arrive').Value := LocalDateTimeToGMT(Arriving, False);
+  NewTripRequest.Params.ParameterByName('leave').Value := LocalDateTimeToGMT(Leaving, False);
+  NewTripRequest.Execute;
+end;
+
+procedure THeaderFooterwithNavigation.OnGeocodeEvent(const Coords: System.TArray<System.Sensors.TLocationCoord2D>);
+var
+  FoundLatitude: string;
+  FoundLongitude: string;
+  FoundAddrLatLong: boolean;
+begin
+  if Length(Coords) > 0 then begin
+    TripLatitude := FloatToStr(Coords[0].Latitude);
+    TripLongitude := FloatToStr(Coords[0].Longitude);
+    TripFoundLatLong := true;
+
+    TabControl1.SetActiveTabWithTransition(TabNewTripDetails, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+  end
+  else begin
+    TripFoundLatLong := false;
+    edtTripLocation.Text := 'Address not Found!'
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.btnBackToJoin2Click(Sender: TObject);
@@ -674,7 +794,7 @@ end;
 
 procedure THeaderFooterwithNavigation.btnBackToJoinClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackToNewClick(Sender: TObject);
@@ -768,6 +888,66 @@ var
 begin
   URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000))]);
   WebBrowser1.Navigate(URLString);
+end;
+
+procedure THeaderFooterwithNavigation.NewTripPartRequestAfterExecute(
+  Sender: TCustomRESTRequest);
+var
+  Response: TJSONObject;
+  User: TJSONObject;
+  Result: string;
+begin
+  if assigned(SignInResponse.JSONValue) then
+  begin
+    Response := SignInResponse.JsonValue as TJSONObject;
+    User := Response.Get('user').JsonValue as TJSONObject;
+    Result := User.Get('result').JsonValue.ToString.Replace('"', '');
+    if Result <> 'success' then
+    begin
+      cpSignInError.Visible := True;
+    end
+    else
+    begin
+      cpSignInError.Visible := False;
+
+      SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
+      SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
+      SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
+      SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
+
+      TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide);
+    end;
+  end;
+end;
+
+procedure THeaderFooterwithNavigation.NewTripRequestAfterExecute(
+  Sender: TCustomRESTRequest);
+var
+  Response: TJSONObject;
+  Trip: TJSONObject;
+  Result: string;
+begin
+  if assigned(NewTripResponse.JSONValue) then
+  begin
+    Response := NewTripResponse.JsonValue as TJSONObject;
+    Trip := Response.Get('trip').JsonValue as TJSONObject;
+    Result := Trip.Get('result').JsonValue.ToString.Replace('"', '');
+    if Result <> 'success' then
+    begin
+      cpNewTripError.Visible := True;
+      NewTripId := 0;
+    end
+    else
+    begin
+      cpNewTripError.Visible := False;
+
+      NewTripId := StrToInt(Trip.Get('trip_id').JsonValue.ToString);
+      NewTripName := Trip.Get('name').JsonValue.ToString.Replace('"', '');
+      NewTripToken := Trip.Get('token').JsonValue.ToString.Replace('"', '');
+
+      TabControl1.SetActiveTabWithTransition(TabNewTripParts, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+    end;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
