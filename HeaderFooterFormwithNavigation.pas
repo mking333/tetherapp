@@ -637,13 +637,21 @@ begin
 end;
 
 procedure THeaderFooterwithNavigation.btnCreateTripClick(Sender: TObject);
+var
+  i: integer;
+  PartListItem: TListBoxItem;
 begin
   NewTripPartRequest.Resource := 'apis/[id]/add_part.json';
   NewTripPartRequest.Resource := NewTripPartRequest.Resource.Replace('[id]', IntToStr(NewTripID));
   NewTripPartRequest.Params.ParameterByName('token').Value := NewTripToken;
-  NewTripPartRequest.Params.ParameterByName('name').Value := edtPartName.Text;
-  NewTripPartRequest.Params.ParameterByName('email').Value := edtPartEmail.Text;
-  NewTripPartRequest.Execute;
+
+  for i := 0 to lbParts.Items.Count - 1 do
+  begin
+    PartListItem := lbParts.ItemByIndex(i);
+    NewTripPartRequest.Params.ParameterByName('name').Value := PartListItem.ItemData.Text;
+    NewTripPartRequest.Params.ParameterByName('email').Value := PartListItem.ItemData.Detail;
+    NewTripPartRequest.Execute;
+  end;
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
 end;
@@ -894,28 +902,21 @@ procedure THeaderFooterwithNavigation.NewTripPartRequestAfterExecute(
   Sender: TCustomRESTRequest);
 var
   Response: TJSONObject;
-  User: TJSONObject;
+  Participant: TJSONObject;
   Result: string;
 begin
-  if assigned(SignInResponse.JSONValue) then
+  if assigned(NewTripPartResponse.JSONValue) then
   begin
-    Response := SignInResponse.JsonValue as TJSONObject;
-    User := Response.Get('user').JsonValue as TJSONObject;
-    Result := User.Get('result').JsonValue.ToString.Replace('"', '');
+    Response := NewTripPartResponse.JsonValue as TJSONObject;
+    Participant := Response.Get('participant').JsonValue as TJSONObject;
+    Result := Participant.Get('result').JsonValue.ToString.Replace('"', '');
     if Result <> 'success' then
     begin
-      cpSignInError.Visible := True;
+      cpNewtripError.Visible := True;
     end
     else
     begin
-      cpSignInError.Visible := False;
-
-      SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
-      SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
-      SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
-      SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
-
-      TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide);
+      cpNewTripError.Visible := False;
     end;
   end;
 end;
