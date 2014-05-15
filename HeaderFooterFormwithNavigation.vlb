@@ -28,9 +28,6 @@ Coordinates=889,478,89,36
 [ChangeTabAction2]
 Coordinates=544,705,124,36
 
-[WebBrowser1]
-Coordinates=634,478,95,36
-
 [TabJoin]
 Coordinates=500,478,60,36
 Visible=True
@@ -97,4 +94,7 @@ Coordinates=256,10,103,212
 
 [CheckinResponse]
 Coordinates=133,10,113,322
+
+[webMap]
+Coordinates=634,478,95,36
 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>tetherapp</string>
+    <string>tetherapp</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -55,6 +55,6 @@
 	<key>CFBundleResourceSpecification</key>
 	<string>ResourceRules.plist</string>
 	<key>MinimumOSVersion</key>
-	<string>5.1</string>
+	<string>6.0</string>
 </dict>
 </plist>

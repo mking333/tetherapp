@@ -11,7 +11,7 @@ uses
   REST.Utils, REST.Types, REST.Json, DATA.DBXJSON,
   FMX.Layouts, FMX.Memo,
   FMX.WebBrowser, FMX.ListBox, FMX.ListView.Types, FMX.ListView, FMX.Objects,
-  System.IOUtils, System.JSON,
+  System.IOUtils, System.JSON, System.StrUtils,
   XSBuiltins, FMX.DateTimeCtrls, System.Sensors.Components,
   IdGlobal;
 
@@ -41,7 +41,7 @@ type
     TabMap: TTabItem;
     ToolBar1: TToolBar;
     Label12: TLabel;
-    WebBrowser1: TWebBrowser;
+    webMap: TWebBrowser;
     btnCheckIn: TSpeedButton;
     Timer1: TTimer;
     CheckinRequest: TRESTRequest;
@@ -117,7 +117,7 @@ type
     edtSignIn: TEdit;
     edtPassword: TEdit;
     TabSignUp: TTabItem;
-    WebBrowser2: TWebBrowser;
+    webSignUp: TWebBrowser;
     TabNewTrip: TTabItem;
     ToolBar3: TToolBar;
     Label19: TLabel;
@@ -130,21 +130,7 @@ type
     edtTripCity: TEdit;
     Panel12: TPanel;
     btnNewTripDetails: TButton;
-    TabNewTripParts: TTabItem;
-    ToolBar5: TToolBar;
-    Label22: TLabel;
-    Panel13: TPanel;
-    Panel14: TPanel;
-    btnCreateTrip: TButton;
-    Label21: TLabel;
-    Label23: TLabel;
-    edtPartEmail: TEdit;
-    edtPartName: TEdit;
-    lbParts: TListBox;
-    Panel15: TPanel;
-    btnAddName: TButton;
     btnBackToJoin: TSpeedButton;
-    btnBackToNew: TSpeedButton;
     btnBackToJoin2: TSpeedButton;
     btnBackToJoin3: TSpeedButton;
     SignInRequest: TRESTRequest;
@@ -169,7 +155,7 @@ type
     tmeTripLeave: TTimeEdit;
     Label30: TLabel;
     Panel17: TPanel;
-    btnNewTripParts: TButton;
+    btnNewTripCreate: TButton;
     Panel10: TPanel;
     cpSignInError: TCalloutPanel;
     Label24: TLabel;
@@ -180,6 +166,8 @@ type
     cpNewTripError: TCalloutPanel;
     Label31: TLabel;
     Label32: TLabel;
+    Label21: TLabel;
+    edtName: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -222,17 +210,18 @@ type
     procedure btnBackToJoin2Click(Sender: TObject);
     procedure btnBackToJoin3Click(Sender: TObject);
     procedure SignInRequestAfterExecute(Sender: TCustomRESTRequest);
-    procedure btnNewTripPartsClick(Sender: TObject);
-    procedure btnAddNameClick(Sender: TObject);
+    procedure btnNewTripCreateClick(Sender: TObject);
     procedure NewTripRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure NewTripPartRequestAfterExecute(Sender: TCustomRESTRequest);
   private
     { Private declarations }
-    startTime: TDate;
-    tripToken: string;
+    StartTime: TDate;
+    TripToken: string;
     currentLat: string;
     currentLong: string;
-    checkingIn: boolean;
+    CheckingIn: boolean;
+
+    UserPin: string;
 
     SignInUserId: integer;
     SignInEmail: string;
@@ -256,7 +245,9 @@ type
 
 const
   APIBASEURL = 'http://192.168.2.201';
-  {APIBASEURL = 'http://www.triptether.com';}
+{
+  APIBASEURL = 'http://www.triptether.com';
+}
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -273,9 +264,10 @@ begin
   cpJoinError.Visible := False;
 
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteString('login', 'email', edtEMail.Text);
   ini.WriteString('login', 'trip', edtTripID.Text);
   ini.WriteString('login', 'pin', edtTripPIN.Text);
+  ini.WriteString('login', 'email', edtEMail.Text);
+  ini.WriteString('login', 'name', edtName.Text);
   ini.Free;
 
   //LocationSensor1.Active := True;
@@ -302,7 +294,6 @@ begin
 
   MapName(self, SelectName);
 end;
-
 
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
   Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
@@ -338,11 +329,12 @@ begin
   spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
   spMapping.Value := ini.ReadInteger('settings', 'mapping', 2);
 
-  edtEMail.Text := ini.ReadString('login', 'email', '');
   edtTripID.Text := ini.ReadString('login', 'trip', '');
   edtTripPin.Text := ini.ReadString('login', 'pin', '');
+  edtEMail.Text := ini.ReadString('login', 'email', 'my@email.com');
+  edtName.Text := ini.ReadString('login', 'name', 'My Name');
 
-  edtSignIn.Text := ini.ReadString('signin', 'email', '');
+  edtSignIn.Text := ini.ReadString('signin', 'email', 'my@email.com');
   edtPassword.Text := ini.ReadString('signin', 'pw', '');
 
   ini.Free;
@@ -368,7 +360,7 @@ procedure THeaderFooterwithNavigation.RESTClient1HTTPProtocolError(
 begin
   StopUpdating(self);
 
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
   cpNetworkError.Visible := True;
 end;
 
@@ -397,7 +389,7 @@ begin
       SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
       SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
 
-      TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide);
+      TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide);
     end;
   end;
 end;
@@ -449,8 +441,9 @@ begin
     Participant := Trip.Get('participant').JsonValue as TJSONObject;
     ParticipantName := Participant.Get('name').JsonValue;
     Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
+    UserPin := Participant.Get('pin').JsonValue.ToString.Replace('"', '');
 
-    tripToken := Token.ToString.Replace('"', '');
+    TripToken := Token.ToString.Replace('"', '');
     lblName.Text := Name.ToString.Replace('"', '');
 
     if Depart <> '' then
@@ -501,7 +494,7 @@ begin
       mmoNotes.Visible := False;
     end;
 
-    TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide);
+    TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide);
 
     //for i := 0 to Participants.Size - 1 do
     //begin
@@ -515,7 +508,7 @@ begin
     Mapping(self);
 
     StartUpdating(self);
-    startTime := Now;
+    StartTime := Now;
   end;
 
   end;
@@ -526,7 +519,7 @@ procedure THeaderFooterwithNavigation.JoinRequestHTTPProtocolError(
 begin
   StopUpdating(self);
 
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
   cpNetworkError.Visible := True;
 end;
 
@@ -608,7 +601,7 @@ procedure THeaderFooterwithNavigation.CheckinRequestHTTPProtocolError(
 begin
   StopUpdating(self);
 
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
   cpNetworkError.Visible := True;
 end;
 
@@ -633,50 +626,35 @@ end;
 procedure THeaderFooterwithNavigation.btnCheckInClick(Sender: TObject);
 begin
   CheckIn(self, '');
-  TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.btnCreateTripClick(Sender: TObject);
 var
   i: integer;
   PartListItem: TListBoxItem;
+  isLeader: integer;
 begin
   NewTripPartRequest.Resource := 'apis/[id]/add_part.json';
   NewTripPartRequest.Resource := NewTripPartRequest.Resource.Replace('[id]', IntToStr(NewTripID));
   NewTripPartRequest.Params.ParameterByName('token').Value := NewTripToken;
 
-  for i := 0 to lbParts.Items.Count - 1 do
-  begin
-    PartListItem := lbParts.ItemByIndex(i);
-    NewTripPartRequest.Params.ParameterByName('name').Value := PartListItem.ItemData.Text;
-    NewTripPartRequest.Params.ParameterByName('email').Value := PartListItem.ItemData.Detail;
-    NewTripPartRequest.Execute;
-  end;
+  NewTripPartRequest.Params.ParameterByName('name').Value := AnsiLeftStr(PartListItem.ItemData.Text, isLeader);
+  NewTripPartRequest.Params.ParameterByName('leader').Value := 'no';
+  NewTripPartRequest.Params.ParameterByName('email').Value := PartListItem.ItemData.Detail;
+  NewTripPartRequest.Execute;
 
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
-end;
-
-procedure THeaderFooterwithNavigation.btnAddNameClick(Sender: TObject);
-var
-  PartListItem: TListBoxItem;
-begin
-    PartListItem := TListBoxItem.Create(lbParts);
-    PartListItem.Text := edtPartName.Text;
-    {PartListItem.ItemData.Accessory := TListBoxItemData.TAccessory.aMore;}
-    PartListItem.ItemData.Detail := edtPartEmail.Text;
-    PartListItem.ItemData.Text := edtPartName.Text;
-
-    lbParts.AddObject(PartListItem);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnTripClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
@@ -684,8 +662,8 @@ var
   URLString: string;
 begin
   URLString := 'http://www.triptether.com/users/sign_up';
-  WebBrowser2.Navigate(URLString);
-  TabControl1.SetActiveTabWithTransition(TabSignUp, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+  webSignUp.Navigate(URLString);
+  TabControl1.SetActiveTabWithTransition(TabSignUp, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.btnQuitClick(Sender: TObject);
@@ -693,30 +671,30 @@ begin
   StopUpdating(self);
   CheckIn(self, 'Quit Trip');
 
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
 
   QuitRequest.Resource := 'apis/[id]/quit.json';
   QuitRequest.Resource := QuitRequest.Resource.Replace('[id]', edtTripID.Text);
   QuitRequest.Params.ParameterByName('email').Value := edtEMail.Text;
-  QuitRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-  QuitRequest.Params.ParameterByName('token').Value := tripToken;
+  QuitRequest.Params.ParameterByName('pin').Value := UserPin;
+  QuitRequest.Params.ParameterByName('token').Value := TripToken;
   QuitRequest.Execute;
 end;
 
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
   Mapping(self);
-  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
 begin
 {
   if (edtSignIn.Text.Length > 0) and (edtPassword.Text.Length > 0) then
-    TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide)
+    TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide)
   else
 }
-    TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttSlide);
+    TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.Slide);
 end;
 
 procedure THeaderFooterwithNavigation.btnNewTripDetailsClick(Sender: TObject);
@@ -742,7 +720,7 @@ begin
     FGeocoder.Geocode(Address);
 end;
 
-procedure THeaderFooterwithNavigation.btnNewTripPartsClick(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnNewTripCreateClick(Sender: TObject);
 var
   Departing: TDateTime;
   Arriving: TDateTime;
@@ -782,7 +760,7 @@ begin
     TripLongitude := FloatToStr(Coords[0].Longitude);
     TripFoundLatLong := true;
 
-    TabControl1.SetActiveTabWithTransition(TabNewTripDetails, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+    TabControl1.SetActiveTabWithTransition(TabNewTripDetails, TTabTransition.Slide, TTabTransitionDirection.Normal);
   end
   else begin
     TripFoundLatLong := false;
@@ -792,27 +770,27 @@ end;
 
 procedure THeaderFooterwithNavigation.btnBackToJoin2Click(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackToJoin3Click(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackToJoinClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackToNewClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackTripClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.ttSlide, TTabTransitionDirection.tdReversed);
+  TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.swLocationUpdatesClick(Sender: TObject);
@@ -847,7 +825,7 @@ procedure THeaderFooterwithNavigation.Timer1Timer(Sender: TObject);
 var
   minute_diff: integer;
 begin
-  minute_diff := MinutesBetween(Now, startTime);
+  minute_diff := MinutesBetween(Now, StartTime);
   if (spCheckIn.Value = 1) or (minute_diff mod Trunc(spCheckIn.Value) = 0) then
     CheckIn(self, edtStatus.Text);
 
@@ -857,17 +835,17 @@ end;
 
 procedure THeaderFooterwithNavigation.btnJoinClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttSlide);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide);
 end;
 
 procedure THeaderFooterwithNavigation.btnSettingsClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabSettings, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabSettings, TTabTransition.None, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.btnSettingsDoneClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.ttNone, TTabTransitionDirection.tdNormal);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string);
@@ -879,14 +857,14 @@ begin
     CheckinRequest.Resource := 'apis/[id]/checkin.json';
     CheckinRequest.Resource := CheckinRequest.Resource.Replace('[id]', edtTripID.Text);
     CheckinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
-    CheckinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-    CheckinRequest.Params.ParameterByName('token').Value := tripToken;
+    CheckinRequest.Params.ParameterByName('pin').Value := UserPin;
+    CheckinRequest.Params.ParameterByName('token').Value := TripToken;
     CheckinRequest.Params.ParameterByName('lat').Value := currentLat;
     CheckinRequest.Params.ParameterByName('long').Value := currentLong;
     CheckinRequest.Params.ParameterByName('status').Value := Status;
     CheckinRequest.Execute;
 
-    checkingIn := False;
+    CheckingIn := False;
   end;
 end;
 
@@ -894,8 +872,8 @@ procedure THeaderFooterwithNavigation.Mapping(Sender: TObject);
 var
   URLString: string;
 begin
-  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000))]);
-  WebBrowser1.Navigate(URLString);
+  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s', [edtTripID.Text, edtEMail.Text, UserPin, TripToken, IntToStr(Random(30000))]);
+  webMap.Navigate(URLString);
 end;
 
 procedure THeaderFooterwithNavigation.NewTripPartRequestAfterExecute(
@@ -946,18 +924,27 @@ begin
       NewTripName := Trip.Get('name').JsonValue.ToString.Replace('"', '');
       NewTripToken := Trip.Get('token').JsonValue.ToString.Replace('"', '');
 
-      TabControl1.SetActiveTabWithTransition(TabNewTripParts, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+      NewTripPartRequest.Resource := 'apis/[id]/add_part.json';
+      NewTripPartRequest.Resource := NewTripPartRequest.Resource.Replace('[id]', IntToStr(NewTripID));
+      NewTripPartRequest.Params.ParameterByName('token').Value := NewTripToken;
+
+      NewTripPartRequest.Params.ParameterByName('name').Value := SignInName;
+      NewTripPartRequest.Params.ParameterByName('leader').Value := 'yes';
+      NewTripPartRequest.Params.ParameterByName('email').Value := SignInEmail;
+      NewTripPartRequest.Execute;
     end;
   end;
+
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
 var
   URLString: string;
 begin
-  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, tripToken, IntToStr(Random(30000)), Name]);
-  WebBrowser1.Navigate(URLString);
-  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.ttSlide, TTabTransitionDirection.tdNormal);
+  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, TripToken, IntToStr(Random(30000)), Name]);
+  webMap.Navigate(URLString);
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
