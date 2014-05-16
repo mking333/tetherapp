@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 1004.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 9
     TabOrder = 0
     TabPosition = None
     Width = 768.000000000000000000
@@ -29,7 +29,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabJoin'
       Width = 8.000000000000000000
@@ -478,7 +478,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = Fit
             TabOrder = 0
             Width = 694.000000000000000000
-            Height = 42.029842376708980000
+            Height = 42.029830932617190000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
           end
@@ -880,7 +880,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 81.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41774.000000000000000000
+          Date = 41775.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -889,7 +889,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41774.000000000000000000
+          Date = 41775.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -914,7 +914,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41774.000000000000000000
+          Date = 41775.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1082,6 +1082,49 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
       end
     end
+    object TabNewTripShare: TTabItem
+      CustomIcon = <
+        item
+        end>
+      Height = 8.000000000000000000
+      IsSelected = True
+      TabOrder = 0
+      Text = 'TabNewTripShare'
+      Width = 8.000000000000000000
+      object mmoShareInfo: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        Align = Client
+        Height = 899.000000000000000000
+        TabOrder = 0
+        Width = 768.000000000000000000
+      end
+      object ToolBar5: TToolBar
+        Height = 44.000000000000000000
+        TabOrder = 1
+        Width = 768.000000000000000000
+        object Label22: TLabel
+          Align = Client
+          Height = 44.000000000000000000
+          TextSettings.HorzAlign = Center
+          Text = 'Trip Share'
+          Width = 768.000000000000000000
+        end
+      end
+      object Panel13: TPanel
+        Align = Top
+        Height = 61.000000000000000000
+        Position.Y = 44.000000000000000000
+        Width = 768.000000000000000000
+        TabOrder = 2
+        object SpeedButton1: TSpeedButton
+          Action = ShowShareSheetAction1
+          Align = Center
+          Height = 44.000000000000000000
+          Text = 'Click to share trip info'
+          Width = 305.000000000000000000
+        end
+      end
+    end
   end
   object Timer1: TTimer
     Enabled = False
@@ -1137,6 +1180,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Category = 'Tab'
       Tab = TabCheck
     end
+    object Action1: TAction
+      Text = 'Action1'
+    end
+    object ShowShareSheetAction1: TShowShareSheetAction
+      Category = 'Media Library'
+    end
   end
   object RESTClient1: TRESTClient
     Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
@@ -1153,10 +1202,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Client = RESTClient1
     Params = <
       item
+        name = 'pin'
+      end
+      item
         name = 'email'
       end
       item
-        name = 'pin'
+        name = 'name'
       end>
     Resource = 'apis/[id]/join.json'
     Response = JoinResponse

@@ -13,7 +13,7 @@ uses
   FMX.WebBrowser, FMX.ListBox, FMX.ListView.Types, FMX.ListView, FMX.Objects,
   System.IOUtils, System.JSON, System.StrUtils,
   XSBuiltins, FMX.DateTimeCtrls, System.Sensors.Components,
-  IdGlobal;
+  IdGlobal, FMX.StdActns, FMX.MediaLibrary.Actions;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -168,6 +168,14 @@ type
     Label32: TLabel;
     Label21: TLabel;
     edtName: TEdit;
+    Action1: TAction;
+    ShowShareSheetAction1: TShowShareSheetAction;
+    TabNewTripShare: TTabItem;
+    mmoShareInfo: TMemo;
+    ToolBar5: TToolBar;
+    Label22: TLabel;
+    Panel13: TPanel;
+    SpeedButton1: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -235,6 +243,7 @@ type
     NewTripId: integer;
     NewTripName: string;
     NewTripToken: string;
+    NewTripPin: string;
 
     FGeocoder: TGeocoder;
     procedure OnGeocodeEvent(const Coords: System.TArray<System.Sensors.TLocationCoord2D>);
@@ -275,6 +284,7 @@ begin
   JoinRequest.Resource := JoinRequest.Resource.Replace('[id]', edtTripID.Text);
   JoinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
   JoinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
+  JoinRequest.Params.ParameterByName('name').Value := edtName.Text;
   JoinRequest.Execute;
 end;
 
@@ -923,6 +933,7 @@ begin
       NewTripId := StrToInt(Trip.Get('trip_id').JsonValue.ToString);
       NewTripName := Trip.Get('name').JsonValue.ToString.Replace('"', '');
       NewTripToken := Trip.Get('token').JsonValue.ToString.Replace('"', '');
+      NewTripPin := Trip.Get('pin').JsonValue.ToString.Replace('"', '');
 
       NewTripPartRequest.Resource := 'apis/[id]/add_part.json';
       NewTripPartRequest.Resource := NewTripPartRequest.Resource.Replace('[id]', IntToStr(NewTripID));
@@ -935,7 +946,15 @@ begin
     end;
   end;
 
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Normal);
+  mmoShareInfo.Lines.Add('Hello, you have been invited on a trip by ' + SignInName);
+  mmoShareInfo.Lines.Add('');
+  mmoShareInfo.Lines.Add('Use the TripTether app with these settings to join the trip:');
+  mmoShareInfo.Lines.Add('   Trip ID: ' + IntToStr(NewTripID));
+  mmoShareInfo.Lines.Add('   PIN: ' + NewTripPin);
+  mmoShareInfo.Lines.Add('');
+  ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
+
+  TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
