@@ -176,6 +176,11 @@ type
     Label22: TLabel;
     Panel13: TPanel;
     SpeedButton1: TSpeedButton;
+    cpLocationNotFound: TCalloutPanel;
+    Label23: TLabel;
+    Label33: TLabel;
+    btnJoinNewTrip: TSpeedButton;
+    SpeedButton3: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -221,6 +226,7 @@ type
     procedure btnNewTripCreateClick(Sender: TObject);
     procedure NewTripRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure NewTripPartRequestAfterExecute(Sender: TCustomRESTRequest);
+    procedure btnJoinNewTripClick(Sender: TObject);
   private
     { Private declarations }
     StartTime: TDate;
@@ -253,10 +259,10 @@ type
   end;
 
 const
-  APIBASEURL = 'http://192.168.2.201';
 {
-  APIBASEURL = 'http://www.triptether.com';
+  APIBASEURL = 'http://192.168.2.201';
 }
+  APIBASEURL = 'http://www.triptether.com';
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -272,20 +278,33 @@ begin
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
 
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteString('login', 'trip', edtTripID.Text);
-  ini.WriteString('login', 'pin', edtTripPIN.Text);
-  ini.WriteString('login', 'email', edtEMail.Text);
-  ini.WriteString('login', 'name', edtName.Text);
-  ini.Free;
+  if (edtTripID.Text = '') or (edtTripPIN.Text = '') or (edtEMail.Text = '') then
+  begin
+      cpJoinError.Visible := True;
+      edtTripID.TextPrompt := 'Enter id from email.';
+      edtTripPIN.TextPrompt := 'Enter PIN from email: 1234567';
+      edtEMail.TextPrompt := 'Enter your email address: name@host.com';
+  end
+  else
+  begin
+    if edtName.Text = '' then
+      edtName.Text := edtEMail.Text;
 
-  //LocationSensor1.Active := True;
-  JoinRequest.Resource := 'apis/[id]/join.json';
-  JoinRequest.Resource := JoinRequest.Resource.Replace('[id]', edtTripID.Text);
-  JoinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
-  JoinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-  JoinRequest.Params.ParameterByName('name').Value := edtName.Text;
-  JoinRequest.Execute;
+    ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+    ini.WriteString('login', 'trip', edtTripID.Text);
+    ini.WriteString('login', 'pin', edtTripPIN.Text);
+    ini.WriteString('login', 'email', edtEMail.Text);
+    ini.WriteString('login', 'name', edtName.Text);
+    ini.Free;
+
+    //LocationSensor1.Active := True;
+    JoinRequest.Resource := 'apis/[id]/join.json';
+    JoinRequest.Resource := JoinRequest.Resource.Replace('[id]', edtTripID.Text);
+    JoinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
+    JoinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
+    JoinRequest.Params.ParameterByName('name').Value := edtName.Text;
+    JoinRequest.Execute;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.lbParticipantsItemClick(
@@ -515,7 +534,7 @@ begin
     //end;
 
     CheckIn(self, 'Joined Trip');
-    Mapping(self);
+    //Mapping(self);
 
     StartUpdating(self);
     StartTime := Now;
@@ -659,11 +678,13 @@ end;
 
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
+  webMap.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnTripClick(Sender: TObject);
 begin
+  webMap.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
@@ -693,8 +714,9 @@ end;
 
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
-  Mapping(self);
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
+  webMap.Visible := True;
+  Mapping(self);
 end;
 
 procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
@@ -711,23 +733,35 @@ procedure THeaderFooterwithNavigation.btnNewTripDetailsClick(Sender: TObject);
 var
   Address: TCivicAddress;
 begin
-  // Setup an instance of TGeocoder
-  if not Assigned(FGeocoder) then
+  if (edtTripLocation.Text = '') or (edtTripCity.Text = '') then
   begin
-    if Assigned(TGeocoder.Current) then
-      FGeocoder := TGeocoder.Current.Create;
-    {if Assigned(FGeocoder) then
-      FGeocoder.OnGeocodeReverse := OnGeocodeReverseEvent;}
-    if Assigned(FGeocoder) then
-      FGeocoder.OnGeocode := OnGeocodeEvent;
-  end;
+    cpLocationNotFound.Visible := True;
+    edtTripLocation.TextPrompt := 'Enter an address.';
+    edtTripCity.TextPrompt := 'Enter city name.';
+  end
+  else
+  begin
+    if edtTripName.Text = '' then
+      edtTripName.Text := edtTripLocation.Text;
 
-  Address := TCivicAddress.Create;
-  Address.Address := edtTripLocation.Text + ' ' + edtTripCity.Text;
-  //Address.SubLocality := 'Toronto';
-  //Address.FeatureName := 'Dufferin Mall';
-  if Assigned(FGeocoder) and not FGeocoder.Geocoding then
-    FGeocoder.Geocode(Address);
+    // Setup an instance of TGeocoder
+    if not Assigned(FGeocoder) then
+    begin
+      if Assigned(TGeocoder.Current) then
+        FGeocoder := TGeocoder.Current.Create;
+      {if Assigned(FGeocoder) then
+        FGeocoder.OnGeocodeReverse := OnGeocodeReverseEvent;}
+      if Assigned(FGeocoder) then
+        FGeocoder.OnGeocode := OnGeocodeEvent;
+    end;
+
+    Address := TCivicAddress.Create;
+    Address.Address := edtTripLocation.Text + ' ' + edtTripCity.Text;
+    //Address.SubLocality := 'Toronto';
+    //Address.FeatureName := 'Dufferin Mall';
+    if Assigned(FGeocoder) and not FGeocoder.Geocoding then
+      FGeocoder.Geocode(Address);
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.btnNewTripCreateClick(Sender: TObject);
@@ -769,12 +803,14 @@ begin
     TripLatitude := FloatToStr(Coords[0].Latitude);
     TripLongitude := FloatToStr(Coords[0].Longitude);
     TripFoundLatLong := true;
+    cpLocationNotFound.Visible := false;
 
     TabControl1.SetActiveTabWithTransition(TabNewTripDetails, TTabTransition.Slide, TTabTransitionDirection.Normal);
   end
   else begin
     TripFoundLatLong := false;
-    edtTripLocation.Text := 'Address not Found!'
+    edtTripLocation.Text := 'Address not Found!';
+    cpLocationNotFound.Visible := true;
   end;
 end;
 
@@ -816,14 +852,23 @@ procedure THeaderFooterwithNavigation.btnSaveSignInClick(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteString('signin', 'email', edtSignIn.Text);
-  ini.WriteString('signin', 'pw', edtPassword.Text);
-  ini.Free;
+  if (edtSignIn.Text = '') or (edtPassword.Text = '') then
+  begin
+    cpSignInError.Visible := True;
+    edtSignIn.TextPrompt := 'TripTether login email.';
+    edtPassword.TextPrompt := 'TripTether password.';
+  end
+  else
+  begin
+    ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+    ini.WriteString('signin', 'email', edtSignIn.Text);
+    ini.WriteString('signin', 'pw', edtPassword.Text);
+    ini.Free;
 
-  SignInRequest.Params.ParameterByName('email').Value := edtSignIn.Text;
-  SignInRequest.Params.ParameterByName('pw').Value := edtPassword.Text;
-  SignInRequest.Execute;
+    SignInRequest.Params.ParameterByName('email').Value := edtSignIn.Text;
+    SignInRequest.Params.ParameterByName('pw').Value := edtPassword.Text;
+    SignInRequest.Execute;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.btnSendClick(Sender: TObject);
@@ -846,6 +891,16 @@ end;
 procedure THeaderFooterwithNavigation.btnJoinClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide);
+end;
+
+procedure THeaderFooterwithNavigation.btnJoinNewTripClick(Sender: TObject);
+begin
+  edtEmail.Text := SignInEmail;
+  edtName.Text := SignInName;
+  edtTripID.Text := IntToStr(NewTripId);
+  edtTripPin.Text := NewTripPin;
+
+  JoinTrip(self);
 end;
 
 procedure THeaderFooterwithNavigation.btnSettingsClick(Sender: TObject);
@@ -961,9 +1016,10 @@ procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
 var
   URLString: string;
 begin
-  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, edtTripPIN.Text, TripToken, IntToStr(Random(30000)), Name]);
-  webMap.Navigate(URLString);
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
+  webMap.Visible := True;
+  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, UserPin, TripToken, IntToStr(Random(30000)), Name]);
+  webMap.Navigate(URLString);
 end;
 
 procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);

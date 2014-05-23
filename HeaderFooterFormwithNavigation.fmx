@@ -2,28 +2,28 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   Left = 0
   Top = 0
   Caption = 'Tether'
-  ClientHeight = 1004
-  ClientWidth = 768
+  ClientHeight = 548
+  ClientWidth = 320
   FormFactor.Width = 1440
   FormFactor.Height = 900
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnKeyUp = FormKeyUp
   DesignerMobile = True
-  DesignerWidth = 768
-  DesignerHeight = 1024
-  DesignerDeviceName = 'iPad'
+  DesignerWidth = 320
+  DesignerHeight = 568
+  DesignerDeviceName = 'iPhone5'
   DesignerOrientation = 0
   DesignerOSVersion = '7'
   object TabControl1: TTabControl
     Align = Client
     FullSize = True
-    Height = 1004.000000000000000000
+    Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 9
+    TabIndex = 7
     TabOrder = 0
     TabPosition = None
-    Width = 768.000000000000000000
+    Width = 320.000000000000000000
     object TabJoin: TTabItem
       CustomIcon = <
         item
@@ -37,18 +37,18 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Anchors = []
         Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label3: TLabel
           Align = Contents
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Tether'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnSettings: TSpeedButton
           Align = Right
           Height = 44.000000000000000000
-          Position.X = 724.000000000000000000
+          Position.X = 276.000000000000000000
           StyleLookup = 'detailstoolbutton'
           Text = 'btnSettings'
           Width = 44.000000000000000000
@@ -86,7 +86,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnNewTrip: TSpeedButton
           Align = Right
           Height = 44.000000000000000000
-          Position.X = 680.000000000000000000
+          Position.X = 232.000000000000000000
           StyleLookup = 'addtoolbutton'
           Text = 'btnNewTrip'
           Width = 44.000000000000000000
@@ -95,8 +95,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel1: TPanel
         Align = HorzCenter
-        Height = 960.000000000000000000
-        Position.X = 223.000000000000000000
+        Height = 504.000000000000000000
         Position.Y = 44.000000000000000000
         Width = 321.000000000000000000
         TabOrder = 1
@@ -161,11 +160,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           end
           object btnJoinTrip: TButton
             Height = 49.000000000000000000
-            Position.X = 8.000000000000000000
+            Position.X = 72.000000000000000000
             Position.Y = 200.000000000000000000
             TabOrder = 6
             Text = 'Join The Trip'
-            Width = 305.000000000000000000
+            Width = 177.000000000000000000
             OnClick = JoinTrip
           end
           object Label21: TLabel
@@ -251,27 +250,27 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Width = 8.000000000000000000
       object TopToolBar4: TToolBar
         Align = MostTop
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label8: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Trip'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnCheckIn: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
-          Position.X = 680.000000000000000000
+          Height = 44.000000000000000000
+          Position.X = 232.000000000000000000
           Text = 'Check In'
           Width = 88.000000000000000000
           OnClick = btnCheckInClick
         end
         object btnQuit: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Text = 'Quit'
           Width = 64.000000000000000000
           OnClick = btnQuitClick
@@ -279,8 +278,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel2: TPanel
         Align = Client
-        Height = 956.000000000000000000
-        Width = 768.000000000000000000
+        Height = 504.000000000000000000
+        Width = 320.000000000000000000
         TabOrder = 1
         object mmoNotes: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -299,7 +298,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Top
           Height = 273.000000000000000000
           TabOrder = 1
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
           DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
           DefaultItemStyles.GroupHeaderStyle = ''
           DefaultItemStyles.GroupFooterStyle = ''
@@ -308,7 +307,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             StyleLookup = 'listboxitemnodetail'
             TabOrder = 0
             Text = 'Trip to'
-            Width = 600.000000000000000000
+            Width = 320.000000000000000000
             object lblName: TLabel
               Align = VertCenter
               StyledSettings = [Family, Size, FontColor]
@@ -319,7 +318,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.Y = 7.000000000000000000
               TextSettings.Font.Style = [fsBold]
               Text = '...'
-              Width = 490.000000000000000000
+              Width = 210.000000000000000000
             end
           end
           object ListBoxItem5: TListBoxItem
@@ -328,7 +327,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             StyleLookup = 'listboxitemnodetail'
             TabOrder = 1
             Text = 'Departing'
-            Width = 600.000000000000000000
+            Width = 320.000000000000000000
             object lblDeparting: TLabel
               Align = VertCenter
               StyledSettings = [Family, Size, FontColor]
@@ -339,7 +338,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.Y = 7.000000000000000000
               TextSettings.Font.Style = [fsBold]
               Text = '...'
-              Width = 490.000000000000000000
+              Width = 210.000000000000000000
             end
           end
           object ListBoxItem6: TListBoxItem
@@ -348,7 +347,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             StyleLookup = 'listboxitemnodetail'
             TabOrder = 2
             Text = 'Arriving'
-            Width = 600.000000000000000000
+            Width = 320.000000000000000000
             object lblArriving: TLabel
               Align = VertCenter
               StyledSettings = [Family, Size, FontColor]
@@ -359,7 +358,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.Y = 7.000000000000000000
               TextSettings.Font.Style = [fsBold]
               Text = '...'
-              Width = 490.000000000000000000
+              Width = 210.000000000000000000
             end
           end
           object ListBoxItem7: TListBoxItem
@@ -368,7 +367,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             StyleLookup = 'listboxitemnodetail'
             TabOrder = 3
             Text = 'Leaving'
-            Width = 600.000000000000000000
+            Width = 320.000000000000000000
             object lblLeaving: TLabel
               Align = VertCenter
               StyledSettings = [Family, Size, FontColor]
@@ -379,7 +378,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.Y = 7.000000000000000000
               TextSettings.Font.Style = [fsBold]
               Text = '...'
-              Width = 490.000000000000000000
+              Width = 210.000000000000000000
             end
           end
           object ListBoxItem8: TListBoxItem
@@ -388,7 +387,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             StyleLookup = 'listboxitemnodetail'
             TabOrder = 4
             Text = 'Started'
-            Width = 600.000000000000000000
+            Width = 320.000000000000000000
             object lblStarted: TLabel
               Align = VertCenter
               StyledSettings = [Family, Size, FontColor]
@@ -399,7 +398,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.Y = 7.000000000000000000
               TextSettings.Font.Style = [fsBold]
               Text = '...'
-              Width = 490.000000000000000000
+              Width = 210.000000000000000000
             end
           end
           object ListBoxItem9: TListBoxItem
@@ -408,7 +407,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             StyleLookup = 'listboxitemnodetail'
             TabOrder = 5
             Text = 'Leader'
-            Width = 600.000000000000000000
+            Width = 320.000000000000000000
             object lblLeader: TLabel
               Align = VertCenter
               StyledSettings = [Family, Size, FontColor]
@@ -419,7 +418,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Position.Y = 7.000000000000000000
               TextSettings.Font.Style = [fsBold]
               Text = '...'
-              Width = 490.000000000000000000
+              Width = 210.000000000000000000
             end
           end
         end
@@ -435,19 +434,19 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Text = 'TabCheck'
       Width = 8.000000000000000000
       object ToolBar2: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label15: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Check In'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnBackTrip: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           StyleLookup = 'backtoolbutton'
           Text = 'Trip'
           Width = 73.000000000000000000
@@ -455,8 +454,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnMap: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
-          Position.X = 695.000000000000000000
+          Height = 44.000000000000000000
+          Position.X = 247.000000000000000000
           Text = 'Map'
           Width = 73.000000000000000000
           OnClick = btnMapClick
@@ -465,28 +464,29 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Panel4: TPanel
         Align = Top
         Height = 61.000000000000000000
-        Position.Y = 48.000000000000000000
-        Width = 768.000000000000000000
+        Position.Y = 44.000000000000000000
+        Width = 320.000000000000000000
         TabOrder = 1
         object Panel6: TPanel
           Align = Client
           Height = 61.000000000000000000
-          Width = 704.000000000000000000
+          Width = 256.000000000000000000
           TabOrder = 0
           object edtStatus: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Fit
             TabOrder = 0
-            Width = 694.000000000000000000
-            Height = 42.029830932617190000
+            Width = 246.000000000000000000
+            Height = 30.000000000000000000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
           end
         end
         object btnSend: TSpeedButton
           Align = Right
-          Height = 61.000000000000000000
-          Position.X = 704.000000000000000000
+          Height = 44.000000000000000000
+          Position.X = 256.000000000000000000
+          Position.Y = 8.000000000000000000
           Text = 'Send'
           Width = 64.000000000000000000
           OnClick = btnSendClick
@@ -494,9 +494,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object lbParticipants: TListBox
         Align = Client
-        Height = 895.000000000000000000
+        Height = 443.000000000000000000
         TabOrder = 2
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
         DefaultItemStyles.GroupHeaderStyle = ''
         DefaultItemStyles.GroupFooterStyle = ''
@@ -514,23 +514,23 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Width = 8.000000000000000000
       object webMap: TWebBrowser
         Align = Client
-        Height = 956.000000000000000000
-        Width = 768.000000000000000000
+        Height = 504.000000000000000000
+        Width = 320.000000000000000000
       end
       object ToolBar1: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label12: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Map'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnBackCheck: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           StyleLookup = 'backtoolbutton'
           Text = 'Check In'
           Width = 97.000000000000000000
@@ -538,8 +538,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnTrip: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
-          Position.X = 695.000000000000000000
+          Height = 44.000000000000000000
+          Position.X = 247.000000000000000000
           Text = 'Trip'
           Width = 73.000000000000000000
           OnClick = btnTripClick
@@ -558,13 +558,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object TopToolBar3: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label1: TLabel
           Align = Contents
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Sign In'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnBackToJoin2: TSpeedButton
           Align = Left
@@ -577,30 +577,29 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel7: TPanel
         Align = HorzCenter
-        Height = 960.000000000000000000
-        Position.X = 225.000000000000000000
+        Height = 504.000000000000000000
         Position.Y = 44.000000000000000000
-        Width = 318.000000000000000000
+        Width = 320.000000000000000000
         TabOrder = 1
         object Panel8: TPanel
           Align = Top
           Height = 64.000000000000000000
           Position.Y = 161.000000000000000000
-          Width = 318.000000000000000000
+          Width = 320.000000000000000000
           TabOrder = 0
           object btnSignUp: TButton
             Align = Center
             Height = 50.000000000000000000
             TabOrder = 0
             Text = 'Sign Up for TripTether'
-            Width = 288.000000000000000000
+            Width = 184.000000000000000000
             OnClick = btnSignUpClick
           end
         end
         object Panel9: TPanel
           Align = Top
           Height = 88.000000000000000000
-          Width = 318.000000000000000000
+          Width = 320.000000000000000000
           TabOrder = 1
           object Label10: TLabel
             Height = 30.000000000000000000
@@ -640,13 +639,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 8.000000000000000000
           LineType = Top
           Position.Y = 153.000000000000000000
-          Width = 318.000000000000000000
+          Width = 320.000000000000000000
         end
         object Panel10: TPanel
           Align = Top
           Height = 65.000000000000000000
           Position.Y = 88.000000000000000000
-          Width = 318.000000000000000000
+          Width = 320.000000000000000000
           TabOrder = 3
           object cpSignInError: TCalloutPanel
             Height = 73.000000000000000000
@@ -679,8 +678,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = Center
             Height = 50.000000000000000000
             TabOrder = 0
-            Text = 'Done'
-            Width = 289.000000000000000000
+            Text = 'Sign In'
+            Width = 162.000000000000000000
             OnClick = btnSaveSignInClick
           end
         end
@@ -697,19 +696,19 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Width = 8.000000000000000000
       object webSignUp: TWebBrowser
         Align = Client
-        Height = 956.000000000000000000
-        Width = 768.000000000000000000
+        Height = 500.000000000000000000
+        Width = 320.000000000000000000
       end
       object ToolBar3: TToolBar
         Height = 48.000000000000000000
         TabOrder = 1
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label19: TLabel
           Align = Contents
           Height = 48.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'TripTether Sign Up'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnBackToJoin3: TSpeedButton
           Align = Left
@@ -733,13 +732,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object ToolBar4: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label20: TLabel
           Align = Contents
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'New Trip'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnBackToJoin: TSpeedButton
           Align = Left
@@ -752,8 +751,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel11: TPanel
         Align = HorzCenter
-        Height = 960.000000000000000000
-        Position.X = 224.000000000000000000
+        Height = 504.000000000000000000
         Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
@@ -798,7 +796,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Height = 50.000000000000000000
             TabOrder = 0
             Text = 'Next'
-            Width = 280.000000000000000000
+            Width = 148.000000000000000000
             OnClick = btnNewTripDetailsClick
           end
         end
@@ -825,6 +823,33 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           TabOrder = 11
           Width = 297.000000000000000000
         end
+        object cpLocationNotFound: TCalloutPanel
+          Height = 89.000000000000000000
+          Padding.Top = 11.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 296.000000000000000000
+          Visible = False
+          Width = 289.000000000000000000
+          TabOrder = 13
+          CalloutWidth = 23.000000000000000000
+          CalloutLength = 11.000000000000000000
+          object Label23: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 30.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 19.000000000000000000
+            Text = 'Oops, couldn'#39't find that location.'
+            Width = 273.000000000000000000
+          end
+          object Label33: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 25.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 48.000000000000000000
+            Text = 'Try again with a specific location and city.'
+            Width = 273.000000000000000000
+          end
+        end
       end
     end
     object TabNewTripDetails: TTabItem
@@ -832,20 +857,20 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabNewTripDetails'
       Width = 8.000000000000000000
       object ToolBar6: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label27: TLabel
           Align = Contents
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Trip Details'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
         object btnBackToNewTrip: TSpeedButton
           Align = Left
@@ -858,8 +883,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel16: TPanel
         Align = HorzCenter
-        Height = 960.000000000000000000
-        Position.X = 224.000000000000000000
+        Height = 504.000000000000000000
         Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
@@ -880,7 +904,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 81.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41775.000000000000000000
+          Date = 41781.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -889,7 +913,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41775.000000000000000000
+          Date = 41781.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -914,7 +938,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41775.000000000000000000
+          Date = 41781.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -994,19 +1018,18 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object TopToolBar2: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label2: TLabel
           Align = Client
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Settings'
-          Width = 768.000000000000000000
+          Width = 320.000000000000000000
         end
       end
       object Panel5: TPanel
         Align = HorzCenter
-        Height = 960.000000000000000000
-        Position.X = 224.000000000000000000
+        Height = 504.000000000000000000
         Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
@@ -1087,34 +1110,49 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabNewTripShare'
       Width = 8.000000000000000000
       object mmoShareInfo: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 899.000000000000000000
+        Height = 443.000000000000000000
         TabOrder = 0
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
       end
       object ToolBar5: TToolBar
         Height = 44.000000000000000000
         TabOrder = 1
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         object Label22: TLabel
           Align = Client
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Trip Share'
-          Width = 768.000000000000000000
+          Width = 174.000000000000000000
+        end
+        object btnJoinNewTrip: TSpeedButton
+          Align = Right
+          Height = 44.000000000000000000
+          Position.X = 247.000000000000000000
+          Text = 'Join'
+          Width = 73.000000000000000000
+          OnClick = btnJoinNewTripClick
+        end
+        object SpeedButton3: TSpeedButton
+          Align = Left
+          Height = 44.000000000000000000
+          StyleLookup = 'backtoolbutton'
+          Text = 'Back'
+          Width = 73.000000000000000000
         end
       end
       object Panel13: TPanel
         Align = Top
         Height = 61.000000000000000000
         Position.Y = 44.000000000000000000
-        Width = 768.000000000000000000
+        Width = 320.000000000000000000
         TabOrder = 2
         object SpeedButton1: TSpeedButton
           Action = ShowShareSheetAction1
