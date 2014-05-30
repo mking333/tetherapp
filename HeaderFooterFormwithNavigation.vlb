@@ -72,7 +72,7 @@ Coordinates=999,410,89,36
 Coordinates=706,331,78,36
 
 []
-Coordinates=343,478,54,36
+Coordinates=634,478,95,36
 
 [btnQuit]
 Coordinates=581,10,96,58
@@ -94,7 +94,4 @@ Coordinates=256,10,103,212
 
 [CheckinResponse]
 Coordinates=133,10,113,322
-
-[webMap]
-Coordinates=634,478,95,36
 
