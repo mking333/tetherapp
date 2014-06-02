@@ -448,98 +448,96 @@ var
 begin
   if assigned(JoinResponse.JSONValue) then
   begin
-
-  Response := JoinResponse.JsonValue as TJSONObject;
-  Trip := Response.Get('trip').JsonValue as TJSONObject;
-  Result := Trip.Get('result').JsonValue.ToString.Replace('"', '');
-  if Result <> 'success' then
-  begin
-    cpJoinError.Visible := True;
-  end
-  else
-  begin
-    cpJoinError.Visible := False;
-
-    Name := Trip.Get('name').JsonValue;
-    Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
-    Depart := Trip.Get('depart').JsonValue.ToString.Replace('"', '');
-    Arrive := Trip.Get('arrive').JsonValue.ToString.Replace('"', '');
-    Leave := Trip.Get('leave').JsonValue.ToString.Replace('"', '');
-    Start := Trip.Get('start').JsonValue.ToString.Replace('"', '');
-    Token := Trip.Get('token').JsonValue;
-    Participant := Trip.Get('participant').JsonValue as TJSONObject;
-    ParticipantName := Participant.Get('name').JsonValue;
-    Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
-    UserPin := Participant.Get('pin').JsonValue.ToString.Replace('"', '');
-
-    TripToken := Token.ToString.Replace('"', '');
-    lblName.Text := Name.ToString.Replace('"', '');
-
-    if Depart <> '' then
+    Response := JoinResponse.JsonValue as TJSONObject;
+    Trip := Response.Get('trip').JsonValue as TJSONObject;
+    Result := Trip.Get('result').JsonValue.ToString.Replace('"', '');
+    if Result <> 'success' then
     begin
-      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Depart, True));
-      DepartingDate := FormatDateTime('ddddd t', LocalDate);
-      lblDeparting.Text := DepartingDate;
-    end;
-    if Arrive <> '' then
-    begin
-      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Arrive, True));
-      ArrivingDate := FormatDateTime('ddddd t', LocalDate);
-      lblArriving.Text := ArrivingDate;
-    end;
-    if Leave <> '' then
-    begin
-      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Leave, True));
-      LeavingDate := FormatDateTime('ddddd t', LocalDate);
-      lblLeaving.Text := LeavingDate;
-    end;
-    if Start = '' then
-      lblStarted.Text := 'The trip has not yet started.'
-    else
-    begin
-      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Start, True));
-      StartingDate := FormatDateTime('ddddd t', LocalDate);
-      lblStarted.Text := StartingDate;
-    end;
-
-    if Leader = 'yes' then
-      lblLeader.Text := 'You are the leader.'
-    else
-    begin
-      if Start = '' then
-        lblLeader.Text := 'Trip will begin when the leader joins.'
-      else
-        lblLeader.Text := '';
-    end;
-
-    if Notes.Length > 0 then
-    begin
-      mmoNotes.Text := Notes;
-      mmoNotes.Visible := True;
+      cpJoinError.Visible := True;
     end
     else
     begin
-      mmoNotes.Text := '';
-      mmoNotes.Visible := False;
+      cpJoinError.Visible := False;
+
+      Name := Trip.Get('name').JsonValue;
+      Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
+      Depart := Trip.Get('depart').JsonValue.ToString.Replace('"', '');
+      Arrive := Trip.Get('arrive').JsonValue.ToString.Replace('"', '');
+      Leave := Trip.Get('leave').JsonValue.ToString.Replace('"', '');
+      Start := Trip.Get('start').JsonValue.ToString.Replace('"', '');
+      Token := Trip.Get('token').JsonValue;
+      Participant := Trip.Get('participant').JsonValue as TJSONObject;
+      ParticipantName := Participant.Get('name').JsonValue;
+      Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
+      UserPin := Participant.Get('pin').JsonValue.ToString.Replace('"', '');
+
+      TripToken := Token.ToString.Replace('"', '');
+      lblName.Text := Name.ToString.Replace('"', '');
+
+      if Depart <> '' then
+      begin
+        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Depart, True));
+        DepartingDate := FormatDateTime('ddddd t', LocalDate);
+        lblDeparting.Text := DepartingDate;
+      end;
+      if Arrive <> '' then
+      begin
+        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Arrive, True));
+        ArrivingDate := FormatDateTime('ddddd t', LocalDate);
+        lblArriving.Text := ArrivingDate;
+      end;
+      if Leave <> '' then
+      begin
+        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Leave, True));
+        LeavingDate := FormatDateTime('ddddd t', LocalDate);
+        lblLeaving.Text := LeavingDate;
+      end;
+      if Start = '' then
+        lblStarted.Text := 'The trip has not yet started.'
+      else
+      begin
+        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Start, True));
+        StartingDate := FormatDateTime('ddddd t', LocalDate);
+        lblStarted.Text := StartingDate;
+      end;
+
+      if Leader = 'yes' then
+        lblLeader.Text := 'You are the leader.'
+      else
+      begin
+        if Start = '' then
+          lblLeader.Text := 'Trip will begin when the leader joins.'
+        else
+          lblLeader.Text := '';
+      end;
+
+      if Notes.Length > 0 then
+      begin
+        mmoNotes.Text := Notes;
+        mmoNotes.Visible := True;
+      end
+      else
+      begin
+        mmoNotes.Text := '';
+        mmoNotes.Visible := False;
+      end;
+
+      TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide);
+
+      //for i := 0 to Participants.Size - 1 do
+      //begin
+      //  Participant := Participants.Get(i) as TJSONObject;
+      //  ParticipantName := Participant.Get('name').JsonValue;
+
+      //  mmoParticipants.Lines.Add(ParticipantName.ToString.Replace('"', ''));
+      //end;
+
+      CheckIn(self, 'Joined Trip');
+      //Mapping(self);
+
+      StartUpdating(self);
+      StartTime := Now;
     end;
-
-    TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide);
-
-    //for i := 0 to Participants.Size - 1 do
-    //begin
-    //  Participant := Participants.Get(i) as TJSONObject;
-    //  ParticipantName := Participant.Get('name').JsonValue;
-
-    //  mmoParticipants.Lines.Add(ParticipantName.ToString.Replace('"', ''));
-    //end;
-
-    CheckIn(self, 'Joined Trip');
-    //Mapping(self);
-
-    StartUpdating(self);
-    StartTime := Now;
-  end;
-
   end;
 end;
 
@@ -562,8 +560,10 @@ var
   DestLat: Double;
   DestLong: Double;
   Leader: string;
+  MyID: integer;
   Result: TJSONValue;
   Participant: TJSONObject;
+  ParticipantID: integer;
   ParticipantName: string;
   ParticipantStatus: string;
   ParticipantLat: Double;
@@ -576,6 +576,7 @@ var
   CheckInDate: string;
   i: integer;
   PartListItem: TListBoxItem;
+  Marker: TMarker;
 begin
   if assigned(CheckinResponse.JSONValue) then
   begin
@@ -588,25 +589,43 @@ begin
     Result := Trip.Get('result').JsonValue;
 
     Participant := Trip.Get('participant').JsonValue as TJSONObject;
+    ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
     ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
     Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
 
+    MyID := ParticipantID;
+
     Participants := Trip.Get('participants').JsonValue as TJSONArray;
     lbParticipants.Items.Clear;
     mapTrip.Markers.Clear;
 
-    mapTrip.Markers.Add(DestLat, DestLong, Name, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
+    Marker := mapTrip.Markers.Add;
+    Marker.Latitude := DestLat;
+    Marker.Longitude := DestLong;
+    Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
+    Marker.MapLabel.Text := Name;
+    mapTrip.CreateMapMarker(Marker);
+    //mapTrip.Markers.Add(DestLat, DestLong, Name, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
     mapTrip.MapPanTo(DestLat, DestLong);
 
-    mapTrip.Markers.Add(ParticipantLat, ParticipantLong, ParticipantName, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
+    Marker := mapTrip.Markers.Add;
+    Marker.Latitude := ParticipantLat;
+    Marker.Longitude := ParticipantLong;
+    Marker.Icon := 'http://www.triptether.com/images/participant.png';
+    Marker.MapLabel.Text := ParticipantName;
+    mapTrip.CreateMapMarker(Marker);
+    //mapTrip.Markers.Add(ParticipantLat, ParticipantLong, ParticipantName, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
 
     for i := 0 to Participants.Count - 1 do
     begin
       Participant := Participants.Items[i] as TJSONObject;
+      ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
       ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+      ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
+      ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
       ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
       ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
       ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
@@ -632,6 +651,19 @@ begin
       PartListItem.ItemData.Text := ParticipantName + ': ' + ParticipantStatus;
 
       lbParticipants.AddObject(PartListItem);
+
+      if ParticipantID <> MyID then
+      begin
+        Marker := mapTrip.Markers.Add;
+        Marker.Latitude := ParticipantLat;
+        Marker.Longitude := ParticipantLong;
+        if ParticipantQuit = '' then
+          Marker.Icon := 'http://www.triptether.com/images/participant2.png'
+        else
+          Marker.Icon := 'http://www.triptether.com/images/participantq.png';
+        Marker.MapLabel.Text := ParticipantName;
+        mapTrip.CreateMapMarker(Marker);
+      end;
     end;
   end;
 end;
@@ -1061,7 +1093,10 @@ begin
     end;
   end;
 
+  mmoShareInfo.Lines.Clear;
   mmoShareInfo.Lines.Add('Hello, you have been invited on a trip by ' + SignInName);
+  mmoShareInfo.Lines.Add('');
+  mmoShareInfo.Lines.Add('The trip is planned to go to: ' + edtTripName.Text);
   mmoShareInfo.Lines.Add('');
   mmoShareInfo.Lines.Add('Use the TripTether app with these settings to join the trip:');
   mmoShareInfo.Lines.Add('   Trip ID: ' + IntToStr(NewTripID));
