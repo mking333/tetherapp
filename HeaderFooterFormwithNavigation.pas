@@ -435,6 +435,7 @@ var
   Arrive: string;
   Leave: string;
   Start: string;
+  Finish: string;
   Leader: string;
   Token: TJSONValue;
   Result: string;
@@ -445,6 +446,7 @@ var
   ArrivingDate: string;
   LeavingDate: string;
   StartingDate: string;
+  FinishingDate: string;
 begin
   if assigned(JoinResponse.JSONValue) then
   begin
@@ -465,6 +467,7 @@ begin
       Arrive := Trip.Get('arrive').JsonValue.ToString.Replace('"', '');
       Leave := Trip.Get('leave').JsonValue.ToString.Replace('"', '');
       Start := Trip.Get('start').JsonValue.ToString.Replace('"', '');
+      Finish := Trip.Get('finish').JsonValue.ToString.Replace('"', '');
       Token := Trip.Get('token').JsonValue;
       Participant := Trip.Get('participant').JsonValue as TJSONObject;
       ParticipantName := Participant.Get('name').JsonValue;
@@ -493,23 +496,30 @@ begin
         lblLeaving.Text := LeavingDate;
       end;
       if Start = '' then
-        lblStarted.Text := 'The trip has not yet started.'
+      begin
+        lblStarted.Text := 'The trip has not yet started.';
+        lblLeader.Text := 'Trip will begin when the leader joins.';
+        btnCheckIn.Enabled := false;
+      end
       else
       begin
         LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Start, True));
         StartingDate := FormatDateTime('ddddd t', LocalDate);
         lblStarted.Text := StartingDate;
+        lblLeader.Text := 'Leader has started the trip.';
+        btnCheckIn.Enabled := true;
+      end;
+      if Finish <> '' then
+      begin
+        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Finish, True));
+        FinishingDate := FormatDateTime('ddddd t', LocalDate);
+        lblStarted.Text := 'The trip was finished at ' + FinishingDate + '.';
+        lblLeader.Text := 'Leader has finished the trip.';
+        btnCheckIn.Enabled := false;
       end;
 
       if Leader = 'yes' then
-        lblLeader.Text := 'You are the leader.'
-      else
-      begin
-        if Start = '' then
-          lblLeader.Text := 'Trip will begin when the leader joins.'
-        else
-          lblLeader.Text := '';
-      end;
+        lblLeader.Text := 'You are the leader.';
 
       if Notes.Length > 0 then
       begin
@@ -593,6 +603,7 @@ begin
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
     ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+    ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
     Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
 
@@ -615,7 +626,10 @@ begin
     Marker.Latitude := ParticipantLat;
     Marker.Longitude := ParticipantLong;
     Marker.Icon := 'http://www.triptether.com/images/participant.png';
-    Marker.MapLabel.Text := ParticipantName;
+    if ParticipantStatus = '' then
+      Marker.MapLabel.Text := ParticipantName
+    else
+      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
     mapTrip.CreateMapMarker(Marker);
     //mapTrip.Markers.Add(ParticipantLat, ParticipantLong, ParticipantName, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
 
@@ -661,7 +675,10 @@ begin
           Marker.Icon := 'http://www.triptether.com/images/participant2.png'
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png';
-        Marker.MapLabel.Text := ParticipantName;
+        if ParticipantStatus = '' then
+          Marker.MapLabel.Text := ParticipantName
+        else
+          Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
         mapTrip.CreateMapMarker(Marker);
       end;
     end;
