@@ -14,7 +14,14 @@ uses
   System.IOUtils, System.JSON, System.StrUtils,
   XSBuiltins, FMX.DateTimeCtrls, System.Sensors.Components,
   IdGlobal, FMX.StdActns, FMX.MediaLibrary.Actions, FMX.TMSWebGMapsCommon,
-  FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMaps, FMX.TMSWebGMapsMarkers;
+  FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMaps, FMX.TMSWebGMapsMarkers,
+  FMX.TMSWebGMapsCommonFunctions;
+{
+  FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMapsCommonFunctions, FMX.TMSWebGMapsCommon, FMX.TMSWebGMapsPolygons,
+  FMX.TMSWebGMapsPolylines, FMX.TMSWebGMapsMarkers, FMX.Edit, FMX.Sensors, Sensors,
+  FMX.Layouts, FMX.ListBox, FMX.TMSWebGMaps, FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsDirections,
+  FMX.TMSWebGMapsReverseGeocoding, FMX.TabControl, FMX.ExtCtrls, FMX.Memo, FMX.TMSWebGMapsWebUtil
+}
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -182,9 +189,10 @@ type
     btnJoinNewTrip: TSpeedButton;
     SpeedButton3: TSpeedButton;
     geoNewTrip: TTMSFMXWebGMapsGeocoding;
-    mapTrip: TTMSFMXWebGMaps;
     MapRequest: TRESTRequest;
     MapResponse: TRESTResponse;
+    Panel14: TPanel;
+    mapTrip: TTMSFMXWebGMaps;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -235,6 +243,8 @@ type
     procedure btnJoinNewTripClick(Sender: TObject);
   private
     { Private declarations }
+    AutoZoomTrip: boolean;
+
     StartTime: TDate;
     TripToken: string;
     currentLat: string;
@@ -460,6 +470,7 @@ begin
     else
     begin
       cpJoinError.Visible := False;
+      AutoZoomTrip := True;
 
       Name := Trip.Get('name').JsonValue;
       Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
@@ -587,6 +598,7 @@ var
   i: integer;
   PartListItem: TListBoxItem;
   Marker: TMarker;
+  Bounds: TBounds;
 begin
   if assigned(CheckinResponse.JSONValue) then
   begin
@@ -620,7 +632,12 @@ begin
     Marker.MapLabel.Text := Name;
     mapTrip.CreateMapMarker(Marker);
     //mapTrip.Markers.Add(DestLat, DestLong, Name, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
-    mapTrip.MapPanTo(DestLat, DestLong);
+
+    Bounds := TBounds.Create;
+    Bounds.NorthEast.Latitude := DestLat;
+    Bounds.NorthEast.Longitude := DestLong;
+    Bounds.SouthWest.Latitude := DestLat;
+    Bounds.SouthWest.Longitude := DestLong;
 
     Marker := mapTrip.Markers.Add;
     Marker.Latitude := ParticipantLat;
@@ -631,7 +648,15 @@ begin
     else
       Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
     mapTrip.CreateMapMarker(Marker);
-    //mapTrip.Markers.Add(ParticipantLat, ParticipantLong, ParticipantName, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
+
+    if ParticipantLat > DestLat then
+      Bounds.NorthEast.Latitude := ParticipantLat;
+    if ParticipantLat < DestLat then
+      Bounds.SouthWest.Latitude := ParticipantLat;
+    if ParticipantLong > DestLong then
+      Bounds.NorthEast.Longitude := ParticipantLong;
+    if ParticipantLong < DestLong then
+      Bounds.SouthWest.Longitude := ParticipantLong;
 
     for i := 0 to Participants.Count - 1 do
     begin
@@ -681,7 +706,23 @@ begin
           Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
         mapTrip.CreateMapMarker(Marker);
       end;
+
+      if ParticipantLat > Bounds.NorthEast.Latitude then
+        Bounds.NorthEast.Latitude := ParticipantLat;
+      if ParticipantLat < Bounds.SouthWest.Latitude then
+        Bounds.SouthWest.Latitude := ParticipantLat;
+      if ParticipantLong > Bounds.NorthEast.Longitude then
+        Bounds.NorthEast.Longitude := ParticipantLong;
+      if ParticipantLong < Bounds.SouthWest.Longitude then
+        Bounds.SouthWest.Longitude := ParticipantLong;
     end;
+
+    Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.01;
+    Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.01;
+    Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.01;
+    Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.01;
+    mapTrip.MapZoomTo(Bounds);
+    //mapTrip.MapPanTo(DestLat, DestLong);
   end;
 end;
 
