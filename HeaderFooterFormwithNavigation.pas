@@ -193,6 +193,7 @@ type
     MapResponse: TRESTResponse;
     Panel14: TPanel;
     mapTrip: TTMSFMXWebGMaps;
+    btnAddShare: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -241,6 +242,8 @@ type
     procedure NewTripRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure NewTripPartRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure btnJoinNewTripClick(Sender: TObject);
+    procedure btnAddShareClick(Sender: TObject);
+    procedure SpeedButton3Click(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -342,6 +345,8 @@ procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
 begin
   currentLat := FloatToStrF(NewLocation.Latitude, ffGeneral, 10, 6);
   currentLong := FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
+
+  //edtStatus.Text := FloatToStrF(LocationSensor1.Accuracy, ffGeneral, 10, 6);
 
   if swLocationUpdates.IsChecked = True then
   begin
@@ -717,12 +722,16 @@ begin
         Bounds.SouthWest.Longitude := ParticipantLong;
     end;
 
-    Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.01;
-    Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.01;
-    Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.01;
-    Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.01;
-    mapTrip.MapZoomTo(Bounds);
-    //mapTrip.MapPanTo(DestLat, DestLong);
+    if AutoZoomTrip then
+    begin
+      Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.01;
+      Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.01;
+      Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.01;
+      Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.01;
+      mapTrip.MapZoomTo(Bounds);
+      //mapTrip.MapPanTo(DestLat, DestLong);
+      AutoZoomTrip := False;
+    end;
   end;
 end;
 
@@ -808,6 +817,29 @@ begin
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
   ini.WriteInteger('settings', 'checkin', Trunc(spCheckIn.Value));
   ini.Free;
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+end;
+
+procedure THeaderFooterwithNavigation.btnAddShareClick(Sender: TObject);
+begin
+  mmoShareInfo.Lines.Clear;
+  mmoShareInfo.Lines.Add('Hello, you have been invited on a trip by ' + edtName.Text);
+  mmoShareInfo.Lines.Add('');
+  mmoShareInfo.Lines.Add('The trip is going to: ' + lblName.Text);
+  mmoShareInfo.Lines.Add('');
+  mmoShareInfo.Lines.Add('Use the TripTether app with these settings to join the trip:');
+  mmoShareInfo.Lines.Add('   Trip ID: ' + edtTripID.Text);
+  mmoShareInfo.Lines.Add('   PIN: ' + edtTripPIN.Text);
+  mmoShareInfo.Lines.Add('');
+  ShowShareSheetAction1.Caption := 'TripTether!';
+  ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
+
+  btnJoinNewTrip.Visible := False;
+  TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.spMappingChange(Sender: TObject);
@@ -1160,8 +1192,10 @@ begin
   mmoShareInfo.Lines.Add('   Trip ID: ' + IntToStr(NewTripID));
   mmoShareInfo.Lines.Add('   PIN: ' + NewTripPin);
   mmoShareInfo.Lines.Add('');
+
   ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
 
+  btnJoinNewTrip.Visible := True;
   TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
@@ -1177,11 +1211,13 @@ procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
 begin
   Timer1.Enabled := True;
   LocationSensor1.Active := True;
+  LocationSensor1.Sensor.Start;
 end;
 procedure THeaderFooterwithNavigation.StopUpdating(Sender: TObject);
 begin
   Timer1.Enabled := False;
   LocationSensor1.Active := False;
+  LocationSensor1.Sensor.Stop;
 end;
 
 end.
