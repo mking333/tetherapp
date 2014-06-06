@@ -194,6 +194,20 @@ type
     Panel14: TPanel;
     mapTrip: TTMSFMXWebGMaps;
     btnAddShare: TSpeedButton;
+    Panel15: TPanel;
+    SpeedButton2: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    SpeedButton5: TSpeedButton;
+    SpeedButton6: TSpeedButton;
+    SpeedButton7: TSpeedButton;
+    Panel18: TPanel;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    edtEmailSetting: TEdit;
+    Label34: TLabel;
+    edtNameSetting: TEdit;
+    Label35: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -244,9 +258,25 @@ type
     procedure btnJoinNewTripClick(Sender: TObject);
     procedure btnAddShareClick(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton7Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
+    procedure SpeedButton5Click(Sender: TObject);
+    procedure SpeedButton6Click(Sender: TObject);
+    procedure SpeedButton10Click(Sender: TObject);
+    procedure SpeedButton9Click(Sender: TObject);
+    procedure SpeedButton8Click(Sender: TObject);
+    procedure edtNameSettingChange(Sender: TObject);
+    procedure edtEmailSettingChange(Sender: TObject);
+    procedure mapTripMapClick(Sender: TObject; Latitude, Longitude: Double; X,
+      Y: Integer);
+    procedure mapTripMapMove(Sender: TObject; Latitude, Longitude: Double; X,
+      Y: Integer);
+    procedure mapTripMapZoomChange(Sender: TObject; NewLevel: Integer);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
+    ParticipantsCount: integer;
 
     StartTime: TDate;
     TripToken: string;
@@ -370,16 +400,18 @@ begin
   RestClient1.BaseURL := APIBASEURL;
 
   ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  swLocationUpdates.IsChecked := ini.ReadBool('settings', 'updates', True);
+  edtNameSetting.Text := ini.ReadString('login', 'name', '');
+  edtEmailSetting.Text := ini.ReadString('login', 'email', '');
   spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
   spMapping.Value := ini.ReadInteger('settings', 'mapping', 2);
+  swLocationUpdates.IsChecked := ini.ReadBool('settings', 'updates', True);
 
   edtTripID.Text := ini.ReadString('login', 'trip', '');
   edtTripPin.Text := ini.ReadString('login', 'pin', '');
-  edtEMail.Text := ini.ReadString('login', 'email', 'my@email.com');
-  edtName.Text := ini.ReadString('login', 'name', 'My Name');
+  edtEMail.Text := ini.ReadString('login', 'email', '');
+  edtName.Text := ini.ReadString('login', 'name', '');
 
-  edtSignIn.Text := ini.ReadString('signin', 'email', 'my@email.com');
+  edtSignIn.Text := ini.ReadString('signin', 'email', '');
   edtPassword.Text := ini.ReadString('signin', 'pw', '');
 
   ini.Free;
@@ -476,6 +508,7 @@ begin
     begin
       cpJoinError.Visible := False;
       AutoZoomTrip := True;
+      ParticipantsCount := 0;
 
       Name := Trip.Get('name').JsonValue;
       Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
@@ -724,14 +757,19 @@ begin
 
     if AutoZoomTrip then
     begin
-      Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.01;
-      Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.01;
-      Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.01;
-      Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.01;
-      mapTrip.MapZoomTo(Bounds);
-      //mapTrip.MapPanTo(DestLat, DestLong);
-      AutoZoomTrip := False;
+      if Participants.Count = 0 then
+        mapTrip.MapPanTo(DestLat, DestLong)
+      else
+      begin
+        Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
+        Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
+        Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
+        Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
+        mapTrip.MapZoomTo(Bounds);
+      end;
     end;
+
+    ParticipantsCount := Participants.Count;
   end;
 end;
 
@@ -742,6 +780,24 @@ begin
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
   cpNetworkError.Visible := True;
+end;
+
+procedure THeaderFooterwithNavigation.edtEmailSettingChange(Sender: TObject);
+var
+  ini: TIniFile;
+begin
+  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini.WriteString('login', 'email', edtEmailSetting.Text);
+  ini.Free;
+end;
+
+procedure THeaderFooterwithNavigation.edtNameSettingChange(Sender: TObject);
+var
+  ini: TIniFile;
+begin
+  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini.WriteString('login', 'name', edtNameSetting.Text);
+  ini.Free;
 end;
 
 procedure THeaderFooterwithNavigation.MappingRequestAfterExecute(
@@ -810,6 +866,24 @@ begin
   cpNetworkError.Visible := True;
 end;
 
+procedure THeaderFooterwithNavigation.mapTripMapClick(Sender: TObject; Latitude,
+  Longitude: Double; X, Y: Integer);
+begin
+  AutoZoomTrip := False;
+end;
+
+procedure THeaderFooterwithNavigation.mapTripMapMove(Sender: TObject; Latitude,
+  Longitude: Double; X, Y: Integer);
+begin
+  AutoZoomTrip := False;
+end;
+
+procedure THeaderFooterwithNavigation.mapTripMapZoomChange(Sender: TObject;
+  NewLevel: Integer);
+begin
+  AutoZoomTrip := False;
+end;
+
 procedure THeaderFooterwithNavigation.spCheckInChange(Sender: TObject);
 var
   ini: TIniFile;
@@ -819,9 +893,69 @@ begin
   ini.Free;
 end;
 
+procedure THeaderFooterwithNavigation.SpeedButton10Click(Sender: TObject);
+begin
+  if mapTrip.MapOptions.ShowWeather then
+  begin
+    mapTrip.MapOptions.ShowWeather := False;
+    mapTrip.MapOptions.ShowCloud := False;
+  end
+  else
+  begin
+    mapTrip.MapOptions.ShowWeather := True;
+    mapTrip.MapOptions.ShowCloud := True;
+  end;
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton2Click(Sender: TObject);
+begin
+  mapTrip.MapOptions.MapType := mtDefault;
+  mapTrip.MapOptions.ShowTraffic := False;
+end;
+
 procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton4Click(Sender: TObject);
+begin
+  mapTrip.MapOptions.MapType := mtSatellite;
+  mapTrip.MapOptions.ShowTraffic := False;
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton5Click(Sender: TObject);
+begin
+  mapTrip.MapOptions.MapType := mtHybrid;
+  mapTrip.MapOptions.ShowTraffic := False;
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton6Click(Sender: TObject);
+begin
+  mapTrip.MapOptions.MapType := mtTerrain;
+  mapTrip.MapOptions.ShowTraffic := False;
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton7Click(Sender: TObject);
+begin
+  mapTrip.MapOptions.MapType := mtDefault;
+  mapTrip.MapOptions.ShowTraffic := True;
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton8Click(Sender: TObject);
+begin
+  if mapTrip.MapOptions.ShowPanoramio then
+    mapTrip.MapOptions.ShowPanoramio := False
+  else
+    mapTrip.MapOptions.ShowPanoramio := True;
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton9Click(Sender: TObject);
+begin
+  if mapTrip.MapOptions.ShowBicycling then
+    mapTrip.MapOptions.ShowBicycling := False
+  else
+    mapTrip.MapOptions.ShowBicycling := True;
 end;
 
 procedure THeaderFooterwithNavigation.btnAddShareClick(Sender: TObject);
@@ -1211,13 +1345,13 @@ procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
 begin
   Timer1.Enabled := True;
   LocationSensor1.Active := True;
-  LocationSensor1.Sensor.Start;
+  //LocationSensor1.Sensor.Start;
 end;
 procedure THeaderFooterwithNavigation.StopUpdating(Sender: TObject);
 begin
   Timer1.Enabled := False;
   LocationSensor1.Active := False;
-  LocationSensor1.Sensor.Stop;
+  //LocationSensor1.Sensor.Stop;
 end;
 
 end.
