@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 3
+    TabIndex = 1
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -244,7 +244,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabTrip'
       Width = 8.000000000000000000
@@ -493,8 +493,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnSend: TSpeedButton
           Align = Right
-          Height = 61.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 256.000000000000000000
+          Position.Y = 8.000000000000000000
           Text = 'Send'
           Width = 64.000000000000000000
           OnClick = btnSendClick
@@ -516,7 +517,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabMap'
       Width = 8.000000000000000000
@@ -548,14 +549,118 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = btnTripClick
         end
       end
+      object Panel15: TPanel
+        Align = Bottom
+        Height = 30.000000000000000000
+        Margins.Left = 3.000000000000000000
+        Margins.Top = 3.000000000000000000
+        Margins.Right = 3.000000000000000000
+        Margins.Bottom = 3.000000000000000000
+        Position.X = 3.000000000000000000
+        Position.Y = 469.000000000000000000
+        Width = 314.000000000000000000
+        TabOrder = 1
+        object SpeedButton2: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          StyleLookup = 'toolbuttonleft'
+          Text = 'Map'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton2Click
+        end
+        object SpeedButton4: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          Position.X = 72.000000000000000000
+          StyleLookup = 'toolbuttonmiddle'
+          Text = 'Satellite'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton4Click
+        end
+        object SpeedButton5: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          Position.X = 144.000000000000000000
+          StyleLookup = 'toolbuttonmiddle'
+          Text = 'Hybrid'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton5Click
+        end
+        object SpeedButton6: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          Position.X = 216.000000000000000000
+          StyleLookup = 'toolbuttonright'
+          Text = 'Terrain'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton6Click
+        end
+      end
+      object Panel18: TPanel
+        Align = Bottom
+        Height = 30.000000000000000000
+        Margins.Left = 3.000000000000000000
+        Margins.Top = 3.000000000000000000
+        Margins.Right = 3.000000000000000000
+        Margins.Bottom = 3.000000000000000000
+        Position.X = 3.000000000000000000
+        Position.Y = 505.000000000000000000
+        Width = 314.000000000000000000
+        TabOrder = 2
+        object SpeedButton8: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          Position.X = 216.000000000000000000
+          StyleLookup = 'toolbuttonright'
+          Text = 'Pictures'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton8Click
+        end
+        object SpeedButton9: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          Position.X = 144.000000000000000000
+          StyleLookup = 'toolbuttonmiddle'
+          Text = 'Bikes'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton9Click
+        end
+        object SpeedButton10: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          Position.X = 72.000000000000000000
+          StyleLookup = 'toolbuttonmiddle'
+          Text = 'Weather'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton10Click
+        end
+        object SpeedButton7: TSpeedButton
+          Align = Left
+          Height = 30.000000000000000000
+          StyleLookup = 'toolbuttonleft'
+          Text = 'Traffic'
+          Width = 72.000000000000000000
+          OnClick = SpeedButton7Click
+        end
+      end
+      object Panel19: TPanel
+        Align = Bottom
+        Height = 10.000000000000000000
+        Position.Y = 538.000000000000000000
+        Width = 320.000000000000000000
+        TabOrder = 3
+      end
       object Panel14: TPanel
         Align = Client
-        Height = 448.000000000000000000
+        Height = 422.000000000000000000
         Width = 320.000000000000000000
-        TabOrder = 1
+        TabOrder = 4
         object mapTrip: TTMSFMXWebGMaps
           Align = Client
+          Height = 422.000000000000000000
           Visible = False
+          Width = 320.000000000000000000
+          Enabled = False
           Markers = <>
           Polylines = <>
           Polygons = <>
@@ -565,105 +670,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           StreetViewOptions.DefaultLatitude = 48.859040000000000000
           StreetViewOptions.DefaultLongitude = 2.294297000000000000
           ControlsOptions.MapTypeControl.Visible = False
-          TabOrder = 1
-          Version = '1.6.0.5'
+          TabOrder = 0
+          Version = '1.8.0.2'
           OnMapClick = mapTripMapClick
           OnMapMove = mapTripMapMove
           OnMapZoomChange = mapTripMapZoomChange
         end
-      end
-      object Panel15: TPanel
-        Align = Bottom
-        Height = 36.000000000000000000
-        Position.Y = 512.000000000000000000
-        Width = 320.000000000000000000
-        TabOrder = 2
-        object SpeedButton2: TSpeedButton
-          Align = Left
-          Height = 29.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonleft'
-          Text = 'Map'
-          Width = 56.000000000000000000
-          OnClick = SpeedButton2Click
-        end
-        object SpeedButton4: TSpeedButton
-          Align = Left
-          Height = 29.000000000000000000
-          Position.X = 112.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonmiddle'
-          Text = 'Sat'
-          Width = 56.000000000000000000
-          OnClick = SpeedButton4Click
-        end
-        object SpeedButton5: TSpeedButton
-          Align = Left
-          Height = 29.000000000000000000
-          Position.X = 168.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonmiddle'
-          Text = 'Hybrid'
-          Width = 56.000000000000000000
-          OnClick = SpeedButton5Click
-        end
-        object SpeedButton6: TSpeedButton
-          Align = Left
-          Height = 29.000000000000000000
-          Position.X = 224.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonright'
-          Text = 'Terrain'
-          Width = 56.000000000000000000
-          OnClick = SpeedButton6Click
-        end
-        object SpeedButton7: TSpeedButton
-          Align = Left
-          Height = 29.000000000000000000
-          Position.X = 56.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonmiddle'
-          Text = 'Traffic'
-          Width = 56.000000000000000000
-          OnClick = SpeedButton7Click
-        end
-        object SpeedButton8: TSpeedButton
-          Align = Right
-          Height = 29.000000000000000000
-          Position.X = 247.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonright'
-          Text = 'Pictures'
-          Width = 73.000000000000000000
-          OnClick = SpeedButton8Click
-        end
-        object SpeedButton9: TSpeedButton
-          Align = Right
-          Height = 29.000000000000000000
-          Position.X = 174.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonmiddle'
-          Text = 'Bikes'
-          Width = 73.000000000000000000
-          OnClick = SpeedButton9Click
-        end
-        object SpeedButton10: TSpeedButton
-          Align = Right
-          Height = 29.000000000000000000
-          Position.X = 101.000000000000000000
-          Position.Y = 4.000000000000000000
-          StyleLookup = 'toolbuttonleft'
-          Text = 'Weather'
-          Width = 73.000000000000000000
-          OnClick = SpeedButton10Click
-        end
-      end
-      object Panel18: TPanel
-        Align = Bottom
-        Height = 20.000000000000000000
-        Position.Y = 492.000000000000000000
-        Width = 320.000000000000000000
-        TabOrder = 3
       end
     end
     object TabSignIn: TTabItem
@@ -1003,7 +1015,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 81.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41796.000000000000000000
+          Date = 41814.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1012,7 +1024,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41796.000000000000000000
+          Date = 41814.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1036,7 +1048,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41796.000000000000000000
+          Date = 41814.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1173,53 +1185,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Right = 10.000000000000000000
           OnChange = spCheckInChange
         end
-        object Label14: TLabel
-          Height = 30.000000000000000000
-          Margins.Left = 10.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 184.000000000000000000
-          Text = 'Update Map Every'
-          Width = 150.000000000000000000
-        end
-        object spMapping: TSpinBox
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
-          Cursor = crIBeam
-          Min = 1.000000000000000000
-          Max = 60.000000000000000000
-          Value = 2.000000000000000000
-          Position.X = 176.000000000000000000
-          Position.Y = 182.000000000000000000
-          Width = 134.000000000000000000
-          Height = 30.000000000000000000
-          Margins.Left = 10.000000000000000000
-          Margins.Right = 10.000000000000000000
-          OnChange = spMappingChange
-        end
         object btnSettingsDone: TButton
           Height = 57.000000000000000000
-          Position.X = -8.000000000000000000
-          Position.Y = 284.000000000000000000
-          TabOrder = 4
+          Position.Y = 180.000000000000000000
+          TabOrder = 3
           Text = 'Done'
           Width = 320.000000000000000000
           OnClick = btnSettingsDoneClick
-        end
-        object Label18: TLabel
-          Height = 30.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 240.000000000000000000
-          Text = 'Location Updates'
-          Width = 150.000000000000000000
-        end
-        object swLocationUpdates: TSwitch
-          Height = 35.000000000000000000
-          IsChecked = False
-          Position.X = 216.000000000000000000
-          Position.Y = 240.000000000000000000
-          TabOrder = 6
-          Width = 55.000000000000000000
-          OnClick = swLocationUpdatesClick
         end
         object edtEmailSetting: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -1242,7 +1214,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object edtNameSetting: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 9
+          TabOrder = 7
           Position.X = 88.000000000000000000
           Position.Y = 23.000000000000000000
           Width = 225.000000000000000000
@@ -1575,6 +1547,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       item
         name = 'pin'
+      end
+      item
+        name = 'name'
       end>
     Resource = 'apis/[id]/mapping.json'
     Response = MapResponse

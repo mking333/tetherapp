@@ -16,12 +16,6 @@ uses
   IdGlobal, FMX.StdActns, FMX.MediaLibrary.Actions, FMX.TMSWebGMapsCommon,
   FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMaps, FMX.TMSWebGMapsMarkers,
   FMX.TMSWebGMapsCommonFunctions;
-{
-  FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMapsCommonFunctions, FMX.TMSWebGMapsCommon, FMX.TMSWebGMapsPolygons,
-  FMX.TMSWebGMapsPolylines, FMX.TMSWebGMapsMarkers, FMX.Edit, FMX.Sensors, Sensors,
-  FMX.Layouts, FMX.ListBox, FMX.TMSWebGMaps, FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsDirections,
-  FMX.TMSWebGMapsReverseGeocoding, FMX.TabControl, FMX.ExtCtrls, FMX.Memo, FMX.TMSWebGMapsWebUtil
-}
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -73,8 +67,6 @@ type
     edtStatus: TEdit;
     lbParticipants: TListBox;
     spCheckIn: TSpinBox;
-    Label14: TLabel;
-    spMapping: TSpinBox;
     ListBox2: TListBox;
     ListBoxItem4: TListBoxItem;
     ListBoxItem5: TListBoxItem;
@@ -109,8 +101,6 @@ type
     cpNetworkError: TCalloutPanel;
     Label16: TLabel;
     Label17: TLabel;
-    Label18: TLabel;
-    swLocationUpdates: TSwitch;
     QuitRequest: TRESTRequest;
     QuitResponse: TRESTResponse;
     btnNewTrip: TSpeedButton;
@@ -191,7 +181,6 @@ type
     geoNewTrip: TTMSFMXWebGMapsGeocoding;
     MapRequest: TRESTRequest;
     MapResponse: TRESTResponse;
-    Panel14: TPanel;
     mapTrip: TTMSFMXWebGMaps;
     btnAddShare: TSpeedButton;
     Panel15: TPanel;
@@ -199,15 +188,17 @@ type
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton6: TSpeedButton;
-    SpeedButton7: TSpeedButton;
     Panel18: TPanel;
-    SpeedButton8: TSpeedButton;
-    SpeedButton9: TSpeedButton;
-    SpeedButton10: TSpeedButton;
     edtEmailSetting: TEdit;
     Label34: TLabel;
     edtNameSetting: TEdit;
     Label35: TLabel;
+    SpeedButton8: TSpeedButton;
+    SpeedButton9: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    Panel19: TPanel;
+    SpeedButton7: TSpeedButton;
+    Panel14: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -216,13 +207,12 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure CheckIn(Sender: TObject; Status: string);
     procedure Mapping(Sender: TObject);
-    procedure MapName(Sender: TObject; Name: string);
+    procedure MapName(Sender: TObject; SelectName: string; ZoomLevel: integer);
     procedure LocationSensor1LocationChanged(Sender: TObject; const OldLocation,
       NewLocation: TLocationCoord2D);
     procedure btnTripClick(Sender: TObject);
     procedure btnJoinClick(Sender: TObject);
     procedure spCheckInChange(Sender: TObject);
-    procedure spMappingChange(Sender: TObject);
     procedure btnSendClick(Sender: TObject);
     procedure CheckinRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure MappingRequestAfterExecute(Sender: TCustomRESTRequest);
@@ -239,7 +229,6 @@ type
     procedure JoinRequestHTTPProtocolError(Sender: TCustomRESTRequest);
     procedure lbParticipantsItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
-    procedure swLocationUpdatesClick(Sender: TObject);
     procedure StartUpdating(Sender: TObject);
     procedure StopUpdating(Sender: TObject);
     procedure btnNewTripClick(Sender: TObject);
@@ -367,7 +356,7 @@ begin
   else
     SelectName := ParticipantName.Substring(0, ColonPos - 1);
 
-  MapName(self, SelectName);
+  MapName(self, SelectName, 18);
 end;
 
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
@@ -375,15 +364,6 @@ procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
 begin
   currentLat := FloatToStrF(NewLocation.Latitude, ffGeneral, 10, 6);
   currentLong := FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
-
-  //edtStatus.Text := FloatToStrF(LocationSensor1.Accuracy, ffGeneral, 10, 6);
-
-  if swLocationUpdates.IsChecked = True then
-  begin
-    CheckIn(self, '');
-    //if TabControl1.ActiveTab = TabMap then
-    //  Mapping(self);
-  end;
 end;
 
 procedure THeaderFooterwithNavigation.FormCreate(Sender: TObject);
@@ -403,8 +383,6 @@ begin
   edtNameSetting.Text := ini.ReadString('login', 'name', '');
   edtEmailSetting.Text := ini.ReadString('login', 'email', '');
   spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
-  spMapping.Value := ini.ReadInteger('settings', 'mapping', 2);
-  swLocationUpdates.IsChecked := ini.ReadBool('settings', 'updates', True);
 
   edtTripID.Text := ini.ReadString('login', 'trip', '');
   edtTripPin.Text := ini.ReadString('login', 'pin', '');
@@ -805,13 +783,20 @@ procedure THeaderFooterwithNavigation.MappingRequestAfterExecute(
 var
   Response: TJSONObject;
   Trip: TJSONObject;
-  Name: TJSONValue;
+  Name: string;
   Notes: string;
+  DestLat: Double;
+  DestLong: Double;
   Leader: string;
+  SelectedName: string;
+  MyID: integer;
   Result: TJSONValue;
   Participant: TJSONObject;
+  ParticipantID: integer;
   ParticipantName: string;
   ParticipantStatus: string;
+  ParticipantLat: Double;
+  ParticipantLong: Double;
   ParticipantCheckIn: string;
   ParticipantJoin: string;
   ParticipantQuit: string;
@@ -819,42 +804,132 @@ var
   LocalDate: TDateTime;
   CheckInDate: string;
   i: integer;
+  PartListItem: TListBoxItem;
+  Marker: TMarker;
+  Bounds: TBounds;
 begin
-  if assigned(CheckinResponse.JSONValue) then
+  if assigned(MapResponse.JSONValue) then
   begin
+    Response := MapResponse.JsonValue as TJSONObject;
+    Trip := Response.Get('trip').JsonValue as TJSONObject;
+    Name := Trip.Get('name').JsonValue.ToString.Replace('"', '');
+    Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
+    DestLat := StrToFloat(Trip.Get('dest_lat').JsonValue.ToString);
+    DestLong := StrToFloat(Trip.Get('dest_long').JsonValue.ToString);
+    SelectedName := Trip.Get('selected').JsonValue.ToString.Replace('"', '');
+    Result := Trip.Get('result').JsonValue;
 
-  Response := CheckinResponse.JsonValue as TJSONObject;
-  Trip := Response.Get('trip').JsonValue as TJSONObject;
-  Name := Trip.Get('name').JsonValue;
-  Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
-  Result := Trip.Get('result').JsonValue;
-  Participant := Trip.Get('participant').JsonValue as TJSONObject;
-  ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
-  ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
-  Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
-
-  Participants := Trip.Get('participants').JsonValue as TJSONArray;
-  lbParticipants.Items.Clear;
-  for i := 0 to Participants.Count - 1 do
-  begin
-    Participant := Participants.Items[i] as TJSONObject;
+    Participant := Trip.Get('participant').JsonValue as TJSONObject;
+    ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+    ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
+    ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
-    ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
-    ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
-    if ParticipantCheckIn <> '' then
+    Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
+
+    MyID := ParticipantID;
+
+    Participants := Trip.Get('participants').JsonValue as TJSONArray;
+    mapTrip.Markers.Clear;
+    Bounds := TBounds.Create;
+
+    if SelectedName = '' then
     begin
-      LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(ParticipantCheckIn, True));
-      CheckInDate := FormatDateTime('ddddd t', LocalDate);
-    end
-    else
-    begin
-      CheckInDate := ''
+      Marker := mapTrip.Markers.Add;
+      Marker.Latitude := DestLat;
+      Marker.Longitude := DestLong;
+      Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
+      Marker.MapLabel.Text := Name;
+      mapTrip.CreateMapMarker(Marker);
+
+      Bounds.NorthEast.Latitude := DestLat;
+      Bounds.NorthEast.Longitude := DestLong;
+      Bounds.SouthWest.Latitude := DestLat;
+      Bounds.SouthWest.Longitude := DestLong;
     end;
+
+    for i := 0 to Participants.Count - 1 do
+    begin
+      Participant := Participants.Items[i] as TJSONObject;
+      ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
+      ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+      ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
+      ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
+      ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
+      ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
+      ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
+      if ParticipantCheckIn <> '' then
+      begin
+        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(ParticipantCheckIn, True));
+        CheckInDate := FormatDateTime('ddddd t', LocalDate);
+      end
+      else
+      begin
+        CheckInDate := ''
+      end;
+
+      Marker := mapTrip.Markers.Add;
+      Marker.Latitude := ParticipantLat;
+      Marker.Longitude := ParticipantLong;
+      if ParticipantID = MyID then
+        Marker.Icon := 'http://www.triptether.com/images/participant.png'
+      else
+      begin
+        if ParticipantQuit = '' then
+          Marker.Icon := 'http://www.triptether.com/images/participant2.png'
+        else
+          Marker.Icon := 'http://www.triptether.com/images/participantq.png';
+      end;
+      if ParticipantStatus = '' then
+        Marker.MapLabel.Text := ParticipantName
+      else
+        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+      mapTrip.CreateMapMarker(Marker);
+
+      if SelectedName = '' then
+      begin
+        if ParticipantLat > Bounds.NorthEast.Latitude then
+          Bounds.NorthEast.Latitude := ParticipantLat;
+        if ParticipantLat < Bounds.SouthWest.Latitude then
+          Bounds.SouthWest.Latitude := ParticipantLat;
+        if ParticipantLong > Bounds.NorthEast.Longitude then
+          Bounds.NorthEast.Longitude := ParticipantLong;
+        if ParticipantLong < Bounds.SouthWest.Longitude then
+          Bounds.SouthWest.Longitude := ParticipantLong;
+      end
+      else
+      begin
+        Bounds.NorthEast.Latitude := ParticipantLat;
+        Bounds.SouthWest.Latitude := ParticipantLat;
+        Bounds.NorthEast.Longitude := ParticipantLong;
+        Bounds.SouthWest.Longitude := ParticipantLong;
+      end;
+    end;
+
+    AutoZoomTrip := True;
+    if AutoZoomTrip then
+    begin
+      if Participants.Count = 0 then
+        mapTrip.MapPanTo(DestLat, DestLong)
+      else
+      begin
+        Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
+        Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
+        Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
+        Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
+        mapTrip.MapZoomTo(Bounds);
+      end;
+    end;
+
+    ParticipantsCount := Participants.Count;
   end;
 
-  end;
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
+  Panel14.Visible := True;
+  mapTrip.Visible := True;
+  mapTrip.Enabled := True;
 end;
 
 procedure THeaderFooterwithNavigation.MappingRequestHTTPProtocolError(
@@ -910,7 +985,6 @@ end;
 procedure THeaderFooterwithNavigation.SpeedButton2Click(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtDefault;
-  mapTrip.MapOptions.ShowTraffic := False;
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
@@ -921,25 +995,24 @@ end;
 procedure THeaderFooterwithNavigation.SpeedButton4Click(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtSatellite;
-  mapTrip.MapOptions.ShowTraffic := False;
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton5Click(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtHybrid;
-  mapTrip.MapOptions.ShowTraffic := False;
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton6Click(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtTerrain;
-  mapTrip.MapOptions.ShowTraffic := False;
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton7Click(Sender: TObject);
 begin
-  mapTrip.MapOptions.MapType := mtDefault;
-  mapTrip.MapOptions.ShowTraffic := True;
+  if mapTrip.MapOptions.ShowTraffic then
+    mapTrip.MapOptions.ShowTraffic := False
+  else
+    mapTrip.MapOptions.ShowTraffic := True;
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton8Click(Sender: TObject);
@@ -976,15 +1049,6 @@ begin
   TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
-procedure THeaderFooterwithNavigation.spMappingChange(Sender: TObject);
-var
-  ini: TIniFile;
-begin
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteInteger('settings', 'mapping', Trunc(spMapping.Value));
-  ini.Free;
-end;
-
 procedure THeaderFooterwithNavigation.btnCheckInClick(Sender: TObject);
 begin
   CheckIn(self, '');
@@ -1010,13 +1074,17 @@ end;
 
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
-  mapTrip.Visible := false;
+  mapTrip.Enabled := False;
+  mapTrip.Visible := False;
+  Panel14.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnTripClick(Sender: TObject);
 begin
-  mapTrip.Visible := false;
+  mapTrip.Enabled := False;
+  mapTrip.Visible := False;
+  Panel14.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
@@ -1047,8 +1115,9 @@ end;
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
-  mapTrip.Visible := true;
-  //Mapping(self);
+  Panel14.Visible := True;
+  mapTrip.Visible := True;
+  MapName(self, 'Auto', 10);
 end;
 
 procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
@@ -1146,15 +1215,6 @@ begin
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
-procedure THeaderFooterwithNavigation.swLocationUpdatesClick(Sender: TObject);
-var
-  ini: TIniFile;
-begin
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteBool('settings', 'updates', swLocationUpdates.IsChecked);
-  ini.Free;
-end;
-
 procedure THeaderFooterwithNavigation.btnSaveSignInClick(Sender: TObject);
 var
   ini: TIniFile;
@@ -1190,9 +1250,6 @@ begin
   minute_diff := MinutesBetween(Now, StartTime);
   if (spCheckIn.Value = 1) or (minute_diff mod Trunc(spCheckIn.Value) = 0) then
     CheckIn(self, edtStatus.Text);
-
-  //if (TabControl1.ActiveTab = TabMap) and ((spMapping.Value = 1) or (minute_diff mod Trunc(spMapping.Value) = 0)) then
-  //  Mapping(self);
 end;
 
 procedure THeaderFooterwithNavigation.btnJoinClick(Sender: TObject);
@@ -1333,12 +1390,140 @@ begin
   TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
-procedure THeaderFooterwithNavigation.MapName(Sender: TObject; Name: string);
+procedure THeaderFooterwithNavigation.MapName(Sender: TObject; SelectName: string; ZoomLevel: integer);
 var
-  URLString: string;
+  Response: TJSONObject;
+  Trip: TJSONObject;
+  Name: string;
+  Notes: string;
+  DestLat: Double;
+  DestLong: Double;
+  Leader: string;
+  MyID: integer;
+  Result: TJSONValue;
+  Participant: TJSONObject;
+  ParticipantID: integer;
+  ParticipantName: string;
+  ParticipantStatus: string;
+  ParticipantLat: Double;
+  ParticipantLong: Double;
+  ParticipantCheckIn: string;
+  ParticipantJoin: string;
+  ParticipantQuit: string;
+  Participants: TJSONArray;
+  LocalDate: TDateTime;
+  CheckInDate: string;
+  i: integer;
+  PartListItem: TListBoxItem;
+  Marker: TMarker;
+  Bounds: TBounds;
+  MapLat: Double;
+  MapLong: Double;
 begin
-  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
-  URLString := Format(APIBASEURL + '/apis/%s/mapping?email=%s&pin=%s&token=%s&rand=%s&name=%s', [edtTripID.Text, edtEMail.Text, UserPin, TripToken, IntToStr(Random(30000)), Name]);
+  if assigned(CheckinResponse.JSONValue) then
+  begin
+    Response := CheckinResponse.JsonValue as TJSONObject;
+    Trip := Response.Get('trip').JsonValue as TJSONObject;
+    Name := Trip.Get('name').JsonValue.ToString.Replace('"', '');
+    Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
+    DestLat := StrToFloat(Trip.Get('dest_lat').JsonValue.ToString);
+    DestLong := StrToFloat(Trip.Get('dest_long').JsonValue.ToString);
+    Result := Trip.Get('result').JsonValue;
+
+    MapLat := DestLat;
+    MapLong := DestLong;
+    Bounds := TBounds.Create;
+    Bounds.NorthEast.Latitude := DestLat;
+    Bounds.NorthEast.Longitude := DestLong;
+    Bounds.SouthWest.Latitude := DestLat;
+    Bounds.SouthWest.Longitude := DestLong;
+
+    if (SelectName = 'Flag') then
+    begin
+      MapLat := DestLat;
+      MapLong := DestLong;
+    end
+    else
+    begin
+      Participant := Trip.Get('participant').JsonValue as TJSONObject;
+      ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
+      ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+      ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
+      ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
+      ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
+      Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
+
+      if SelectName = 'Me' then
+      begin
+        MapLat := ParticipantLat;
+        MapLong := ParticipantLong;
+      end;
+
+      if ParticipantLat > DestLat then
+        Bounds.NorthEast.Latitude := ParticipantLat;
+      if ParticipantLat < DestLat then
+        Bounds.SouthWest.Latitude := ParticipantLat;
+      if ParticipantLong > DestLong then
+        Bounds.NorthEast.Longitude := ParticipantLong;
+      if ParticipantLong < DestLong then
+        Bounds.SouthWest.Longitude := ParticipantLong;
+    end;
+
+    if (SelectName <> 'Flag') and (SelectName <> 'Me') then
+    begin
+      Participants := Trip.Get('participants').JsonValue as TJSONArray;
+      for i := 0 to Participants.Count - 1 do
+      begin
+        Participant := Participants.Items[i] as TJSONObject;
+        ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
+        ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+        ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
+        ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+        ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
+        ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
+        ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
+        ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
+
+        if SelectName = ParticipantName then
+        begin
+          MapLat := ParticipantLat;
+          MapLong := ParticipantLong;
+        end;
+
+        if ParticipantLat > Bounds.NorthEast.Latitude then
+          Bounds.NorthEast.Latitude := ParticipantLat;
+        if ParticipantLat < Bounds.SouthWest.Latitude then
+          Bounds.SouthWest.Latitude := ParticipantLat;
+        if ParticipantLong > Bounds.NorthEast.Longitude then
+          Bounds.NorthEast.Longitude := ParticipantLong;
+        if ParticipantLong < Bounds.SouthWest.Longitude then
+          Bounds.SouthWest.Longitude := ParticipantLong;
+      end;
+    end;
+
+    if SelectName = 'Auto' then
+    begin
+      AutoZoomTrip := True;
+
+      Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
+      Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
+      Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
+      Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
+      mapTrip.MapZoomTo(Bounds);
+    end
+    else
+    begin
+      AutoZoomTrip := False;
+      mapTrip.MapPanTo(MapLat, MapLong);
+      mapTrip.MapOptions.ZoomMap := ZoomLevel;
+    end;
+
+    TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
+    Panel14.Visible := True;
+    mapTrip.Visible := True;
+    mapTrip.Enabled := True;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
