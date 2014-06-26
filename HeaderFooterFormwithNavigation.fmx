@@ -55,29 +55,99 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = btnSettingsClick
         end
         object Image1: TImage
+          MultiResBitmap.Height = 153
+          MultiResBitmap.Width = 152
+          MultiResBitmap.TransparentColor = 0
           MultiResBitmap = <
             item
-              Width = 60
-              Height = 60
+              Width = 152
+              Height = 153
               PNG = {
-                89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
-                72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                01C4494441546843ED9ABD6AC25014C7FF2D2A2911D12A82209480AFE01B74EA
-                0B747475E963B8767675ECD6492CF8063A7728828B935002C5B4628436B12769
-                1A2AFDB847A1C7F303CDB9D7E8CD2FF71FBF92A3C77AE31507C4312D0F061596
-                8E0A4B4785A5A3C2D25161E9F0082FE728CF2628BB1E7570E0A33B0F5E7336C7
-                907A3860F9F1307427B8E4744DD1AA34706D51C3108619F6D0DFA16C48EF856F
-                0073E1B58F7B2A9384B312A427713B4327470F46D8B5D43A0D8C8B5F4CA5E7B1
-                C5DA5878BA5C6044F50692F849049BD9F41E009C7C3D787E7AE73CA1BFA4D210
-                43611F77CF892D09654B36354CC8A25DFD2CCD156B33E1B587DB15D5B90AC62C
-                B211A1740D2D6A71C5DA48F823CE163AA745389B9A131B57F131CD136B23E138
-                CE7609EDCC7BC98D932FC5B3CC116B23E128CEAD13CE28A749CC3243AC8D8407
-                9542705FC005D397826D38561ECD609C9B7A15E7D4F757CCDEB4AC6AF01162BE
-                11DF922962C0348E99F03F4485A5A3C2D25161E9A8B07454583A2A2C1D15968E
-                0A4B478577C70A0FD17FD8C4C84F75EC81BD094F172E7A54C7782EBA6BAAF7C4
-                4EAFB5FCED6954CED3A2DB38B86358AFA6958E0A4B4785A5A3C2D25161E9A8B0
-                74545836C01B5A777553E5E248CC0000000049454E44AE426082}
-              FileName = 'C:\Projects\tetherapp\tetherapp.bmp'
+                89504E470D0A1A0A0000000D4948445200000098000000990806000000D39EF3
+                84000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0A2049444154785EEDDD7B8C54D51D07F033FB6459669702AE0A3E28986A21F2
+                144C6A629B344DAB545A1EFA87312221406BD0A6B52808CAA252B1F4912A51D1
+                108410FE1001156B63225149FAC7822CB00650836FA15559605FEEB2AF91DFF8
+                BB6167EEDC3333F79EF7FD7D920DBF7B25CE1DE6BBBF73E6CEB9771821841042
+                082184104208218410420821844890C03F492EEB5329AC82ADAA67AC7935FD3B
+                0688F73F4C21018A6A4922D6FFC6F17AF22A02954FCC02E7FE933521543C8E07
+                CECD27677AA872713468EE3C291B4315C4A1B0D9FF445C0A5636078266EF1370
+                3958D92C0E9A7D071EA76065B33068761D709CC3E5B12C64761C2C05CBCF92A0
+                997F90142E3EC38366EEC151B00A6770C8CC3C300A57F10C0D99790745E18AC6
+                B0A0997330142C710C0A99190742E112CF9090E93F080A973C06844CEF0150B8
+                E4D31C327D0F4EE1524763C8F43C30854B3D4D2153FFA0142E7D34844CED0352
+                B8F4531CB212FC93C485E25F727501A3EE154B6ADA2585CB3C8A864AF90F42E1
+                32978290C91D2287D753B84CA6E0975F6E82A97B994F721793F73FA770D94362
+                C8E8340591DA0CE4048CBA1741E25B2385CB5E12864A1A22CFDBFED6AD5899E5
+                9E5D4FB1E5AF3E8E5B76121B30CBBAD70B7BEE627D474A59BF81BF67071B26B3
+                27AFBE973D3E7339EE5140C2EB17CB0E069DE1F4E1616CDEA59B5949A29FED6B
+                9D8EFF453F087DEF913236297988F5A54A71AFBDC48DB99674AFC686296C72F2
+                206E7D2F314EFFA143E8EBC7D4B361E5A7710F6327CE8D62974DFE12B7141238
+                178B4D07DBF4E6FC7467C80E57677F1556FA1C68989A1E0E07860B34B64EC1CA
+                5E62026678F7DAB2E74E76D7C8175869A20FF75CF041C7D558E90143F5946423
+                6E65D236740B7C3D63D1C1A6D5ECC7CAEFDDD6EBB0D26368F959ACFC1EBB6525
+                56F68A45C0C60EFE082B3F9D13FC853B9E3F3F09CEDD2CCEF55762A589A02E16
+                3D60164CEECB133D58F93D3F672156EA4DAFD98795DF675D57626537E73BD8CA
+                DD8F61E5D7D25B8B951ED36B830366D2A99328A205CC82EEC5EB12EFB55F8B95
+                1E3F1AFC21567EFB5BA661A59180D7D7F90E967D5A6220DD5D62504917567E4F
+                CEBA172BBB391FB0919527B1F2BBEF577FC74ABD3FBFF237ACFCDA7A9358D9CF
+                F980C14741B9A4242FE6CDE7FA9A06ACFC3EF856EFB9B90C1187C9F001B360FE
+                B5EE3F4BB1F2FBAAFB62ACF498561B7C6E6E7FAB01F32F419CEE603F1FB6072B
+                BF6FBA2FC24ABD3B5EDCCA46559EC02DB7851F270CEA60C70F5CC5C656059F4C
+                2DD6D18E716CFCB423B8154DEAA8D8A1F8D14F1E620FCF7804B71489F0E1B713
+                1DECF2CA2FB01243D4C7478B776CC04A1CE5E102119A49B8801936FFAA28E9C6
+                4A8C8696EBB18AE6BA9A77B112C3C6F561D677B0075FFD0B5662C0BBCBA767DF
+                8D5BD14CAD398095189F768DC6CA1ED6074C749768EDADC12ABA6BAADFC74A0C
+                1BDF5D869BBC193444FEE1E57FB1BAF2AF71EB7B55A59DEC9ECB9F6265895EDC
+                93E98DE65FB203AD53712B139CBE1075167DCDBF576075C1846413FBF588D770
+                2B135C1BB0FE8B25ACBD7708EEC9B462C61AAC340839D1B73E604178EFDE742E
+                915EFBFA32F6C0E827702BD3FFBB2F61974EFA1F6E192664C09C3C0FF6BB9DCF
+                62E5A77BA2CC5BFCD8D436012B03856C2AC507CC82EEC57B113FEA1C8B951EBC
+                89BF4B67F03D4E7630DEC45FF78B5853D68A95DFCA19C16BD76CE564C0AEAA3A
+                8E95DFBE167D4B74EEDCBEE5FCA437F700D09B2AC3CA2D4E066C70E9B758F9E9
+                5C67C51BBABFECBA0C2BB73817B03FBDFC0FACFC745F48C10BD8C1B6C958B9C5
+                B980F1D6B91FE9188F951E139387B1F273650D7E36E702363569EEBB34DE12E9
+                B5339761E516E70276C5A0CFB1F2D37921C5EF773E83959FF66B2025722E6041
+                2B2BE043EC8D7317E0967A269F9B93C9A9803DB4FB51ACFC745F48C13B3717F4
+                B9A80B9C0A186F827FB87D2256C539DB3434EFCF13AF3F807F3BD88FAB8F61E5
+                E7EA041F381530DE35906126F87055786D594BDE1F58629D4FD0CA0EB07ED612
+                ACDCE354C02EAEF80A2BBF30D740F2E64D1E98DB6DBE751E6EE576DF2BC18FDD
+                DE977B698E2B8A0F98C0BBDF8916D425C2AEA0E07544CF999E1F60158C17D4F7
+                3BAEC1CA4DCE7430586715E454CF08AC8AC3BB2ADC53C8C95BDEB939DDF7272B
+                58DCD783F1BA44635BB85B51E6BA2362B6420232A6EA63ACFC5C9EE003670206
+                4B91838439C1CAEB88031512B0A0DB17804D73E763E52667964CC3FDEE835EC8
+                304BA461690DEFD48267F9CDFC2F4A78F8B547D8EA31AB702BD3E99E616CF8C4
+                66DC325C9CD7E44318368FCFFD4EAE2755CE2AC68BBD6EB218BBF7DE127891C7
+                3B677ECA7E76C3DBB86538A573B055F558988137FF3AD1350A2B3D449F9BB34D
+                B88035AF0ED7F924E1054CF7BB34DE4D4E96DEB40E2BC3453835E5C4247F5CF5
+                51ACFCE2D0254CE644C08694B563E5F7D7DFDC8F957ABCCF284F9E1B8995DBAC
+                0F185C031974214557FF20ACF4E0ADA0D07D036255C207CC908F8C7867C9E1CB
+                A474BA76C87B58F959B3063FE2EB6C7D07E3BD4BD3DD252EAAF8062B3FEA6096
+                E0DD6BDEE40F92B7DD763B566E8B16300386C9EAB20EACFCCEF60EC54ABD15BB
+                35DE09471401AFAFF51DAC84057FCE57C8721B59785797C789D5019BB77D3356
+                B9CDAEDBC95DEC27535D45E63DCBB27DD2F843ACDC266688D3F8D96421777186
+                6FB5EDE8AB4ED7958973E91BD4C142C1BA49FC1044F1D2DB73D99CBA1DB8951B
+                AC86858B51E0B235581A04D74DC2CFC6930BD8A25F3C877F4B1341D31FEB87C8
+                FE54FEA75055D2C946949F4AFF24CBDAD22B5F9BDAE5DE8BEB50DB24AC82C1F9
+                3BB8DB0EBCDB84AF53867B6AC08A1097AE321213308D93FDFFB6DC805571647F
+                4609DF561BF6FBC037CC598C9526025F4FEB3BD88D3FD9CB9A7B86E356E196DD
+                BC162B79561C5F931E068B21F226C4261017308D5D6CC4C453459DB82CF6450F
+                EB9FBFFD235B7C6C4351A1D1FE4558825F47EB3B9867C2F426B6E8D873E92F51
+                E8EEAFC0BD9920589D7D556CEF991B718F7CF095CDB5135AD8BACF96B2CFBBAE
+                48DF493A17D80F9D78D7D7B3708F1BC4FF2A1BB4DAF5F617B7B164691BEB4E55
+                18B7F67DFE4B9B5845A23BFDEE76EB6D77E05ECD248C424E078C14C98A80010A
+                997D24CDA19D99831133C9E96080BA983D249E019017304021339FC470011A22
+                8954723B18A02E662EC9DD0BC80F18A090994741B8809A2152D19321E6A13958
+                1C29FC8557DB5968A8D44FF168A27EE8A290E9A361AAA23E608042A69EA679B0
+                9E80010A993A1ADF64E90B18A090C9A7315C406FC000854C1ECDE102FA030628
+                64E219102E6046C000854C1C43C205CC0918A090456750B8805901F350D0C231
+                2C5CC0CC80010A59E10C0C96C7DC80010A597E06870B981D300F05CDCFF06079
+                EC0818A0905D6049B8803D01F3C439681605CB635FC03C710A9A85C1F2D81B30
+                8FCB41B338581EFB03E67129680E04CBE34EC03C3607CDA16079DC0BD8403684
+                CDC1500DE476C00632296C8E876AA0F8042C9BCAC0C52850D9E21BB020C3EB53
+                6C75EEEFD8CE2BC641228410420821841042082184104208218410420821F931
+                F61DC4A81DD7CAAC83550000000049454E44AE426082}
+              FileName = 'C:\Projects\tetherapp\images\tticon.png'
             end>
           Align = Left
           Height = 44.000000000000000000
@@ -282,19 +352,23 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Width = 320.000000000000000000
         TabOrder = 1
         object mmoNotes: TMemo
-          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          Touch.GestureManager = GestureManager1
+          Touch.InteractiveGestures = []
+          OnGesture = TabTripGesture
           Align = Client
-          Height = 97.000000000000000000
+          Height = 211.000000000000000000
           Margins.Left = 20.000000000000000000
           Margins.Top = 10.000000000000000000
           Margins.Right = 20.000000000000000000
           Margins.Bottom = 10.000000000000000000
           TabOrder = 0
-          Visible = False
-          Width = 305.000000000000000000
+          Width = 280.000000000000000000
           TextSettings.WordWrap = True
         end
         object ListBox2: TListBox
+          Touch.GestureManager = GestureManager1
+          Touch.InteractiveGestures = []
+          OnGesture = TabTripGesture
           Align = Top
           Height = 273.000000000000000000
           TabOrder = 1
@@ -486,22 +560,24 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = Fit
             TabOrder = 0
             Width = 246.000000000000000000
-            Height = 30.000000000000000000
+            Height = 29.999996185302730000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
           end
         end
         object btnSend: TSpeedButton
           Align = Right
-          Height = 44.000000000000000000
+          Height = 61.000000000000000000
           Position.X = 256.000000000000000000
-          Position.Y = 8.000000000000000000
           Text = 'Send'
           Width = 64.000000000000000000
           OnClick = btnSendClick
         end
       end
       object lbParticipants: TListBox
+        Touch.GestureManager = GestureManager1
+        Touch.InteractiveGestures = []
+        OnGesture = TabCheckGesture
         Align = Client
         Height = 443.000000000000000000
         TabOrder = 2
@@ -544,7 +620,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Right
           Height = 44.000000000000000000
           Position.X = 247.000000000000000000
-          Text = 'Trip'
+          Text = 'Direct'
           Width = 73.000000000000000000
           OnClick = btnTripClick
         end
@@ -560,40 +636,45 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Position.Y = 469.000000000000000000
         Width = 314.000000000000000000
         TabOrder = 1
-        object SpeedButton2: TSpeedButton
+        object spMapType: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
+          IsPressed = True
           StyleLookup = 'toolbuttonleft'
           Text = 'Map'
           Width = 72.000000000000000000
-          OnClick = SpeedButton2Click
+          OnClick = spMapTypeClick
         end
-        object SpeedButton4: TSpeedButton
+        object spSatType: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
           Position.X = 72.000000000000000000
           StyleLookup = 'toolbuttonmiddle'
           Text = 'Satellite'
           Width = 72.000000000000000000
-          OnClick = SpeedButton4Click
+          OnClick = spSatTypeClick
         end
-        object SpeedButton5: TSpeedButton
+        object spHybType: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
           Position.X = 144.000000000000000000
           StyleLookup = 'toolbuttonmiddle'
           Text = 'Hybrid'
           Width = 72.000000000000000000
-          OnClick = SpeedButton5Click
+          OnClick = spHybTypeClick
         end
-        object SpeedButton6: TSpeedButton
+        object spTerType: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
           Position.X = 216.000000000000000000
           StyleLookup = 'toolbuttonright'
           Text = 'Terrain'
           Width = 72.000000000000000000
-          OnClick = SpeedButton6Click
+          OnClick = spTerTypeClick
         end
       end
       object Panel18: TPanel
@@ -608,8 +689,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Width = 314.000000000000000000
         TabOrder = 2
         object SpeedButton8: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
           Position.X = 216.000000000000000000
           StyleLookup = 'toolbuttonright'
           Text = 'Pictures'
@@ -617,8 +699,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = SpeedButton8Click
         end
         object SpeedButton9: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
           Position.X = 144.000000000000000000
           StyleLookup = 'toolbuttonmiddle'
           Text = 'Bikes'
@@ -626,8 +709,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = SpeedButton9Click
         end
         object SpeedButton10: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
           Position.X = 72.000000000000000000
           StyleLookup = 'toolbuttonmiddle'
           Text = 'Weather'
@@ -635,8 +719,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = SpeedButton10Click
         end
         object SpeedButton7: TSpeedButton
+          StaysPressed = True
           Align = Left
-          Height = 30.000000000000000000
+          Height = 29.000000000000000000
           StyleLookup = 'toolbuttonleft'
           Text = 'Traffic'
           Width = 72.000000000000000000
@@ -660,7 +745,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 422.000000000000000000
           Visible = False
           Width = 320.000000000000000000
-          Enabled = False
           Markers = <>
           Polylines = <>
           Polygons = <>
@@ -1015,7 +1099,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 81.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41814.000000000000000000
+          Date = 41816.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1024,7 +1108,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41814.000000000000000000
+          Date = 41816.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1048,7 +1132,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41814.000000000000000000
+          Date = 41816.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1350,6 +1434,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object ShowShareSheetAction1: TShowShareSheetAction
       Category = 'Media Library'
     end
+    object Action2: TAction
+      Text = 'Action2'
+    end
   end
   object RESTClient1: TRESTClient
     Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
@@ -1562,5 +1649,40 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   object MapResponse: TRESTResponse
     Left = 488
     Top = 456
+  end
+  object GestureManager1: TGestureManager
+    Left = 256
+    Top = 372
+    GestureData = <
+      item
+        Control = mmoNotes
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end
+      item
+        Control = ListBox2
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end
+      item
+        Control = lbParticipants
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end>
   end
 end

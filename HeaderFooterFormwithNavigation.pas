@@ -15,7 +15,7 @@ uses
   XSBuiltins, FMX.DateTimeCtrls, System.Sensors.Components,
   IdGlobal, FMX.StdActns, FMX.MediaLibrary.Actions, FMX.TMSWebGMapsCommon,
   FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMaps, FMX.TMSWebGMapsMarkers,
-  FMX.TMSWebGMapsCommonFunctions;
+  FMX.TMSWebGMapsCommonFunctions, FMX.Gestures;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -184,10 +184,10 @@ type
     mapTrip: TTMSFMXWebGMaps;
     btnAddShare: TSpeedButton;
     Panel15: TPanel;
-    SpeedButton2: TSpeedButton;
-    SpeedButton4: TSpeedButton;
-    SpeedButton5: TSpeedButton;
-    SpeedButton6: TSpeedButton;
+    spMapType: TSpeedButton;
+    spSatType: TSpeedButton;
+    spHybType: TSpeedButton;
+    spTerType: TSpeedButton;
     Panel18: TPanel;
     edtEmailSetting: TEdit;
     Label34: TLabel;
@@ -199,6 +199,8 @@ type
     Panel19: TPanel;
     SpeedButton7: TSpeedButton;
     Panel14: TPanel;
+    Action2: TAction;
+    GestureManager1: TGestureManager;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -247,11 +249,11 @@ type
     procedure btnJoinNewTripClick(Sender: TObject);
     procedure btnAddShareClick(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
-    procedure SpeedButton2Click(Sender: TObject);
+    procedure spMapTypeClick(Sender: TObject);
     procedure SpeedButton7Click(Sender: TObject);
-    procedure SpeedButton4Click(Sender: TObject);
-    procedure SpeedButton5Click(Sender: TObject);
-    procedure SpeedButton6Click(Sender: TObject);
+    procedure spSatTypeClick(Sender: TObject);
+    procedure spHybTypeClick(Sender: TObject);
+    procedure spTerTypeClick(Sender: TObject);
     procedure SpeedButton10Click(Sender: TObject);
     procedure SpeedButton9Click(Sender: TObject);
     procedure SpeedButton8Click(Sender: TObject);
@@ -262,6 +264,10 @@ type
     procedure mapTripMapMove(Sender: TObject; Latitude, Longitude: Double; X,
       Y: Integer);
     procedure mapTripMapZoomChange(Sender: TObject; NewLevel: Integer);
+    procedure TabTripGesture(Sender: TObject;
+      const EventInfo: TGestureEventInfo; var Handled: Boolean);
+    procedure TabCheckGesture(Sender: TObject;
+      const EventInfo: TGestureEventInfo; var Handled: Boolean);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -294,10 +300,11 @@ type
   end;
 
 const
-  APIBASEURL = 'http://192.168.2.201';
 {
-  APIBASEURL = 'http://www.triptether.com';
+  APIBASEURL = 'http://192.168.2.201';
 }
+  APIBASEURL = 'http://www.triptether.com';
+
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -356,6 +363,9 @@ begin
   else
     SelectName := ParticipantName.Substring(0, ColonPos - 1);
 
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
+  Panel14.Visible := True;
+  mapTrip.Visible := True;
   MapName(self, SelectName, 18);
 end;
 
@@ -929,7 +939,6 @@ begin
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
   Panel14.Visible := True;
   mapTrip.Visible := True;
-  mapTrip.Enabled := True;
 end;
 
 procedure THeaderFooterwithNavigation.MappingRequestHTTPProtocolError(
@@ -982,9 +991,13 @@ begin
   end;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton2Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spMapTypeClick(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtDefault;
+  spMapType.IsPressed := True;
+  spSatType.IsPressed := False;
+  spHybType.IsPressed := False;
+  spTerType.IsPressed := False;
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
@@ -992,19 +1005,31 @@ begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton4Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spSatTypeClick(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtSatellite;
+  spMapType.IsPressed := False;
+  spSatType.IsPressed := True;
+  spHybType.IsPressed := False;
+  spTerType.IsPressed := False;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton5Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spHybTypeClick(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtHybrid;
+  spMapType.IsPressed := False;
+  spSatType.IsPressed := False;
+  spHybType.IsPressed := True;
+  spTerType.IsPressed := False;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton6Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spTerTypeClick(Sender: TObject);
 begin
   mapTrip.MapOptions.MapType := mtTerrain;
+  spMapType.IsPressed := False;
+  spSatType.IsPressed := False;
+  spHybType.IsPressed := False;
+  spTerType.IsPressed := True;
 end;
 
 procedure THeaderFooterwithNavigation.SpeedButton7Click(Sender: TObject);
@@ -1074,7 +1099,6 @@ end;
 
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
-  mapTrip.Enabled := False;
   mapTrip.Visible := False;
   Panel14.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
@@ -1082,7 +1106,6 @@ end;
 
 procedure THeaderFooterwithNavigation.btnTripClick(Sender: TObject);
 begin
-  mapTrip.Enabled := False;
   mapTrip.Visible := False;
   Panel14.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide, TTabTransitionDirection.Normal);
@@ -1241,6 +1264,26 @@ end;
 procedure THeaderFooterwithNavigation.btnSendClick(Sender: TObject);
 begin
   CheckIn(self, edtStatus.Text);
+end;
+
+procedure THeaderFooterwithNavigation.TabCheckGesture(Sender: TObject;
+  const EventInfo: TGestureEventInfo; var Handled: Boolean);
+begin
+  if EventInfo.GestureID = sgiLeft then
+    btnMapClick(self);
+
+  if EventInfo.GestureID = sgiRight then
+    btnBackTripClick(self);
+end;
+
+procedure THeaderFooterwithNavigation.TabTripGesture(Sender: TObject;
+  const EventInfo: TGestureEventInfo; var Handled: Boolean);
+begin
+  if EventInfo.GestureID = sgiLeft then
+    btnCheckInClick(self);
+
+  if EventInfo.GestureID = sgiRight then
+    btnQuitClick(self);
 end;
 
 procedure THeaderFooterwithNavigation.Timer1Timer(Sender: TObject);
@@ -1518,11 +1561,6 @@ begin
       mapTrip.MapPanTo(MapLat, MapLong);
       mapTrip.MapOptions.ZoomMap := ZoomLevel;
     end;
-
-    TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
-    Panel14.Visible := True;
-    mapTrip.Visible := True;
-    mapTrip.Enabled := True;
   end;
 end;
 
