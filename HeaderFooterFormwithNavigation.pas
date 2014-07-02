@@ -5,17 +5,21 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   System.DateUtils, System.INIFiles, System.Sensors, System.Actions,
+  System.IOUtils, System.JSON, System.StrUtils,
+  System.Sensors.Components,
   FMX.Types, FMX.Controls, FMX.Graphics, FMX.Forms, FMX.Dialogs, FMX.TabControl,
   FMX.ActnList, FMX.StdCtrls, FMX.MobilePreview, FMX.Edit,
   IPPeerClient, REST.Client, Data.Bind.Components, Data.Bind.ObjectScope,
   REST.Utils, REST.Types, REST.Json, DATA.DBXJSON,
-  FMX.Layouts, FMX.Memo,
-  FMX.WebBrowser, FMX.ListBox, FMX.ListView.Types, FMX.ListView, FMX.Objects,
-  System.IOUtils, System.JSON, System.StrUtils,
-  XSBuiltins, FMX.DateTimeCtrls, System.Sensors.Components,
-  IdGlobal, FMX.StdActns, FMX.MediaLibrary.Actions, FMX.TMSWebGMapsCommon,
+  FMX.Layouts, FMX.ListBox, FMX.Memo, FMX.Gestures, FMX.StdActns, FMX.MediaLibrary.Actions,
+  FMX.DateTimeCtrls, FMX.WebBrowser, FMX.Objects,
+  XSBuiltins,
+  IdGlobal,
+  FMX.TMSWebGMapsCommon,
   FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMaps, FMX.TMSWebGMapsMarkers,
-  FMX.TMSWebGMapsCommonFunctions, FMX.Gestures;
+  FMX.TMSWebGMapsCommonFunctions,
+  FMX.TMSWebGMapsPolygons, FMX.TMSWebGMapsPolylines,
+  FMX.TMSWebGMapsDirections, FMX.TMSWebGMapsReverseGeocoding, FMX.TMSWebGMapsWebUtil;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -81,7 +85,7 @@ type
     ListBoxItem9: TListBoxItem;
     lblLeader: TLabel;
     btnMap: TSpeedButton;
-    btnTrip: TSpeedButton;
+    btnDirections: TSpeedButton;
     Panel1: TPanel;
     Panel3: TPanel;
     edtEMail: TEdit;
@@ -183,24 +187,21 @@ type
     MapResponse: TRESTResponse;
     mapTrip: TTMSFMXWebGMaps;
     btnAddShare: TSpeedButton;
-    Panel15: TPanel;
-    spMapType: TSpeedButton;
-    spSatType: TSpeedButton;
-    spHybType: TSpeedButton;
-    spTerType: TSpeedButton;
     Panel18: TPanel;
     edtEmailSetting: TEdit;
     Label34: TLabel;
     edtNameSetting: TEdit;
     Label35: TLabel;
-    SpeedButton8: TSpeedButton;
-    SpeedButton9: TSpeedButton;
-    SpeedButton10: TSpeedButton;
+    spPictures: TSpeedButton;
+    spBikes: TSpeedButton;
+    spWeather: TSpeedButton;
     Panel19: TPanel;
-    SpeedButton7: TSpeedButton;
+    spTraffic: TSpeedButton;
     Panel14: TPanel;
     Action2: TAction;
     GestureManager1: TGestureManager;
+    pnlDirections: TPanel;
+    lbRoutes: TListBox;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -212,7 +213,7 @@ type
     procedure MapName(Sender: TObject; SelectName: string; ZoomLevel: integer);
     procedure LocationSensor1LocationChanged(Sender: TObject; const OldLocation,
       NewLocation: TLocationCoord2D);
-    procedure btnTripClick(Sender: TObject);
+    procedure btnDirectionsClick(Sender: TObject);
     procedure btnJoinClick(Sender: TObject);
     procedure spCheckInChange(Sender: TObject);
     procedure btnSendClick(Sender: TObject);
@@ -249,14 +250,10 @@ type
     procedure btnJoinNewTripClick(Sender: TObject);
     procedure btnAddShareClick(Sender: TObject);
     procedure SpeedButton3Click(Sender: TObject);
-    procedure spMapTypeClick(Sender: TObject);
-    procedure SpeedButton7Click(Sender: TObject);
-    procedure spSatTypeClick(Sender: TObject);
-    procedure spHybTypeClick(Sender: TObject);
-    procedure spTerTypeClick(Sender: TObject);
-    procedure SpeedButton10Click(Sender: TObject);
-    procedure SpeedButton9Click(Sender: TObject);
-    procedure SpeedButton8Click(Sender: TObject);
+    procedure spTrafficClick(Sender: TObject);
+    procedure spWeatherClick(Sender: TObject);
+    procedure spBikesClick(Sender: TObject);
+    procedure spPicturesClick(Sender: TObject);
     procedure edtNameSettingChange(Sender: TObject);
     procedure edtEmailSettingChange(Sender: TObject);
     procedure mapTripMapClick(Sender: TObject; Latitude, Longitude: Double; X,
@@ -268,6 +265,9 @@ type
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure TabCheckGesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
+    procedure DisplayRoute;
+    procedure lbRoutesItemClick(const Sender: TCustomListBox;
+      const Item: TListBoxItem);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -275,8 +275,8 @@ type
 
     StartTime: TDate;
     TripToken: string;
-    currentLat: string;
-    currentLong: string;
+    CurrentLat: double;
+    CurrentLong: double;
     CheckingIn: boolean;
     MappingIn: boolean;
 
@@ -287,8 +287,8 @@ type
     SignInName: string;
     SignInToken: string;
 
-    TripLatitude: string;
-    TripLongitude: string;
+    TripLat: double;
+    TripLong: double;
     TripFoundLatLong: boolean;
 
     NewTripId: integer;
@@ -332,7 +332,7 @@ begin
     if edtName.Text = '' then
       edtName.Text := edtEMail.Text;
 
-    ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+    ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
     ini.WriteString('login', 'trip', edtTripID.Text);
     ini.WriteString('login', 'pin', edtTripPIN.Text);
     ini.WriteString('login', 'email', edtEMail.Text);
@@ -369,11 +369,17 @@ begin
   MapName(self, SelectName, 18);
 end;
 
+procedure THeaderFooterwithNavigation.lbRoutesItemClick(
+  const Sender: TCustomListBox; const Item: TListBoxItem);
+begin
+  DisplayRoute;
+end;
+
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
   Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
 begin
-  currentLat := FloatToStrF(NewLocation.Latitude, ffGeneral, 10, 6);
-  currentLong := FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
+  CurrentLat := NewLocation.Latitude; //(NewLocation.Latitude, ffGeneral, 10, 6);
+  CurrentLong := NewLocation.Longitude; //FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
 end;
 
 procedure THeaderFooterwithNavigation.FormCreate(Sender: TObject);
@@ -389,7 +395,7 @@ begin
 
   RestClient1.BaseURL := APIBASEURL;
 
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   edtNameSetting.Text := ini.ReadString('login', 'name', '');
   edtEmailSetting.Text := ini.ReadString('login', 'email', '');
   spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
@@ -604,8 +610,6 @@ var
   Trip: TJSONObject;
   Name: string;
   Notes: string;
-  DestLat: Double;
-  DestLong: Double;
   Leader: string;
   MyID: integer;
   Result: TJSONValue;
@@ -632,8 +636,8 @@ begin
     Trip := Response.Get('trip').JsonValue as TJSONObject;
     Name := Trip.Get('name').JsonValue.ToString.Replace('"', '');
     Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
-    DestLat := StrToFloat(Trip.Get('dest_lat').JsonValue.ToString);
-    DestLong := StrToFloat(Trip.Get('dest_long').JsonValue.ToString);
+    TripLat := StrToFloat(Trip.Get('dest_lat').JsonValue.ToString);
+    TripLong := StrToFloat(Trip.Get('dest_long').JsonValue.ToString);
     Result := Trip.Get('result').JsonValue;
 
     Participant := Trip.Get('participant').JsonValue as TJSONObject;
@@ -652,22 +656,24 @@ begin
     mapTrip.Markers.Clear;
 
     Marker := mapTrip.Markers.Add;
-    Marker.Latitude := DestLat;
-    Marker.Longitude := DestLong;
+    Marker.Latitude := TripLat;
+    Marker.Longitude := TripLong;
+    Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
     Marker.MapLabel.Text := Name;
     mapTrip.CreateMapMarker(Marker);
     //mapTrip.Markers.Add(DestLat, DestLong, Name, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
 
     Bounds := TBounds.Create;
-    Bounds.NorthEast.Latitude := DestLat;
-    Bounds.NorthEast.Longitude := DestLong;
-    Bounds.SouthWest.Latitude := DestLat;
-    Bounds.SouthWest.Longitude := DestLong;
+    Bounds.NorthEast.Latitude := TripLat;
+    Bounds.NorthEast.Longitude := TripLong;
+    Bounds.SouthWest.Latitude := TripLat;
+    Bounds.SouthWest.Longitude := TripLong;
 
     Marker := mapTrip.Markers.Add;
     Marker.Latitude := ParticipantLat;
     Marker.Longitude := ParticipantLong;
+    Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/participant.png';
     if ParticipantStatus = '' then
       Marker.MapLabel.Text := ParticipantName
@@ -675,13 +681,13 @@ begin
       Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
     mapTrip.CreateMapMarker(Marker);
 
-    if ParticipantLat > DestLat then
+    if ParticipantLat > TripLat then
       Bounds.NorthEast.Latitude := ParticipantLat;
-    if ParticipantLat < DestLat then
+    if ParticipantLat < TripLat then
       Bounds.SouthWest.Latitude := ParticipantLat;
-    if ParticipantLong > DestLong then
+    if ParticipantLong > TripLong then
       Bounds.NorthEast.Longitude := ParticipantLong;
-    if ParticipantLong < DestLong then
+    if ParticipantLong < TripLong then
       Bounds.SouthWest.Longitude := ParticipantLong;
 
     for i := 0 to Participants.Count - 1 do
@@ -717,11 +723,15 @@ begin
 
       lbParticipants.AddObject(PartListItem);
 
+      if (ParticipantLat = 0) and (ParticipantLong = 0) then
+        Continue;
+
       if ParticipantID <> MyID then
       begin
         Marker := mapTrip.Markers.Add;
         Marker.Latitude := ParticipantLat;
         Marker.Longitude := ParticipantLong;
+        Marker.Draggable := false;
         if ParticipantQuit = '' then
           Marker.Icon := 'http://www.triptether.com/images/participant2.png'
         else
@@ -746,7 +756,7 @@ begin
     if AutoZoomTrip then
     begin
       if Participants.Count = 0 then
-        mapTrip.MapPanTo(DestLat, DestLong)
+        mapTrip.MapPanTo(TripLat, TripLong)
       else
       begin
         Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
@@ -774,7 +784,7 @@ procedure THeaderFooterwithNavigation.edtEmailSettingChange(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   ini.WriteString('login', 'email', edtEmailSetting.Text);
   ini.Free;
 end;
@@ -783,7 +793,7 @@ procedure THeaderFooterwithNavigation.edtNameSettingChange(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   ini.WriteString('login', 'name', edtNameSetting.Text);
   ini.Free;
 end;
@@ -849,6 +859,7 @@ begin
       Marker := mapTrip.Markers.Add;
       Marker.Latitude := DestLat;
       Marker.Longitude := DestLong;
+      Marker.Draggable := false;
       Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
       Marker.MapLabel.Text := Name;
       mapTrip.CreateMapMarker(Marker);
@@ -880,9 +891,13 @@ begin
         CheckInDate := ''
       end;
 
+      if (ParticipantLat = 0) and (ParticipantLong = 0) then
+        Continue;
+
       Marker := mapTrip.Markers.Add;
       Marker.Latitude := ParticipantLat;
       Marker.Longitude := ParticipantLong;
+      Marker.Draggable := false;
       if ParticipantID = MyID then
         Marker.Icon := 'http://www.triptether.com/images/participant.png'
       else
@@ -972,12 +987,12 @@ procedure THeaderFooterwithNavigation.spCheckInChange(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+  ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   ini.WriteInteger('settings', 'checkin', Trunc(spCheckIn.Value));
   ini.Free;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton10Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spWeatherClick(Sender: TObject);
 begin
   if mapTrip.MapOptions.ShowWeather then
   begin
@@ -991,48 +1006,13 @@ begin
   end;
 end;
 
-procedure THeaderFooterwithNavigation.spMapTypeClick(Sender: TObject);
-begin
-  mapTrip.MapOptions.MapType := mtDefault;
-  spMapType.IsPressed := True;
-  spSatType.IsPressed := False;
-  spHybType.IsPressed := False;
-  spTerType.IsPressed := False;
-end;
 
 procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
-procedure THeaderFooterwithNavigation.spSatTypeClick(Sender: TObject);
-begin
-  mapTrip.MapOptions.MapType := mtSatellite;
-  spMapType.IsPressed := False;
-  spSatType.IsPressed := True;
-  spHybType.IsPressed := False;
-  spTerType.IsPressed := False;
-end;
-
-procedure THeaderFooterwithNavigation.spHybTypeClick(Sender: TObject);
-begin
-  mapTrip.MapOptions.MapType := mtHybrid;
-  spMapType.IsPressed := False;
-  spSatType.IsPressed := False;
-  spHybType.IsPressed := True;
-  spTerType.IsPressed := False;
-end;
-
-procedure THeaderFooterwithNavigation.spTerTypeClick(Sender: TObject);
-begin
-  mapTrip.MapOptions.MapType := mtTerrain;
-  spMapType.IsPressed := False;
-  spSatType.IsPressed := False;
-  spHybType.IsPressed := False;
-  spTerType.IsPressed := True;
-end;
-
-procedure THeaderFooterwithNavigation.SpeedButton7Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spTrafficClick(Sender: TObject);
 begin
   if mapTrip.MapOptions.ShowTraffic then
     mapTrip.MapOptions.ShowTraffic := False
@@ -1040,7 +1020,7 @@ begin
     mapTrip.MapOptions.ShowTraffic := True;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton8Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spPicturesClick(Sender: TObject);
 begin
   if mapTrip.MapOptions.ShowPanoramio then
     mapTrip.MapOptions.ShowPanoramio := False
@@ -1048,7 +1028,7 @@ begin
     mapTrip.MapOptions.ShowPanoramio := True;
 end;
 
-procedure THeaderFooterwithNavigation.SpeedButton9Click(Sender: TObject);
+procedure THeaderFooterwithNavigation.spBikesClick(Sender: TObject);
 begin
   if mapTrip.MapOptions.ShowBicycling then
     mapTrip.MapOptions.ShowBicycling := False
@@ -1104,11 +1084,145 @@ begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
-procedure THeaderFooterwithNavigation.btnTripClick(Sender: TObject);
+procedure THeaderFooterwithNavigation.btnDirectionsClick(Sender: TObject);
+var
+  I, J: Integer;
+  TotalDistance, TotalDuration: integer;
+  Description: string;
 begin
-  mapTrip.Visible := False;
-  Panel14.Visible := False;
-  TabControl1.SetActiveTabWithTransition(TabTrip, TTabTransition.Slide, TTabTransitionDirection.Normal);
+  if pnlDirections.Visible then
+    pnlDirections.Visible := False
+  else
+  begin
+    lbRoutes.Clear;
+    pnlDirections.Visible := True;
+  end;
+
+  if pnlDirections.Visible then
+  begin
+    mapTrip.GetDirections(CurrentLat, CurrentLong, TripLat, TripLong, true, tmDriving, usMetric, lnDefault, true);
+
+    if mapTrip.Directions.Count > 0 then
+    begin
+      lbRoutes.BeginUpdate;
+      lbRoutes.Items.Clear;
+      for I := 0 to mapTrip.Directions.Count - 1 do
+      begin
+        Description := mapTrip.Directions[I].Summary + ': ';
+
+        if mapTrip.Directions[I].Legs.Count = 1 then
+          Description := Description
+          + mapTrip.Directions[I].Legs[0].DistanceText + ', '
+          + mapTrip.Directions[I].Legs[0].DurationText
+        else
+        begin
+          TotalDistance := 0;
+          TotalDuration := 0;
+          for J := 0 to mapTrip.Directions[I].Legs.Count - 1 do
+          begin
+            TotalDistance := TotalDistance + mapTrip.Directions[I].Legs[J].Distance;
+            TotalDuration := TotalDuration + mapTrip.Directions[I].Legs[J].Duration;
+          end;
+          Description := Description +
+            FormatFloat('0.00', TotalDistance / 1000) + ' km, '
+            + FormatFloat('0.00', (TotalDuration / 60) / 60) + ' h'
+        end;
+        lbRoutes.Items.Add(Description);
+      end;
+      lbRoutes.EndUpdate;
+      lbRoutes.ItemIndex := 0;
+
+      //DisplayRouteDetails;
+      DisplayRoute;
+    end
+    else
+      ShowMessage('"From" or "To" location not found.');
+  end;
+end;
+
+procedure THeaderFooterwithNavigation.DisplayRoute;
+var
+  Route: TRoute;
+  Marker: TMarker;
+  Circle: TMapPolygon;
+  Rect: TMapPolygon;
+  PolygonItem: TPolygonItem;
+//  I, J: Integer;
+begin
+  mapTrip.DeleteAllMapPolyline;
+  mapTrip.DeleteAllMapPolygon;
+
+  Route := mapTrip.Directions[lbRoutes.ItemIndex];
+
+  //Zoom to directions Bounds
+  mapTrip.MapZoomTo(Route.Bounds);
+  mapTrip.CreateMapPolyline(Route.Polyline);
+
+  //Add Markers
+  mapTrip.DeleteAllMapMarker;
+
+  Marker := mapTrip.Markers.Add;
+  Marker.Draggable := false;
+  Marker.Latitude := Route.Legs[0].StartLocation.Latitude;
+  Marker.Longitude := Route.Legs[0].StartLocation.Longitude;
+  Marker.Icon := 'http://www.triptether.com/images/participant.png';
+  Marker.Title := 'Start Location';
+  Marker.MapLabel.Text := 'Start Location: ' + Route.Legs[0].StartAddress;
+  mapTrip.CreateMapMarker(Marker);
+
+  Marker := mapTrip.Markers.Add;
+  Marker.Draggable := false;
+  Marker.Latitude := Route.Legs[0].EndLocation.Latitude;
+  Marker.Longitude := Route.Legs[0].EndLocation.Longitude;
+  Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
+  Marker.Title := 'Destination';
+  Marker.MapLabel.Text := '<b>Destination:</b> ' + Route.Legs[0].EndAddress;
+  Marker.MapLabel.Color := TAlphaColorRec.Yellow;
+  Marker.MapLabel.BorderColor := TAlphaColorRec.Red;
+  Marker.MapLabel.FontColor := TAlphaColorRec.Red;
+  Marker.MapLabel.Font.Size := 14;
+  mapTrip.CreateMapMarker(Marker);
+
+  //Add Polygon Circles
+  if False then
+  begin
+    PolygonItem := mapTrip.Polygons.Add;
+    Circle := PolygonItem.Polygon;
+    Circle.PolygonType := ptCircle;
+    Circle.BackgroundOpacity := 50;
+    Circle.BorderWidth := 2;
+    Circle.Radius := Integer(Route.Legs[0].Distance div 10);
+    Circle.Center.Latitude := Route.Legs[0].StartLocation.Latitude;
+    Circle.Center.Longitude := Route.Legs[0].StartLocation.Longitude;
+    mapTrip.CreateMapPolygon(Circle);
+
+    PolygonItem := mapTrip.Polygons.Add;
+    Circle := PolygonItem.Polygon;
+    Circle.PolygonType := ptCircle;
+    Circle.BackgroundOpacity := 50;
+    Circle.BorderWidth := 2;
+    Circle.Radius := Integer(Route.Legs[0].Distance div 10);
+    Circle.Center.Latitude := Route.Legs[0].EndLocation.Latitude;
+    Circle.Center.Longitude := Route.Legs[0].EndLocation.Longitude;
+    mapTrip.CreateMapPolygon(Circle);
+  end;
+
+  //Add Polygon Rectangle
+  if False then
+  begin
+    PolygonItem := mapTrip.Polygons.Add;
+    Rect := PolygonItem.Polygon;
+    Rect.PolygonType := ptRectangle;
+    Rect.BackgroundOpacity := 0;
+    Rect.BorderWidth := 2;
+//    Rect.BorderColor := clBlack;
+    Rect.BorderOpacity := 100;
+    Rect.Bounds.SouthWest.Latitude := Route.Bounds.SouthWest.Latitude;
+    Rect.Bounds.SouthWest.Longitude := Route.Bounds.SouthWest.Longitude;
+    Rect.Bounds.NorthEast.Latitude := Route.Bounds.NorthEast.Latitude;
+    Rect.Bounds.NorthEast.Longitude := Route.Bounds.NorthEast.Longitude;
+    mapTrip.CreateMapPolygon(Rect);
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
@@ -1169,8 +1283,8 @@ begin
     geoNewTrip.Address := edtTripLocation.Text + ', ' + edtTripCity.Text;
     if geoNewTrip.LaunchGeocoding = erOk then
     begin
-      TripLatitude := FloatToStr(geoNewTrip.ResultLatitude);
-      TripLongitude := FloatToStr(geoNewTrip.ResultLongitude);
+      TripLat := geoNewTrip.ResultLatitude; //FloatToStr(geoNewTrip.ResultLatitude);
+      TripLong := geoNewTrip.ResultLongitude; //(geoNewTrip.ResultLongitude);
       TripFoundLatLong := true;
       cpLocationNotFound.Visible := false;
 
@@ -1197,8 +1311,8 @@ begin
   NewTripRequest.Params.ParameterByName('name').Value := edtTripName.Text;
   NewTripRequest.Params.ParameterByName('location').Value := edtTripLocation.Text + ' ' + edtTripCity.Text;
   NewTripRequest.Params.ParameterByName('notes').Value := mmoTripNotes.Text;
-  NewTripRequest.Params.ParameterByName('lat').Value := TripLatitude;
-  NewTripRequest.Params.ParameterByName('long').Value := TripLongitude;
+  NewTripRequest.Params.ParameterByName('lat').Value := FloatToStr(TripLat);
+  NewTripRequest.Params.ParameterByName('long').Value := FloatToStr(TripLong);
 
   Departing := dteTripDepart.DateTime;
   ReplaceTime(Departing, tmeTripDepart.DateTime);
@@ -1250,7 +1364,7 @@ begin
   end
   else
   begin
-    ini := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, 'tether.ini'));
+    ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
     ini.WriteString('signin', 'email', edtSignIn.Text);
     ini.WriteString('signin', 'pw', edtPassword.Text);
     ini.Free;
@@ -1331,8 +1445,8 @@ begin
     CheckinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
     CheckinRequest.Params.ParameterByName('pin').Value := UserPin;
     CheckinRequest.Params.ParameterByName('token').Value := TripToken;
-    CheckinRequest.Params.ParameterByName('lat').Value := currentLat;
-    CheckinRequest.Params.ParameterByName('long').Value := currentLong;
+    CheckinRequest.Params.ParameterByName('lat').Value := FloatToStrF(CurrentLat, ffGeneral, 10, 6);
+    CheckinRequest.Params.ParameterByName('long').Value := FloatToStrF(CurrentLong, ffGeneral, 10, 6);
     CheckinRequest.Params.ParameterByName('status').Value := Status;
     CheckinRequest.Execute;
 
@@ -1439,8 +1553,6 @@ var
   Trip: TJSONObject;
   Name: string;
   Notes: string;
-  DestLat: Double;
-  DestLong: Double;
   Leader: string;
   MyID: integer;
   Result: TJSONValue;
@@ -1469,22 +1581,22 @@ begin
     Trip := Response.Get('trip').JsonValue as TJSONObject;
     Name := Trip.Get('name').JsonValue.ToString.Replace('"', '');
     Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
-    DestLat := StrToFloat(Trip.Get('dest_lat').JsonValue.ToString);
-    DestLong := StrToFloat(Trip.Get('dest_long').JsonValue.ToString);
+    TripLat := StrToFloat(Trip.Get('dest_lat').JsonValue.ToString);
+    TripLong := StrToFloat(Trip.Get('dest_long').JsonValue.ToString);
     Result := Trip.Get('result').JsonValue;
 
-    MapLat := DestLat;
-    MapLong := DestLong;
+    MapLat := TripLat;
+    MapLong := TripLong;
     Bounds := TBounds.Create;
-    Bounds.NorthEast.Latitude := DestLat;
-    Bounds.NorthEast.Longitude := DestLong;
-    Bounds.SouthWest.Latitude := DestLat;
-    Bounds.SouthWest.Longitude := DestLong;
+    Bounds.NorthEast.Latitude := TripLat;
+    Bounds.NorthEast.Longitude := TripLong;
+    Bounds.SouthWest.Latitude := TripLat;
+    Bounds.SouthWest.Longitude := TripLong;
 
     if (SelectName = 'Flag') then
     begin
-      MapLat := DestLat;
-      MapLong := DestLong;
+      MapLat := TripLat;
+      MapLong := TripLong;
     end
     else
     begin
@@ -1503,13 +1615,13 @@ begin
         MapLong := ParticipantLong;
       end;
 
-      if ParticipantLat > DestLat then
+      if ParticipantLat > TripLat then
         Bounds.NorthEast.Latitude := ParticipantLat;
-      if ParticipantLat < DestLat then
+      if ParticipantLat < TripLat then
         Bounds.SouthWest.Latitude := ParticipantLat;
-      if ParticipantLong > DestLong then
+      if ParticipantLong > TripLong then
         Bounds.NorthEast.Longitude := ParticipantLong;
-      if ParticipantLong < DestLong then
+      if ParticipantLong < TripLong then
         Bounds.SouthWest.Longitude := ParticipantLong;
     end;
 
@@ -1528,7 +1640,7 @@ begin
         ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
         ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
 
-        if SelectName = ParticipantName then
+        if (SelectName = ParticipantName) and (ParticipantLat > 0) and (ParticipantLong > 0) then
         begin
           MapLat := ParticipantLat;
           MapLong := ParticipantLong;
