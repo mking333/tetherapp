@@ -705,20 +705,81 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object pnlDirections: TPanel
         Align = Top
-        Height = 125.000000000000000000
+        Height = 133.000000000000000000
         Position.Y = 44.000000000000000000
         Visible = False
         Width = 320.000000000000000000
         TabOrder = 3
-        object lbRoutes: TListBox
+        object TabControl2: TTabControl
           Align = Client
-          Height = 125.000000000000000000
-          TabOrder = 1
+          FullSize = True
+          Height = 133.000000000000000000
+          TabHeight = 49.000000000000000000
+          TabIndex = 0
+          TabOrder = 2
+          TabPosition = None
           Width = 320.000000000000000000
-          DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
-          DefaultItemStyles.GroupHeaderStyle = ''
-          DefaultItemStyles.GroupFooterStyle = ''
-          OnItemClick = lbRoutesItemClick
+          object TabRoutes: TTabItem
+            CustomIcon = <
+              item
+              end>
+            Height = 8.000000000000000000
+            IsSelected = True
+            TabOrder = 0
+            Text = 'TabRoutes'
+            Width = 8.000000000000000000
+            object lbRoutes: TListBox
+              Align = Client
+              Height = 133.000000000000000000
+              TabOrder = 0
+              Width = 276.000000000000000000
+              OnDblClick = lbRoutesDblClick
+              AlternatingRowBackground = True
+              DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
+              DefaultItemStyles.GroupHeaderStyle = ''
+              DefaultItemStyles.GroupFooterStyle = ''
+              OnItemClick = lbRoutesItemClick
+            end
+            object SpeedButton2: TSpeedButton
+              Align = Right
+              Height = 44.000000000000000000
+              Position.X = 276.000000000000000000
+              Position.Y = 44.000000000000000000
+              StyleLookup = 'nexttoolbutton'
+              Text = 'SpeedButton2'
+              Width = 44.000000000000000000
+              OnClick = SpeedButton2Click
+            end
+          end
+          object TabLegs: TTabItem
+            CustomIcon = <
+              item
+              end>
+            Height = 8.000000000000000000
+            IsSelected = False
+            TabOrder = 0
+            Text = 'TabLegs'
+            Width = 8.000000000000000000
+            object lbLegs: TListBox
+              Align = Client
+              Height = 133.000000000000000000
+              TabOrder = 0
+              Width = 276.000000000000000000
+              OnDblClick = lbLegsDblClick
+              AlternatingRowBackground = True
+              DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
+              DefaultItemStyles.GroupHeaderStyle = ''
+              DefaultItemStyles.GroupFooterStyle = ''
+            end
+            object SpeedButton4: TSpeedButton
+              Align = Left
+              Height = 133.000000000000000000
+              StyleLookup = 'priortoolbutton'
+              Text = 'SpeedButton2'
+              Width = 44.000000000000000000
+              OnClick = SpeedButton4Click
+            end
+          end
         end
       end
     end
@@ -1059,7 +1120,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 81.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41822.000000000000000000
+          Date = 41823.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1068,7 +1129,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41822.000000000000000000
+          Date = 41823.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1092,7 +1153,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41822.000000000000000000
+          Date = 41823.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000

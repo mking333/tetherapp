@@ -202,6 +202,12 @@ type
     GestureManager1: TGestureManager;
     pnlDirections: TPanel;
     lbRoutes: TListBox;
+    TabControl2: TTabControl;
+    TabRoutes: TTabItem;
+    TabLegs: TTabItem;
+    lbLegs: TListBox;
+    SpeedButton2: TSpeedButton;
+    SpeedButton4: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -266,8 +272,13 @@ type
     procedure TabCheckGesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure DisplayRoute;
+    procedure DisplayRouteDetails;
     procedure lbRoutesItemClick(const Sender: TCustomListBox;
       const Item: TListBoxItem);
+    procedure lbRoutesDblClick(Sender: TObject);
+    procedure lbLegsDblClick(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure SpeedButton4Click(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -349,6 +360,11 @@ begin
   end;
 end;
 
+procedure THeaderFooterwithNavigation.lbLegsDblClick(Sender: TObject);
+begin
+  TabControl2.SetActiveTabWithTransition(TabRoutes, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+end;
+
 procedure THeaderFooterwithNavigation.lbParticipantsItemClick(
   const Sender: TCustomListBox; const Item: TListBoxItem);
 var
@@ -363,10 +379,12 @@ begin
   else
     SelectName := ParticipantName.Substring(0, ColonPos - 1);
 
-  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
-  Panel14.Visible := True;
-  mapTrip.Visible := True;
   MapName(self, SelectName, 18);
+end;
+
+procedure THeaderFooterwithNavigation.lbRoutesDblClick(Sender: TObject);
+begin
+  TabControl2.SetActiveTabWithTransition(TabLegs, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.lbRoutesItemClick(
@@ -1007,9 +1025,19 @@ begin
 end;
 
 
+procedure THeaderFooterwithNavigation.SpeedButton2Click(Sender: TObject);
+begin
+  TabControl2.SetActiveTabWithTransition(TabLegs, TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
 procedure THeaderFooterwithNavigation.SpeedButton3Click(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+end;
+
+procedure THeaderFooterwithNavigation.SpeedButton4Click(Sender: TObject);
+begin
+  TabControl2.SetActiveTabWithTransition(TabRoutes, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.spTrafficClick(Sender: TObject);
@@ -1088,12 +1116,14 @@ procedure THeaderFooterwithNavigation.btnDirectionsClick(Sender: TObject);
 var
   I, J: Integer;
   TotalDistance, TotalDuration: integer;
+  //RouteListItem: TListBoxItem;
   Description: string;
 begin
   if pnlDirections.Visible then
     pnlDirections.Visible := False
   else
   begin
+    TabControl2.ActiveTab := TabRoutes;
     lbRoutes.Clear;
     pnlDirections.Visible := True;
   end;
@@ -1128,12 +1158,19 @@ begin
             + FormatFloat('0.00', (TotalDuration / 60) / 60) + ' h'
         end;
         lbRoutes.Items.Add(Description);
+
+        //RouteListItem := TListBoxItem.Create(lbRoutes);
+        //RouteListItem.Text := Description;
+        //RouteListItem.ItemData.Accessory := TListBoxItemData.TAccessory.aMore;
+        //RouteListItem.ItemData.Text := Description;
+
+        //lbRoutes.AddObject(RouteListItem);
       end;
       lbRoutes.EndUpdate;
       lbRoutes.ItemIndex := 0;
 
-      //DisplayRouteDetails;
       DisplayRoute;
+      DisplayRouteDetails;
     end
     else
       ShowMessage('"From" or "To" location not found.');
@@ -1225,6 +1262,25 @@ begin
   end;
 end;
 
+procedure THeaderFooterwithNavigation.DisplayRouteDetails;
+var
+  I, J: Integer;
+begin
+  lbLegs.BeginUpdate;
+  lbLegs.Items.Clear;
+  if lbRoutes.ItemIndex >= 0 then
+  begin
+    for J := 0 to mapTrip.Directions[lbRoutes.ItemIndex].Legs.Count - 1 do
+    begin
+      for I := 0 to mapTrip.Directions[lbRoutes.ItemIndex].Legs[J].Steps.Count - 1 do
+      begin
+        lbLegs.Items.Add(mapTrip.Directions[lbRoutes.ItemIndex].Legs[J].Steps[I].Instructions);
+      end;
+    end;
+  end;
+  lbLegs.EndUpdate;
+end;
+
 procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
 var
   URLString: string;
@@ -1251,9 +1307,6 @@ end;
 
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
-  Panel14.Visible := True;
-  mapTrip.Visible := True;
   MapName(self, 'Auto', 10);
 end;
 
@@ -1609,7 +1662,7 @@ begin
       ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
       Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
 
-      if SelectName = 'Me' then
+      if (SelectName = 'Me') or (SelectName = ParticipantName) then
       begin
         MapLat := ParticipantLat;
         MapLong := ParticipantLong;
@@ -1640,7 +1693,7 @@ begin
         ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
         ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
 
-        if (SelectName = ParticipantName) and (ParticipantLat > 0) and (ParticipantLong > 0) then
+        if (SelectName = ParticipantName) and (ParticipantLat <> 0) and (ParticipantLong <> 0) then
         begin
           MapLat := ParticipantLat;
           MapLong := ParticipantLong;
@@ -1674,6 +1727,10 @@ begin
       mapTrip.MapOptions.ZoomMap := ZoomLevel;
     end;
   end;
+
+  Panel14.Visible := True;
+  mapTrip.Visible := True;
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
