@@ -4,5 +4,5 @@
     <Transaction>2014/03/05 17:06:36.000.991,C:\Projects\tetherapp\HeaderFooterNavigation.dproj=C:\Projects\tetherapp\tetherapp.dproj</Transaction>
   </Transactions>
 	<MobileDevice>D5OKCY022956</MobileDevice>
-	<BT_BuildType>Debug</BT_BuildType>
+	<BT_BuildType>Adhoc</BT_BuildType>
 </BorlandProject>

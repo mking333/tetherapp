@@ -262,11 +262,6 @@ type
     procedure spPicturesClick(Sender: TObject);
     procedure edtNameSettingChange(Sender: TObject);
     procedure edtEmailSettingChange(Sender: TObject);
-    procedure mapTripMapClick(Sender: TObject; Latitude, Longitude: Double; X,
-      Y: Integer);
-    procedure mapTripMapMove(Sender: TObject; Latitude, Longitude: Double; X,
-      Y: Integer);
-    procedure mapTripMapZoomChange(Sender: TObject; NewLevel: Integer);
     procedure TabTripGesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure TabCheckGesture(Sender: TObject;
@@ -391,6 +386,7 @@ procedure THeaderFooterwithNavigation.lbRoutesItemClick(
   const Sender: TCustomListBox; const Item: TListBoxItem);
 begin
   DisplayRoute;
+  DisplayRouteDetails;
 end;
 
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
@@ -983,24 +979,6 @@ begin
   cpNetworkError.Visible := True;
 end;
 
-procedure THeaderFooterwithNavigation.mapTripMapClick(Sender: TObject; Latitude,
-  Longitude: Double; X, Y: Integer);
-begin
-  AutoZoomTrip := False;
-end;
-
-procedure THeaderFooterwithNavigation.mapTripMapMove(Sender: TObject; Latitude,
-  Longitude: Double; X, Y: Integer);
-begin
-  AutoZoomTrip := False;
-end;
-
-procedure THeaderFooterwithNavigation.mapTripMapZoomChange(Sender: TObject;
-  NewLevel: Integer);
-begin
-  AutoZoomTrip := False;
-end;
-
 procedure THeaderFooterwithNavigation.spCheckInChange(Sender: TObject);
 var
   ini: TIniFile;
@@ -1118,7 +1096,13 @@ var
   TotalDistance, TotalDuration: integer;
   //RouteListItem: TListBoxItem;
   Description: string;
+  SaveSpot: Integer;
 begin
+  if lbRoutes.Items.Count > 0 then
+    SaveSpot := lbRoutes.ItemIndex
+  else
+    SaveSpot := 0;
+
   if pnlDirections.Visible then
     pnlDirections.Visible := False
   else
@@ -1167,7 +1151,7 @@ begin
         //lbRoutes.AddObject(RouteListItem);
       end;
       lbRoutes.EndUpdate;
-      lbRoutes.ItemIndex := 0;
+      lbRoutes.ItemIndex := SaveSpot;;
 
       DisplayRoute;
       DisplayRouteDetails;

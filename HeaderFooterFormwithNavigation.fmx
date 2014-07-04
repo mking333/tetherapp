@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 548.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 3
+    TabIndex = 6
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -593,7 +593,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabMap'
       Width = 8.000000000000000000
@@ -698,9 +698,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           ControlsOptions.ControlsType = ctDefault
           TabOrder = 0
           Version = '1.8.0.2'
-          OnMapClick = mapTripMapClick
-          OnMapMove = mapTripMapMove
-          OnMapZoomChange = mapTripMapZoomChange
         end
       end
       object pnlDirections: TPanel
@@ -734,7 +731,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               TabOrder = 0
               Width = 276.000000000000000000
               OnDblClick = lbRoutesDblClick
-              AlternatingRowBackground = True
               DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
               DefaultItemStyles.GroupHeaderStyle = ''
               DefaultItemStyles.GroupFooterStyle = ''
@@ -766,7 +762,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               TabOrder = 0
               Width = 276.000000000000000000
               OnDblClick = lbLegsDblClick
-              AlternatingRowBackground = True
               DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
               DefaultItemStyles.GroupHeaderStyle = ''
               DefaultItemStyles.GroupFooterStyle = ''
@@ -962,7 +957,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabNewTrip'
       Width = 8.000000000000000000
@@ -1004,8 +999,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object Panel12: TPanel
           Height = 65.000000000000000000
-          Position.X = -8.000000000000000000
-          Position.Y = 248.000000000000000000
+          Position.Y = 184.000000000000000000
           Width = 329.000000000000000000
           TabOrder = 8
           object btnNewTripDetails: TButton
@@ -1034,7 +1028,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object mmoTripNotes: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-          Height = 105.000000000000000000
+          Height = 33.000000000000000000
           Position.X = 8.000000000000000000
           Position.Y = 144.000000000000000000
           TabOrder = 11
@@ -1044,7 +1038,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 89.000000000000000000
           Padding.Top = 11.000000000000000000
           Position.X = 16.000000000000000000
-          Position.Y = 296.000000000000000000
+          Position.Y = 224.000000000000000000
           Visible = False
           Width = 289.000000000000000000
           TabOrder = 13
@@ -1120,7 +1114,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 81.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41823.000000000000000000
+          Date = 41824.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1129,7 +1123,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41823.000000000000000000
+          Date = 41824.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
@@ -1153,7 +1147,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41823.000000000000000000
+          Date = 41824.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 120.000000000000000000
