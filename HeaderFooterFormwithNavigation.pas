@@ -217,6 +217,7 @@ type
     procedure CheckIn(Sender: TObject; Status: string);
     procedure Mapping(Sender: TObject);
     procedure MapName(Sender: TObject; SelectName: string; ZoomLevel: integer);
+    procedure MapUpdate(Sender: TObject);
     procedure LocationSensor1LocationChanged(Sender: TObject; const OldLocation,
       NewLocation: TLocationCoord2D);
     procedure btnDirectionsClick(Sender: TObject);
@@ -351,7 +352,13 @@ begin
     JoinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
     JoinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
     JoinRequest.Params.ParameterByName('name').Value := edtName.Text;
-    JoinRequest.Execute;
+    try
+      JoinRequest.Execute
+    except
+      on E: Exception do begin
+        cpNetworkError.Visible := True;
+      end;
+    end;
   end;
 end;
 
@@ -391,9 +398,23 @@ end;
 
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
   Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
+var i: integer;
 begin
   CurrentLat := NewLocation.Latitude; //(NewLocation.Latitude, ffGeneral, 10, 6);
   CurrentLong := NewLocation.Longitude; //FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
+  {
+  for i := 0 to mapTrip.Markers.Count - 1 do
+  begin
+    if mapTrip.Markers.Items[i].Title = 'Me' then
+    begin
+      mapTrip.Markers.Items[i].Visible := False;
+      mapTrip.Markers.Items[i].Latitude := CurrentLat;
+      mapTrip.Markers.Items[i].Longitude := CurrentLong;
+      mapTrip.Markers.Items[i].Visible := True;
+    end;
+  end;
+  }
+  MapUpdate(self);
 end;
 
 procedure THeaderFooterwithNavigation.FormCreate(Sender: TObject);
@@ -674,6 +695,7 @@ begin
     Marker.Longitude := TripLong;
     Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
+    Marker.Title := 'Destination';
     Marker.MapLabel.Text := Name;
     mapTrip.CreateMapMarker(Marker);
     //mapTrip.Markers.Add(DestLat, DestLong, Name, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
@@ -689,6 +711,7 @@ begin
     Marker.Longitude := ParticipantLong;
     Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/participant.png';
+    Marker.Title := 'Me';
     if ParticipantStatus = '' then
       Marker.MapLabel.Text := ParticipantName
     else
@@ -750,6 +773,7 @@ begin
           Marker.Icon := 'http://www.triptether.com/images/participant2.png'
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png';
+        Marker.Title := ParticipantName;
         if ParticipantStatus = '' then
           Marker.MapLabel.Text := ParticipantName
         else
@@ -1078,7 +1102,14 @@ begin
   NewTripPartRequest.Params.ParameterByName('name').Value := AnsiLeftStr(PartListItem.ItemData.Text, isLeader);
   NewTripPartRequest.Params.ParameterByName('leader').Value := 'no';
   NewTripPartRequest.Params.ParameterByName('email').Value := PartListItem.ItemData.Detail;
-  NewTripPartRequest.Execute;
+  try
+    NewTripPartRequest.Execute;
+  except
+    on E: Exception do begin
+      TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+      cpNetworkError.Visible := True;
+    end;
+  end;
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
@@ -1187,8 +1218,12 @@ begin
   Marker.Latitude := Route.Legs[0].StartLocation.Latitude;
   Marker.Longitude := Route.Legs[0].StartLocation.Longitude;
   Marker.Icon := 'http://www.triptether.com/images/participant.png';
-  Marker.Title := 'Start Location';
-  Marker.MapLabel.Text := 'Start Location: ' + Route.Legs[0].StartAddress;
+  Marker.Title := 'Current Location';
+  Marker.MapLabel.Text := '<b>Current Location:</b> ' + Route.Legs[0].StartAddress;
+  Marker.MapLabel.Color := TAlphaColorRec.Yellow;
+  Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+  Marker.MapLabel.FontColor := TAlphaColorRec.Black;
+  Marker.MapLabel.Font.Size := 14;
   mapTrip.CreateMapMarker(Marker);
 
   Marker := mapTrip.Markers.Add;
@@ -1199,8 +1234,8 @@ begin
   Marker.Title := 'Destination';
   Marker.MapLabel.Text := '<b>Destination:</b> ' + Route.Legs[0].EndAddress;
   Marker.MapLabel.Color := TAlphaColorRec.Yellow;
-  Marker.MapLabel.BorderColor := TAlphaColorRec.Red;
-  Marker.MapLabel.FontColor := TAlphaColorRec.Red;
+  Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+  Marker.MapLabel.FontColor := TAlphaColorRec.Black;
   Marker.MapLabel.Font.Size := 14;
   mapTrip.CreateMapMarker(Marker);
 
@@ -1286,7 +1321,14 @@ begin
   QuitRequest.Params.ParameterByName('email').Value := edtEMail.Text;
   QuitRequest.Params.ParameterByName('pin').Value := UserPin;
   QuitRequest.Params.ParameterByName('token').Value := TripToken;
-  QuitRequest.Execute;
+  try
+    QuitRequest.Execute;
+  except
+    on E: Exception do begin
+      TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+      cpNetworkError.Visible := True;
+    end;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
@@ -1361,7 +1403,14 @@ begin
   NewTripRequest.Params.ParameterByName('depart').Value := LocalDateTimeToGMT(Departing, False);
   NewTripRequest.Params.ParameterByName('arrive').Value := LocalDateTimeToGMT(Arriving, False);
   NewTripRequest.Params.ParameterByName('leave').Value := LocalDateTimeToGMT(Leaving, False);
-  NewTripRequest.Execute;
+  try
+    NewTripRequest.Execute;
+  except
+    on E: Exception do begin
+      TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+      cpNetworkError.Visible := True;
+    end;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.btnBackToJoin2Click(Sender: TObject);
@@ -1408,7 +1457,14 @@ begin
 
     SignInRequest.Params.ParameterByName('email').Value := edtSignIn.Text;
     SignInRequest.Params.ParameterByName('pw').Value := edtPassword.Text;
-    SignInRequest.Execute;
+    try
+      SignInRequest.Execute;
+    except
+      on E: Exception do begin
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+        cpNetworkError.Visible := True;
+      end;
+    end;
   end;
 end;
 
@@ -1485,7 +1541,14 @@ begin
     CheckinRequest.Params.ParameterByName('lat').Value := FloatToStrF(CurrentLat, ffGeneral, 10, 6);
     CheckinRequest.Params.ParameterByName('long').Value := FloatToStrF(CurrentLong, ffGeneral, 10, 6);
     CheckinRequest.Params.ParameterByName('status').Value := Status;
-    CheckinRequest.Execute;
+    try
+      CheckinRequest.Execute;
+    except
+      on E: Exception do begin
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+        cpNetworkError.Visible := True;
+      end;
+    end;
 
     CheckingIn := False;
   end;
@@ -1502,7 +1565,14 @@ begin
     MapRequest.Params.ParameterByName('email').Value := edtEMail.Text;
     MapRequest.Params.ParameterByName('pin').Value := UserPin;
     MapRequest.Params.ParameterByName('token').Value := TripToken;
-    MapRequest.Execute;
+    try
+      MapRequest.Execute;
+    except
+      on E: Exception do begin
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+        cpNetworkError.Visible := True;
+      end;
+    end;
 
     MappingIn := False;
   end;
@@ -1715,6 +1785,162 @@ begin
   Panel14.Visible := True;
   mapTrip.Visible := True;
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
+procedure THeaderFooterwithNavigation.MapUpdate(Sender: TObject);
+var
+  Response: TJSONObject;
+  Trip: TJSONObject;
+  Name: string;
+  Notes: string;
+  Leader: string;
+  MyID: integer;
+  Result: TJSONValue;
+  Participant: TJSONObject;
+  ParticipantID: integer;
+  ParticipantName: string;
+  ParticipantStatus: string;
+  ParticipantLat: Double;
+  ParticipantLong: Double;
+  ParticipantCheckIn: string;
+  ParticipantJoin: string;
+  ParticipantQuit: string;
+  Participants: TJSONArray;
+  LocalDate: TDateTime;
+  CheckInDate: string;
+  i: integer;
+  PartListItem: TListBoxItem;
+  Marker: TMarker;
+  Bounds: TBounds;
+begin
+  if assigned(CheckinResponse.JSONValue) then
+  begin
+    Response := CheckinResponse.JsonValue as TJSONObject;
+    Trip := Response.Get('trip').JsonValue as TJSONObject;
+    Name := Trip.Get('name').JsonValue.ToString.Replace('"', '');
+    Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
+    TripLat := StrToFloat(Trip.Get('dest_lat').JsonValue.ToString);
+    TripLong := StrToFloat(Trip.Get('dest_long').JsonValue.ToString);
+    Result := Trip.Get('result').JsonValue;
+
+    Participant := Trip.Get('participant').JsonValue as TJSONObject;
+    ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
+    ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+    ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
+    ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+    ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
+    ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
+    Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
+
+    MyID := ParticipantID;
+
+    Participants := Trip.Get('participants').JsonValue as TJSONArray;
+    mapTrip.Markers.Clear;
+
+    Marker := mapTrip.Markers.Add;
+    Marker.Latitude := TripLat;
+    Marker.Longitude := TripLong;
+    Marker.Draggable := false;
+    Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
+    Marker.Title := 'Destination';
+    Marker.MapLabel.Text := Name;
+    mapTrip.CreateMapMarker(Marker);
+
+    Bounds := TBounds.Create;
+    Bounds.NorthEast.Latitude := TripLat;
+    Bounds.NorthEast.Longitude := TripLong;
+    Bounds.SouthWest.Latitude := TripLat;
+    Bounds.SouthWest.Longitude := TripLong;
+
+    Marker := mapTrip.Markers.Add;
+    Marker.Latitude := ParticipantLat;
+    Marker.Longitude := ParticipantLong;
+    Marker.Draggable := false;
+    Marker.Icon := 'http://www.triptether.com/images/participant.png';
+    Marker.Title := 'Me';
+    if ParticipantStatus = '' then
+      Marker.MapLabel.Text := ParticipantName
+    else
+      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+    mapTrip.CreateMapMarker(Marker);
+
+    if ParticipantLat > TripLat then
+      Bounds.NorthEast.Latitude := ParticipantLat;
+    if ParticipantLat < TripLat then
+      Bounds.SouthWest.Latitude := ParticipantLat;
+    if ParticipantLong > TripLong then
+      Bounds.NorthEast.Longitude := ParticipantLong;
+    if ParticipantLong < TripLong then
+      Bounds.SouthWest.Longitude := ParticipantLong;
+
+    for i := 0 to Participants.Count - 1 do
+    begin
+      Participant := Participants.Items[i] as TJSONObject;
+      ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
+      ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
+      ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
+      ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
+      ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
+      ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
+      ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
+      if ParticipantCheckIn <> '' then
+      begin
+        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(ParticipantCheckIn, True));
+        CheckInDate := FormatDateTime('ddddd t', LocalDate);
+      end
+      else
+      begin
+        CheckInDate := ''
+      end;
+
+      if (ParticipantLat = 0) and (ParticipantLong = 0) then
+        Continue;
+
+      if ParticipantID <> MyID then
+      begin
+        Marker := mapTrip.Markers.Add;
+        Marker.Latitude := ParticipantLat;
+        Marker.Longitude := ParticipantLong;
+        Marker.Draggable := false;
+        if ParticipantQuit = '' then
+          Marker.Icon := 'http://www.triptether.com/images/participant2.png'
+        else
+          Marker.Icon := 'http://www.triptether.com/images/participantq.png';
+        Marker.Title := ParticipantName;
+        if ParticipantStatus = '' then
+          Marker.MapLabel.Text := ParticipantName
+        else
+          Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+        mapTrip.CreateMapMarker(Marker);
+      end;
+
+      if ParticipantLat > Bounds.NorthEast.Latitude then
+        Bounds.NorthEast.Latitude := ParticipantLat;
+      if ParticipantLat < Bounds.SouthWest.Latitude then
+        Bounds.SouthWest.Latitude := ParticipantLat;
+      if ParticipantLong > Bounds.NorthEast.Longitude then
+        Bounds.NorthEast.Longitude := ParticipantLong;
+      if ParticipantLong < Bounds.SouthWest.Longitude then
+        Bounds.SouthWest.Longitude := ParticipantLong;
+    end;
+
+    if AutoZoomTrip then
+    begin
+      if Participants.Count = 0 then
+        mapTrip.MapPanTo(TripLat, TripLong)
+      else
+      begin
+        Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
+        Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
+        Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
+        Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
+        mapTrip.MapZoomTo(Bounds);
+      end;
+    end;
+
+    ParticipantsCount := Participants.Count;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
