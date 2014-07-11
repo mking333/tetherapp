@@ -86,8 +86,6 @@ type
     lblLeader: TLabel;
     btnMap: TSpeedButton;
     btnDirections: TSpeedButton;
-    Panel1: TPanel;
-    Panel3: TPanel;
     edtEMail: TEdit;
     edtTripID: TEdit;
     edtTripPIN: TEdit;
@@ -102,16 +100,11 @@ type
     cpJoinError: TCalloutPanel;
     Label7: TLabel;
     Label9: TLabel;
-    cpNetworkError: TCalloutPanel;
-    Label16: TLabel;
-    Label17: TLabel;
     QuitRequest: TRESTRequest;
     QuitResponse: TRESTResponse;
     btnNewTrip: TSpeedButton;
     Panel7: TPanel;
-    Panel8: TPanel;
     btnSignUp: TButton;
-    Panel9: TPanel;
     Label10: TLabel;
     Label11: TLabel;
     Line1: TLine;
@@ -124,12 +117,10 @@ type
     Label19: TLabel;
     ToolBar4: TToolBar;
     Label20: TLabel;
-    Panel11: TPanel;
     Destination: TLabel;
     Location: TLabel;
     edtTripName: TEdit;
     edtTripCity: TEdit;
-    Panel12: TPanel;
     btnNewTripDetails: TButton;
     btnBackToJoin: TSpeedButton;
     btnBackToJoin2: TSpeedButton;
@@ -144,7 +135,6 @@ type
     ToolBar6: TToolBar;
     Label27: TLabel;
     btnBackToNewTrip: TSpeedButton;
-    Panel16: TPanel;
     mmoTripNotes: TMemo;
     Label28: TLabel;
     tmeTripDepart: TTimeEdit;
@@ -155,9 +145,7 @@ type
     dteTripLeave: TDateEdit;
     tmeTripLeave: TTimeEdit;
     Label30: TLabel;
-    Panel17: TPanel;
     btnNewTripCreate: TButton;
-    Panel10: TPanel;
     cpSignInError: TCalloutPanel;
     Label24: TLabel;
     Label25: TLabel;
@@ -208,6 +196,12 @@ type
     lbLegs: TListBox;
     SpeedButton2: TSpeedButton;
     SpeedButton4: TSpeedButton;
+    VertScrollBox1: TVertScrollBox;
+    cpNetworkError: TCalloutPanel;
+    Label16: TLabel;
+    Label17: TLabel;
+    VertScrollBox2: TVertScrollBox;
+    VertScrollBox3: TVertScrollBox;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -1210,34 +1204,37 @@ begin
   mapTrip.MapZoomTo(Route.Bounds);
   mapTrip.CreateMapPolyline(Route.Polyline);
 
-  //Add Markers
-  mapTrip.DeleteAllMapMarker;
+  if False then
+  begin
+    //Add Markers
+    mapTrip.DeleteAllMapMarker;
 
-  Marker := mapTrip.Markers.Add;
-  Marker.Draggable := false;
-  Marker.Latitude := Route.Legs[0].StartLocation.Latitude;
-  Marker.Longitude := Route.Legs[0].StartLocation.Longitude;
-  Marker.Icon := 'http://www.triptether.com/images/participant.png';
-  Marker.Title := 'Current Location';
-  Marker.MapLabel.Text := '<b>Current Location:</b> ' + Route.Legs[0].StartAddress;
-  Marker.MapLabel.Color := TAlphaColorRec.Yellow;
-  Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
-  Marker.MapLabel.FontColor := TAlphaColorRec.Black;
-  Marker.MapLabel.Font.Size := 14;
-  mapTrip.CreateMapMarker(Marker);
+    Marker := mapTrip.Markers.Add;
+    Marker.Draggable := false;
+    Marker.Latitude := Route.Legs[0].StartLocation.Latitude;
+    Marker.Longitude := Route.Legs[0].StartLocation.Longitude;
+    Marker.Icon := 'http://www.triptether.com/images/participant.png';
+    Marker.Title := 'Current Location';
+    Marker.MapLabel.Text := '<b>Current Location:</b> ' + Route.Legs[0].StartAddress;
+    Marker.MapLabel.Color := TAlphaColorRec.Yellow;
+    Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+    Marker.MapLabel.FontColor := TAlphaColorRec.Black;
+    Marker.MapLabel.Font.Size := 14;
+    mapTrip.CreateMapMarker(Marker);
 
-  Marker := mapTrip.Markers.Add;
-  Marker.Draggable := false;
-  Marker.Latitude := Route.Legs[0].EndLocation.Latitude;
-  Marker.Longitude := Route.Legs[0].EndLocation.Longitude;
-  Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
-  Marker.Title := 'Destination';
-  Marker.MapLabel.Text := '<b>Destination:</b> ' + Route.Legs[0].EndAddress;
-  Marker.MapLabel.Color := TAlphaColorRec.Yellow;
-  Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
-  Marker.MapLabel.FontColor := TAlphaColorRec.Black;
-  Marker.MapLabel.Font.Size := 14;
-  mapTrip.CreateMapMarker(Marker);
+    Marker := mapTrip.Markers.Add;
+    Marker.Draggable := false;
+    Marker.Latitude := Route.Legs[0].EndLocation.Latitude;
+    Marker.Longitude := Route.Legs[0].EndLocation.Longitude;
+    Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
+    Marker.Title := 'Destination';
+    Marker.MapLabel.Text := '<b>Destination:</b> ' + Route.Legs[0].EndAddress;
+    Marker.MapLabel.Color := TAlphaColorRec.Yellow;
+    Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+    Marker.MapLabel.FontColor := TAlphaColorRec.Black;
+    Marker.MapLabel.Font.Size := 14;
+    mapTrip.CreateMapMarker(Marker);
+  end;
 
   //Add Polygon Circles
   if False then
