@@ -18,9 +18,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   object TabControl1: TTabControl
     Align = Client
     FullSize = True
-    Height = 548.000000000000000000
+    Height = 498.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 4
+    TabIndex = 7
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -255,7 +255,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox1: TVertScrollBox
         Align = HorzCenter
-        Height = 504.000000000000000000
+        Height = 454.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
         Width = 321.000000000000000000
@@ -338,7 +338,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 57.000000000000000000
         end
         object cpJoinError: TCalloutPanel
-          Height = 73.000000000000000000
+          Height = 90.000000000000000000
           Padding.Top = 11.000000000000000000
           Position.X = 16.000000000000000000
           Position.Y = 252.000000000000000000
@@ -351,21 +351,21 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             StyledSettings = [Family, Style, FontColor]
             Height = 30.000000000000000000
             Position.X = 8.000000000000000000
-            Position.Y = 19.000000000000000000
-            Text = 'Oops, you weren'#39't able to join the trip.'
+            Position.Y = 16.000000000000000000
+            Text = 'You weren'#39't able to join the trip.'
             Width = 273.000000000000000000
           end
           object Label9: TLabel
             StyledSettings = [Family, Style, FontColor]
             Height = 25.000000000000000000
             Position.X = 8.000000000000000000
-            Position.Y = 40.000000000000000000
+            Position.Y = 48.000000000000000000
             Text = 'Check your trip info and try again.'
             Width = 265.000000000000000000
           end
         end
         object cpNetworkError: TCalloutPanel
-          Height = 89.000000000000000000
+          Height = 90.000000000000000000
           Padding.Top = 11.000000000000000000
           Position.X = 16.000000000000000000
           Position.Y = 252.000000000000000000
@@ -379,7 +379,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Height = 41.000000000000000000
             Position.X = 8.000000000000000000
             Position.Y = 16.000000000000000000
-            Text = 'Oops, something went wrong connecting to the server.'
+            Text = 'Something went wrong connecting to the server.'
             Width = 273.000000000000000000
           end
           object Label17: TLabel
@@ -426,13 +426,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Left
           Height = 44.000000000000000000
           Text = 'Quit'
-          Width = 64.000000000000000000
+          Width = 66.000000000000000000
           OnClick = btnQuitClick
         end
       end
       object Panel2: TPanel
         Align = Client
-        Height = 504.000000000000000000
+        Height = 454.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
         object mmoNotes: TMemo
@@ -440,7 +440,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Touch.InteractiveGestures = []
           OnGesture = TabTripGesture
           Align = Client
-          Height = 211.000000000000000000
+          Height = 161.000000000000000000
           Margins.Left = 20.000000000000000000
           Margins.Top = 10.000000000000000000
           Margins.Right = 20.000000000000000000
@@ -606,23 +606,23 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackTrip: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
-          StyleLookup = 'backtoolbutton'
-          Text = 'Trip'
-          Width = 73.000000000000000000
+          StyleLookup = 'arrowlefttoolbutton'
+          Text = 'Back'
+          Width = 44.000000000000000000
           OnClick = btnBackTripClick
         end
         object btnMap: TSpeedButton
           Align = Right
           Height = 44.000000000000000000
-          Position.X = 264.000000000000000000
+          Position.X = 265.000000000000000000
           Text = 'Map'
-          Width = 56.000000000000000000
+          Width = 55.000000000000000000
           OnClick = btnMapClick
         end
         object btnAddShare: TSpeedButton
           Align = Right
           Height = 44.000000000000000000
-          Position.X = 220.000000000000000000
+          Position.X = 221.000000000000000000
           StyleLookup = 'addtoolbutton'
           Text = 'btnAddShare'
           Width = 44.000000000000000000
@@ -645,7 +645,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = Fit
             TabOrder = 0
             Width = 246.000000000000000000
-            Height = 29.999996185302730000
+            Height = 30.000000000000000000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
           end
@@ -665,7 +665,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Touch.InteractiveGestures = []
         OnGesture = TabCheckGesture
         Align = Client
-        Height = 443.000000000000000000
+        Height = 393.000000000000000000
         TabOrder = 2
         Width = 320.000000000000000000
         DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
@@ -697,9 +697,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackCheck: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
-          StyleLookup = 'backtoolbutton'
-          Text = 'Check In'
-          Width = 97.000000000000000000
+          StyleLookup = 'arrowlefttoolbutton'
+          Text = 'Back'
+          Width = 44.000000000000000000
           OnClick = btnBackCheckClick
         end
         object btnDirections: TSpeedButton
@@ -714,7 +714,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Panel19: TPanel
         Align = Bottom
         Height = 36.000000000000000000
-        Position.Y = 512.000000000000000000
+        Position.Y = 462.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
         object Panel18: TPanel
@@ -765,7 +765,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel14: TPanel
         Align = Client
-        Height = 468.000000000000000000
+        Height = 418.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 2
         object mapTrip: TTMSFMXWebGMaps
@@ -869,13 +869,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabSignIn'
       Width = 8.000000000000000000
       object Panel7: TPanel
         Align = HorzCenter
-        Height = 504.000000000000000000
+        Height = 454.000000000000000000
         Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
@@ -895,7 +895,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = btnSaveSignInClick
         end
         object cpSignInError: TCalloutPanel
-          Height = 81.000000000000000000
+          Height = 89.000000000000000000
           Padding.Top = 11.000000000000000000
           Position.X = 16.000000000000000000
           Position.Y = 152.000000000000000000
@@ -978,7 +978,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Left
           Height = 44.000000000000000000
           StyleLookup = 'arrowlefttoolbutton'
-          Text = 'btnBackToJoin2'
+          Text = 'Back'
           Width = 44.000000000000000000
           OnClick = btnBackToJoin2Click
         end
@@ -995,7 +995,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Width = 8.000000000000000000
       object webSignUp: TWebBrowser
         Align = Client
-        Height = 504.000000000000000000
+        Height = 454.000000000000000000
         Width = 320.000000000000000000
       end
       object ToolBar3: TToolBar
@@ -1013,7 +1013,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Left
           Height = 44.000000000000000000
           StyleLookup = 'arrowlefttoolbutton'
-          Text = 'btnBackToJoin3'
+          Text = 'Back'
           Width = 44.000000000000000000
           OnClick = btnBackToJoin3Click
         end
@@ -1043,14 +1043,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Left
           Height = 44.000000000000000000
           StyleLookup = 'arrowlefttoolbutton'
-          Text = 'btnBackToJoin'
+          Text = 'Back'
           Width = 44.000000000000000000
           OnClick = btnBackToJoinClick
         end
       end
       object VertScrollBox2: TVertScrollBox
         Align = HorzCenter
-        Height = 504.000000000000000000
+        Height = 454.000000000000000000
         Position.X = 3.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
@@ -1058,7 +1058,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnNewTripDetails: TButton
           Height = 44.000000000000000000
           Position.X = 72.000000000000000000
-          Position.Y = 220.000000000000000000
+          Position.Y = 236.000000000000000000
           TabOrder = 0
           Text = 'Next'
           Width = 177.000000000000000000
@@ -1068,7 +1068,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 89.000000000000000000
           Padding.Top = 11.000000000000000000
           Position.X = 16.000000000000000000
-          Position.Y = 265.000000000000000000
+          Position.Y = 281.000000000000000000
           Visible = False
           Width = 281.000000000000000000
           TabOrder = 1
@@ -1138,7 +1138,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object mmoTripNotes: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-          Height = 50.000000000000000000
+          Height = 62.000000000000000000
           Position.X = 8.000000000000000000
           Position.Y = 155.000000000000000000
           TabOrder = 8
@@ -1151,7 +1151,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabNewTripDetails'
       Width = 8.000000000000000000
@@ -1170,14 +1170,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Left
           Height = 44.000000000000000000
           StyleLookup = 'arrowlefttoolbutton'
-          Text = 'btnBackToJoin'
+          Text = 'Back'
           Width = 44.000000000000000000
           OnClick = btnBackToNewClick
         end
       end
       object VertScrollBox3: TVertScrollBox
         Align = HorzCenter
-        Height = 504.000000000000000000
+        Height = 454.000000000000000000
         Position.X = 1.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
@@ -1240,7 +1240,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41831.000000000000000000
+          Date = 41836.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1249,7 +1249,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41831.000000000000000000
+          Date = 41836.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1258,7 +1258,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41831.000000000000000000
+          Date = 41836.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1315,7 +1315,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel5: TPanel
         Align = HorzCenter
-        Height = 504.000000000000000000
+        Height = 454.000000000000000000
         Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
@@ -1400,7 +1400,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object mmoShareInfo: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 443.000000000000000000
+        Height = 393.000000000000000000
         TabOrder = 0
         Width = 320.000000000000000000
       end
@@ -1418,17 +1418,17 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnJoinNewTrip: TSpeedButton
           Align = Right
           Height = 44.000000000000000000
-          Position.X = 247.000000000000000000
+          Position.X = 254.000000000000000000
           Text = 'Join'
-          Width = 73.000000000000000000
+          Width = 66.000000000000000000
           OnClick = btnJoinNewTripClick
         end
         object SpeedButton3: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
-          StyleLookup = 'backtoolbutton'
+          StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
-          Width = 73.000000000000000000
+          Width = 44.000000000000000000
           OnClick = SpeedButton3Click
         end
       end
@@ -1454,6 +1454,20 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     OnTimer = Timer1Timer
     Left = 440
     Top = 120
+  end
+  object Timer2: TTimer
+    Enabled = False
+    Interval = 15000
+    OnTimer = Timer2Timer
+    Left = 552
+    Top = 128
+  end
+  object BannerAd1: TBannerAd
+    Align = Bottom
+    Width = 320.000000000000000000
+    Height = 50.000000000000000000
+    Position.Y = 498.000000000000000000
+    TestMode = True
   end
   object LocationSensor1: TLocationSensor
     Accuracy = 5.000000000000000000

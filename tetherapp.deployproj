@@ -29,7 +29,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether48x48.png" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="C:\Projects\tetherapp\images\triptether48x48.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp\res\drawable-mdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
             <Operation>1</Operation>
@@ -77,7 +77,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether72x72.png" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="C:\Projects\tetherapp\images\triptether72x72.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp\res\drawable-hdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
             <Operation>1</Operation>
@@ -93,15 +93,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether72x72.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp\res\drawable-hdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether96x96.png" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="C:\Projects\tetherapp\images\triptether96x96.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp\res\drawable-xhdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
             <Operation>1</Operation>
@@ -133,14 +125,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether48x48.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp\res\drawable-mdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="c:\program files (x86)\embarcadero\studio\14.0\lib\android\release\mips\libnative-activity.so" Condition="'$(Config)'=='Release'">
             <RemoteDir>tetherapp\library\lib\mips\</RemoteDir>
             <RemoteName>libtetherapp.so</RemoteName>
@@ -165,14 +149,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
             <Required>True</Required>
-        </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether96x96.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp\res\drawable-xhdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='iOSDevice'">

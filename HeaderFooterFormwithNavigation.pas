@@ -19,7 +19,8 @@ uses
   FMX.TMSWebGMapsGeocoding, FMX.TMSWebGMapsWebBrowser, FMX.TMSWebGMaps, FMX.TMSWebGMapsMarkers,
   FMX.TMSWebGMapsCommonFunctions,
   FMX.TMSWebGMapsPolygons, FMX.TMSWebGMapsPolylines,
-  FMX.TMSWebGMapsDirections, FMX.TMSWebGMapsReverseGeocoding, FMX.TMSWebGMapsWebUtil;
+  FMX.TMSWebGMapsDirections, FMX.TMSWebGMapsReverseGeocoding, FMX.TMSWebGMapsWebUtil,
+  FMX.Advertising;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -202,6 +203,8 @@ type
     Label17: TLabel;
     VertScrollBox2: TVertScrollBox;
     VertScrollBox3: TVertScrollBox;
+    Timer2: TTimer;
+    BannerAd1: TBannerAd;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -261,6 +264,7 @@ type
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure TabCheckGesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
+    procedure CleanMap;
     procedure DisplayRoute;
     procedure DisplayRouteDetails;
     procedure lbRoutesItemClick(const Sender: TCustomListBox;
@@ -269,6 +273,7 @@ type
     procedure lbLegsDblClick(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -301,11 +306,11 @@ type
   end;
 
 const
-{
-  APIBASEURL = 'http://192.168.2.201';
-}
-  APIBASEURL = 'http://www.triptether.com';
 
+  APIBASEURL = 'http://192.168.2.201';
+{
+  APIBASEURL = 'http://www.triptether.com';
+}
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -320,6 +325,10 @@ var
 begin
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
+
+  CleanMap;
+  AutoZoomTrip := True;
+  ParticipantsCount := 0;
 
   if (edtTripID.Text = '') or (edtTripPIN.Text = '') or (edtEMail.Text = '') then
   begin
@@ -408,7 +417,8 @@ begin
     end;
   end;
   }
-  MapUpdate(self);
+
+  //MapUpdate(self);
 end;
 
 procedure THeaderFooterwithNavigation.FormCreate(Sender: TObject);
@@ -423,6 +433,7 @@ begin
 {$ENDIF}
 
   RestClient1.BaseURL := APIBASEURL;
+  mapTrip.APIKey := 'AIzaSyC_ncO9Hio0zXiLxojo9dsiYLymlmBmfq4';
 
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   edtNameSetting.Text := ini.ReadString('login', 'name', '');
@@ -530,8 +541,6 @@ begin
     else
     begin
       cpJoinError.Visible := False;
-      AutoZoomTrip := True;
-      ParticipantsCount := 0;
 
       Name := Trip.Get('name').JsonValue;
       Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
@@ -614,11 +623,12 @@ begin
       //  mmoParticipants.Lines.Add(ParticipantName.ToString.Replace('"', ''));
       //end;
 
-      CheckIn(self, 'Joined Trip');
-      //Mapping(self);
-
       StartUpdating(self);
       StartTime := Now;
+
+      edtStatus.Text := 'Joined Trip';
+      //CheckIn(self, 'Joined Trip');
+      //Mapping(self);
     end;
   end;
 end;
@@ -682,7 +692,8 @@ begin
 
     Participants := Trip.Get('participants').JsonValue as TJSONArray;
     lbParticipants.Items.Clear;
-    mapTrip.Markers.Clear;
+
+    mapTrip.DeleteAllMapMarker;
 
     Marker := mapTrip.Markers.Add;
     Marker.Latitude := TripLat;
@@ -700,26 +711,30 @@ begin
     Bounds.SouthWest.Latitude := TripLat;
     Bounds.SouthWest.Longitude := TripLong;
 
-    Marker := mapTrip.Markers.Add;
-    Marker.Latitude := ParticipantLat;
-    Marker.Longitude := ParticipantLong;
-    Marker.Draggable := false;
-    Marker.Icon := 'http://www.triptether.com/images/participant.png';
-    Marker.Title := 'Me';
-    if ParticipantStatus = '' then
-      Marker.MapLabel.Text := ParticipantName
-    else
-      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-    mapTrip.CreateMapMarker(Marker);
+    if (abs(ParticipantLat) > 0.1) and (abs(ParticipantLong) > 0.1) then
+    begin
+      Marker := mapTrip.Markers.Add;
+      Marker.Latitude := ParticipantLat;
+      Marker.Longitude := ParticipantLong;
+      Marker.Draggable := false;
+      Marker.Icon := 'http://www.triptether.com/images/participant.png';
+      Marker.Title := 'Me';
+      if ParticipantStatus = '' then
+        Marker.MapLabel.Text := ParticipantName
+      else
+        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+      mapTrip.CreateMapMarker(Marker);
 
-    if ParticipantLat > TripLat then
-      Bounds.NorthEast.Latitude := ParticipantLat;
-    if ParticipantLat < TripLat then
-      Bounds.SouthWest.Latitude := ParticipantLat;
-    if ParticipantLong > TripLong then
-      Bounds.NorthEast.Longitude := ParticipantLong;
-    if ParticipantLong < TripLong then
-      Bounds.SouthWest.Longitude := ParticipantLong;
+
+      if ParticipantLat > TripLat then
+        Bounds.NorthEast.Latitude := ParticipantLat;
+      if ParticipantLat < TripLat then
+        Bounds.SouthWest.Latitude := ParticipantLat;
+      if ParticipantLong > TripLong then
+        Bounds.NorthEast.Longitude := ParticipantLong;
+      if ParticipantLong < TripLong then
+        Bounds.SouthWest.Longitude := ParticipantLong;
+    end;
 
     for i := 0 to Participants.Count - 1 do
     begin
@@ -754,35 +769,35 @@ begin
 
       lbParticipants.AddObject(PartListItem);
 
-      if (ParticipantLat = 0) and (ParticipantLong = 0) then
-        Continue;
-
-      if ParticipantID <> MyID then
+      if (abs(ParticipantLat) > 0.1) and (abs(ParticipantLong) > 0.1) then
       begin
-        Marker := mapTrip.Markers.Add;
-        Marker.Latitude := ParticipantLat;
-        Marker.Longitude := ParticipantLong;
-        Marker.Draggable := false;
-        if ParticipantQuit = '' then
-          Marker.Icon := 'http://www.triptether.com/images/participant2.png'
-        else
-          Marker.Icon := 'http://www.triptether.com/images/participantq.png';
-        Marker.Title := ParticipantName;
-        if ParticipantStatus = '' then
-          Marker.MapLabel.Text := ParticipantName
-        else
-          Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-        mapTrip.CreateMapMarker(Marker);
-      end;
+        if ParticipantID <> MyID then
+        begin
+          Marker := mapTrip.Markers.Add;
+          Marker.Latitude := ParticipantLat;
+          Marker.Longitude := ParticipantLong;
+          Marker.Draggable := false;
+          if ParticipantQuit = '' then
+            Marker.Icon := 'http://www.triptether.com/images/participant2.png'
+          else
+            Marker.Icon := 'http://www.triptether.com/images/participantq.png';
+          Marker.Title := ParticipantName;
+          if ParticipantStatus = '' then
+            Marker.MapLabel.Text := ParticipantName
+          else
+            Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+          mapTrip.CreateMapMarker(Marker);
+        end;
 
-      if ParticipantLat > Bounds.NorthEast.Latitude then
-        Bounds.NorthEast.Latitude := ParticipantLat;
-      if ParticipantLat < Bounds.SouthWest.Latitude then
-        Bounds.SouthWest.Latitude := ParticipantLat;
-      if ParticipantLong > Bounds.NorthEast.Longitude then
-        Bounds.NorthEast.Longitude := ParticipantLong;
-      if ParticipantLong < Bounds.SouthWest.Longitude then
-        Bounds.SouthWest.Longitude := ParticipantLong;
+        if ParticipantLat > Bounds.NorthEast.Latitude then
+          Bounds.NorthEast.Latitude := ParticipantLat;
+        if ParticipantLat < Bounds.SouthWest.Latitude then
+          Bounds.SouthWest.Latitude := ParticipantLat;
+        if ParticipantLong > Bounds.NorthEast.Longitude then
+          Bounds.NorthEast.Longitude := ParticipantLong;
+        if ParticipantLong < Bounds.SouthWest.Longitude then
+          Bounds.SouthWest.Longitude := ParticipantLong;
+      end;
     end;
 
     if AutoZoomTrip then
@@ -1186,6 +1201,13 @@ begin
   end;
 end;
 
+procedure THeaderFooterwithNavigation.CleanMap;
+begin
+  mapTrip.DeleteAllMapPolyline;
+  mapTrip.DeleteAllMapPolygon;
+  mapTrip.DeleteAllMapMarker;
+end;
+
 procedure THeaderFooterwithNavigation.DisplayRoute;
 var
   Route: TRoute;
@@ -1330,7 +1352,7 @@ end;
 
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
-  MapName(self, 'Auto', 10);
+  MapName(self, 'Auto', 12);
 end;
 
 procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
@@ -1497,6 +1519,12 @@ begin
   minute_diff := MinutesBetween(Now, StartTime);
   if (spCheckIn.Value = 1) or (minute_diff mod Trunc(spCheckIn.Value) = 0) then
     CheckIn(self, edtStatus.Text);
+end;
+
+procedure THeaderFooterwithNavigation.Timer2Timer(Sender: TObject);
+begin
+  if TabControl1.ActiveTab = TabMap then
+    MapUpdate(self);
 end;
 
 procedure THeaderFooterwithNavigation.btnJoinClick(Sender: TObject);
@@ -1713,20 +1741,23 @@ begin
       ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
       Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
 
-      if (SelectName = 'Me') or (SelectName = ParticipantName) then
+      if (abs(ParticipantLat) > 0.1) and (abs(ParticipantLong) > 0.1) then
       begin
-        MapLat := ParticipantLat;
-        MapLong := ParticipantLong;
-      end;
+        if (SelectName = 'Me') or (SelectName = ParticipantName) then
+        begin
+          MapLat := ParticipantLat;
+          MapLong := ParticipantLong;
+        end;
 
-      if ParticipantLat > TripLat then
-        Bounds.NorthEast.Latitude := ParticipantLat;
-      if ParticipantLat < TripLat then
-        Bounds.SouthWest.Latitude := ParticipantLat;
-      if ParticipantLong > TripLong then
-        Bounds.NorthEast.Longitude := ParticipantLong;
-      if ParticipantLong < TripLong then
-        Bounds.SouthWest.Longitude := ParticipantLong;
+        if ParticipantLat > TripLat then
+          Bounds.NorthEast.Latitude := ParticipantLat;
+        if ParticipantLat < TripLat then
+          Bounds.SouthWest.Latitude := ParticipantLat;
+        if ParticipantLong > TripLong then
+          Bounds.NorthEast.Longitude := ParticipantLong;
+        if ParticipantLong < TripLong then
+          Bounds.SouthWest.Longitude := ParticipantLong;
+      end;
     end;
 
     if (SelectName <> 'Flag') and (SelectName <> 'Me') then
@@ -1744,20 +1775,23 @@ begin
         ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
         ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
 
-        if (SelectName = ParticipantName) and (ParticipantLat <> 0) and (ParticipantLong <> 0) then
+        if (abs(ParticipantLat) > 0.1) and (abs(ParticipantLong) > 0.1) then
         begin
-          MapLat := ParticipantLat;
-          MapLong := ParticipantLong;
-        end;
+          if SelectName = ParticipantName then
+          begin
+            MapLat := ParticipantLat;
+            MapLong := ParticipantLong;
+          end;
 
-        if ParticipantLat > Bounds.NorthEast.Latitude then
-          Bounds.NorthEast.Latitude := ParticipantLat;
-        if ParticipantLat < Bounds.SouthWest.Latitude then
-          Bounds.SouthWest.Latitude := ParticipantLat;
-        if ParticipantLong > Bounds.NorthEast.Longitude then
-          Bounds.NorthEast.Longitude := ParticipantLong;
-        if ParticipantLong < Bounds.SouthWest.Longitude then
-          Bounds.SouthWest.Longitude := ParticipantLong;
+          if ParticipantLat > Bounds.NorthEast.Latitude then
+            Bounds.NorthEast.Latitude := ParticipantLat;
+          if ParticipantLat < Bounds.SouthWest.Latitude then
+            Bounds.SouthWest.Latitude := ParticipantLat;
+          if ParticipantLong > Bounds.NorthEast.Longitude then
+            Bounds.NorthEast.Longitude := ParticipantLong;
+          if ParticipantLong < Bounds.SouthWest.Longitude then
+            Bounds.SouthWest.Longitude := ParticipantLong;
+        end;
       end;
     end;
 
@@ -1943,12 +1977,14 @@ end;
 procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
 begin
   Timer1.Enabled := True;
+  Timer2.Enabled := True;
   LocationSensor1.Active := True;
   //LocationSensor1.Sensor.Start;
 end;
 procedure THeaderFooterwithNavigation.StopUpdating(Sender: TObject);
 begin
   Timer1.Enabled := False;
+  Timer2.Enabled := False;
   LocationSensor1.Active := False;
   //LocationSensor1.Sensor.Stop;
 end;
