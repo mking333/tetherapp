@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 498.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 7
+    TabIndex = 0
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -29,7 +29,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabJoin'
       Width = 8.000000000000000000
@@ -652,9 +652,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnSend: TSpeedButton
           Align = Right
-          Height = 44.000000000000000000
+          Height = 61.000000000000000000
           Position.X = 256.000000000000000000
-          Position.Y = 8.000000000000000000
           Text = 'Send'
           Width = 64.000000000000000000
           OnClick = btnSendClick
@@ -725,7 +724,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spPictures: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 29.000000000000000000
+            Height = 28.000000000000000000
             Position.X = 225.000000000000000000
             StyleLookup = 'toolbuttonright'
             Text = 'Pictures'
@@ -735,7 +734,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spBikes: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 29.000000000000000000
+            Height = 28.000000000000000000
             Position.X = 150.000000000000000000
             StyleLookup = 'toolbuttonmiddle'
             Text = 'Bikes'
@@ -745,7 +744,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spWeather: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 29.000000000000000000
+            Height = 28.000000000000000000
             Position.X = 75.000000000000000000
             StyleLookup = 'toolbuttonmiddle'
             Text = 'Weather'
@@ -755,7 +754,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spTraffic: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 29.000000000000000000
+            Height = 28.000000000000000000
             StyleLookup = 'toolbuttonleft'
             Text = 'Traffic'
             Width = 75.000000000000000000
@@ -824,9 +823,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
             object SpeedButton2: TSpeedButton
               Align = Right
-              Height = 44.000000000000000000
+              Height = 133.000000000000000000
               Position.X = 276.000000000000000000
-              Position.Y = 44.000000000000000000
               StyleLookup = 'nexttoolbutton'
               Text = 'SpeedButton2'
               Width = 44.000000000000000000
@@ -1151,7 +1149,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabNewTripDetails'
       Width = 8.000000000000000000
@@ -1240,7 +1238,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41836.000000000000000000
+          Date = 41837.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1249,7 +1247,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41836.000000000000000000
+          Date = 41837.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1258,7 +1256,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41836.000000000000000000
+          Date = 41837.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1624,6 +1622,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       item
         name = 'pw'
+      end
+      item
+        name = 'name'
       end>
     Resource = 'apis/sign_in.json'
     Response = SignInResponse

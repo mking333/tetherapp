@@ -433,7 +433,7 @@ begin
 {$ENDIF}
 
   RestClient1.BaseURL := APIBASEURL;
-  mapTrip.APIKey := 'AIzaSyC_ncO9Hio0zXiLxojo9dsiYLymlmBmfq4';
+  mapTrip.APIKey := 'AIzaSyAzsMIUBfOpqymD1ND4W6XGipTuue9JCDA';
 
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   edtNameSetting.Text := ini.ReadString('login', 'name', '');
@@ -447,6 +447,7 @@ begin
 
   edtSignIn.Text := ini.ReadString('signin', 'email', '');
   edtPassword.Text := ini.ReadString('signin', 'pw', '');
+  SignInName := ini.ReadString('signin', 'name', '');
 
   ini.Free;
 end;
@@ -496,7 +497,7 @@ begin
       cpSignInError.Visible := False;
 
       SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
-      SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
+      //SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
       SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
       SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
 
@@ -684,6 +685,11 @@ begin
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
     ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+    if (ParticipantLat = 0) or (ParticipantLong = 0) then
+    begin
+      ParticipantLat := TripLat;
+      ParticipantLong := TripLong + 0.01;
+    end;
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
     Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
@@ -711,30 +717,27 @@ begin
     Bounds.SouthWest.Latitude := TripLat;
     Bounds.SouthWest.Longitude := TripLong;
 
-    if (abs(ParticipantLat) > 0.1) and (abs(ParticipantLong) > 0.1) then
-    begin
-      Marker := mapTrip.Markers.Add;
-      Marker.Latitude := ParticipantLat;
-      Marker.Longitude := ParticipantLong;
-      Marker.Draggable := false;
-      Marker.Icon := 'http://www.triptether.com/images/participant.png';
-      Marker.Title := 'Me';
-      if ParticipantStatus = '' then
-        Marker.MapLabel.Text := ParticipantName
-      else
-        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-      mapTrip.CreateMapMarker(Marker);
+    Marker := mapTrip.Markers.Add;
+    Marker.Latitude := ParticipantLat;
+    Marker.Longitude := ParticipantLong;
+    Marker.Draggable := false;
+    Marker.Icon := 'http://www.triptether.com/images/participant.png';
+    Marker.Title := 'Me';
+    if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+      Marker.MapLabel.Text := ParticipantName
+    else
+      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+    mapTrip.CreateMapMarker(Marker);
 
 
-      if ParticipantLat > TripLat then
-        Bounds.NorthEast.Latitude := ParticipantLat;
-      if ParticipantLat < TripLat then
-        Bounds.SouthWest.Latitude := ParticipantLat;
-      if ParticipantLong > TripLong then
-        Bounds.NorthEast.Longitude := ParticipantLong;
-      if ParticipantLong < TripLong then
-        Bounds.SouthWest.Longitude := ParticipantLong;
-    end;
+    if ParticipantLat > TripLat then
+      Bounds.NorthEast.Latitude := ParticipantLat;
+    if ParticipantLat < TripLat then
+      Bounds.SouthWest.Latitude := ParticipantLat;
+    if ParticipantLong > TripLong then
+      Bounds.NorthEast.Longitude := ParticipantLong;
+    if ParticipantLong < TripLong then
+      Bounds.SouthWest.Longitude := ParticipantLong;
 
     for i := 0 to Participants.Count - 1 do
     begin
@@ -743,6 +746,11 @@ begin
       ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
       ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
       ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      if (ParticipantLat = 0) or (ParticipantLong = 0) then
+      begin
+        ParticipantLat := TripLat;
+        ParticipantLong := TripLong + 0.01;
+      end;
       ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
       ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
       ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
@@ -765,7 +773,10 @@ begin
         PartListItem.ItemData.Detail := 'Has not yet joined the trip.';
       if ParticipantQuit <> '' then
         PartListItem.ItemData.Detail := 'Has quit the trip.';
-      PartListItem.ItemData.Text := ParticipantName + ': ' + ParticipantStatus;
+      if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+        PartListItem.ItemData.Text := ParticipantName
+      else
+        PartListItem.ItemData.Text := ParticipantName + ': ' + ParticipantStatus;
 
       lbParticipants.AddObject(PartListItem);
 
@@ -842,6 +853,7 @@ var
 begin
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   ini.WriteString('login', 'name', edtNameSetting.Text);
+  ini.WriteString('signin', 'name', edtNameSetting.Text);
   ini.Free;
 end;
 
@@ -1469,13 +1481,17 @@ begin
   end
   else
   begin
+    SignInName := edtNameSetting.Text;
+
     ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
     ini.WriteString('signin', 'email', edtSignIn.Text);
     ini.WriteString('signin', 'pw', edtPassword.Text);
+    ini.WriteString('signin', 'name', SignInName);
     ini.Free;
 
     SignInRequest.Params.ParameterByName('email').Value := edtSignIn.Text;
     SignInRequest.Params.ParameterByName('pw').Value := edtPassword.Text;
+    SignInRequest.Params.ParameterByName('name').Value := SignInName;
     try
       SignInRequest.Execute;
     except
@@ -1737,6 +1753,11 @@ begin
       ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
       ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
       ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      if (ParticipantLat = 0) or (ParticipantLong = 0) then
+      begin
+        ParticipantLat := TripLat;
+        ParticipantLong := TripLong + 0.01;
+      end;
       ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
       ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
       Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
@@ -1770,28 +1791,30 @@ begin
         ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
         ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
         ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+        if (ParticipantLat = 0) or (ParticipantLong = 0) then
+        begin
+          ParticipantLat := TripLat;
+          ParticipantLong := TripLong + 0.01;
+        end;
         ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
         ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
         ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
         ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
 
-        if (abs(ParticipantLat) > 0.1) and (abs(ParticipantLong) > 0.1) then
+        if SelectName = ParticipantName then
         begin
-          if SelectName = ParticipantName then
-          begin
-            MapLat := ParticipantLat;
-            MapLong := ParticipantLong;
-          end;
-
-          if ParticipantLat > Bounds.NorthEast.Latitude then
-            Bounds.NorthEast.Latitude := ParticipantLat;
-          if ParticipantLat < Bounds.SouthWest.Latitude then
-            Bounds.SouthWest.Latitude := ParticipantLat;
-          if ParticipantLong > Bounds.NorthEast.Longitude then
-            Bounds.NorthEast.Longitude := ParticipantLong;
-          if ParticipantLong < Bounds.SouthWest.Longitude then
-            Bounds.SouthWest.Longitude := ParticipantLong;
+          MapLat := ParticipantLat;
+          MapLong := ParticipantLong;
         end;
+
+        if ParticipantLat > Bounds.NorthEast.Latitude then
+          Bounds.NorthEast.Latitude := ParticipantLat;
+        if ParticipantLat < Bounds.SouthWest.Latitude then
+          Bounds.SouthWest.Latitude := ParticipantLat;
+        if ParticipantLong > Bounds.NorthEast.Longitude then
+          Bounds.NorthEast.Longitude := ParticipantLong;
+        if ParticipantLong < Bounds.SouthWest.Longitude then
+          Bounds.SouthWest.Longitude := ParticipantLong;
       end;
     end;
 
@@ -1859,6 +1882,11 @@ begin
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
     ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+    if (ParticipantLat = 0) or (ParticipantLong = 0) then
+    begin
+      ParticipantLat := TripLat;
+      ParticipantLong := TripLong + 0.01;
+    end;
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
     Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
@@ -1889,7 +1917,7 @@ begin
     Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/participant.png';
     Marker.Title := 'Me';
-    if ParticipantStatus = '' then
+    if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
       Marker.MapLabel.Text := ParticipantName
     else
       Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
@@ -1911,6 +1939,11 @@ begin
       ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
       ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
       ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      if (ParticipantLat = 0) or (ParticipantLong = 0) then
+      begin
+        ParticipantLat := TripLat;
+        ParticipantLong := TripLong + 0.01;
+      end;
       ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
       ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
       ParticipantQuit := Participant.Get('quit').JsonValue.ToString.Replace('"', '');
@@ -1939,7 +1972,7 @@ begin
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png';
         Marker.Title := ParticipantName;
-        if ParticipantStatus = '' then
+        if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
           Marker.MapLabel.Text := ParticipantName
         else
           Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
