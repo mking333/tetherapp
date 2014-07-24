@@ -353,18 +353,18 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImage_320x480.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>Default.png</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Projects\tetherapp\images\triptether40x40.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>triptether40x40.png</RemoteName>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImage_320x480.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>tetherapp.app\</RemoteDir>
+            <RemoteName>Default.png</RemoteName>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -625,14 +625,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether1536x2048.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>Default-Portrait@2x~ipad.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Projects\tetherapp\images\triptether80x80.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>triptether80x80.png</RemoteName>
@@ -644,6 +636,14 @@
         <DeployFile Include="iOSSimulator\Release\tetherapp.entitlements" Condition="'$(Config)'=='Release'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>Entitlements.plist</RemoteName>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="C:\Projects\tetherapp\images\triptether1536x2048.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>tetherapp.app\</RemoteDir>
+            <RemoteName>Default-Portrait@2x~ipad.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>

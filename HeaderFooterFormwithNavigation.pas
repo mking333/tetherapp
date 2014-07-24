@@ -20,7 +20,7 @@ uses
   FMX.TMSWebGMapsCommonFunctions,
   FMX.TMSWebGMapsPolygons, FMX.TMSWebGMapsPolylines,
   FMX.TMSWebGMapsDirections, FMX.TMSWebGMapsReverseGeocoding, FMX.TMSWebGMapsWebUtil,
-  FMX.Advertising;
+  FMX.Advertising, FMX.Ani;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -95,7 +95,6 @@ type
     Label6: TLabel;
     btnJoinTrip: TButton;
     btnSettings: TSpeedButton;
-    Image1: TImage;
     Label3: TLabel;
     btnSettingsDone: TButton;
     cpJoinError: TCalloutPanel;
@@ -108,7 +107,6 @@ type
     btnSignUp: TButton;
     Label10: TLabel;
     Label11: TLabel;
-    Line1: TLine;
     edtSignIn: TEdit;
     edtPassword: TEdit;
     TabSignUp: TTabItem;
@@ -205,6 +203,11 @@ type
     VertScrollBox3: TVertScrollBox;
     Timer2: TTimer;
     BannerAd1: TBannerAd;
+    ColorAnimation1: TColorAnimation;
+    btnSignUp1: TButton;
+    Label14: TLabel;
+    Layout1: TLayout;
+    Layout2: TLayout;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -306,11 +309,11 @@ type
   end;
 
 const
-
-  APIBASEURL = 'http://192.168.2.201';
 {
-  APIBASEURL = 'http://www.triptether.com';
+  APIBASEURL = 'http://192.168.2.201';
 }
+  APIBASEURL = 'http://www.triptether.com';
+
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -628,7 +631,7 @@ begin
       StartTime := Now;
 
       edtStatus.Text := 'Joined Trip';
-      //CheckIn(self, 'Joined Trip');
+      CheckIn(self, 'Joined Trip');
       //Mapping(self);
     end;
   end;
@@ -1343,6 +1346,7 @@ end;
 procedure THeaderFooterwithNavigation.btnQuitClick(Sender: TObject);
 begin
   StopUpdating(self);
+  edtStatus.Text := 'Quit Trip';
   CheckIn(self, 'Quit Trip');
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
@@ -1506,6 +1510,7 @@ end;
 procedure THeaderFooterwithNavigation.btnSendClick(Sender: TObject);
 begin
   CheckIn(self, edtStatus.Text);
+  edtStatus.Text := '';
 end;
 
 procedure THeaderFooterwithNavigation.TabCheckGesture(Sender: TObject;

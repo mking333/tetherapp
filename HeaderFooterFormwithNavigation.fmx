@@ -13,14 +13,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   DesignerWidth = 320
   DesignerHeight = 568
   DesignerDeviceName = 'iPhone5'
-  DesignerOrientation = 0
+  DesignerOrientation = 2
   DesignerOSVersion = '7'
   object TabControl1: TTabControl
     Align = Client
     FullSize = True
     Height = 498.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 6
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -29,7 +29,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabJoin'
       Width = 8.000000000000000000
@@ -42,7 +42,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
-          Text = 'TripTether'
+          Text = 'Join a Trip'
           Width = 320.000000000000000000
         end
         object btnSettings: TSpeedButton
@@ -53,195 +53,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Text = 'btnSettings'
           Width = 44.000000000000000000
           OnClick = btnSettingsClick
-        end
-        object Image1: TImage
-          MultiResBitmap.Height = 153
-          MultiResBitmap.Width = 152
-          MultiResBitmap.TransparentColor = 0
-          MultiResBitmap = <
-            item
-              Width = 48
-              Height = 48
-              PNG = {
-                89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
-                87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                15684944415468439D5A6B705C67797ECED9FB7D5797952CCB92EDD8F10563E5
-                4680C0D010086092D07287A1E940A6B44C19D2FE60A69481765A7E30F447A73F
-                5A680A09435AA00C040825A5699A4C1A6C9290E0C4B66C644B962CDBBA58D26A
-                EF7BF676F6F479BEDDB5050DD369DF707CCE7EE7BBBCD7E77DDF23AC27173CCF
-                0360FEF90DF7FED5FFDDE90096756DBCED02CD16E072BCA3DF6D0F5323459C58
-                8D61227D0C3B224164AACF2034F651CEE164D8B06C0B96F632BFBAFB69DF56A7
-                05DBF6C16F6BF4DAB9C981119437AF9879228DEBD97AF20205D02EBD0DAE32D6
-                1BEB33291273BA74B0C8252F2D5E4EC3C39D932BA837EB08843AB0DA6184FD4D
-                B8F0E3E4651BFB86DB08BBE710481CD696DD3D79374CF3C1C77BAD5E357BEA7D
-                2018E11885D48F5FA33EE37D326272AED9B027B4218D993B27F7174828D94B97
-                B45EA7D6DBAD365E3F3683AA5B44321245DC174724E447D96D518B41D4DC1558
-                BE3610CC18E644DA8F0630BFF56C98E2B318378CF4C6B792E688FAF3FB649B01
-                F3D01D10F5176F9DA847B9884BF7705A16AAD4FAEB47CEE3D6D15923B81F3E6A
-                D385ED0FF0DE41229482475335AD438885E2088676F0F7AF71D5239DA3ABD574
-                78F8964349F20ABDDBCAF8D667A3E7ABCCF726F6A96F114D96BB34A8F17DC98B
-                9888CEE34D6373643246866D24034904FD415ACD46ABDD4240E6E71A1FF53A95
-                AD50BAB8D9C7A2802231B595744E8F1F926504E97044E7EA5D9FE13E6FFD67F3
-                FEEA20AFBEDBF4C930CEC39AF4804ADDC35BC65778FA65EC4CFA78E7415E8B73
-                A8E54E137E9F9F0BDAA8B6AA1CD76E5D3A5F88E0F4D251CC6D1CE5AFEE0186E1
-                6B530C85233184A89070B87BD15C665CD33457816AEE66943A0984246B77470D
-                6E752191824B8C3B8D0E425E1DEF9C100258D89EDCC3F9D24F07B66723134CA3
-                4DC6DDFA15C3788B8B6AED2A8A8D228AAD322DE761343A85B1D48DE0A3D9D75C
-                3C43F6F8159D9107B1D1BFC4B065D18EFCD1E122A3F556C1DCDBAD8661DC9686
-                35B94FDA9C71891ADFDF3298835358C1EBB61519B4F49FDE7B9F1D422440A420
-                DC359A4DC43A3544C3DB11B6028884434620ED990826F086892A9EB830CCF931
-                220BDD424CF42ECD91105DC722916331DD7B3496EA2AD683CF4FAB93EC40DADC
-                4512C4AE37E9DB64589734DEE0EF72BD833B4657B15EB5F0C6EB6C32EFC24717
-                49240778F7D1C72D048830B98D750C8F8CC31F1AE96D4957A07099408A08C4B0
-                261364093BD3F5AE4003DB8CEAC58A6244BCEA5997E6313318CB88FA6ED63179
-                436F345BBFBBE32223A498CDACFE27D2F50544D67F8AC3D31FC491E5FB61D397
-                63FECB484CFF355DA5815862009BB9CB8C09598207D91D0C0E0EA298BFD2DDCD
-                9065822A9CC820E40FD312528C0FA3B1062DE7A1BCB148ABF56776A82C0755E2
-                BFC36BA9348D7F3DBB8E4B959751EF108D34C768BF4F5D1114A71A37CC5399D6
-                4FCE6C7AFB33573840AFE6A02625FD3104A9716BF3240A89034831602CAACC9E
-                F906DCDDEF812F98C472A98EB1649818EFA79FD374241368DCDDA67F303C506E
-                9651A9D699D4D274210791DA4F6165EE625CD5CC7996B8E07C9DA94BFC4619C8
-                B1D4209C5A8998D0321A17C35B859162E45A5A638FB7E791200C867D119CDD1C
-                33293C9B9D202336BCF597900E101E39D1A3E60B037B60716E3435846C2288C6
-                F37FC6A0CDD187B915FFD7A6569503542E34DA0D04E966DB3243D828AD21DFAA
-                19E68D433030DB2EDD825C99BD2988712B5EA25A296798977C1AD44DAE2510E8
-                3A5497CC9A8B2BE7BD4A7505D9D4049AD4A44946FC6F243B894A6E95BFDBA897
-                7F096BE93942A483E4D4FDF093816F9E1EC6070FACC0DFCEC137F74378FE082C
-                0AE91DB80FE5769DCCFBB071EA4738DAF930EEC97D14E191370187EEC577A647
-                110C308B373B78EFF50B861131D8A7082D206DF778BF7AEF53CF6857C95A5B79
-                D1AB391652A96D94B08BE94A40415FD0DC25B545BC6FF27EA9781CBB065E6BA0
-                2F12CBE0C58BC7B17778120197096CF65B74AF7761B5720E53BB8EE0A99FCFE2
-                5C638F41B0A14899B8EDE0E82F7228256F33E65726FFC0810BDC49072838DB08
-                38C7994F0254C630DCD2F3088EDE8B4E73DDB86834B59D7766FB1E1AF605B1E6
-                2F4D7BF41B831C9546CE4060D5CD6347FCA0919CBC31B12451AF96E420A8AD4D
-                23923D8462BDC40DE28877D6D0F42719F0519AD745323502872EC0928EAC7944
-                B225348B2B98DCFE1AB8C7BF84A57D1FC268648216EAAAD1731D04A3F479C605
-                53A1614C71D4471DDD9283A3C86FAEFE6ACEE891AD208CF8C2F45162BD1D6032
-                0AD2959C6E354AEAB49AD82C6FD0320C46AB8DF8E814C2C128CEE47CC8D54FA1
-                E204100B327332667C27FF0E95D226CF14C67898D99847AD1AC5DE3D7718A67C
-                537F8289D8244A8D4B58AAFED2B0E8D911B4C87C579C9E5629857EEBD29CC226
-                0B42DE25407F5C975E5AF56AD96B12CEA2C4F8122171317712BB066F300B35A9
-                4024B19A796A2A88546288DA4AA0963F43F449D02D98547AB8566FE5E1E7229B
-                D660D641A956418068B4563A8B91F43E26B8181A8D069C6A11E9CC30939AC5A0
-                A7F115D08C3B533B89FB5720F1227D9A7C21A6394D779155C8AD780E835399D1
-                26020599883CC53A5162BE7C0C716B1BD69CFDC8749630941D4587E860314945
-                1988C2840AD1264EF711094D948094F63343634673EBF932E2615A878226D3C3
-                CCF24D74E6BE8FF6B63B50739A6C7E5ACC3169542A450C0F0E77F7E95D12A72F
-                92809AA9C7ECAFE7726D15E9E828EC1A3754420813454256902BE5BD36E62BC7
-                8CA8156F1587479A181D49D32522A812225B9D920944CD8B719D4EF9E87D1FC7
-                030F7C9596AA52401B85B53973B8BA2BD71CE9E1A5E553A8560AC0CE7B809987
-                91486798DD594BD52F2316963D64F17573D73F7D2DEB2EF7E933AF0C3F9018EF
-                0A39BDF8BC371E1F27DA2870583230941AFCAFDC58C366E302F6A6DEC8C5AC3C
-                594EF829E84B2B01BC7AD46139E13766159399E1EDD47A37681E7BE46FE1B859
-                DC7CD3CD38717A06297B0E07F74F60F8BAF7626DFE3158910370174EC0DE3945
-                ACDF60D6DE89163D20C0CCADCEACDDA9A2B07E1903D97D6673312EEA2759CDD1
-                490126571574F6F6D80E0EA87D93008429BEAC30E9A4C3E34878632631D9ACF5
-                03645E7470A881567E9ABB75D02E1EC37D1FFFC455E61F7FEC51DC76FB07F0D6
-                3B6E472A9384BD6312D6CEBB592A3471E6E5A731B4F308F2C50A4EDAFBC91CD7
-                F8336482E0108E1B8B8A2C3B86A1917D480D5EABAF0CF1BD61BE7B1403BF6194
-                6762400F924EEFDA68A1DE2851F4207D3B4E546A234274D27B6332DA53F3E568
-                815094FE9BE22F416D18730B2F221E18300D789149F0913371B4AD048597B375
-                B5D86A77106CADA26633A1592DDCB17305B1E651C486DF6AF6A91291226C2D55
-                53899F6ECBA8E2BD6B8DFEBD6D6A0C2AFECADAA21761D2527D21AD489A06A153
-                015D6D5D611DB48DDD56089BC567918CDD8206135D2C94A0AFB7A82556973DCA
-                E756E0721DB945B55933A5763D5F412295C4C9550F972BE3AC642D42B48D3DF1
-                1FA3E88D6321772386634D146A013438FEE11BF2ACEFF3145465351922F36236
-                140AF35F1FE1778367A78DFB8AAE5A40986D8A396299CFC4828512ABD130B3A2
-                9FDA578B68E4E3450C21F32E3EF7F9BF64D03EA87DF0D5AF7D196FB9EB760459
-                923422DB0808218C65776361761A4136FAB1488479A680C7CEECC39DD79F433B
-                3787F11DB79833059DD26AC1F1E187A787582379F8C8144B0CBE935B6B8EEE01
-                DB41C322D030565C56AB0D962B89D010AC629E02B80D94CAA7889C03C844B2F0
-                EA33B0823B58B86529946532649B1B79B4508926965626C7AE17EFA6A49E9B39
-                85B9C21A76DB79D4A21368B08373D98D551B018CF730DFA6D60A75078F9D9DC4
-                BDAF5A8445F4EABB83CA15E3DFBC7F7F9A2EE82BE23593EB26B0E5F472A39ABB
-                48D83C68162C954F10FD8630141C6129B172C68BB37CAEB599CC5891369BC475
-                261D55A346ED2431AE40F5790E569C340EED623EE845537E837D320FBF585A41
-                75AD84679E7C064F3CF11456D7BA35CC91B7DF89CFFFF9674D852A789D23144F
-                8D13E9AE9C8497BACEEC2121645D11F584AF3C97C5EFDDB0487827AC088609F5
-                8DCA0C4B8A9BBBF98AF374BAFFF43FD0853696BA550361C0A55FAB34F6313B2A
-                F12C5F5AC6BBDFF7A19E1CFC97332F2D5D41839AFCBFD0666E8987DA70EC2C22
-                AC9DB4B77A07158FB28ED9BFAF2C5E5F799695EEC15902839FABBA6549A1F834
-                C686EF662345C61B2C57C8AB575B63CFC218903C163B9022EBA16420C1259291
-                F83E742D48FF3FA4F6F3E2FC594463AA9580535722B8711B0F66E52956DD3683
-                9D595CB866B4C839AB653F8A0EDBD054C5A85A966BD1E783BC476244AEC7DF8D
-                FA911FD03DD7D87367612DAE9EF51264BAD82C22C54E4BCC8B7D596260704C7C
-                BC220D0C64B0E7BAEBF096B7DE8EDF7ED73DC84E0E9B2F142ADA5CF510ACA158
-                30B1598A1B77B4C8E162318C8934918A249791BBF8969F86B7FD76E419C497AA
-                83B865A286D266B74D55F5ABD6AED0BE045F2DC5FE9B253FB5DE686E2010DB63
-                BE45D9297658AAFBE3FE041180E99CBBCAB43526B36A298F027D5C7EBE6B0F93
-                4F8FFEF1C1BFC7CCCCCB78FC273FC267FFF433D8BB770F8BB2A0592BCDAE544E
-                53FB6124886036992F35598AF37E7C296E0A325D5212654587CCD7671FC5CB17
-                DAB83EBE4038BED6634B95A1135FC460AD86638B54C2F403041A3FCF52CF2077
-                37FB74190E305804992A0B834CD311A244AD5935C13233338B85B919B3A9E8FD
-                EFB899E5B54B972BB1C46811724B48B2A4B6C8649388D660AD646A24828237FF
-                08F78A9A6AB3D8D467C7DE2622392FF77970E3F7F1E4F40A3AC57938171FD1B0
-                6A4914DC7538377C06EDD43EBCEFB6317887FE10A1937F8320CB8F2BE532CF66
-                29A120E9C6B4A0B2C50CD7667351C5955A0EEB35BA01DF7DF2FE3F36EF45C75F
-                F819A1B445BF54151A333E2AD751C951756B26D145097186A4E15DEF819F4230
-                6409C74DFCD3892C1C664D9D284655EC0528DDE7EE49C14A4CA09439682CE954
-                AA48FB471504D8585D4635779C9BD5E1DDFC39F8569F4599F5532639AC44B624
-                8037A7FD72F302F667260DEE5EAEAE21E34F1309025763211C0A6175F902B5C9
-                08A17FCB63288A317550BF39475FE3C22C43888164B4C64E8FFD01A971F22158
-                873E86B9CD308E2DE84BB58BFB5EB36ED4F7E59F65F19157CF21543D8F726007
-                6231F6D71CEFAAB51B2F3EAA3AA812438772C073D83D86B84F3EB7EC35995983
-                AA55C988EA750587F4E3D4EB387CC3AD58DFD8D03EA83B557658050AC0502783
-                D2BA479F105ED7D917587C4E258738AF8C181BA44A394F2E78A0CD8B6BEAE51C
-                3335DDB425D6227879791887B69FE594007E3CFD2A7CE4D02C5B5856B9D47A40
-                9D3FF95259E1A34BFB799EE516F83C80C4C028CAEC35DA3CDF2A9A5282A4AF11
-                D462CDADA3CE4B492DC0981818DAAEB7D8B1631CA75F7EC13C8B36D8A5F91950
-                315FCC584CA8256CF7F35979A465F6B3E9E36AB909D1F9050AE8204937CA2776
-                211688E2E117C64D8DAFF50116F9F5868B0F4E2D9ACCDFA26B2A2E45B2ACFA8C
-                42FD67181BFC1D631101B1C57282896CC553A6B59821781E42B134B35EC178D5
-                E11B6FC5C58B97B407368944FAB8158BA769851235AFF4D2356F9FA82F1EDE6D
-                1175F8AA739E303A88305B4F995EBE2DA11C55BB813083B04930605148187F6A
-                3681CBC5383EF46A0A2A8331B1AA06327ECA93F44530D85E854B17D3A92ABF65
-                1D5B41A7E2AD495FD68053DD345C89B13EF3838303FCCD6CC85C717963965A35
-                F29B4B6B9A5E17DB05C7FAA34683E8A063B3E1DD18484D98A9AEDCCDCC077D39
-                4E263B0604927CAE32565EB76B9D605005CE7E1D704E32EE46090A97B0519F27
-                A72C63089D50BF4DEFB8543965CE130EDB01F91CB70E1B08EDB026AA2347F7B8
-                F32EB67D3D3A73FA388A759B7D411841BA8C1A9F6E4BE9E1E37FF047B86ED7AB
-                50601617B6D09CC63DC49434D8A4B5EA4D8710CA365492F4D6310519418B0DC2
-                21E38E47E33DB7D8C86F7F1BBCD81436D797B1E1143190FF2FD8971FA7CF3033
-                0B3C985F3A7EBAA618A3224D232493890ADCAC417814FDFCB917CD5D1462795C
-                66FBA6CF2F49F3995CE6EB60303B8EEFFFE0517CE3EB5F4588C8A398D03BBE35
-                DF8944B2B0536687174C21DF6410724C0A70E870BE330F603092C1EEED075940
-                C60D93B3CF3C61D649BBAFDD7B0FAC6D1F83BBE3082B63F520CAEE16F6666F34
-                AEE551F9B64CAEE24AA42646B4B19E3377D1F030319D4C0D083DC438C79E7EEE
-                28EBA46E1FFCA94F7E0277BCF9CD0CD46E8FDC563C99951292EE42D30F650675
-                2E8550BEE00BCE1148D887EFA72D3C2CAE9C015EFA128BB373F8E2FCDDB40DA7
-                9097B5E579F3DC3F575166FE8C556AB215AD9A82CE76158C3D0B44E993A2EF7C
-                FDBBE62E2A148AECAA0661979F426EEE9B46EBEFBAEBFDE6DDC3DF78105FF8AB
-                BF3001AF0FB9E4057ED62EF27505EBD9CD737C673139EAF34B8DCFEC27DAEC13
-                58BAB709AD9D365D808BB3E909B8377E1A0F9F791D3EF55B43263B0BCA9BEC9F
-                AD0D263049C0BD5B6E0C171696D162C91F60E6F7AB1652F9A04F7792D02D9F44
-                A6F22C9E7BFE1A5CB65A2D224F12DBF6FE2E76BFF6D384665520C0FCF9E3B8EB
-                0D69E37E720B2921C0D64FC92B108C1AA60F0C5E6F3275851098607FADFCE1D2
-                8FC33EC608DD559F734AAD0AD68A4B06D5D43AE57DBBE0CE7E0DB5CD5FB01221
-                B00CDD64CEABD51CF84329ECDE398662C53156D61ADB711D42E432CAAC7B02C9
-                5BD1C91CC1C1A90366519FEA4C687D7AC73BDF66E6A75323B033B719E81412B5
-                E8EBED669D9A0BA3C2E0ABB3AC107A4830F5D4BCC1218208F18A8C05B58EFF3E
-                93C2F30B595EBBF02F2F8D214C238618A03F687E01ED8BC78830AC64B5829B44
-                2321722C0574303C485764B5AB3F64D9113B62124D98E6F8E942108FCE6471DB
-                BD5FE37192F11A1DB8E9B7F0CFC71C3CF8D043A834C5868D47A653F8F6C96D38
-                3A1FC462E9459300D557C89DC20A62EECB7E156156AADF3B3180E955D5FE60D6
-                DD8F2766F6B1F98F215F4F50792144432C267DB669FCD547145387E1E97BD1C2
-                F7B8465FFC78669EAD2E73C787BFBC8222156700E1C1A36D1ED9C2DBF7AEE227
-                B393DCA89B24A4B96EC02953D25F253DBD874AED8EF352CCEBA29791CA188E34
-                71C3789E79C161FB1944BE3680C90117DF3A9E359AD59E5AAABFD77561F87F12
-                158C46CBC33BF79C33F782378FF1E8F588C6992FCA6A72B48AC0D35B6D7DFB45
-                16005CE429F5337BEAFB95225F87F5E9959E15337DF8D5FAB62EE6B7469BCAD8
-                3F877F3B7DC0B8848ED199AA0A347FEB5EAF447AAD3FCDD65856BC29F510BCD0
-                4D18CB66B8D836EED39D249BB063CC8C9A3FB4B3FB979FD2843ACD0863A61932
-                DAEED1D6F13EF31A13446A1FD55FAA9FEA0D7DCC62B2E2BEDA5B1A57A2EA2EE8
-                DD7F0389051F250E71D14BD5BBE126174DBFD229BEC0B3F455847D30E7842EFF
-                070A671E85F5DD5F74FBA8ADF4EB0312428B44FD775BE76C1DD3FF09447FA6F2
-                3AF2E9AE7046715BEEFF1B691F7DC12BD63AB877EA3CAA4E9B253683988BF535
-                D0E70B10958AFC05FC371523920DD34677CA0000000049454E44AE426082}
-              FileName = 'C:\Projects\tetherapp\images\tticon.png'
-            end>
-          Align = Left
-          Height = 44.000000000000000000
-          Width = 57.000000000000000000
         end
         object btnNewTrip: TSpeedButton
           Align = Right
@@ -256,55 +67,47 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object VertScrollBox1: TVertScrollBox
         Align = HorzCenter
         Height = 454.000000000000000000
+        Position.X = 1.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
-        Width = 321.000000000000000000
-        object btnJoinTrip: TButton
-          Height = 49.000000000000000000
-          Position.X = 72.000000000000000000
-          Position.Y = 205.000000000000000000
-          TabOrder = 0
-          Text = 'Join The Trip'
-          Width = 177.000000000000000000
-          OnClick = JoinTrip
-        end
+        Width = 317.000000000000000000
         object edtTripID: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 1
+          TabOrder = 0
           KeyboardType = NumberPad
           Position.X = 88.000000000000000000
           Position.Y = 20.000000000000000000
-          Width = 224.000000000000000000
+          Width = 220.000000000000000000
           Height = 30.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
         end
         object edtTripPIN: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 2
+          TabOrder = 1
           KeyboardType = NumberPad
           Position.X = 88.000000000000000000
           Position.Y = 65.000000000000000000
-          Width = 106.000000000000000000
+          Width = 153.000000000000000000
           Height = 30.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
         end
         object edtName: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
+          TabOrder = 2
           Position.X = 88.000000000000000000
           Position.Y = 110.000000000000000000
-          Width = 225.000000000000000000
+          Width = 222.000000000000000000
           Height = 30.000000000000000000
         end
         object edtEMail: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 4
+          TabOrder = 3
           KeyboardType = EmailAddress
           Position.X = 88.000000000000000000
           Position.Y = 155.000000000000000000
-          Width = 224.000000000000000000
+          Width = 221.000000000000000000
           Height = 30.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
@@ -314,81 +117,106 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 10.000000000000000000
           Position.Y = 115.000000000000000000
           Text = 'Name'
-          Width = 82.000000000000000000
+          Width = 71.000000000000000000
         end
         object Label4: TLabel
           Height = 30.000000000000000000
           Position.X = 10.000000000000000000
           Position.Y = 20.000000000000000000
           Text = 'Trip ID'
-          Width = 65.000000000000000000
+          Width = 71.000000000000000000
         end
         object Label5: TLabel
           Height = 30.000000000000000000
           Position.X = 10.000000000000000000
           Position.Y = 155.000000000000000000
           Text = 'eMail'
-          Width = 49.000000000000000000
+          Width = 71.000000000000000000
         end
         object Label6: TLabel
           Height = 21.000000000000000000
           Position.X = 10.000000000000000000
           Position.Y = 70.000000000000000000
           Text = 'PIN'
-          Width = 57.000000000000000000
+          Width = 71.000000000000000000
         end
-        object cpJoinError: TCalloutPanel
-          Height = 90.000000000000000000
-          Padding.Top = 11.000000000000000000
-          Position.X = 16.000000000000000000
-          Position.Y = 252.000000000000000000
-          Visible = False
-          Width = 289.000000000000000000
+        object Layout1: TLayout
+          Height = 97.000000000000000000
+          Position.Y = 256.000000000000000000
+          Width = 318.000000000000000000
+          TabOrder = 8
+          object cpNetworkError: TCalloutPanel
+            Align = Center
+            Height = 90.000000000000000000
+            Padding.Top = 11.000000000000000000
+            Visible = False
+            Width = 305.000000000000000000
+            TabOrder = 0
+            CalloutWidth = 23.000000000000000000
+            CalloutLength = 11.000000000000000000
+            object Label16: TLabel
+              StyledSettings = [Family, Style, FontColor]
+              Height = 41.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 16.000000000000000000
+              Text = 'There was a problem connecting.'
+              Width = 297.000000000000000000
+            end
+            object Label17: TLabel
+              StyledSettings = [Family, Style, FontColor]
+              Height = 33.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 48.000000000000000000
+              Text = 'Check your internet connection and try again.'
+              Width = 297.000000000000000000
+            end
+            object ColorAnimation1: TColorAnimation
+              Duration = 0.200000002980232200
+              StartValue = claWhite
+              StopValue = claNull
+            end
+          end
+          object cpJoinError: TCalloutPanel
+            Align = Center
+            Height = 90.000000000000000000
+            Padding.Top = 11.000000000000000000
+            Visible = False
+            Width = 305.000000000000000000
+            TabOrder = 1
+            CalloutWidth = 23.000000000000000000
+            CalloutLength = 11.000000000000000000
+            object Label7: TLabel
+              StyledSettings = [Family, Style, FontColor]
+              Height = 30.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 16.000000000000000000
+              TextSettings.HorzAlign = Center
+              Text = 'You weren'#39't able to join the trip.'
+              Width = 273.000000000000000000
+            end
+            object Label9: TLabel
+              StyledSettings = [Family, Style, FontColor]
+              Height = 25.000000000000000000
+              Position.X = 8.000000000000000000
+              Position.Y = 48.000000000000000000
+              TextSettings.HorzAlign = Center
+              Text = 'Check your trip info and try again.'
+              Width = 265.000000000000000000
+            end
+          end
+        end
+        object Layout2: TLayout
+          Height = 54.000000000000000000
+          Position.Y = 200.000000000000000000
+          Width = 318.000000000000000000
           TabOrder = 9
-          CalloutWidth = 23.000000000000000000
-          CalloutLength = 11.000000000000000000
-          object Label7: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 30.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 16.000000000000000000
-            Text = 'You weren'#39't able to join the trip.'
-            Width = 273.000000000000000000
-          end
-          object Label9: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 25.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 48.000000000000000000
-            Text = 'Check your trip info and try again.'
-            Width = 265.000000000000000000
-          end
-        end
-        object cpNetworkError: TCalloutPanel
-          Height = 90.000000000000000000
-          Padding.Top = 11.000000000000000000
-          Position.X = 16.000000000000000000
-          Position.Y = 252.000000000000000000
-          Visible = False
-          Width = 289.000000000000000000
-          TabOrder = 10
-          CalloutWidth = 23.000000000000000000
-          CalloutLength = 11.000000000000000000
-          object Label16: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 41.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 16.000000000000000000
-            Text = 'Something went wrong connecting to the server.'
-            Width = 273.000000000000000000
-          end
-          object Label17: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 33.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 48.000000000000000000
-            Text = 'Check your internet connection and try again.'
-            Width = 273.000000000000000000
+          object btnJoinTrip: TButton
+            Align = Center
+            Height = 49.000000000000000000
+            TabOrder = 0
+            Text = 'Join the Trip'
+            Width = 177.000000000000000000
+            OnClick = JoinTrip
           end
         end
       end
@@ -652,8 +480,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnSend: TSpeedButton
           Align = Right
-          Height = 61.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 256.000000000000000000
+          Position.Y = 8.000000000000000000
           Text = 'Send'
           Width = 64.000000000000000000
           OnClick = btnSendClick
@@ -877,56 +706,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
-        object Line1: TLine
-          Height = 8.000000000000000000
-          LineType = Top
-          Position.Y = 184.000000000000000000
-          Width = 320.000000000000000000
-        end
         object btnSaveSignIn: TButton
           Height = 44.000000000000000000
           Position.X = 71.000000000000000000
           Position.Y = 110.000000000000000000
-          TabOrder = 2
+          TabOrder = 3
           Text = 'Sign In'
           Width = 177.000000000000000000
           OnClick = btnSaveSignInClick
-        end
-        object cpSignInError: TCalloutPanel
-          Height = 89.000000000000000000
-          Padding.Top = 11.000000000000000000
-          Position.X = 16.000000000000000000
-          Position.Y = 152.000000000000000000
-          Visible = False
-          Width = 289.000000000000000000
-          TabOrder = 3
-          CalloutWidth = 23.000000000000000000
-          CalloutLength = 11.000000000000000000
-          object Label24: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 30.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 19.000000000000000000
-            Text = 'Oops, you weren'#39't able to sign in.'
-            Width = 273.000000000000000000
-          end
-          object Label25: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 25.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 48.000000000000000000
-            Text = 'Check your sign in info and try again.'
-            Width = 273.000000000000000000
-          end
-        end
-        object btnSignUp: TButton
-          Height = 44.000000000000000000
-          Position.X = 71.000000000000000000
-          Position.Y = 243.000000000000000000
-          TabOrder = 4
-          Text = 'Sign Up'
-          Width = 177.000000000000000000
-          OnClick = btnSignUpClick
         end
         object edtPassword: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -960,6 +747,56 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Text = 'Password'
           Width = 82.000000000000000000
         end
+        object btnSignUp1: TButton
+          Height = 44.000000000000000000
+          Position.X = 71.000000000000000000
+          Position.Y = 318.000000000000000000
+          TabOrder = 2
+          Text = 'Sign Up'
+          Width = 177.000000000000000000
+          OnClick = btnSignUpClick
+        end
+        object Label14: TLabel
+          StyledSettings = [Family, Size, FontColor]
+          Height = 73.000000000000000000
+          Position.X = 8.000000000000000000
+          Position.Y = 240.000000000000000000
+          TextSettings.Font.Style = [fsItalic]
+          TextSettings.HorzAlign = Center
+          Text = 
+            'If you don'#39't already have a TripTether login you can sign up for' +
+            ' one.'
+          Width = 305.000000000000000000
+        end
+        object cpSignInError: TCalloutPanel
+          Height = 90.000000000000000000
+          Padding.Top = 11.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 152.000000000000000000
+          Visible = False
+          Width = 289.000000000000000000
+          TabOrder = 4
+          CalloutWidth = 23.000000000000000000
+          CalloutLength = 11.000000000000000000
+          object Label24: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 30.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 19.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'Oops, you weren'#39't able to sign in.'
+            Width = 281.000000000000000000
+          end
+          object Label25: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 25.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 48.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'Check your sign in info and try again.'
+            Width = 281.000000000000000000
+          end
+        end
       end
       object TopToolBar3: TToolBar
         Height = 44.000000000000000000
@@ -969,7 +806,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
-          Text = 'Sign In'
+          Text = 'Sign In To Create a Trip'
           Width = 320.000000000000000000
         end
         object btnBackToJoin2: TSpeedButton
@@ -979,6 +816,16 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Text = 'Back'
           Width = 44.000000000000000000
           OnClick = btnBackToJoin2Click
+        end
+        object btnSignUp: TButton
+          Align = Right
+          Height = 44.000000000000000000
+          Position.X = 276.000000000000000000
+          StyleLookup = 'composetoolbutton'
+          TabOrder = 1
+          Text = 'Sign Up'
+          Width = 44.000000000000000000
+          OnClick = btnSignUpClick
         end
       end
     end
@@ -1022,7 +869,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabNewTrip'
       Width = 8.000000000000000000
@@ -1049,10 +896,10 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object VertScrollBox2: TVertScrollBox
         Align = HorzCenter
         Height = 454.000000000000000000
-        Position.X = 3.000000000000000000
+        Position.X = 1.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
-        Width = 314.000000000000000000
+        Width = 317.000000000000000000
         object btnNewTripDetails: TButton
           Height = 44.000000000000000000
           Position.X = 72.000000000000000000
@@ -1063,12 +910,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = btnNewTripDetailsClick
         end
         object cpLocationNotFound: TCalloutPanel
-          Height = 89.000000000000000000
+          Height = 90.000000000000000000
           Padding.Top = 11.000000000000000000
-          Position.X = 16.000000000000000000
+          Position.X = 8.000000000000000000
           Position.Y = 281.000000000000000000
           Visible = False
-          Width = 281.000000000000000000
+          Width = 297.000000000000000000
           TabOrder = 1
           CalloutWidth = 23.000000000000000000
           CalloutLength = 11.000000000000000000
@@ -1077,16 +924,18 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Height = 30.000000000000000000
             Position.X = 8.000000000000000000
             Position.Y = 19.000000000000000000
+            TextSettings.HorzAlign = Center
             Text = 'Oops, couldn'#39't find that location.'
-            Width = 265.000000000000000000
+            Width = 289.000000000000000000
           end
           object Label33: TLabel
             StyledSettings = [Family, Style, FontColor]
             Height = 25.000000000000000000
             Position.X = 8.000000000000000000
-            Position.Y = 48.000000000000000000
+            Position.Y = 49.000000000000000000
+            TextSettings.HorzAlign = Center
             Text = 'Try again with a specific location and city.'
-            Width = 265.000000000000000000
+            Width = 289.000000000000000000
           end
         end
         object Destination: TLabel
@@ -1190,12 +1039,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = btnNewTripCreateClick
         end
         object cpNewTripError: TCalloutPanel
-          Height = 73.000000000000000000
+          Height = 90.000000000000000000
           Padding.Top = 11.000000000000000000
-          Position.X = 16.000000000000000000
+          Position.X = 8.000000000000000000
           Position.Y = 200.000000000000000000
           Visible = False
-          Width = 289.000000000000000000
+          Width = 305.000000000000000000
           TabOrder = 1
           CalloutWidth = 23.000000000000000000
           CalloutLength = 11.000000000000000000
@@ -1204,16 +1053,18 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Height = 30.000000000000000000
             Position.X = 8.000000000000000000
             Position.Y = 19.000000000000000000
+            TextSettings.HorzAlign = Center
             Text = 'Oops, we weren'#39't able to create the trip.'
-            Width = 273.000000000000000000
+            Width = 297.000000000000000000
           end
           object Label32: TLabel
             StyledSettings = [Family, Style, FontColor]
             Height = 25.000000000000000000
             Position.X = 8.000000000000000000
-            Position.Y = 40.000000000000000000
+            Position.Y = 51.000000000000000000
+            TextSettings.HorzAlign = Center
             Text = 'Check your trip info and try again.'
-            Width = 265.000000000000000000
+            Width = 297.000000000000000000
           end
         end
         object Label28: TLabel
@@ -1238,7 +1089,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41837.000000000000000000
+          Date = 41844.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1247,7 +1098,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41837.000000000000000000
+          Date = 41844.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
@@ -1256,7 +1107,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 97.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41837.000000000000000000
+          Date = 41844.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000

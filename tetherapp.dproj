@@ -219,12 +219,12 @@
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice)'!=''">
         <BT_BuildType>Adhoc</BT_BuildType>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>14</VerInfo_Build>
-        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDevelopmentRegion=en;CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.0.14;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad</VerInfo_Keys>
+        <VerInfo_Build>16</VerInfo_Build>
+        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDevelopmentRegion=en;CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.0.16;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_UIDeviceFamily>iPhoneAndiPad</VerInfo_UIDeviceFamily>
         <PF_DevAdHoc>2P6AU6VY59</PF_DevAdHoc>
-        <PF_AdHoc>/Users/Mike/Library/MobileDevice/Provisioning Profiles/239244AA-8A06-4882-8E5E-B667E5957B44.mobileprovision</PF_AdHoc>
+        <PF_AdHoc>/Users/Mike/Library/MobileDevice/Provisioning Profiles/F32B4CB5-C5AF-4442-BEC2-9EBACED23702.mobileprovision</PF_AdHoc>
         <VerInfo_BundleId>$(MSBuildProjectName)</VerInfo_BundleId>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSSimulator)'!=''">
@@ -237,6 +237,10 @@
         </DelphiCompile>
         <DCCReference Include="HeaderFooterFormwithNavigation.pas">
             <Form>HeaderFooterwithNavigation</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Launch.pas">
+            <Form>frmLaunch</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -306,6 +310,11 @@
                 <Platform value="Win32">True</Platform>
             </Platforms>
             <Deployment>
+                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether40x40.png" Configuration="Release" Class="iPhone_Spotlight40">
+                    <Platform Name="iOSDevice">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="c:\program files (x86)\embarcadero\studio\14.0\lib\android\debug\mips\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeMipsFile">
                     <Platform Name="Android">
                         <RemoteName>libtetherapp.so</RemoteName>
@@ -436,9 +445,8 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="iOSDevice\Debug\tetherapp.entitlements" Configuration="Debug" Class="ProjectiOSEntitlements">
-                    <Platform Name="iOSDevice">
-                        <RemoteName>Entitlements.plist</RemoteName>
+                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
+                    <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -448,8 +456,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
-                    <Platform Name="iOSSimulator">
+                <DeployFile LocalName="iOSDevice\Debug\tetherapp.entitlements" Configuration="Debug" Class="ProjectiOSEntitlements">
+                    <Platform Name="iOSDevice">
+                        <RemoteName>Entitlements.plist</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -585,6 +594,11 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_120x120.png" Configuration="Debug" Class="iPhone_AppIcon120">
+                    <Platform Name="iOSDevice">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether29x29.png" Configuration="Release" Class="iPhone_Spotlight29">
                     <Platform Name="iOSDevice">
                         <Overwrite>true</Overwrite>
                     </Platform>
