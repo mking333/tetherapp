@@ -345,6 +345,9 @@ begin
     if edtName.Text = '' then
       edtName.Text := edtEMail.Text;
 
+    edtEMailSetting.Text := edtEMail.Text;
+    edtNameSetting.Text := edtName.Text;
+
     ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
     ini.WriteString('login', 'trip', edtTripID.Text);
     ini.WriteString('login', 'pin', edtTripPIN.Text);

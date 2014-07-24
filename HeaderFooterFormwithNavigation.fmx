@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 498.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 6
+    TabIndex = 0
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -29,7 +29,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabJoin'
       Width = 8.000000000000000000
@@ -869,7 +869,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabNewTrip'
       Width = 8.000000000000000000
