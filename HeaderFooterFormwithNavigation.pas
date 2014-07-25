@@ -20,7 +20,7 @@ uses
   FMX.TMSWebGMapsCommonFunctions,
   FMX.TMSWebGMapsPolygons, FMX.TMSWebGMapsPolylines,
   FMX.TMSWebGMapsDirections, FMX.TMSWebGMapsReverseGeocoding, FMX.TMSWebGMapsWebUtil,
-  FMX.Advertising, FMX.Ani;
+  FMX.Advertising, FMX.Ani, FMX.Colors;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -56,7 +56,6 @@ type
     btnBackCheck: TSpeedButton;
     btnQuit: TSpeedButton;
     ChangeTabAction3: TChangeTabAction;
-    Panel5: TPanel;
     Label13: TLabel;
     Panel2: TPanel;
     mmoNotes: TMemo;
@@ -103,7 +102,6 @@ type
     QuitRequest: TRESTRequest;
     QuitResponse: TRESTResponse;
     btnNewTrip: TSpeedButton;
-    Panel7: TPanel;
     btnSignUp: TButton;
     Label10: TLabel;
     Label11: TLabel;
@@ -208,6 +206,16 @@ type
     Label14: TLabel;
     Layout1: TLayout;
     Layout2: TLayout;
+    Image1: TImage;
+    Rectangle1: TRectangle;
+    Rectangle2: TRectangle;
+    Rectangle3: TRectangle;
+    Rectangle4: TRectangle;
+    Rectangle5: TRectangle;
+    Rectangle6: TRectangle;
+    VertScrollBox4: TVertScrollBox;
+    VertScrollBox5: TVertScrollBox;
+    Rectangle7: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -277,6 +285,7 @@ type
     procedure SpeedButton2Click(Sender: TObject);
     procedure SpeedButton4Click(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -322,6 +331,8 @@ implementation
 
 
 {$R *.fmx}
+
+uses Launch;
 procedure THeaderFooterwithNavigation.JoinTrip(Sender: TObject);
 var
   ini: TIniFile;
@@ -471,6 +482,11 @@ begin
       Key := 0;
     end;
   end;
+end;
+
+procedure THeaderFooterwithNavigation.Image1Click(Sender: TObject);
+begin
+  frmLaunch.Show;
 end;
 
 procedure THeaderFooterwithNavigation.RESTClient1HTTPProtocolError(

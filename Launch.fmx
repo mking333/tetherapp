@@ -28585,6 +28585,7 @@ object frmLaunch: TfrmLaunch
     object rcOpaque: TRectangle
       Align = Contents
       DesignVisible = False
+      Fill.Color = claBlack
       Height = 567.000000000000000000
       Opacity = 0.500000000000000000
       Sides = []
@@ -28604,14 +28605,15 @@ object frmLaunch: TfrmLaunch
       Margins.Right = 20.000000000000000000
       Position.X = 20.000000000000000000
       Position.Y = 97.000000000000000000
+      Stroke.Kind = None
       Visible = False
       XRadius = 6.000000000000000000
       YRadius = 6.000000000000000000
       Width = 280.000000000000000000
       object ShadowEffect1: TShadowEffect
-        Distance = 3.000000000000000000
+        Distance = 5.000000000000000000
         Direction = 45.000000000000000000
-        Softness = 0.300000011920929000
+        Softness = 0.200000002980232200
         Opacity = 0.600000023841857900
         ShadowColor = claBlack
       end
@@ -28841,14 +28843,15 @@ object frmLaunch: TfrmLaunch
       Margins.Right = 20.000000000000000000
       Position.X = 20.000000000000000000
       Position.Y = 127.000000000000000000
+      Stroke.Kind = None
       Visible = False
       XRadius = 6.000000000000000000
       YRadius = 6.000000000000000000
       Width = 320.000000000000000000
       object ShadowEffect2: TShadowEffect
-        Distance = 3.000000000000000000
+        Distance = 5.000000000000000000
         Direction = 45.000000000000000000
-        Softness = 0.300000011920929000
+        Softness = 0.200000002980232200
         Opacity = 0.600000023841857900
         ShadowColor = claBlack
       end
