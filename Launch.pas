@@ -55,6 +55,8 @@ type
   private
     { Private declarations }
     HasAgreed: string;
+    NameSetting: string;
+    EmailSetting: string;
   public
     { Public declarations }
   end;
@@ -123,8 +125,16 @@ procedure TfrmLaunch.ColorButton1Click(Sender: TObject);
 begin
   if HasAgreed = 'Yes' then
   begin
-    HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabJoin;
-    HeaderFooterwithNavigation.Show;
+    if (NameSetting = 'No') or (EmailSetting = 'No') then
+    begin
+      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabSettings;
+      HeaderFooterwithNavigation.Show;
+    end
+    else
+    begin
+      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabJoin;
+      HeaderFooterwithNavigation.Show;
+    end;
   end
   else
   begin
@@ -171,6 +181,8 @@ var
 begin
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   HasAgreed := ini.ReadString('termsandconditions', 'agreed', 'No');
+  NameSetting := ini.ReadString('login', 'name', 'No');
+  EmailSetting := ini.ReadString('login', 'email', 'No');
   ini.Free;
 end;
 

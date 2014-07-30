@@ -216,6 +216,7 @@ type
     VertScrollBox4: TVertScrollBox;
     VertScrollBox5: TVertScrollBox;
     Rectangle7: TRectangle;
+    Label18: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -1589,6 +1590,8 @@ end;
 
 procedure THeaderFooterwithNavigation.btnSettingsDoneClick(Sender: TObject);
 begin
+  edtName.Text := edtNameSetting.Text;
+  edtEMail.Text := edtEMailSetting.Text;
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
@@ -2038,6 +2041,7 @@ begin
   LocationSensor1.Active := True;
   //LocationSensor1.Sensor.Start;
 end;
+
 procedure THeaderFooterwithNavigation.StopUpdating(Sender: TObject);
 begin
   Timer1.Enabled := False;
