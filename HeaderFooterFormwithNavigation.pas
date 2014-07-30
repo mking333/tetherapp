@@ -132,7 +132,6 @@ type
     ToolBar6: TToolBar;
     Label27: TLabel;
     btnBackToNewTrip: TSpeedButton;
-    mmoTripNotes: TMemo;
     Label28: TLabel;
     tmeTripDepart: TTimeEdit;
     dteTripDepart: TDateEdit;
@@ -142,16 +141,12 @@ type
     dteTripLeave: TDateEdit;
     tmeTripLeave: TTimeEdit;
     Label30: TLabel;
-    btnNewTripCreate: TButton;
     cpSignInError: TCalloutPanel;
     Label24: TLabel;
     Label25: TLabel;
     btnSaveSignIn: TButton;
     NewTripPartRequest: TRESTRequest;
     NewTripPartResponse: TRESTResponse;
-    cpNewTripError: TCalloutPanel;
-    Label31: TLabel;
-    Label32: TLabel;
     Label21: TLabel;
     edtName: TEdit;
     Action1: TAction;
@@ -217,6 +212,19 @@ type
     VertScrollBox5: TVertScrollBox;
     Rectangle7: TRectangle;
     Label18: TLabel;
+    TabNewTripNotes: TTabItem;
+    Rectangle8: TRectangle;
+    ToolBar7: TToolBar;
+    Label36: TLabel;
+    btnBackToTrip: TSpeedButton;
+    VertScrollBox6: TVertScrollBox;
+    Label40: TLabel;
+    mmoTripNotes: TMemo;
+    btnNewTripDetails2: TButton;
+    btnNewTripCreate: TButton;
+    cpNewTripError: TCalloutPanel;
+    Label31: TLabel;
+    Label32: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -287,6 +295,8 @@ type
     procedure SpeedButton4Click(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure Image1Click(Sender: TObject);
+    procedure btnBackToTripClick(Sender: TObject);
+    procedure btnNewTripDetails2Click(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -1401,6 +1411,17 @@ begin
     TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.Slide);
 end;
 
+procedure THeaderFooterwithNavigation.btnNewTripDetails2Click(Sender: TObject);
+begin
+  mmoTripNotes.Lines.Clear;
+  mmoTripNotes.Lines.Add('Trip to ' + edtTripName.Text + ' created by ' + edtNameSetting.Text);
+  mmoTripNotes.Lines.Add('');
+  mmoTripNotes.Lines.Add('Going to ' + edtTripLocation.Text + ', ' + edtTripCity.Text);
+  mmoTripNotes.Lines.Add('Departing on ' + DateToStr(dteTripDepart.Date) + ' at ' + TimeToStr(tmeTripDepart.Time));
+
+  TabControl1.SetActiveTabWithTransition(TabNewTripNotes, TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
 procedure THeaderFooterwithNavigation.btnNewTripDetailsClick(Sender: TObject);
 begin
   if (edtTripLocation.Text = '') or (edtTripCity.Text = '') then
@@ -1486,6 +1507,11 @@ end;
 procedure THeaderFooterwithNavigation.btnBackToNewClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+end;
+
+procedure THeaderFooterwithNavigation.btnBackToTripClick(Sender: TObject);
+begin
+  TabControl1.SetActiveTabWithTransition(TabNewTripDetails, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackTripClick(Sender: TObject);
