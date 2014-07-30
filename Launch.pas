@@ -78,7 +78,8 @@ begin
   HasAgreed := 'Yes';
 
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteString('agree', 'hasagreed', 'Yes');
+  ini.WriteString('termsandconditions', 'agreed', 'Yes');
+  ini.WriteString('termsandconditions', 'agreedate', DateTimeToStr(Now));
   ini.Free;
 end;
 
@@ -169,7 +170,7 @@ var
   ini: TIniFile;
 begin
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-  HasAgreed := ini.ReadString('agree', 'hasagreed', 'No');
+  HasAgreed := ini.ReadString('termsandconditions', 'agreed', 'No');
   ini.Free;
 end;
 

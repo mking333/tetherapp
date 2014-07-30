@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2014/03/05 17:06:36.000.991,C:\Projects\tetherapp\tetherapp.dproj=C:\Projects\tetherapp\HeaderFooterNavigation.dproj</Transaction>
+    <Transaction>2014/03/05 17:06:36.000.991,C:\Projects\tetherapp\HeaderFooterNavigation.dproj=C:\Projects\tetherapp\tetherapp.dproj</Transaction>
     <Transaction>2014/07/18 11:16:21.000.031,=C:\Projects\tetherapp\Unit1.pas</Transaction>
-    <Transaction>2014/07/18 11:16:46.000.724,C:\Projects\tetherapp\Unit1.fmx=C:\Projects\tetherapp\Launch.fmx</Transaction>
-    <Transaction>2014/07/18 11:16:46.000.724,C:\Projects\tetherapp\Unit1.pas=C:\Projects\tetherapp\Launch.pas</Transaction>
+    <Transaction>2014/07/18 11:16:46.000.724,C:\Projects\tetherapp\Launch.pas=C:\Projects\tetherapp\Unit1.pas</Transaction>
+    <Transaction>2014/07/18 11:16:46.000.724,C:\Projects\tetherapp\Launch.fmx=C:\Projects\tetherapp\Unit1.fmx</Transaction>
   </Transactions>
-	<MobileDevice>D5OKCY022956</MobileDevice>
+	<MobileDevice>iPhone</MobileDevice>
 	<BT_BuildType>Debug</BT_BuildType>
 </BorlandProject>
