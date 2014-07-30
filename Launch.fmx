@@ -2,20 +2,21 @@ object frmLaunch: TfrmLaunch
   Left = 0
   Top = 0
   Caption = 'TripTether'
-  ClientHeight = 508
+  ClientHeight = 460
   ClientWidth = 320
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
   DesignerMobile = True
   DesignerWidth = 320
-  DesignerHeight = 533
-  DesignerDeviceName = 'Samsung Galaxy S2'
+  DesignerHeight = 480
+  DesignerDeviceName = 'iPhone'
   DesignerOrientation = 0
-  DesignerOSVersion = ''
+  DesignerOSVersion = '7'
   object Layout1: TLayout
     Align = Contents
-    Height = 508.000000000000000000
+    Height = 460.000000000000000000
     Width = 320.000000000000000000
     TabOrder = 1
     object Image1: TImage
@@ -28120,7 +28121,7 @@ object frmLaunch: TfrmLaunch
           FileName = 'C:\Projects\tetherapp\images\ttbase.png'
         end>
       Align = Contents
-      Height = 508.000000000000000000
+      Height = 460.000000000000000000
       Width = 320.000000000000000000
       WrapMode = Center
     end
@@ -28487,23 +28488,22 @@ object frmLaunch: TfrmLaunch
     end
     object Layout2: TLayout
       Align = HorzCenter
-      Height = 428.000000000000000000
+      Height = 380.000000000000000000
       Position.X = 2.000000000000000000
       Position.Y = 80.000000000000000000
       Width = 315.000000000000000000
       TabOrder = 2
       object ColorButton1: TColorButton
-        Align = Top
-        Color = claBurlywood
+        Color = claCoral
         Height = 55.000000000000000000
-        Margins.Left = 10.000000000000000000
+        Margins.Left = 20.000000000000000000
         Margins.Top = 30.000000000000000000
-        Margins.Right = 10.000000000000000000
+        Margins.Right = 20.000000000000000000
         Margins.Bottom = 10.000000000000000000
-        Position.X = 10.000000000000000000
-        Position.Y = 30.000000000000000000
+        Position.X = 48.000000000000000000
+        Position.Y = 24.000000000000000000
         TabOrder = 2
-        Width = 295.000000000000000000
+        Width = 225.000000000000000000
         OnClick = ColorButton1Click
         object Label1: TLabel
           Align = Client
@@ -28512,21 +28512,20 @@ object frmLaunch: TfrmLaunch
           TextSettings.Font.Family = 'Default'
           TextSettings.HorzAlign = Center
           Text = 'Join a Trip'
-          Width = 295.000000000000000000
+          Width = 225.000000000000000000
         end
       end
       object ColorButton2: TColorButton
-        Align = Top
-        Color = claBurlywood
+        Color = claCoral
         Height = 55.000000000000000000
         Margins.Left = 10.000000000000000000
         Margins.Top = 30.000000000000000000
         Margins.Right = 10.000000000000000000
         Margins.Bottom = 10.000000000000000000
-        Position.X = 10.000000000000000000
-        Position.Y = 125.000000000000000000
+        Position.X = 48.000000000000000000
+        Position.Y = 95.000000000000000000
         TabOrder = 1
-        Width = 295.000000000000000000
+        Width = 225.000000000000000000
         OnClick = ColorButton2Click
         object Label2: TLabel
           Align = Client
@@ -28535,21 +28534,20 @@ object frmLaunch: TfrmLaunch
           TextSettings.Font.Family = 'Default'
           TextSettings.HorzAlign = Center
           Text = 'Create a New Trip'
-          Width = 295.000000000000000000
+          Width = 225.000000000000000000
         end
       end
       object ColorButton3: TColorButton
-        Align = Top
-        Color = claBurlywood
+        Color = claCoral
         Height = 55.000000000000000000
         Margins.Left = 10.000000000000000000
         Margins.Top = 30.000000000000000000
         Margins.Right = 10.000000000000000000
         Margins.Bottom = 10.000000000000000000
-        Position.X = 10.000000000000000000
-        Position.Y = 220.000000000000000000
+        Position.X = 48.000000000000000000
+        Position.Y = 166.000000000000000000
         TabOrder = 0
-        Width = 295.000000000000000000
+        Width = 225.000000000000000000
         OnClick = ColorButton3Click
         object Label3: TLabel
           Align = Client
@@ -28558,27 +28556,27 @@ object frmLaunch: TfrmLaunch
           TextSettings.Font.Family = 'Default'
           TextSettings.HorzAlign = Center
           Text = 'Sign Up for TripTether'
-          Width = 295.000000000000000000
+          Width = 225.000000000000000000
         end
       end
       object btnTOU: TSpeedButton
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         IconTintColor = claOrangered
-        Position.X = 72.000000000000000000
-        Position.Y = 317.000000000000000000
+        Position.X = 32.000000000000000000
+        Position.Y = 314.000000000000000000
         StyleLookup = 'toolbutton'
         Text = 'Terms of Use'
-        Width = 153.000000000000000000
+        Width = 121.000000000000000000
         OnClick = btnTOUClick
       end
       object btnPP: TSpeedButton
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         IconTintColor = claOrangered
-        Position.X = 72.000000000000000000
-        Position.Y = 366.000000000000000000
+        Position.X = 160.000000000000000000
+        Position.Y = 314.000000000000000000
         StyleLookup = 'toolbutton'
         Text = 'Privacy Policy'
-        Width = 153.000000000000000000
+        Width = 121.000000000000000000
         OnClick = btnPPClick
       end
     end
@@ -28593,18 +28591,18 @@ object frmLaunch: TfrmLaunch
       Width = 360.000000000000000000
     end
     object rcTOU: TRectangle
-      Align = VertCenter
+      Align = Contents
       DesignVisible = False
-      Fill.Color = claWhite
-      Height = 393.000000000000000000
+      Fill.Color = claNavajowhite
+      Height = 340.000000000000000000
       Padding.Left = 5.000000000000000000
       Padding.Top = 5.000000000000000000
       Padding.Right = 5.000000000000000000
       Padding.Bottom = 5.000000000000000000
       Margins.Left = 20.000000000000000000
+      Margins.Top = 100.000000000000000000
       Margins.Right = 20.000000000000000000
-      Position.X = 20.000000000000000000
-      Position.Y = 97.000000000000000000
+      Margins.Bottom = 20.000000000000000000
       Stroke.Kind = None
       Visible = False
       XRadius = 6.000000000000000000
@@ -28620,7 +28618,7 @@ object frmLaunch: TfrmLaunch
       object Memo1: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 335.000000000000000000
+        Height = 286.000000000000000000
         TabOrder = 0
         Width = 270.000000000000000000
         Lines.Strings = (
@@ -28820,9 +28818,9 @@ object frmLaunch: TfrmLaunch
       end
       object Button1: TButton
         Align = Bottom
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         Position.X = 5.000000000000000000
-        Position.Y = 340.000000000000000000
+        Position.Y = 291.000000000000000000
         StyleLookup = 'donetoolbutton'
         TabOrder = 1
         Text = 'Close'
@@ -28831,23 +28829,23 @@ object frmLaunch: TfrmLaunch
       end
     end
     object rcPP: TRectangle
-      Align = VertCenter
+      Align = Contents
       DesignVisible = False
-      Fill.Color = claWhite
-      Height = 393.000000000000000000
+      Fill.Color = claNavajowhite
+      Height = 340.000000000000000000
       Padding.Left = 5.000000000000000000
       Padding.Top = 5.000000000000000000
       Padding.Right = 5.000000000000000000
       Padding.Bottom = 5.000000000000000000
       Margins.Left = 20.000000000000000000
+      Margins.Top = 100.000000000000000000
       Margins.Right = 20.000000000000000000
-      Position.X = 20.000000000000000000
-      Position.Y = 127.000000000000000000
+      Margins.Bottom = 20.000000000000000000
       Stroke.Kind = None
       Visible = False
       XRadius = 6.000000000000000000
       YRadius = 6.000000000000000000
-      Width = 320.000000000000000000
+      Width = 280.000000000000000000
       object ShadowEffect2: TShadowEffect
         Distance = 5.000000000000000000
         Direction = 45.000000000000000000
@@ -28858,9 +28856,9 @@ object frmLaunch: TfrmLaunch
       object Memo2: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 339.000000000000000000
+        Height = 286.000000000000000000
         TabOrder = 0
-        Width = 310.000000000000000000
+        Width = 270.000000000000000000
         Lines.Strings = (
           'Privacy Policy'
           ''
@@ -29081,12 +29079,125 @@ object frmLaunch: TfrmLaunch
         Align = Bottom
         Height = 44.000000000000000000
         Position.X = 5.000000000000000000
-        Position.Y = 344.000000000000000000
+        Position.Y = 291.000000000000000000
         StyleLookup = 'donetoolbutton'
         TabOrder = 1
         Text = 'Close'
-        Width = 310.000000000000000000
+        Width = 270.000000000000000000
         OnClick = Button2Click
+      end
+    end
+    object rcAgree: TRectangle
+      Align = VertCenter
+      DesignVisible = False
+      Fill.Color = claNavajowhite
+      Height = 342.000000000000000000
+      Padding.Left = 5.000000000000000000
+      Padding.Top = 5.000000000000000000
+      Padding.Right = 5.000000000000000000
+      Padding.Bottom = 5.000000000000000000
+      Margins.Left = 20.000000000000000000
+      Margins.Top = 20.000000000000000000
+      Margins.Right = 20.000000000000000000
+      Margins.Bottom = 20.000000000000000000
+      Position.X = 20.000000000000000000
+      Position.Y = 99.000000000000000000
+      Stroke.Kind = None
+      Visible = False
+      XRadius = 6.000000000000000000
+      YRadius = 6.000000000000000000
+      Width = 280.000000000000000000
+      object ShadowEffect3: TShadowEffect
+        Distance = 5.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.200000002980232200
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+      object btnAgree: TButton
+        Align = Bottom
+        Height = 44.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 293.000000000000000000
+        StyleLookup = 'donetoolbutton'
+        TabOrder = 0
+        Text = 'Continue'
+        Width = 270.000000000000000000
+        OnClick = btnAgreeClick
+      end
+      object Label4: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, FontColor]
+        Height = 23.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 10.000000000000000000
+        TextSettings.Font.Style = [fsBold]
+        TextSettings.HorzAlign = Center
+        Text = 'Welcome'
+        Width = 270.000000000000000000
+      end
+      object Label5: TLabel
+        Align = Top
+        Height = 118.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 43.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = 
+          'TripTether helps you to keep your friends in touch while on a tr' +
+          'ip.  It'#39's easy to invite friends to join a trip and track their ' +
+          'locations. '
+        Width = 270.000000000000000000
+      end
+      object Label6: TLabel
+        Align = Top
+        StyledSettings = [Family, FontColor]
+        Height = 48.000000000000000000
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 20.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 181.000000000000000000
+        TextSettings.Font.Style = [fsItalic]
+        TextSettings.HorzAlign = Center
+        Text = 
+          'By clicking Continue you agree to our Terms of Use and Privacy P' +
+          'olicy.'
+        Width = 260.000000000000000000
+      end
+      object Layout3: TLayout
+        Align = Top
+        Height = 50.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 229.000000000000000000
+        Width = 270.000000000000000000
+        TabOrder = 1
+        object Panel1: TPanel
+          Align = Center
+          Height = 47.000000000000000000
+          Width = 260.000000000000000000
+          TabOrder = 0
+          object btnPPx: TSpeedButton
+            Height = 44.000000000000000000
+            IconTintColor = claOrangered
+            Position.X = 128.000000000000000000
+            Position.Y = 3.000000000000000000
+            StyleLookup = 'toolbutton'
+            Text = 'Privacy Policy'
+            Width = 121.000000000000000000
+            OnClick = btnPPxClick
+          end
+          object btnTOUx: TSpeedButton
+            Height = 44.000000000000000000
+            IconTintColor = claOrangered
+            Position.Y = 3.000000000000000000
+            StyleLookup = 'toolbutton'
+            Text = 'Terms of Use'
+            Width = 121.000000000000000000
+            OnClick = btnTOUxClick
+          end
+        end
       end
     end
   end

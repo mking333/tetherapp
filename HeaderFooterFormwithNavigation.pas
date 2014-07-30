@@ -1584,12 +1584,12 @@ end;
 
 procedure THeaderFooterwithNavigation.btnSettingsClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabSettings, TTabTransition.None, TTabTransitionDirection.Normal);
+  TabControl1.SetActiveTabWithTransition(TabSettings, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.btnSettingsDoneClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
+  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string);

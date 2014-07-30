@@ -22,7 +22,7 @@
         android:restoreAnyVersion="False" 
         android:label="tetherapp" 
         android:installLocation="preferExternal" 
-        android:debuggable="False" 
+        android:debuggable="True" 
         android:largeHeap="False"
         android:icon="@drawable/ic_launcher"
         android:theme="@android:style/Theme.NoTitleBar">
