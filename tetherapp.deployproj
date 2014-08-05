@@ -552,14 +552,6 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win64'"/>
     <ItemGroup Condition="'$(Platform)'=='iOSSimulator'">
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether40x40.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>triptether40x40.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Projects\tetherapp\images\triptether120x120.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>triptether120x120.png</RemoteName>
@@ -617,17 +609,17 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether80x80.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="iOSSimulator\Release\tetherapp.entitlements" Condition="'$(Config)'=='Release'">
             <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>triptether80x80.png</RemoteName>
+            <RemoteName>Entitlements.plist</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="iOSSimulator\Release\tetherapp.entitlements" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="C:\Projects\tetherapp\images\triptether80x80.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>Entitlements.plist</RemoteName>
+            <RemoteName>triptether80x80.png</RemoteName>
             <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -730,14 +722,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether29x29.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>triptether29x29.png</RemoteName>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Projects\tetherapp\images\triptether2048x1536.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
@@ -805,14 +789,6 @@
         <DeployFile Include="C:\Projects\tetherapp\images\triptether768x1004.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>Default~ipad.png</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="iOSSimulator\Debug\tetherapp.rsm" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>tetherapp.rsm</RemoteName>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>

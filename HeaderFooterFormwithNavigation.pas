@@ -108,7 +108,6 @@ type
     edtSignIn: TEdit;
     edtPassword: TEdit;
     TabSignUp: TTabItem;
-    webSignUp: TWebBrowser;
     TabNewTrip: TTabItem;
     ToolBar3: TToolBar;
     Label19: TLabel;
@@ -225,6 +224,25 @@ type
     cpNewTripError: TCalloutPanel;
     Label31: TLabel;
     Label32: TLabel;
+    Rectangle9: TRectangle;
+    VertScrollBox7: TVertScrollBox;
+    btnSignUpGo: TButton;
+    cpSignUpError: TCalloutPanel;
+    Label37: TLabel;
+    Label38: TLabel;
+    edtSignUpPW: TEdit;
+    edtSignUpEMail: TEdit;
+    Label39: TLabel;
+    Label41: TLabel;
+    edtSignUpConfirm: TEdit;
+    Label42: TLabel;
+    SignUpResponse: TRESTResponse;
+    SignUpRequest: TRESTRequest;
+    cpSignUpSuccess: TCalloutPanel;
+    Label43: TLabel;
+    Label44: TLabel;
+    Label45: TLabel;
+    Label46: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -297,6 +315,8 @@ type
     procedure Image1Click(Sender: TObject);
     procedure btnBackToTripClick(Sender: TObject);
     procedure btnNewTripDetails2Click(Sender: TObject);
+    procedure btnSignUpGoClick(Sender: TObject);
+    procedure SignUpRequestAfterExecute(Sender: TCustomRESTRequest);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -329,11 +349,8 @@ type
   end;
 
 const
-{
   APIBASEURL = 'http://192.168.2.201';
-}
-  APIBASEURL = 'http://www.triptether.com';
-
+//  APIBASEURL = 'http://www.triptether.com';
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -516,6 +533,9 @@ var
   User: TJSONObject;
   Result: string;
 begin
+  cpSignUpSuccess.Visible := False;
+  cpSignInError.Visible := False;
+
   if assigned(SignInResponse.JSONValue) then
   begin
     Response := SignInResponse.JsonValue as TJSONObject;
@@ -535,6 +555,46 @@ begin
       SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
 
       TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide);
+    end;
+  end;
+end;
+
+procedure THeaderFooterwithNavigation.SignUpRequestAfterExecute(
+  Sender: TCustomRESTRequest);
+var
+  Response: TJSONObject;
+  User: TJSONObject;
+  Result: string;
+begin
+  cpSignUpError.Visible := False;
+
+  if assigned(SignUpResponse.JSONValue) then
+  begin
+    Response := SignUpResponse.JsonValue as TJSONObject;
+    User := Response.Get('user').JsonValue as TJSONObject;
+    Result := User.Get('result').JsonValue.ToString.Replace('"', '');
+    if Result <> 'success' then
+    begin
+      cpSignUpError.Visible := True;
+    end
+    else
+    begin
+      cpSignUpError.Visible := False;
+
+      SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
+      //SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
+      SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
+      SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
+
+      edtSignIn.Text := SignInEmail;
+      edtPassword.Text := '';
+
+      TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.Slide);
+      btnSignUp.Visible := False;
+      btnSignUp1.Visible := False;
+      Label14.Visible := False;
+      cpSignInError.Visible := False;
+      cpSignUpSuccess.Visible := True;
     end;
   end;
 end;
@@ -1368,9 +1428,43 @@ procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
 var
   URLString: string;
 begin
-  URLString := 'http://www.triptether.com/users/sign_up';
-  webSignUp.Navigate(URLString);
   TabControl1.SetActiveTabWithTransition(TabSignUp, TTabTransition.Slide, TTabTransitionDirection.Normal);
+end;
+
+procedure THeaderFooterwithNavigation.btnSignUpGoClick(Sender: TObject);
+var
+  ini: TIniFile;
+begin
+  if (edtSignUpEmail.Text = '') or (edtSignUpPW.Text = '') or (edtSignUpConfirm.Text = '') then
+  begin
+    cpSignUpError.Visible := True;
+    edtSignUpEmail.TextPrompt := 'Your email address.';
+    edtSignUpPW.TextPrompt := 'Choose password.';
+    edtSignUpConfirm.TextPrompt := 'Type password again.';
+  end
+  else
+  begin
+    SignInName := edtNameSetting.Text;
+
+    ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
+    ini.WriteString('signin', 'email', edtSignUpEmail.Text);
+    ini.WriteString('signin', 'pw', edtSignUpPW.Text);
+    ini.WriteString('signin', 'name', SignInName);
+    ini.Free;
+
+    SignUpRequest.Params.ParameterByName('email').Value := edtSignUpEmail.Text;
+    SignUpRequest.Params.ParameterByName('pw').Value := edtSignUpPW.Text;
+    SignUpRequest.Params.ParameterByName('confirm').Value := edtSignUpConfirm.Text;
+    SignUpRequest.Params.ParameterByName('name').Value := SignInName;
+    try
+      SignUpRequest.Execute;
+    except
+      on E: Exception do begin
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+        cpNetworkError.Visible := True;
+      end;
+    end;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.btnQuitClick(Sender: TObject);
@@ -1525,6 +1619,7 @@ var
 begin
   if (edtSignIn.Text = '') or (edtPassword.Text = '') then
   begin
+    cpSignUpSuccess.Visible := False;
     cpSignInError.Visible := True;
     edtSignIn.TextPrompt := 'TripTether login email.';
     edtPassword.TextPrompt := 'TripTether password.';

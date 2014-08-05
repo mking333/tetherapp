@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 410.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 10
+    TabIndex = 4
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -2724,7 +2724,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spPictures: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 48.000000000000000000
+            Height = 28.000000000000000000
             Position.X = 225.000000000000000000
             StyleLookup = 'toolbuttonright'
             Text = 'Pictures'
@@ -2734,7 +2734,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spBikes: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 48.000000000000000000
+            Height = 28.000000000000000000
             Position.X = 150.000000000000000000
             StyleLookup = 'toolbuttonmiddle'
             Text = 'Bikes'
@@ -2744,7 +2744,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spWeather: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 48.000000000000000000
+            Height = 28.000000000000000000
             Position.X = 75.000000000000000000
             StyleLookup = 'toolbuttonmiddle'
             Text = 'Weather'
@@ -2754,7 +2754,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object spTraffic: TSpeedButton
             StaysPressed = True
             Align = Left
-            Height = 48.000000000000000000
+            Height = 28.000000000000000000
             StyleLookup = 'toolbuttonleft'
             Text = 'Traffic'
             Width = 75.000000000000000000
@@ -2823,9 +2823,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
             object SpeedButton2: TSpeedButton
               Align = Right
-              Height = 48.000000000000000000
+              Height = 133.000000000000000000
               Position.X = 272.000000000000000000
-              Position.Y = 42.000000000000000000
               StyleLookup = 'nexttoolbutton'
               Text = 'SpeedButton2'
               Width = 48.000000000000000000
@@ -2868,7 +2867,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabSignIn'
       Width = 8.000000000000000000
@@ -2880,40 +2879,40 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Width = 320.000000000000000000
       end
       object TopToolBar3: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
         TintColor = claCoral
         Width = 320.000000000000000000
         object Label1: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'Sign In To Create a Trip'
           Width = 320.000000000000000000
         end
         object btnBackToJoin2: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnBackToJoin2Click
         end
         object btnSignUp: TButton
           Align = Right
-          Height = 48.000000000000000000
-          Position.X = 272.000000000000000000
+          Height = 44.000000000000000000
+          Position.X = 276.000000000000000000
           StyleLookup = 'composetoolbutton'
           TabOrder = 1
           Text = 'Sign Up'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnSignUpClick
         end
       end
       object VertScrollBox5: TVertScrollBox
         Align = HorzCenter
-        Height = 362.000000000000000000
-        Position.Y = 48.000000000000000000
+        Height = 366.000000000000000000
+        Position.Y = 44.000000000000000000
         TabOrder = 2
         Width = 320.000000000000000000
         object btnSaveSignIn: TButton
@@ -2935,13 +2934,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = btnSignUpClick
         end
         object cpSignInError: TCalloutPanel
-          Height = 90.000000000000000000
+          Height = 91.000000000000000000
           Padding.Top = 11.000000000000000000
           Position.X = 16.000000000000000000
           Position.Y = 158.000000000000000000
           Visible = False
           Width = 289.000000000000000000
-          TabOrder = 2
+          TabOrder = 3
           CalloutWidth = 23.000000000000000000
           CalloutLength = 11.000000000000000000
           object Label24: TLabel
@@ -2965,21 +2964,21 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object edtPassword: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
+          TabOrder = 4
           Password = True
           Position.X = 92.000000000000000000
           Position.Y = 62.000000000000000000
           Width = 213.000000000000000000
-          Height = 32.000000000000000000
+          Height = 30.000000000000000000
         end
         object edtSignIn: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 4
+          TabOrder = 5
           KeyboardType = EmailAddress
           Position.X = 92.000000000000000000
           Position.Y = 14.000000000000000000
           Width = 213.000000000000000000
-          Height = 32.000000000000000000
+          Height = 30.000000000000000000
         end
         object Label10: TLabel
           Height = 30.000000000000000000
@@ -3007,6 +3006,52 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             ' one.'
           Width = 305.000000000000000000
         end
+        object cpSignUpSuccess: TCalloutPanel
+          Height = 155.000000000000000000
+          Padding.Top = 11.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 158.000000000000000000
+          Visible = False
+          Width = 289.000000000000000000
+          TabOrder = 2
+          CalloutWidth = 23.000000000000000000
+          CalloutLength = 11.000000000000000000
+          object Label43: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 30.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 19.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'You have successfully signed up.'
+            Width = 281.000000000000000000
+          end
+          object Label44: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 25.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 48.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'Check your email for a confirmation link.'
+            Width = 281.000000000000000000
+          end
+          object Label45: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 25.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 118.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'You must confirm your email to sign in.'
+            Width = 281.000000000000000000
+          end
+          object Label46: TLabel
+            Height = 29.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 88.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'Note:'
+            Width = 273.000000000000000000
+          end
+        end
       end
     end
     object TabSignUp: TTabItem
@@ -3018,30 +3063,125 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       TabOrder = 0
       Text = 'TabSignUp'
       Width = 8.000000000000000000
-      object webSignUp: TWebBrowser
-        Align = Client
-        Height = 362.000000000000000000
+      object Rectangle9: TRectangle
+        Align = Contents
+        Fill.Color = claIvory
+        Height = 410.000000000000000000
+        Sides = []
         Width = 320.000000000000000000
       end
       object ToolBar3: TToolBar
-        Height = 48.000000000000000000
-        TabOrder = 1
+        Height = 44.000000000000000000
+        TabOrder = 0
         TintColor = claCoral
         Width = 320.000000000000000000
         object Label19: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           TextSettings.HorzAlign = Center
           Text = 'TripTether Sign Up'
           Width = 320.000000000000000000
         end
         object btnBackToJoin3: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnBackToJoin3Click
+        end
+      end
+      object VertScrollBox7: TVertScrollBox
+        Align = HorzCenter
+        Height = 366.000000000000000000
+        Position.Y = 44.000000000000000000
+        TabOrder = 2
+        Width = 320.000000000000000000
+        object btnSignUpGo: TButton
+          Height = 44.000000000000000000
+          Position.X = 71.000000000000000000
+          Position.Y = 160.000000000000000000
+          TabOrder = 0
+          Text = 'Sign Up'
+          Width = 177.000000000000000000
+          OnClick = btnSignUpGoClick
+        end
+        object cpSignUpError: TCalloutPanel
+          Height = 90.000000000000000000
+          Padding.Top = 11.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 206.000000000000000000
+          Visible = False
+          Width = 289.000000000000000000
+          TabOrder = 1
+          CalloutWidth = 23.000000000000000000
+          CalloutLength = 11.000000000000000000
+          object Label37: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 30.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 19.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'Oops, you weren'#39't able to sign up.'
+            Width = 281.000000000000000000
+          end
+          object Label38: TLabel
+            StyledSettings = [Family, Style, FontColor]
+            Height = 25.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = 48.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = 'Check your sign up info and try again.'
+            Width = 281.000000000000000000
+          end
+        end
+        object edtSignUpPW: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          Password = True
+          Position.X = 92.000000000000000000
+          Position.Y = 62.000000000000000000
+          Width = 213.000000000000000000
+          Height = 30.000000000000000000
+        end
+        object edtSignUpEMail: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          KeyboardType = EmailAddress
+          Position.X = 92.000000000000000000
+          Position.Y = 14.000000000000000000
+          Width = 213.000000000000000000
+          Height = 30.000000000000000000
+        end
+        object Label39: TLabel
+          Height = 30.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 14.000000000000000000
+          Text = 'eMail'
+          Width = 65.000000000000000000
+        end
+        object Label41: TLabel
+          Height = 30.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 62.000000000000000000
+          Text = 'Password'
+          Width = 82.000000000000000000
+        end
+        object edtSignUpConfirm: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          Password = True
+          Position.X = 92.000000000000000000
+          Position.Y = 110.000000000000000000
+          Width = 213.000000000000000000
+          Height = 30.000000000000000000
+        end
+        object Label42: TLabel
+          Height = 30.000000000000000000
+          Position.X = 10.000000000000000000
+          Position.Y = 110.000000000000000000
+          Text = 'PW Again'
+          Width = 82.000000000000000000
         end
       end
     end
@@ -3240,30 +3380,30 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41850.000000000000000000
+          Date = 41856.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 65.000000000000000000
-          TabOrder = 4
+          TabOrder = 6
           Width = 97.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41850.000000000000000000
+          Date = 41856.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 20.000000000000000000
-          TabOrder = 5
+          TabOrder = 7
           Width = 97.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41850.000000000000000000
+          Date = 41856.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 110.000000000000000000
-          TabOrder = 6
+          TabOrder = 8
           Width = 97.000000000000000000
         end
         object tmeTripArrive: TTimeEdit
@@ -3271,7 +3411,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 230.000000000000000000
           Position.Y = 65.000000000000000000
-          TabOrder = 7
+          TabOrder = 9
           Width = 81.000000000000000000
         end
         object tmeTripDepart: TTimeEdit
@@ -3279,7 +3419,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 232.000000000000000000
           Position.Y = 20.000000000000000000
-          TabOrder = 8
+          TabOrder = 10
           Width = 81.000000000000000000
         end
         object tmeTripLeave: TTimeEdit
@@ -3287,7 +3427,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 230.000000000000000000
           Position.Y = 110.000000000000000000
-          TabOrder = 9
+          TabOrder = 11
           Width = 81.000000000000000000
         end
         object btnNewTripDetails2: TButton
@@ -3481,7 +3621,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabNewTripNotes'
       Width = 8.000000000000000000
@@ -3764,11 +3904,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Response = SignInResponse
     OnAfterExecute = SignInRequestAfterExecute
     SynchronizedEvents = False
-    Left = 441
+    Left = 537
     Top = 172
   end
   object SignInResponse: TRESTResponse
-    Left = 489
+    Left = 577
     Top = 172
   end
   object NewTripRequest: TRESTRequest
@@ -3907,5 +4047,31 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             GestureID = sgiRight
           end>
       end>
+  end
+  object SignUpResponse: TRESTResponse
+    Left = 489
+    Top = 172
+  end
+  object SignUpRequest: TRESTRequest
+    Client = RESTClient1
+    Params = <
+      item
+        name = 'email'
+      end
+      item
+        name = 'pw'
+      end
+      item
+        name = 'confirm'
+      end
+      item
+        name = 'name'
+      end>
+    Resource = 'apis/sign_up.json'
+    Response = SignUpResponse
+    OnAfterExecute = SignUpRequestAfterExecute
+    SynchronizedEvents = False
+    Left = 449
+    Top = 172
   end
 end

@@ -158,13 +158,9 @@ begin
 end;
 
 procedure TfrmLaunch.ColorButton3Click(Sender: TObject);
-var
-  URLString: string;
 begin
   if HasAgreed = 'Yes' then
   begin
-    URLString := 'http://www.triptether.com/users/sign_up';
-    HeaderFooterwithNavigation.webSignUp.Navigate(URLString);
     HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabSignUp;
     HeaderFooterwithNavigation.Show;
   end
