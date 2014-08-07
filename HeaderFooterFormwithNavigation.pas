@@ -215,7 +215,6 @@ type
     Label36: TLabel;
     btnBackToTrip: TSpeedButton;
     VertScrollBox6: TVertScrollBox;
-    Label40: TLabel;
     mmoTripNotes: TMemo;
     btnNewTripDetails2: TButton;
     btnNewTripCreate: TButton;
@@ -245,6 +244,8 @@ type
     spPictures: TSpeedButton;
     spMapOptions: TSpeedButton;
     Rectangle10: TRectangle;
+    Layout3: TLayout;
+    Layout4: TLayout;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -352,8 +353,8 @@ type
   end;
 
 const
-  APIBASEURL = 'http://192.168.2.201';
-//  APIBASEURL = 'http://www.triptether.com';
+//  APIBASEURL = 'http://192.168.2.201';
+  APIBASEURL = 'http://www.triptether.com';
 
 var
   HeaderFooterwithNavigation: THeaderFooterwithNavigation;

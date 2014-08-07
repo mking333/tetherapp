@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 410.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 10
+    TabIndex = 4
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -2660,9 +2660,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnSend: TSpeedButton
           Align = Right
-          Height = 44.000000000000000000
+          Height = 61.000000000000000000
           Position.X = 256.000000000000000000
-          Position.Y = 8.000000000000000000
           Text = 'Send'
           Width = 64.000000000000000000
           OnClick = btnSendClick
@@ -2805,9 +2804,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
             object SpeedButton2: TSpeedButton
               Align = Right
-              Height = 44.000000000000000000
+              Height = 132.000000000000000000
               Position.X = 276.000000000000000000
-              Position.Y = 44.000000000000000000
               StyleLookup = 'nexttoolbutton'
               Text = 'SpeedButton2'
               Width = 44.000000000000000000
@@ -2835,8 +2833,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
             object SpeedButton4: TSpeedButton
               Align = Left
-              Height = 44.000000000000000000
-              Position.Y = 44.000000000000000000
+              Height = 132.000000000000000000
               StyleLookup = 'priortoolbutton'
               Text = 'SpeedButton2'
               Width = 44.000000000000000000
@@ -2910,7 +2907,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabSignIn'
       Width = 8.000000000000000000
@@ -3189,18 +3186,18 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 3
           Password = True
-          Position.X = 92.000000000000000000
+          Position.X = 96.000000000000000000
           Position.Y = 62.000000000000000000
-          Width = 213.000000000000000000
+          Width = 209.000000000000000000
           Height = 30.000000000000000000
         end
         object edtSignUpEMail: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 4
           KeyboardType = EmailAddress
-          Position.X = 92.000000000000000000
+          Position.X = 96.000000000000000000
           Position.Y = 14.000000000000000000
-          Width = 213.000000000000000000
+          Width = 209.000000000000000000
           Height = 30.000000000000000000
         end
         object Label39: TLabel
@@ -3221,9 +3218,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 2
           Password = True
-          Position.X = 92.000000000000000000
+          Position.X = 96.000000000000000000
           Position.Y = 110.000000000000000000
-          Width = 213.000000000000000000
+          Width = 209.000000000000000000
           Height = 30.000000000000000000
         end
         object Label42: TLabel
@@ -3254,7 +3251,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object ToolBar4: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label20: TLabel
           Align = Contents
@@ -3436,30 +3433,30 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41857.000000000000000000
+          Date = 41858.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 65.000000000000000000
-          TabOrder = 8
+          TabOrder = 9
           Width = 97.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41857.000000000000000000
+          Date = 41858.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 20.000000000000000000
-          TabOrder = 9
+          TabOrder = 10
           Width = 97.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41857.000000000000000000
+          Date = 41858.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 110.000000000000000000
-          TabOrder = 10
+          TabOrder = 11
           Width = 97.000000000000000000
         end
         object tmeTripArrive: TTimeEdit
@@ -3467,7 +3464,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 230.000000000000000000
           Position.Y = 65.000000000000000000
-          TabOrder = 11
+          TabOrder = 12
           Width = 81.000000000000000000
         end
         object tmeTripDepart: TTimeEdit
@@ -3475,7 +3472,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 232.000000000000000000
           Position.Y = 20.000000000000000000
-          TabOrder = 12
+          TabOrder = 13
           Width = 81.000000000000000000
         end
         object tmeTripLeave: TTimeEdit
@@ -3483,7 +3480,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 230.000000000000000000
           Position.Y = 110.000000000000000000
-          TabOrder = 13
+          TabOrder = 14
           Width = 81.000000000000000000
         end
         object btnNewTripDetails2: TButton
@@ -3684,7 +3681,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabNewTripNotes'
       Width = 8.000000000000000000
@@ -3720,67 +3717,73 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
       end
       object VertScrollBox6: TVertScrollBox
-        Align = HorzCenter
+        Align = Client
         Height = 366.000000000000000000
-        Position.X = 1.000000000000000000
-        Position.Y = 44.000000000000000000
         TabOrder = 1
-        Width = 317.000000000000000000
-        object Label40: TLabel
-          Height = 30.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 14.000000000000000000
-          Text = 'Notes'
-          Width = 82.000000000000000000
-        end
+        Width = 320.000000000000000000
         object mmoTripNotes: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-          Height = 89.000000000000000000
+          Align = Top
+          Height = 177.000000000000000000
           Margins.Left = 20.000000000000000000
           Margins.Top = 10.000000000000000000
           Margins.Right = 20.000000000000000000
           Margins.Bottom = 10.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 48.000000000000000000
-          TabOrder = 3
-          Width = 297.000000000000000000
+          Position.X = 20.000000000000000000
+          Position.Y = 10.000000000000000000
+          TabOrder = 0
+          Width = 280.000000000000000000
         end
-        object btnNewTripCreate: TButton
-          Height = 44.000000000000000000
-          Position.X = 73.000000000000000000
-          Position.Y = 160.000000000000000000
+        object Layout3: TLayout
+          Align = Top
+          Height = 164.000000000000000000
+          Position.Y = 197.000000000000000000
+          Width = 320.000000000000000000
           TabOrder = 1
-          Text = 'Create Trip'
-          Width = 177.000000000000000000
-          OnClick = btnNewTripCreateClick
-        end
-        object cpNewTripError: TCalloutPanel
-          Height = 90.000000000000000000
-          Padding.Top = 11.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 207.000000000000000000
-          Visible = False
-          Width = 305.000000000000000000
-          TabOrder = 2
-          CalloutWidth = 23.000000000000000000
-          CalloutLength = 11.000000000000000000
-          object Label31: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 30.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 19.000000000000000000
-            TextSettings.HorzAlign = Center
-            Text = 'Oops, we weren'#39't able to create the trip.'
-            Width = 297.000000000000000000
-          end
-          object Label32: TLabel
-            StyledSettings = [Family, Style, FontColor]
-            Height = 25.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = 51.000000000000000000
-            TextSettings.HorzAlign = Center
-            Text = 'Check your trip info and try again.'
-            Width = 297.000000000000000000
+          object Layout4: TLayout
+            Align = Center
+            Height = 159.000000000000000000
+            Width = 346.000000000000000000
+            TabOrder = 0
+            object cpNewTripError: TCalloutPanel
+              Align = Horizontal
+              Height = 90.000000000000000000
+              Padding.Top = 11.000000000000000000
+              Position.X = 24.000000000000000000
+              Position.Y = 57.000000000000000000
+              Visible = False
+              Width = 305.000000000000000000
+              TabOrder = 0
+              CalloutWidth = 23.000000000000000000
+              CalloutLength = 11.000000000000000000
+              object Label31: TLabel
+                StyledSettings = [Family, Style, FontColor]
+                Height = 30.000000000000000000
+                Position.X = 8.000000000000000000
+                Position.Y = 19.000000000000000000
+                TextSettings.HorzAlign = Center
+                Text = 'Oops, we weren'#39't able to create the trip.'
+                Width = 297.000000000000000000
+              end
+              object Label32: TLabel
+                StyledSettings = [Family, Style, FontColor]
+                Height = 25.000000000000000000
+                Position.X = 8.000000000000000000
+                Position.Y = 51.000000000000000000
+                TextSettings.HorzAlign = Center
+                Text = 'Check your trip info and try again.'
+                Width = 297.000000000000000000
+              end
+            end
+            object btnNewTripCreate: TButton
+              Height = 44.000000000000000000
+              Position.X = 89.000000000000000000
+              Position.Y = 10.000000000000000000
+              TabOrder = 1
+              Text = 'Create Trip'
+              Width = 177.000000000000000000
+              OnClick = btnNewTripCreateClick
+            end
           end
         end
       end
@@ -4080,8 +4083,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Top = 456
   end
   object GestureManager1: TGestureManager
-    Left = 256
-    Top = 372
+    Left = 440
+    Top = 516
     GestureData = <
       item
         Control = mmoNotes
