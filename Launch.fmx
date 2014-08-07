@@ -28493,70 +28493,73 @@ object frmLaunch: TfrmLaunch
       Position.Y = 80.000000000000000000
       Width = 315.000000000000000000
       TabOrder = 2
-      object ColorButton1: TColorButton
-        Color = claCoral
+      object btnResume: TColorButton
+        Align = Top
+        Color = claCornflowerblue
         Height = 55.000000000000000000
         Margins.Left = 20.000000000000000000
-        Margins.Top = 30.000000000000000000
+        Margins.Top = 20.000000000000000000
         Margins.Right = 20.000000000000000000
-        Margins.Bottom = 10.000000000000000000
-        Position.X = 48.000000000000000000
-        Position.Y = 24.000000000000000000
-        TabOrder = 2
-        Width = 225.000000000000000000
-        OnClick = ColorButton1Click
+        Position.X = 20.000000000000000000
+        Position.Y = 20.000000000000000000
+        TabOrder = 3
+        Width = 275.000000000000000000
+        OnClick = btnResumeClick
         object Label1: TLabel
           Align = Client
-          StyledSettings = [Size, FontColor]
+          StyledSettings = [Size]
           Height = 55.000000000000000000
           TextSettings.Font.Family = 'Default'
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
-          Text = 'Join a Trip'
-          Width = 225.000000000000000000
+          Text = 'Resume Trip'
+          Width = 275.000000000000000000
         end
       end
-      object ColorButton2: TColorButton
-        Color = claCoral
+      object btnNewTrip: TColorButton
+        Align = Top
+        Color = claCornflowerblue
         Height = 55.000000000000000000
-        Margins.Left = 10.000000000000000000
-        Margins.Top = 30.000000000000000000
-        Margins.Right = 10.000000000000000000
-        Margins.Bottom = 10.000000000000000000
-        Position.X = 48.000000000000000000
-        Position.Y = 95.000000000000000000
+        Margins.Left = 20.000000000000000000
+        Margins.Top = 20.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 170.000000000000000000
         TabOrder = 1
-        Width = 225.000000000000000000
-        OnClick = ColorButton2Click
+        Width = 275.000000000000000000
+        OnClick = btnNewTripClick
         object Label2: TLabel
           Align = Client
-          StyledSettings = [Size, FontColor]
+          StyledSettings = [Size]
           Height = 55.000000000000000000
           TextSettings.Font.Family = 'Default'
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Create a New Trip'
-          Width = 225.000000000000000000
+          Width = 275.000000000000000000
         end
       end
-      object ColorButton3: TColorButton
-        Color = claCoral
+      object btnSignUp: TColorButton
+        Align = Top
+        Color = claLightskyblue
         Height = 55.000000000000000000
-        Margins.Left = 10.000000000000000000
-        Margins.Top = 30.000000000000000000
-        Margins.Right = 10.000000000000000000
-        Margins.Bottom = 10.000000000000000000
-        Position.X = 48.000000000000000000
-        Position.Y = 166.000000000000000000
+        Margins.Left = 20.000000000000000000
+        Margins.Top = 20.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 245.000000000000000000
         TabOrder = 0
-        Width = 225.000000000000000000
-        OnClick = ColorButton3Click
+        Width = 275.000000000000000000
+        OnClick = btnSignUpClick
         object Label3: TLabel
           Align = Client
-          StyledSettings = [Size, FontColor]
+          StyledSettings = [Size]
           Height = 55.000000000000000000
           TextSettings.Font.Family = 'Default'
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Sign Up for TripTether'
-          Width = 225.000000000000000000
+          Width = 275.000000000000000000
         end
       end
       object btnTOU: TSpeedButton
@@ -28578,6 +28581,29 @@ object frmLaunch: TfrmLaunch
         Text = 'Privacy Policy'
         Width = 121.000000000000000000
         OnClick = btnPPClick
+      end
+      object btnJoin: TColorButton
+        Align = Top
+        Color = claCornflowerblue
+        Height = 55.000000000000000000
+        Margins.Left = 20.000000000000000000
+        Margins.Top = 20.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 95.000000000000000000
+        TabOrder = 2
+        Width = 275.000000000000000000
+        OnClick = btnJoinClick
+        object Label7: TLabel
+          Align = Client
+          StyledSettings = [Size]
+          Height = 55.000000000000000000
+          TextSettings.Font.Family = 'Default'
+          TextSettings.FontColor = claIvory
+          TextSettings.HorzAlign = Center
+          Text = 'Join a Trip'
+          Width = 275.000000000000000000
+        end
       end
     end
     object rcOpaque: TRectangle

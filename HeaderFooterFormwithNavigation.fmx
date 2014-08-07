@@ -20,7 +20,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     FullSize = True
     Height = 410.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 4
+    TabIndex = 10
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -42,33 +42,37 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object TopToolBar1: TToolBar
         Anchors = []
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label3: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          StyledSettings = [Family, Size, Style]
+          Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Join a Trip'
           Width = 320.000000000000000000
         end
         object btnSettings: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
-          Position.X = 272.000000000000000000
+          Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
+          Position.X = 276.000000000000000000
           StyleLookup = 'detailstoolbutton'
           Text = 'btnSettings'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnSettingsClick
         end
         object btnNewTrip: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
-          Position.X = 224.000000000000000000
+          Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
+          Position.X = 232.000000000000000000
           StyleLookup = 'addtoolbutton'
           Text = 'btnNewTrip'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnNewTripClick
         end
         object Image1: TImage
@@ -2214,16 +2218,16 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               FileName = 'C:\Projects\tetherapp\images\tticon.png'
             end>
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Width = 50.000000000000000000
           OnClick = Image1Click
         end
       end
       object VertScrollBox1: TVertScrollBox
         Align = HorzCenter
-        Height = 362.000000000000000000
+        Height = 366.000000000000000000
         Position.X = 1.000000000000000000
-        Position.Y = 48.000000000000000000
+        Position.Y = 44.000000000000000000
         TabOrder = 1
         Width = 317.000000000000000000
         object edtTripID: TEdit
@@ -2233,7 +2237,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 88.000000000000000000
           Position.Y = 20.000000000000000000
           Width = 220.000000000000000000
-          Height = 32.000000000000000000
+          Height = 30.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
         end
@@ -2244,7 +2248,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 88.000000000000000000
           Position.Y = 65.000000000000000000
           Width = 153.000000000000000000
-          Height = 32.000000000000000000
+          Height = 30.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
         end
@@ -2254,7 +2258,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 88.000000000000000000
           Position.Y = 110.000000000000000000
           Width = 222.000000000000000000
-          Height = 32.000000000000000000
+          Height = 30.000000000000000000
         end
         object edtEMail: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -2263,7 +2267,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 88.000000000000000000
           Position.Y = 155.000000000000000000
           Width = 221.000000000000000000
-          Height = 32.000000000000000000
+          Height = 30.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
         end
@@ -2389,27 +2393,33 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Align = MostTop
         Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label8: TLabel
           Align = Contents
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Trip'
           Width = 320.000000000000000000
         end
         object btnCheckIn: TSpeedButton
           Align = Right
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
           Position.X = 232.000000000000000000
           Text = 'Check In'
+          TextSettings.FontColor = claNavajowhite
           Width = 88.000000000000000000
           OnClick = btnCheckInClick
         end
         object btnQuit: TSpeedButton
           Align = Left
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
           Text = 'Quit'
+          TextSettings.FontColor = claNavajowhite
           Width = 66.000000000000000000
           OnClick = btnQuitClick
         end
@@ -2584,47 +2594,53 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Text = 'TabCheck'
       Width = 8.000000000000000000
       object ToolBar2: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label15: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          StyledSettings = [Family, Size, Style]
+          Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Check In'
           Width = 320.000000000000000000
         end
         object btnBackTrip: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnBackTripClick
         end
         object btnMap: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
+          StyledSettings = [Family, Size, Style]
+          Height = 44.000000000000000000
           Position.X = 265.000000000000000000
           Text = 'Map'
+          TextSettings.FontColor = claNavajowhite
           Width = 55.000000000000000000
           OnClick = btnMapClick
         end
         object btnAddShare: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
-          Position.X = 217.000000000000000000
+          Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
+          Position.X = 221.000000000000000000
           StyleLookup = 'addtoolbutton'
           Text = 'btnAddShare'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnAddShareClick
         end
       end
       object Panel4: TPanel
         Align = Top
         Height = 61.000000000000000000
-        Position.Y = 48.000000000000000000
+        Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
         object Panel6: TPanel
@@ -2637,15 +2653,16 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = Fit
             TabOrder = 0
             Width = 246.000000000000000000
-            Height = 27.675674438476560000
+            Height = 30.000000000000000000
             Margins.Left = 10.000000000000000000
             TextPrompt = 'Enter a comment...'
           end
         end
         object btnSend: TSpeedButton
           Align = Right
-          Height = 61.000000000000000000
+          Height = 44.000000000000000000
           Position.X = 256.000000000000000000
+          Position.Y = 8.000000000000000000
           Text = 'Send'
           Width = 64.000000000000000000
           OnClick = btnSendClick
@@ -2656,7 +2673,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Touch.InteractiveGestures = []
         OnGesture = TabCheckGesture
         Align = Client
-        Height = 301.000000000000000000
+        Height = 305.000000000000000000
         TabOrder = 2
         Width = 320.000000000000000000
         DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
@@ -2675,96 +2692,52 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Text = 'TabMap'
       Width = 8.000000000000000000
       object ToolBar1: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label12: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          StyledSettings = [Family, Size, Style]
+          Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Map'
           Width = 320.000000000000000000
         end
         object btnBackCheck: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = btnBackCheckClick
         end
         object btnDirections: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
+          StyledSettings = [Family, Size, Style]
+          Height = 44.000000000000000000
           Position.X = 224.000000000000000000
           Text = 'Directions'
+          TextSettings.FontColor = claNavajowhite
           Width = 96.000000000000000000
           OnClick = btnDirectionsClick
         end
-      end
-      object Panel19: TPanel
-        Align = Bottom
-        Height = 36.000000000000000000
-        Position.Y = 374.000000000000000000
-        Width = 320.000000000000000000
-        TabOrder = 1
-        object Rectangle7: TRectangle
-          Align = Contents
-          Fill.Color = claIvory
-          Height = 36.000000000000000000
-          Sides = []
-          Width = 320.000000000000000000
-        end
-        object Panel18: TPanel
-          Align = Center
-          Height = 28.000000000000000000
-          Width = 294.000000000000000000
-          TabOrder = 1
-          object spPictures: TSpeedButton
-            StaysPressed = True
-            Align = Left
-            Height = 28.000000000000000000
-            Position.X = 225.000000000000000000
-            StyleLookup = 'toolbuttonright'
-            Text = 'Pictures'
-            Width = 75.000000000000000000
-            OnClick = spPicturesClick
-          end
-          object spBikes: TSpeedButton
-            StaysPressed = True
-            Align = Left
-            Height = 28.000000000000000000
-            Position.X = 150.000000000000000000
-            StyleLookup = 'toolbuttonmiddle'
-            Text = 'Bikes'
-            Width = 75.000000000000000000
-            OnClick = spBikesClick
-          end
-          object spWeather: TSpeedButton
-            StaysPressed = True
-            Align = Left
-            Height = 28.000000000000000000
-            Position.X = 75.000000000000000000
-            StyleLookup = 'toolbuttonmiddle'
-            Text = 'Weather'
-            Width = 75.000000000000000000
-            OnClick = spWeatherClick
-          end
-          object spTraffic: TSpeedButton
-            StaysPressed = True
-            Align = Left
-            Height = 28.000000000000000000
-            StyleLookup = 'toolbuttonleft'
-            Text = 'Traffic'
-            Width = 75.000000000000000000
-            OnClick = spTrafficClick
-          end
+        object spMapOptions: TSpeedButton
+          Align = Left
+          Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
+          Position.X = 44.000000000000000000
+          StyleLookup = 'detailstoolbutton'
+          Text = 'spMapOptions'
+          Width = 44.000000000000000000
+          OnClick = spMapOptionsClick
         end
       end
       object Panel14: TPanel
         Align = Client
-        Height = 326.000000000000000000
+        Height = 366.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 2
         object mapTrip: TTMSFMXWebGMaps
@@ -2788,14 +2761,23 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object pnlDirections: TPanel
         Align = Top
         Height = 133.000000000000000000
+        Margins.Bottom = 1.000000000000000000
         Position.Y = 44.000000000000000000
         Visible = False
         Width = 320.000000000000000000
         TabOrder = 3
+        object Rectangle10: TRectangle
+          Align = Contents
+          Fill.Color = claIvory
+          Height = 133.000000000000000000
+          Sides = [Bottom]
+          Width = 320.000000000000000000
+        end
         object TabControl2: TTabControl
           Align = Client
           FullSize = True
           Height = 133.000000000000000000
+          Padding.Bottom = 1.000000000000000000
           TabHeight = 49.000000000000000000
           TabIndex = 0
           TabOrder = 2
@@ -2812,9 +2794,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Width = 8.000000000000000000
             object lbRoutes: TListBox
               Align = Client
-              Height = 133.000000000000000000
+              Height = 132.000000000000000000
               TabOrder = 0
-              Width = 272.000000000000000000
+              Width = 276.000000000000000000
               OnDblClick = lbRoutesDblClick
               DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
               DefaultItemStyles.GroupHeaderStyle = ''
@@ -2823,11 +2805,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
             object SpeedButton2: TSpeedButton
               Align = Right
-              Height = 133.000000000000000000
-              Position.X = 272.000000000000000000
+              Height = 44.000000000000000000
+              Position.X = 276.000000000000000000
+              Position.Y = 44.000000000000000000
               StyleLookup = 'nexttoolbutton'
               Text = 'SpeedButton2'
-              Width = 48.000000000000000000
+              Width = 44.000000000000000000
               OnClick = SpeedButton2Click
             end
           end
@@ -2842,7 +2825,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Width = 8.000000000000000000
             object lbLegs: TListBox
               Align = Client
-              Height = 133.000000000000000000
+              Height = 132.000000000000000000
               TabOrder = 0
               Width = 276.000000000000000000
               OnDblClick = lbLegsDblClick
@@ -2852,7 +2835,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
             object SpeedButton4: TSpeedButton
               Align = Left
-              Height = 133.000000000000000000
+              Height = 44.000000000000000000
+              Position.Y = 44.000000000000000000
               StyleLookup = 'priortoolbutton'
               Text = 'SpeedButton2'
               Width = 44.000000000000000000
@@ -2861,13 +2845,72 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           end
         end
       end
+      object pnlMapOptions: TPanel
+        Align = Left
+        Height = 366.000000000000000000
+        Position.Y = 44.000000000000000000
+        Visible = False
+        Width = 97.000000000000000000
+        TabOrder = 1
+        object Rectangle7: TRectangle
+          Align = Contents
+          Fill.Color = claIvory
+          Height = 366.000000000000000000
+          Sides = [Right]
+          Width = 97.000000000000000000
+        end
+        object spBikes: TSpeedButton
+          StaysPressed = True
+          Align = Top
+          Height = 44.000000000000000000
+          Position.Y = 88.000000000000000000
+          Text = 'Bikes'
+          Width = 97.000000000000000000
+          OnClick = spBikesClick
+        end
+        object spFollow: TSpeedButton
+          StaysPressed = True
+          Align = Top
+          Height = 44.000000000000000000
+          IsPressed = True
+          Text = 'Follow'
+          Width = 97.000000000000000000
+        end
+        object spTraffic: TSpeedButton
+          StaysPressed = True
+          Align = Top
+          Height = 44.000000000000000000
+          Position.Y = 44.000000000000000000
+          Text = 'Traffic'
+          Width = 97.000000000000000000
+          OnClick = spTrafficClick
+        end
+        object spWeather: TSpeedButton
+          StaysPressed = True
+          Align = Top
+          Height = 44.000000000000000000
+          Position.Y = 132.000000000000000000
+          Text = 'Weather'
+          Width = 97.000000000000000000
+          OnClick = spWeatherClick
+        end
+        object spPictures: TSpeedButton
+          StaysPressed = True
+          Align = Top
+          Height = 44.000000000000000000
+          Position.Y = 176.000000000000000000
+          Text = 'Pictures'
+          Width = 97.000000000000000000
+          OnClick = spPicturesClick
+        end
+      end
     end
     object TabSignIn: TTabItem
       CustomIcon = <
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabSignIn'
       Width = 8.000000000000000000
@@ -2881,11 +2924,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object TopToolBar3: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label1: TLabel
           Align = Contents
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Sign In To Create a Trip'
           Width = 320.000000000000000000
@@ -2893,6 +2938,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToJoin2: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
           Width = 44.000000000000000000
@@ -2901,6 +2947,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnSignUp: TButton
           Align = Right
           Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           Position.X = 276.000000000000000000
           StyleLookup = 'composetoolbutton'
           TabOrder = 1
@@ -3073,11 +3120,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object ToolBar3: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label19: TLabel
           Align = Contents
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'TripTether Sign Up'
           Width = 320.000000000000000000
@@ -3085,6 +3134,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToJoin3: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
           Width = 44.000000000000000000
@@ -3208,7 +3258,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Width = 320.000000000000000000
         object Label20: TLabel
           Align = Contents
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'New Trip'
           Width = 320.000000000000000000
@@ -3216,6 +3268,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToJoin: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
           Width = 44.000000000000000000
@@ -3333,11 +3386,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object ToolBar6: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label27: TLabel
           Align = Contents
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'New Trip Details'
           Width = 320.000000000000000000
@@ -3345,6 +3400,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToNewTrip: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
           Width = 44.000000000000000000
@@ -3380,30 +3436,30 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Width = 82.000000000000000000
         end
         object dteTripArrive: TDateEdit
-          Date = 41856.000000000000000000
+          Date = 41857.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 65.000000000000000000
-          TabOrder = 6
+          TabOrder = 8
           Width = 97.000000000000000000
         end
         object dteTripDepart: TDateEdit
-          Date = 41856.000000000000000000
+          Date = 41857.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 20.000000000000000000
-          TabOrder = 7
+          TabOrder = 9
           Width = 97.000000000000000000
         end
         object dteTripLeave: TDateEdit
-          Date = 41856.000000000000000000
+          Date = 41857.000000000000000000
           TodayDefault = True
           Height = 30.000000000000000000
           Position.X = 116.000000000000000000
           Position.Y = 110.000000000000000000
-          TabOrder = 8
+          TabOrder = 10
           Width = 97.000000000000000000
         end
         object tmeTripArrive: TTimeEdit
@@ -3411,7 +3467,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 230.000000000000000000
           Position.Y = 65.000000000000000000
-          TabOrder = 9
+          TabOrder = 11
           Width = 81.000000000000000000
         end
         object tmeTripDepart: TTimeEdit
@@ -3419,7 +3475,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 232.000000000000000000
           Position.Y = 20.000000000000000000
-          TabOrder = 10
+          TabOrder = 12
           Width = 81.000000000000000000
         end
         object tmeTripLeave: TTimeEdit
@@ -3427,7 +3483,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Height = 30.000000000000000000
           Position.X = 230.000000000000000000
           Position.Y = 110.000000000000000000
-          TabOrder = 11
+          TabOrder = 13
           Width = 81.000000000000000000
         end
         object btnNewTripDetails2: TButton
@@ -3460,11 +3516,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object TopToolBar2: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label2: TLabel
           Align = Client
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Settings'
           Width = 320.000000000000000000
@@ -3564,7 +3622,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object mmoShareInfo: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 301.000000000000000000
+        Height = 305.000000000000000000
         Padding.Left = 10.000000000000000000
         Padding.Top = 10.000000000000000000
         Padding.Right = 10.000000000000000000
@@ -3573,44 +3631,49 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Width = 320.000000000000000000
       end
       object ToolBar5: TToolBar
-        Height = 48.000000000000000000
+        Height = 44.000000000000000000
         TabOrder = 1
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label22: TLabel
           Align = Contents
-          Height = 48.000000000000000000
+          StyledSettings = [Family, Size, Style]
+          Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'Trip Share'
           Width = 320.000000000000000000
         end
         object btnJoinNewTrip: TSpeedButton
           Align = Right
-          Height = 48.000000000000000000
+          StyledSettings = [Family, Size, Style]
+          Height = 44.000000000000000000
           Position.X = 254.000000000000000000
           Text = 'Join'
+          TextSettings.FontColor = claNavajowhite
           Width = 66.000000000000000000
           OnClick = btnJoinNewTripClick
         end
         object SpeedButton3: TSpeedButton
           Align = Left
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
-          Width = 48.000000000000000000
+          Width = 44.000000000000000000
           OnClick = SpeedButton3Click
         end
       end
       object Panel13: TPanel
         Align = Top
         Height = 61.000000000000000000
-        Position.Y = 48.000000000000000000
+        Position.Y = 44.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 2
         object SpeedButton1: TSpeedButton
           Action = ShowShareSheetAction1
           Align = Center
-          Height = 48.000000000000000000
+          Height = 44.000000000000000000
           Text = 'Click to share trip info'
           Width = 305.000000000000000000
         end
@@ -3621,7 +3684,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabNewTripNotes'
       Width = 8.000000000000000000
@@ -3635,11 +3698,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object ToolBar7: TToolBar
         Height = 44.000000000000000000
         TabOrder = 0
-        TintColor = claCoral
+        TintColor = claCornflowerblue
         Width = 320.000000000000000000
         object Label36: TLabel
           Align = Contents
+          StyledSettings = [Family, Size, Style]
           Height = 44.000000000000000000
+          TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
           Text = 'New Trip Notes'
           Width = 320.000000000000000000
@@ -3647,6 +3712,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToTrip: TSpeedButton
           Align = Left
           Height = 44.000000000000000000
+          IconTintColor = claNavajowhite
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
           Width = 44.000000000000000000

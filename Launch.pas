@@ -14,11 +14,11 @@ type
     Layout1: TLayout;
     Image2: TImage;
     Layout2: TLayout;
-    ColorButton1: TColorButton;
+    btnResume: TColorButton;
     Label1: TLabel;
-    ColorButton2: TColorButton;
+    btnNewTrip: TColorButton;
     Label2: TLabel;
-    ColorButton3: TColorButton;
+    btnSignUp: TColorButton;
     Label3: TLabel;
     btnTOU: TSpeedButton;
     btnPP: TSpeedButton;
@@ -41,9 +41,11 @@ type
     btnPPx: TSpeedButton;
     Layout3: TLayout;
     Panel1: TPanel;
-    procedure ColorButton1Click(Sender: TObject);
-    procedure ColorButton2Click(Sender: TObject);
-    procedure ColorButton3Click(Sender: TObject);
+    btnJoin: TColorButton;
+    Label7: TLabel;
+    procedure btnResumeClick(Sender: TObject);
+    procedure btnNewTripClick(Sender: TObject);
+    procedure btnSignUpClick(Sender: TObject);
     procedure btnTOUClick(Sender: TObject);
     procedure btnPPClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -52,11 +54,14 @@ type
     procedure FormActivate(Sender: TObject);
     procedure btnTOUxClick(Sender: TObject);
     procedure btnPPxClick(Sender: TObject);
+    procedure btnJoinClick(Sender: TObject);
   private
     { Private declarations }
     HasAgreed: string;
     NameSetting: string;
     EmailSetting: string;
+    TripID: string;
+    TripPIN: string;
   public
     { Public declarations }
   end;
@@ -121,7 +126,30 @@ begin
   rcOpaque.Visible := false;
 end;
 
-procedure TfrmLaunch.ColorButton1Click(Sender: TObject);
+procedure TfrmLaunch.btnResumeClick(Sender: TObject);
+begin
+  if HasAgreed = 'Yes' then
+  begin
+    if (NameSetting = 'No') or (EmailSetting = 'No') then
+    begin
+      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabSettings;
+      HeaderFooterwithNavigation.Show;
+    end
+    else
+    begin
+      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabJoin;
+      HeaderFooterwithNavigation.Show;
+      HeaderFooterwithNavigation.JoinTrip(self);
+    end;
+  end
+  else
+  begin
+    rcOpaque.Visible := true;
+    rcAgree.Visible := true;
+  end;
+end;
+
+procedure TfrmLaunch.btnJoinClick(Sender: TObject);
 begin
   if HasAgreed = 'Yes' then
   begin
@@ -143,7 +171,7 @@ begin
   end;
 end;
 
-procedure TfrmLaunch.ColorButton2Click(Sender: TObject);
+procedure TfrmLaunch.btnNewTripClick(Sender: TObject);
 begin
   if HasAgreed = 'Yes' then
   begin
@@ -157,7 +185,7 @@ begin
   end;
 end;
 
-procedure TfrmLaunch.ColorButton3Click(Sender: TObject);
+procedure TfrmLaunch.btnSignUpClick(Sender: TObject);
 begin
   if HasAgreed = 'Yes' then
   begin
@@ -179,7 +207,14 @@ begin
   HasAgreed := ini.ReadString('termsandconditions', 'agreed', 'No');
   NameSetting := ini.ReadString('login', 'name', 'No');
   EmailSetting := ini.ReadString('login', 'email', 'No');
+  TripID := ini.ReadString('login', 'trip', '');
+  TripPin := ini.ReadString('login', 'pin', '');
   ini.Free;
+
+  if (TripID.Length > 0) and (TripPIN.Length > 0) then
+    btnResume.Visible := True
+  else
+    btnResume.Visible := False;
 end;
 
 end.

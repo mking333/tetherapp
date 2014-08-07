@@ -166,15 +166,13 @@ type
     MapResponse: TRESTResponse;
     mapTrip: TTMSFMXWebGMaps;
     btnAddShare: TSpeedButton;
-    Panel18: TPanel;
     edtEmailSetting: TEdit;
     Label34: TLabel;
     edtNameSetting: TEdit;
     Label35: TLabel;
-    spPictures: TSpeedButton;
     spBikes: TSpeedButton;
     spWeather: TSpeedButton;
-    Panel19: TPanel;
+    pnlMapOptions: TPanel;
     spTraffic: TSpeedButton;
     Panel14: TPanel;
     Action2: TAction;
@@ -243,6 +241,10 @@ type
     Label44: TLabel;
     Label45: TLabel;
     Label46: TLabel;
+    spFollow: TSpeedButton;
+    spPictures: TSpeedButton;
+    spMapOptions: TSpeedButton;
+    Rectangle10: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -317,6 +319,7 @@ type
     procedure btnNewTripDetails2Click(Sender: TObject);
     procedure btnSignUpGoClick(Sender: TObject);
     procedure SignUpRequestAfterExecute(Sender: TCustomRESTRequest);
+    procedure spMapOptionsClick(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -904,7 +907,7 @@ begin
       end;
     end;
 
-    if AutoZoomTrip then
+    if AutoZoomTrip or spFollow.IsPressed then
     begin
       if Participants.Count = 0 then
         mapTrip.MapPanTo(TripLat, TripLong)
@@ -916,6 +919,8 @@ begin
         Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
         mapTrip.MapZoomTo(Bounds);
       end;
+
+      AutoZoomTrip := False;
     end;
 
     ParticipantsCount := Participants.Count;
@@ -1085,8 +1090,7 @@ begin
       end;
     end;
 
-    AutoZoomTrip := True;
-    if AutoZoomTrip then
+    if spFollow.IsPressed then
     begin
       if Participants.Count = 0 then
         mapTrip.MapPanTo(DestLat, DestLong)
@@ -1162,6 +1166,18 @@ begin
     mapTrip.MapOptions.ShowTraffic := False
   else
     mapTrip.MapOptions.ShowTraffic := True;
+end;
+
+procedure THeaderFooterwithNavigation.spMapOptionsClick(Sender: TObject);
+begin
+  if pnlMapOptions.Visible then
+    pnlMapOptions.Visible := False
+  else
+  begin
+    if pnlDirections.Visible then
+      pnlDirections.Visible := False;
+    pnlMapOptions.Visible := True;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.spPicturesClick(Sender: TObject);
@@ -1255,6 +1271,8 @@ begin
     TabControl2.ActiveTab := TabRoutes;
     lbRoutes.Clear;
     pnlDirections.Visible := True;
+    //if pnlMapOptions.Visible then
+    //  pnlMapOptions.Visible := False;
   end;
 
   if pnlDirections.Visible then
@@ -1968,7 +1986,7 @@ begin
 
     if SelectName = 'Auto' then
     begin
-      AutoZoomTrip := True;
+      spFollow.IsPressed := True;
 
       Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
       Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
@@ -1978,7 +1996,8 @@ begin
     end
     else
     begin
-      AutoZoomTrip := False;
+      spFollow.IsPressed := False;
+
       mapTrip.MapPanTo(MapLat, MapLong);
       mapTrip.MapOptions.ZoomMap := ZoomLevel;
     end;
@@ -2137,7 +2156,7 @@ begin
         Bounds.SouthWest.Longitude := ParticipantLong;
     end;
 
-    if AutoZoomTrip then
+    if spFollow.IsPressed then
     begin
       if Participants.Count = 0 then
         mapTrip.MapPanTo(TripLat, TripLong)
