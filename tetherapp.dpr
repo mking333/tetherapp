@@ -11,7 +11,6 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TfrmLaunch, frmLaunch);
-  Application.CreateForm(THeaderFooterwithNavigation, HeaderFooterwithNavigation);
   Application.Run;
 end.
 

@@ -28505,6 +28505,8 @@ object frmLaunch: TfrmLaunch
         TabOrder = 3
         Width = 275.000000000000000000
         OnClick = btnResumeClick
+        OnMouseDown = btnResumeMouseDown
+        OnMouseUp = btnResumeMouseUp
         object Label1: TLabel
           Align = Client
           StyledSettings = [Size]
@@ -28528,6 +28530,8 @@ object frmLaunch: TfrmLaunch
         TabOrder = 1
         Width = 275.000000000000000000
         OnClick = btnNewTripClick
+        OnMouseDown = btnNewTripMouseDown
+        OnMouseUp = btnNewTripMouseUp
         object Label2: TLabel
           Align = Client
           StyledSettings = [Size]
@@ -28551,6 +28555,8 @@ object frmLaunch: TfrmLaunch
         TabOrder = 0
         Width = 275.000000000000000000
         OnClick = btnSignUpClick
+        OnMouseDown = btnSignUpMouseDown
+        OnMouseUp = btnSignUpMouseUp
         object Label3: TLabel
           Align = Client
           StyledSettings = [Size]
@@ -28594,6 +28600,8 @@ object frmLaunch: TfrmLaunch
         TabOrder = 2
         Width = 275.000000000000000000
         OnClick = btnJoinClick
+        OnMouseDown = btnJoinMouseDown
+        OnMouseUp = btnJoinMouseUp
         object Label7: TLabel
           Align = Client
           StyledSettings = [Size]
@@ -29226,5 +29234,10 @@ object frmLaunch: TfrmLaunch
         end
       end
     end
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 18
+    Top = 384
   end
 end

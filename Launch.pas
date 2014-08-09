@@ -6,8 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   System.IOUtils, System.INIFiles,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Layouts, FMX.StdCtrls, FMX.Colors, FMX.Memo, FMX.Effects, FMX.Edit;
-
+  FMX.Layouts, FMX.StdCtrls, FMX.Colors, FMX.Memo, FMX.Effects, FMX.Edit,
+  HeaderFooterFormwithNavigation;
 type
   TfrmLaunch = class(TForm)
     Image1: TImage;
@@ -43,6 +43,7 @@ type
     Panel1: TPanel;
     btnJoin: TColorButton;
     Label7: TLabel;
+    Timer1: TTimer;
     procedure btnResumeClick(Sender: TObject);
     procedure btnNewTripClick(Sender: TObject);
     procedure btnSignUpClick(Sender: TObject);
@@ -55,6 +56,23 @@ type
     procedure btnTOUxClick(Sender: TObject);
     procedure btnPPxClick(Sender: TObject);
     procedure btnJoinClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure btnResumeMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnJoinMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnNewTripMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnSignUpMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnResumeMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnJoinMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnNewTripMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnSignUpMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
   private
     { Private declarations }
     HasAgreed: string;
@@ -68,12 +86,13 @@ type
 
 var
   frmLaunch: TfrmLaunch;
+  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
 
 implementation
 
 {$R *.fmx}
 
-uses HeaderFooterFormwithNavigation;
+
 
 procedure TfrmLaunch.btnAgreeClick(Sender: TObject);
 var
@@ -149,6 +168,18 @@ begin
   end;
 end;
 
+procedure TfrmLaunch.btnResumeMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnResume.Color := TAlphaColorRec.RoyalBlue;
+end;
+
+procedure TfrmLaunch.btnResumeMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnResume.Color := TAlphaColorRec.Cornflowerblue;
+end;
+
 procedure TfrmLaunch.btnJoinClick(Sender: TObject);
 begin
   if HasAgreed = 'Yes' then
@@ -171,6 +202,18 @@ begin
   end;
 end;
 
+procedure TfrmLaunch.btnJoinMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnJoin.Color := TAlphaColorRec.RoyalBlue;
+end;
+
+procedure TfrmLaunch.btnJoinMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnJoin.Color := TAlphaColorRec.Cornflowerblue;
+end;
+
 procedure TfrmLaunch.btnNewTripClick(Sender: TObject);
 begin
   if HasAgreed = 'Yes' then
@@ -185,6 +228,18 @@ begin
   end;
 end;
 
+procedure TfrmLaunch.btnNewTripMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnNewTrip.Color := TAlphaColorRec.RoyalBlue;
+end;
+
+procedure TfrmLaunch.btnNewTripMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnNewTrip.Color := TAlphaColorRec.Cornflowerblue;
+end;
+
 procedure TfrmLaunch.btnSignUpClick(Sender: TObject);
 begin
   if HasAgreed = 'Yes' then
@@ -197,6 +252,18 @@ begin
     rcOpaque.Visible := true;
     rcAgree.Visible := true;
   end;
+end;
+
+procedure TfrmLaunch.btnSignUpMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnSignUp.Color := TAlphaColorRec.RoyalBlue;
+end;
+
+procedure TfrmLaunch.btnSignUpMouseUp(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Single);
+begin
+  btnSignUp.Color := TAlphaColorRec.Lightskyblue;
 end;
 
 procedure TfrmLaunch.FormActivate(Sender: TObject);
@@ -215,6 +282,12 @@ begin
     btnResume.Visible := True
   else
     btnResume.Visible := False;
+end;
+
+procedure TfrmLaunch.Timer1Timer(Sender: TObject);
+begin
+  Timer1.Enabled := False;
+  HeaderFooterwithNavigation := THeaderFooterwithNavigation.Create(frmLaunch);
 end;
 
 end.

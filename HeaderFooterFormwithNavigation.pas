@@ -76,7 +76,7 @@ type
     ListBoxItem5: TListBoxItem;
     ListBoxItem6: TListBoxItem;
     ListBoxItem7: TListBoxItem;
-    ListBoxItem8: TListBoxItem;
+    lbiStartFinish: TListBoxItem;
     lblName: TLabel;
     lblDeparting: TLabel;
     lblArriving: TLabel;
@@ -226,7 +226,7 @@ type
     btnSignUpGo: TButton;
     cpSignUpError: TCalloutPanel;
     Label37: TLabel;
-    Label38: TLabel;
+    lblSignUpError: TLabel;
     edtSignUpPW: TEdit;
     edtSignUpEMail: TEdit;
     Label39: TLabel;
@@ -252,7 +252,7 @@ type
     procedure JoinTrip(Sender: TObject);
     procedure JoinRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure Timer1Timer(Sender: TObject);
-    procedure CheckIn(Sender: TObject; Status: string);
+    procedure CheckIn(Sender: TObject; Status: string; StatusCount: integer);
     procedure Mapping(Sender: TObject);
     procedure MapName(Sender: TObject; SelectName: string; ZoomLevel: integer);
     procedure MapUpdate(Sender: TObject);
@@ -325,6 +325,8 @@ type
     { Private declarations }
     AutoZoomTrip: boolean;
     ParticipantsCount: integer;
+    SaveStatus: string;
+    SaveStatusCount: integer;
 
     StartTime: TDate;
     TripToken: string;
@@ -356,8 +358,8 @@ const
 //  APIBASEURL = 'http://192.168.2.201';
   APIBASEURL = 'http://www.triptether.com';
 
-var
-  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
+//var
+//  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
 
 implementation
 
@@ -579,6 +581,12 @@ begin
     Result := User.Get('result').JsonValue.ToString.Replace('"', '');
     if Result <> 'success' then
     begin
+      lblSignUpError.Text := 'Check your sign up info and try again.';
+      if Result = 'duplicate user' then
+        lblSignUpError.Text := 'Email already used, try another.';
+      if Result = 'password error' then
+        lblSignUpError.Text := 'Password must be at least 8 characters.';
+
       cpSignUpError.Visible := True;
     end
     else
@@ -676,24 +684,27 @@ begin
       end;
       if Start = '' then
       begin
-        lblStarted.Text := 'The trip has not yet started.';
-        lblLeader.Text := 'Trip will begin when the leader joins.';
+        lbiStartFinish.Text := 'Started';
+        lblStarted.Text := 'Not yet started.';
+        lblLeader.Text := 'Leader will start trip.';
         btnCheckIn.Enabled := false;
       end
       else
       begin
+        lbiStartFinish.Text := 'Started';
         LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Start, True));
         StartingDate := FormatDateTime('ddddd t', LocalDate);
         lblStarted.Text := StartingDate;
-        lblLeader.Text := 'Leader has started the trip.';
+        lblLeader.Text := 'Leader started trip.';
         btnCheckIn.Enabled := true;
       end;
       if Finish <> '' then
       begin
+        lbiStartFinish.Text := 'Finished';
         LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Finish, True));
         FinishingDate := FormatDateTime('ddddd t', LocalDate);
-        lblStarted.Text := 'The trip was finished at ' + FinishingDate + '.';
-        lblLeader.Text := 'Leader has finished the trip.';
+        lblStarted.Text := FinishingDate;
+        lblLeader.Text := 'Leader finished trip.';
         btnCheckIn.Enabled := false;
       end;
 
@@ -724,8 +735,8 @@ begin
       StartUpdating(self);
       StartTime := Now;
 
-      edtStatus.Text := 'Joined Trip';
-      CheckIn(self, 'Joined Trip');
+      //edtStatus.Text := 'Joined Trip';
+      CheckIn(self, 'Joined Trip', 3);
       //Mapping(self);
     end;
   end;
@@ -759,6 +770,7 @@ var
   ParticipantCheckIn: string;
   ParticipantJoin: string;
   ParticipantQuit: string;
+  ParticipantLocated: boolean;
   Participants: TJSONArray;
   LocalDate: TDateTime;
   CheckInDate: string;
@@ -782,10 +794,12 @@ begin
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
     ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+    ParticipantLocated := True;
     if (ParticipantLat = 0) or (ParticipantLong = 0) then
     begin
       ParticipantLat := TripLat;
-      ParticipantLong := TripLong + 0.01;
+      ParticipantLong := TripLong + 0.001;
+      ParticipantLocated := False;
     end;
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
@@ -818,7 +832,10 @@ begin
     Marker.Latitude := ParticipantLat;
     Marker.Longitude := ParticipantLong;
     Marker.Draggable := false;
-    Marker.Icon := 'http://www.triptether.com/images/participant.png';
+    if ParticipantLocated then
+      Marker.Icon := 'http://www.triptether.com/images/participant.png'
+    else
+      Marker.Icon := 'http://www.triptether.com/images/participant6.png';
     Marker.Title := 'Me';
     if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
       Marker.MapLabel.Text := ParticipantName
@@ -843,10 +860,12 @@ begin
       ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
       ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
       ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      ParticipantLocated := True;
       if (ParticipantLat = 0) or (ParticipantLong = 0) then
       begin
         ParticipantLat := TripLat;
-        ParticipantLong := TripLong + 0.01;
+        ParticipantLong := TripLong + 0.001;
+        ParticipantLocated := False;
       end;
       ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
       ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
@@ -886,7 +905,12 @@ begin
           Marker.Longitude := ParticipantLong;
           Marker.Draggable := false;
           if ParticipantQuit = '' then
-            Marker.Icon := 'http://www.triptether.com/images/participant2.png'
+          begin
+            if ParticipantLocated then
+              Marker.Icon := 'http://www.triptether.com/images/participant3.png'
+            else
+              Marker.Icon := 'http://www.triptether.com/images/participant6.png';
+          end
           else
             Marker.Icon := 'http://www.triptether.com/images/participantq.png';
           Marker.Title := ParticipantName;
@@ -1061,7 +1085,7 @@ begin
       else
       begin
         if ParticipantQuit = '' then
-          Marker.Icon := 'http://www.triptether.com/images/participant2.png'
+          Marker.Icon := 'http://www.triptether.com/images/participant3.png'
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png';
       end;
@@ -1217,7 +1241,7 @@ end;
 
 procedure THeaderFooterwithNavigation.btnCheckInClick(Sender: TObject);
 begin
-  CheckIn(self, '');
+  CheckIn(self, 'Checked In', 1);
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
@@ -1454,8 +1478,14 @@ procedure THeaderFooterwithNavigation.btnSignUpGoClick(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  if (edtSignUpEmail.Text = '') or (edtSignUpPW.Text = '') or (edtSignUpConfirm.Text = '') then
+  if (edtSignUpEmail.Text = '') or (edtSignUpPW.Text.Length < 8) or (edtSignUpConfirm.Text.Length < 8) or (edtSignUpPW.Text <> edtSignUpConfirm.Text) then
   begin
+    lblSignUpError.Text := 'Check your sign up info and try again.';
+    if edtSignUpPW.Text.Length < 8 then
+      lblSignUpError.Text := 'Password must at least 8 characters.';
+    if edtSignUpPW.Text <> edtSignUpConfirm.Text then
+      lblSignUpError.Text := 'Confirm PW should be same as password.';
+
     cpSignUpError.Visible := True;
     edtSignUpEmail.TextPrompt := 'Your email address.';
     edtSignUpPW.TextPrompt := 'Choose password.';
@@ -1489,8 +1519,8 @@ end;
 procedure THeaderFooterwithNavigation.btnQuitClick(Sender: TObject);
 begin
   StopUpdating(self);
-  edtStatus.Text := 'Quit Trip';
-  CheckIn(self, 'Quit Trip');
+  //edtStatus.Text := 'Quit Trip';
+  CheckIn(self, 'Quit Trip', 3);
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
 
@@ -1669,7 +1699,7 @@ end;
 
 procedure THeaderFooterwithNavigation.btnSendClick(Sender: TObject);
 begin
-  CheckIn(self, edtStatus.Text);
+  CheckIn(self, edtStatus.Text, 12);
   edtStatus.Text := '';
 end;
 
@@ -1699,7 +1729,10 @@ var
 begin
   minute_diff := MinutesBetween(Now, StartTime);
   if (spCheckIn.Value = 1) or (minute_diff mod Trunc(spCheckIn.Value) = 0) then
-    CheckIn(self, edtStatus.Text);
+  begin
+    CheckIn(self, '', 1);
+    //edtStatus.Text := '';
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.Timer2Timer(Sender: TObject);
@@ -1735,8 +1768,27 @@ begin
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
-procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string);
+procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string; StatusCount: integer);
 begin
+  if Status = '' then
+  begin
+    if SaveStatusCount > 0 then
+    begin
+      Status := SaveStatus;
+      SaveStatusCount := SaveStatusCount - 1;
+    end
+    else
+    begin
+      SaveStatus := '';
+      SaveStatusCount := 0;
+    end;
+  end
+  else
+  begin
+    SaveStatus := Status;
+    SaveStatusCount := StatusCount;
+  end;
+
   if not CheckingIn then
   begin
     CheckingIn := True;
@@ -1923,7 +1975,7 @@ begin
       if (ParticipantLat = 0) or (ParticipantLong = 0) then
       begin
         ParticipantLat := TripLat;
-        ParticipantLong := TripLong + 0.01;
+        ParticipantLong := TripLong + 0.001;
       end;
       ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
       ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
@@ -1961,7 +2013,7 @@ begin
         if (ParticipantLat = 0) or (ParticipantLong = 0) then
         begin
           ParticipantLat := TripLat;
-          ParticipantLong := TripLong + 0.01;
+          ParticipantLong := TripLong + 0.001;
         end;
         ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
         ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
@@ -2027,6 +2079,7 @@ var
   ParticipantCheckIn: string;
   ParticipantJoin: string;
   ParticipantQuit: string;
+  ParticipantLocated: boolean;
   Participants: TJSONArray;
   LocalDate: TDateTime;
   CheckInDate: string;
@@ -2050,10 +2103,12 @@ begin
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
     ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
     ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+    ParticipantLocated := True;
     if (ParticipantLat = 0) or (ParticipantLong = 0) then
     begin
       ParticipantLat := TripLat;
-      ParticipantLong := TripLong + 0.01;
+      ParticipantLong := TripLong + 0.001;
+      ParticipantLocated := False;
     end;
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
@@ -2083,7 +2138,10 @@ begin
     Marker.Latitude := ParticipantLat;
     Marker.Longitude := ParticipantLong;
     Marker.Draggable := false;
-    Marker.Icon := 'http://www.triptether.com/images/participant.png';
+    if ParticipantLocated then
+      Marker.Icon := 'http://www.triptether.com/images/participant.png'
+    else
+      Marker.Icon := 'http://www.triptether.com/images/participant6.png';
     Marker.Title := 'Me';
     if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
       Marker.MapLabel.Text := ParticipantName
@@ -2107,10 +2165,12 @@ begin
       ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
       ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
       ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
+      ParticipantLocated := True;
       if (ParticipantLat = 0) or (ParticipantLong = 0) then
       begin
         ParticipantLat := TripLat;
-        ParticipantLong := TripLong + 0.01;
+        ParticipantLong := TripLong + 0.001;
+        ParticipantLocated := False;
       end;
       ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
       ParticipantJoin := Participant.Get('join').JsonValue.ToString.Replace('"', '');
@@ -2126,8 +2186,8 @@ begin
         CheckInDate := ''
       end;
 
-      if (ParticipantLat = 0) and (ParticipantLong = 0) then
-        Continue;
+      //if (ParticipantLat = 0) and (ParticipantLong = 0) then
+      //  Continue;
 
       if ParticipantID <> MyID then
       begin
@@ -2136,7 +2196,12 @@ begin
         Marker.Longitude := ParticipantLong;
         Marker.Draggable := false;
         if ParticipantQuit = '' then
-          Marker.Icon := 'http://www.triptether.com/images/participant2.png'
+        begin
+          if ParticipantLocated then
+            Marker.Icon := 'http://www.triptether.com/images/participant3.png'
+          else
+            Marker.Icon := 'http://www.triptether.com/images/participant6.png';
+        end
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png';
         Marker.Title := ParticipantName;
