@@ -75,12 +75,10 @@ type
     ListBoxItem4: TListBoxItem;
     ListBoxItem5: TListBoxItem;
     ListBoxItem6: TListBoxItem;
-    ListBoxItem7: TListBoxItem;
     lbiStartFinish: TListBoxItem;
     lblName: TLabel;
     lblDeparting: TLabel;
     lblArriving: TLabel;
-    lblLeaving: TLabel;
     lblStarted: TLabel;
     ListBoxItem9: TListBoxItem;
     lblLeader: TLabel;
@@ -137,9 +135,6 @@ type
     dteTripArrive: TDateEdit;
     tmeTripArrive: TTimeEdit;
     Label29: TLabel;
-    dteTripLeave: TDateEdit;
-    tmeTripLeave: TTimeEdit;
-    Label30: TLabel;
     cpSignInError: TCalloutPanel;
     Label24: TLabel;
     Label25: TLabel;
@@ -617,10 +612,10 @@ var
   Response: TJSONObject;
   Trip: TJSONObject;
   Name: TJSONValue;
+  UserName: string;
   Notes: string;
   Depart: string;
   Arrive: string;
-  Leave: string;
   Start: string;
   Finish: string;
   Leader: string;
@@ -631,7 +626,6 @@ var
   LocalDate: TDateTime;
   DepartingDate: string;
   ArrivingDate: string;
-  LeavingDate: string;
   StartingDate: string;
   FinishingDate: string;
 begin
@@ -649,10 +643,10 @@ begin
       cpJoinError.Visible := False;
 
       Name := Trip.Get('name').JsonValue;
+      UserName := Trip.Get('user').JsonValue.ToString.Replace('"', '');
       Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
       Depart := Trip.Get('depart').JsonValue.ToString.Replace('"', '');
       Arrive := Trip.Get('arrive').JsonValue.ToString.Replace('"', '');
-      Leave := Trip.Get('leave').JsonValue.ToString.Replace('"', '');
       Start := Trip.Get('start').JsonValue.ToString.Replace('"', '');
       Finish := Trip.Get('finish').JsonValue.ToString.Replace('"', '');
       Token := Trip.Get('token').JsonValue;
@@ -676,17 +670,11 @@ begin
         ArrivingDate := FormatDateTime('ddddd t', LocalDate);
         lblArriving.Text := ArrivingDate;
       end;
-      if Leave <> '' then
-      begin
-        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Leave, True));
-        LeavingDate := FormatDateTime('ddddd t', LocalDate);
-        lblLeaving.Text := LeavingDate;
-      end;
       if Start = '' then
       begin
         lbiStartFinish.Text := 'Started';
-        lblStarted.Text := 'Not yet started.';
-        lblLeader.Text := 'Leader will start trip.';
+        lblStarted.Text := 'Leader will start trip.';
+        lblLeader.Text := UserName;
         btnCheckIn.Enabled := false;
       end
       else
@@ -695,7 +683,7 @@ begin
         LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Start, True));
         StartingDate := FormatDateTime('ddddd t', LocalDate);
         lblStarted.Text := StartingDate;
-        lblLeader.Text := 'Leader started trip.';
+        lblLeader.Text := UserName;
         btnCheckIn.Enabled := true;
       end;
       if Finish <> '' then
@@ -704,7 +692,7 @@ begin
         LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Finish, True));
         FinishingDate := FormatDateTime('ddddd t', LocalDate);
         lblStarted.Text := FinishingDate;
-        lblLeader.Text := 'Leader finished trip.';
+        lblLeader.Text := UserName;
         btnCheckIn.Enabled := false;
       end;
 
@@ -1616,12 +1604,9 @@ begin
   ReplaceTime(Departing, tmeTripDepart.DateTime);
   Arriving := dteTripArrive.DateTime;
   ReplaceTime(Arriving, tmeTripArrive.DateTime);
-  Leaving := dteTripLeave.DateTime;
-  ReplaceTime(Leaving, tmeTripLeave.DateTime);
 
   NewTripRequest.Params.ParameterByName('depart').Value := LocalDateTimeToGMT(Departing, False);
   NewTripRequest.Params.ParameterByName('arrive').Value := LocalDateTimeToGMT(Arriving, False);
-  NewTripRequest.Params.ParameterByName('leave').Value := LocalDateTimeToGMT(Leaving, False);
   try
     NewTripRequest.Execute;
   except
