@@ -351,7 +351,7 @@ type
 
 const
 //  APIBASEURL = 'http://192.168.2.201';
-  APIBASEURL = 'http://www.triptether.com';
+  APIBASEURL = 'https://www.triptether.com';
 
 //var
 //  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
