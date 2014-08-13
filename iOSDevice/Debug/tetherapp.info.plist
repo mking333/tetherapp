@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>tetherapp</string>
+	<string>TripTether</string>
 	<key>CFBundleIdentifier</key>
 	<string>tetherapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -35,14 +35,14 @@
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-	<string>FM_ApplicationIcon_57x57</string>
-	<string>FM_ApplicationIcon_114x114</string>
-	<string>FM_ApplicationIcon_72x72</string>
-	<string>FM_ApplicationIcon_144x144</string>
-	<string>FM_ApplicationIcon_76x76</string>
-	<string>FM_ApplicationIcon_152x152</string>
-	<string>FM_ApplicationIcon_60x60</string>
-	<string>FM_ApplicationIcon_120x120</string>
+	<string>triptether57x57</string>
+	<string>triptether114x114</string>
+	<string>triptether72x72</string>
+	<string>triptether144x144</string>
+	<string>triptether76x76</string>
+	<string>triptether152x152</string>
+	<string>triptether60x60</string>
+	<string>triptether120x120</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
