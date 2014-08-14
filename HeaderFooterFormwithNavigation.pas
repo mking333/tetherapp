@@ -241,6 +241,7 @@ type
     Rectangle10: TRectangle;
     Layout3: TLayout;
     Layout4: TLayout;
+    spTags: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -316,6 +317,8 @@ type
     procedure btnSignUpGoClick(Sender: TObject);
     procedure SignUpRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure spMapOptionsClick(Sender: TObject);
+    procedure spTagsClick(Sender: TObject);
+    procedure spFollowClick(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -805,8 +808,13 @@ begin
     Marker.Longitude := TripLong;
     Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
-    Marker.Title := 'Destination';
-    Marker.MapLabel.Text := Name;
+    if spTags.IsPressed then
+    begin
+      Marker.MapLabel.Text := '<b>' + Name + '</b>';
+      Marker.MapLabel.Color := TAlphaColorRec.Red;
+      Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+      Marker.MapLabel.FontColor := TAlphaColorRec.White;
+    end;
     mapTrip.CreateMapMarker(Marker);
     //mapTrip.Markers.Add(DestLat, DestLong, Name, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
 
@@ -824,11 +832,13 @@ begin
       Marker.Icon := 'http://www.triptether.com/images/participant.png'
     else
       Marker.Icon := 'http://www.triptether.com/images/participant6.png';
-    Marker.Title := 'Me';
-    if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
-      Marker.MapLabel.Text := ParticipantName
-    else
-      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+    if spTags.IsPressed then
+    begin
+      if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+        Marker.MapLabel.Text := ParticipantName
+      else
+        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+    end;
     mapTrip.CreateMapMarker(Marker);
 
 
@@ -901,11 +911,13 @@ begin
           end
           else
             Marker.Icon := 'http://www.triptether.com/images/participantq.png';
-          Marker.Title := ParticipantName;
-          if ParticipantStatus = '' then
-            Marker.MapLabel.Text := ParticipantName
-          else
-            Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+          if spTags.IsPressed then
+          begin
+            if ParticipantStatus = '' then
+              Marker.MapLabel.Text := ParticipantName
+            else
+              Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+          end;
           mapTrip.CreateMapMarker(Marker);
         end;
 
@@ -926,10 +938,10 @@ begin
         mapTrip.MapPanTo(TripLat, TripLong)
       else
       begin
-        Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
-        Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
-        Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
-        Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
+        //Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
+        //Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
+        //Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
+        //Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
         mapTrip.MapZoomTo(Bounds);
       end;
 
@@ -1031,7 +1043,13 @@ begin
       Marker.Longitude := DestLong;
       Marker.Draggable := false;
       Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
-      Marker.MapLabel.Text := Name;
+      if spTags.IsPressed then
+      begin
+        Marker.MapLabel.Text := '<b>' + Name + '</b>';
+        Marker.MapLabel.Color := TAlphaColorRec.Red;
+        Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+        Marker.MapLabel.FontColor := TAlphaColorRec.White;
+      end;
       mapTrip.CreateMapMarker(Marker);
 
       Bounds.NorthEast.Latitude := DestLat;
@@ -1077,10 +1095,13 @@ begin
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png';
       end;
-      if ParticipantStatus = '' then
-        Marker.MapLabel.Text := ParticipantName
-      else
-        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+      if spTags.IsPressed then
+      begin
+        if ParticipantStatus = '' then
+          Marker.MapLabel.Text := ParticipantName
+        else
+          Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+      end;
       mapTrip.CreateMapMarker(Marker);
 
       if SelectedName = '' then
@@ -1109,10 +1130,10 @@ begin
         mapTrip.MapPanTo(DestLat, DestLong)
       else
       begin
-        Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
-        Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
-        Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
-        Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
+        //Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
+        //Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
+        //Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
+        //Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
         mapTrip.MapZoomTo(Bounds);
       end;
     end;
@@ -1173,12 +1194,22 @@ begin
   TabControl2.SetActiveTabWithTransition(TabRoutes, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
+procedure THeaderFooterwithNavigation.spTagsClick(Sender: TObject);
+begin
+  MapUpdate(self);
+end;
+
 procedure THeaderFooterwithNavigation.spTrafficClick(Sender: TObject);
 begin
   if mapTrip.MapOptions.ShowTraffic then
     mapTrip.MapOptions.ShowTraffic := False
   else
     mapTrip.MapOptions.ShowTraffic := True;
+end;
+
+procedure THeaderFooterwithNavigation.spFollowClick(Sender: TObject);
+begin
+  MapUpdate(self);
 end;
 
 procedure THeaderFooterwithNavigation.spMapOptionsClick(Sender: TObject);
@@ -2026,10 +2057,10 @@ begin
     begin
       spFollow.IsPressed := True;
 
-      Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
-      Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
-      Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
-      Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
+      //Bounds.NorthEast.Latitude := Bounds.NorthEast.Latitude + 0.002;
+      //Bounds.NorthEast.Longitude := Bounds.NorthEast.Longitude + 0.002;
+      //Bounds.SouthWest.Latitude := Bounds.SouthWest.Latitude - 0.002;
+      //Bounds.SouthWest.Longitude := Bounds.SouthWest.Longitude - 0.002;
       mapTrip.MapZoomTo(Bounds);
     end
     else
@@ -2109,8 +2140,13 @@ begin
     Marker.Longitude := TripLong;
     Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/flag_dest.png';
-    Marker.Title := 'Destination';
-    Marker.MapLabel.Text := Name;
+    if spTags.IsPressed then
+    begin
+      Marker.MapLabel.Text := '<b>' + Name + '</b>';
+      Marker.MapLabel.Color := TAlphaColorRec.Red;
+      Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+      Marker.MapLabel.FontColor := TAlphaColorRec.White;
+    end;
     mapTrip.CreateMapMarker(Marker);
 
     Bounds := TBounds.Create;
@@ -2127,11 +2163,13 @@ begin
       Marker.Icon := 'http://www.triptether.com/images/participant.png'
     else
       Marker.Icon := 'http://www.triptether.com/images/participant6.png';
-    Marker.Title := 'Me';
-    if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
-      Marker.MapLabel.Text := ParticipantName
-    else
-      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+    if spTags.IsPressed then
+    begin
+      if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+        Marker.MapLabel.Text := ParticipantName
+      else
+        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+    end;
     mapTrip.CreateMapMarker(Marker);
 
     if ParticipantLat > TripLat then
@@ -2189,11 +2227,13 @@ begin
         end
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png';
-        Marker.Title := ParticipantName;
-        if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
-          Marker.MapLabel.Text := ParticipantName
-        else
-          Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+          if spTags.IsPressed then
+          begin
+            if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+            Marker.MapLabel.Text := ParticipantName
+          else
+            Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
+          end;
         mapTrip.CreateMapMarker(Marker);
       end;
 
