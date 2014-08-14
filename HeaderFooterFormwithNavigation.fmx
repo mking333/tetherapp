@@ -9,6 +9,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnKeyUp = FormKeyUp
+  OnShow = FormShow
   DesignerMobile = True
   DesignerWidth = 320
   DesignerHeight = 480
@@ -18,9 +19,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   object TabControl1: TTabControl
     Align = Client
     FullSize = True
-    Height = 410.000000000000000000
+    Height = 460.000000000000000000
     TabHeight = 49.000000000000000000
-    TabIndex = 10
+    TabIndex = 0
     TabOrder = 0
     TabPosition = None
     Width = 320.000000000000000000
@@ -29,14 +30,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = False
+      IsSelected = True
       TabOrder = 0
       Text = 'TabJoin'
       Width = 8.000000000000000000
       object Rectangle1: TRectangle
         Align = Contents
         Fill.Color = claIvory
-        Height = 410.000000000000000000
+        Height = 460.000000000000000000
         Sides = []
         Width = 320.000000000000000000
       end
@@ -520,7 +521,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox1: TVertScrollBox
         Align = HorzCenter
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Position.X = 1.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
@@ -721,13 +722,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel2: TPanel
         Align = Client
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 1
         object Rectangle3: TRectangle
           Align = Contents
           Fill.Color = claIvory
-          Height = 366.000000000000000000
+          Height = 416.000000000000000000
           Sides = []
           Width = 320.000000000000000000
         end
@@ -736,7 +737,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Touch.InteractiveGestures = []
           OnGesture = TabTripGesture
           Align = Client
-          Height = 121.000000000000000000
+          Height = 171.000000000000000000
           Margins.Left = 20.000000000000000000
           Margins.Top = 10.000000000000000000
           Margins.Right = 20.000000000000000000
@@ -947,7 +948,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Touch.InteractiveGestures = []
         OnGesture = TabCheckGesture
         Align = Client
-        Height = 305.000000000000000000
+        Height = 355.000000000000000000
         TabOrder = 2
         Width = 320.000000000000000000
         DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
@@ -1011,7 +1012,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel14: TPanel
         Align = Client
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Width = 320.000000000000000000
         TabOrder = 2
         object mapTrip: TTMSFMXWebGMaps
@@ -1241,7 +1242,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Rectangle2: TRectangle
         Align = Contents
         Fill.Color = claIvory
-        Height = 410.000000000000000000
+        Height = 460.000000000000000000
         Sides = []
         Width = 320.000000000000000000
       end
@@ -1282,7 +1283,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox5: TVertScrollBox
         Align = HorzCenter
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 2
         Width = 320.000000000000000000
@@ -1437,7 +1438,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Rectangle9: TRectangle
         Align = Contents
         Fill.Color = claIvory
-        Height = 410.000000000000000000
+        Height = 460.000000000000000000
         Sides = []
         Width = 320.000000000000000000
       end
@@ -1467,7 +1468,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox7: TVertScrollBox
         Align = HorzCenter
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 2
         Width = 320.000000000000000000
@@ -1571,7 +1572,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Rectangle4: TRectangle
         Align = Contents
         Fill.Color = claIvory
-        Height = 410.000000000000000000
+        Height = 460.000000000000000000
         Sides = []
         Width = 320.000000000000000000
       end
@@ -1601,7 +1602,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox2: TVertScrollBox
         Align = HorzCenter
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Position.X = 1.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
@@ -1703,7 +1704,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Rectangle5: TRectangle
         Align = Contents
         Fill.Color = claIvory
-        Height = 410.000000000000000000
+        Height = 460.000000000000000000
         Sides = []
         Width = 320.000000000000000000
       end
@@ -1733,7 +1734,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox3: TVertScrollBox
         Align = HorzCenter
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Position.X = 1.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
@@ -1809,7 +1810,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Rectangle6: TRectangle
         Align = Contents
         Fill.Color = claIvory
-        Height = 410.000000000000000000
+        Height = 460.000000000000000000
         Sides = []
         Width = 320.000000000000000000
       end
@@ -1830,7 +1831,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox4: TVertScrollBox
         Align = HorzCenter
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         Position.Y = 44.000000000000000000
         TabOrder = 1
         Width = 320.000000000000000000
@@ -1922,7 +1923,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object mmoShareInfo: TMemo
         Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
         Align = Client
-        Height = 305.000000000000000000
+        Height = 355.000000000000000000
         Padding.Left = 10.000000000000000000
         Padding.Top = 10.000000000000000000
         Padding.Right = 10.000000000000000000
@@ -1984,14 +1985,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         item
         end>
       Height = 8.000000000000000000
-      IsSelected = True
+      IsSelected = False
       TabOrder = 0
       Text = 'TabNewTripNotes'
       Width = 8.000000000000000000
       object Rectangle8: TRectangle
         Align = Contents
         Fill.Color = claIvory
-        Height = 410.000000000000000000
+        Height = 460.000000000000000000
         Sides = []
         Width = 320.000000000000000000
       end
@@ -2021,7 +2022,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox6: TVertScrollBox
         Align = Client
-        Height = 366.000000000000000000
+        Height = 416.000000000000000000
         TabOrder = 1
         Width = 320.000000000000000000
         object mmoTripNotes: TMemo
@@ -2111,7 +2112,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Width = 320.000000000000000000
     Height = 50.000000000000000000
     Position.Y = 410.000000000000000000
-    TestMode = True
+    Visible = False
+    OnDidLoad = BannerAd1DidLoad
   end
   object LocationSensor1: TLocationSensor
     Accuracy = 5.000000000000000000

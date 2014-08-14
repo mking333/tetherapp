@@ -322,6 +322,8 @@ type
     procedure spFollowClick(Sender: TObject);
     procedure spFlagClick(Sender: TObject);
     procedure spMeClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure BannerAd1DidLoad(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -472,6 +474,8 @@ begin
   RestClient1.BaseURL := APIBASEURL;
   mapTrip.APIKey := 'AIzaSyAzsMIUBfOpqymD1ND4W6XGipTuue9JCDA';
 
+  BannerAd1.AdUnitID := 'TEST';
+
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   edtNameSetting.Text := ini.ReadString('login', 'name', '');
   edtEmailSetting.Text := ini.ReadString('login', 'email', '');
@@ -494,14 +498,21 @@ procedure THeaderFooterwithNavigation.FormKeyUp(Sender: TObject; var Key: Word;
 begin
   if Key = vkHardwareBack then
   begin
-    if TabControl1.ActiveTab = TabSignIn then
+    if TabControl1.ActiveTab = TabMap then
     begin
-      ChangeTabAction1.Tab := TabJoin;
-      ChangeTabAction1.ExecuteTarget(Self);
-      ChangeTabAction1.Tab := TabSignIn;
-      Key := 0;
+      mapTrip.Visible := False;
+      Panel14.Visible := False;
     end;
+
+    frmLaunch.Show;
+
+    Key := 0;
   end;
+end;
+
+procedure THeaderFooterwithNavigation.FormShow(Sender: TObject);
+begin
+  BannerAd1.LoadAd;
 end;
 
 procedure THeaderFooterwithNavigation.Image1Click(Sender: TObject);
@@ -1235,6 +1246,11 @@ begin
     mapTrip.MapOptions.ShowBicycling := True;
 end;
 
+procedure THeaderFooterwithNavigation.BannerAd1DidLoad(Sender: TObject);
+begin
+  BannerAd1.Visible := True;
+end;
+
 procedure THeaderFooterwithNavigation.btnAddShareClick(Sender: TObject);
 begin
   mmoShareInfo.Lines.Clear;
@@ -1246,7 +1262,11 @@ begin
   mmoShareInfo.Lines.Add('   Trip ID: ' + edtTripID.Text);
   mmoShareInfo.Lines.Add('   PIN: ' + edtTripPIN.Text);
   mmoShareInfo.Lines.Add('');
-  ShowShareSheetAction1.Caption := 'TripTether!';
+  mmoShareInfo.Lines.Add('The TripTether app is available for Android on the Google Play Store.');
+  mmoShareInfo.Lines.Add('The TripTether app is available for iOS on the Apple App Store.');
+  mmoShareInfo.Lines.Add('');
+
+  ShowShareSheetAction1.Caption := 'TripTether';
   ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
 
   btnJoinNewTrip.Visible := False;
@@ -1896,7 +1916,11 @@ begin
   mmoShareInfo.Lines.Add('   Trip ID: ' + IntToStr(NewTripID));
   mmoShareInfo.Lines.Add('   PIN: ' + NewTripPin);
   mmoShareInfo.Lines.Add('');
+  mmoShareInfo.Lines.Add('The TripTether app is available for Android on the Google Play Store.');
+  mmoShareInfo.Lines.Add('The TripTether app is available for iOS on the Apple App Store.');
+  mmoShareInfo.Lines.Add('');
 
+  ShowShareSheetAction1.Caption := 'TripTether';
   ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
 
   btnJoinNewTrip.Visible := True;
