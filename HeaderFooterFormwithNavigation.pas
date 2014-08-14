@@ -280,7 +280,6 @@ type
     procedure btnNewTripClick(Sender: TObject);
     procedure btnSignUpClick(Sender: TObject);
     procedure btnSaveSignInClick(Sender: TObject);
-    procedure btnCreateTripClick(Sender: TObject);
     procedure btnNewTripDetailsClick(Sender: TObject);
     procedure btnBackToNewClick(Sender: TObject);
     procedure btnBackToJoinClick(Sender: TObject);
@@ -454,24 +453,9 @@ end;
 
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
   Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
-var i: integer;
 begin
   CurrentLat := NewLocation.Latitude; //(NewLocation.Latitude, ffGeneral, 10, 6);
   CurrentLong := NewLocation.Longitude; //FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
-  {
-  for i := 0 to mapTrip.Markers.Count - 1 do
-  begin
-    if mapTrip.Markers.Items[i].Title = 'Me' then
-    begin
-      mapTrip.Markers.Items[i].Visible := False;
-      mapTrip.Markers.Items[i].Latitude := CurrentLat;
-      mapTrip.Markers.Items[i].Longitude := CurrentLong;
-      mapTrip.Markers.Items[i].Visible := True;
-    end;
-  end;
-  }
-
-  //MapUpdate(self);
 end;
 
 procedure THeaderFooterwithNavigation.FormCreate(Sender: TObject);
@@ -1010,7 +994,6 @@ var
   LocalDate: TDateTime;
   CheckInDate: string;
   i: integer;
-  PartListItem: TListBoxItem;
   Marker: TMarker;
   Bounds: TBounds;
 begin
@@ -1028,8 +1011,6 @@ begin
     Participant := Trip.Get('participant').JsonValue as TJSONObject;
     ParticipantID := StrToInt(Participant.Get('participant_id').JsonValue.ToString);
     ParticipantName := Participant.Get('name').JsonValue.ToString.Replace('"', '');
-    ParticipantLat := StrToFloat(Participant.Get('curr_lat').JsonValue.ToString);
-    ParticipantLong := StrToFloat(Participant.Get('curr_long').JsonValue.ToString);
     ParticipantStatus := Participant.Get('status').JsonValue.ToString.Replace('"', '');
     ParticipantCheckIn := Participant.Get('checkin').JsonValue.ToString.Replace('"', '');
     Leader := Participant.Get('leader').JsonValue.ToString.Replace('"', '');
@@ -1278,30 +1259,6 @@ begin
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
-procedure THeaderFooterwithNavigation.btnCreateTripClick(Sender: TObject);
-var
-  PartListItem: TListBoxItem;
-  isLeader: integer;
-begin
-  NewTripPartRequest.Resource := 'apis/[id]/add_part.json';
-  NewTripPartRequest.Resource := NewTripPartRequest.Resource.Replace('[id]', IntToStr(NewTripID));
-  NewTripPartRequest.Params.ParameterByName('token').Value := NewTripToken;
-
-  NewTripPartRequest.Params.ParameterByName('name').Value := AnsiLeftStr(PartListItem.ItemData.Text, isLeader);
-  NewTripPartRequest.Params.ParameterByName('leader').Value := 'no';
-  NewTripPartRequest.Params.ParameterByName('email').Value := PartListItem.ItemData.Detail;
-  try
-    NewTripPartRequest.Execute;
-  except
-    on E: Exception do begin
-      TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
-      cpNetworkError.Visible := True;
-    end;
-  end;
-
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Normal);
-end;
-
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
   mapTrip.Visible := False;
@@ -1392,10 +1349,10 @@ end;
 procedure THeaderFooterwithNavigation.DisplayRoute;
 var
   Route: TRoute;
-  Marker: TMarker;
-  Circle: TMapPolygon;
-  Rect: TMapPolygon;
-  PolygonItem: TPolygonItem;
+//  Marker: TMarker;
+//  Circle: TMapPolygon;
+//  Rect: TMapPolygon;
+//  PolygonItem: TPolygonItem;
 //  I, J: Integer;
 begin
   mapTrip.DeleteAllMapPolyline;
@@ -1407,6 +1364,7 @@ begin
   mapTrip.MapZoomTo(Route.Bounds);
   mapTrip.CreateMapPolyline(Route.Polyline);
 
+  {
   if False then
   begin
     //Add Markers
@@ -1438,8 +1396,10 @@ begin
     Marker.MapLabel.Font.Size := 14;
     mapTrip.CreateMapMarker(Marker);
   end;
+  }
 
   //Add Polygon Circles
+  {
   if False then
   begin
     PolygonItem := mapTrip.Polygons.Add;
@@ -1462,8 +1422,9 @@ begin
     Circle.Center.Longitude := Route.Legs[0].EndLocation.Longitude;
     mapTrip.CreateMapPolygon(Circle);
   end;
-
+  }
   //Add Polygon Rectangle
+  {
   if False then
   begin
     PolygonItem := mapTrip.Polygons.Add;
@@ -1479,6 +1440,7 @@ begin
     Rect.Bounds.NorthEast.Longitude := Route.Bounds.NorthEast.Longitude;
     mapTrip.CreateMapPolygon(Rect);
   end;
+  }
 end;
 
 procedure THeaderFooterwithNavigation.DisplayRouteDetails;
@@ -1501,8 +1463,6 @@ begin
 end;
 
 procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
-var
-  URLString: string;
 begin
   TabControl1.SetActiveTabWithTransition(TabSignUp, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
@@ -1633,7 +1593,6 @@ procedure THeaderFooterwithNavigation.btnNewTripCreateClick(Sender: TObject);
 var
   Departing: TDateTime;
   Arriving: TDateTime;
-  Leaving: TDateTime;
 begin
   NewTripRequest.Resource := 'apis/[id]/new_trip.json';
   NewTripRequest.Resource := NewTripRequest.Resource.Replace('[id]', IntToStr(SignInUserID));
@@ -1951,7 +1910,6 @@ var
   Name: string;
   Notes: string;
   Leader: string;
-  MyID: integer;
   Result: TJSONValue;
   Participant: TJSONObject;
   ParticipantID: integer;
@@ -1963,11 +1921,7 @@ var
   ParticipantJoin: string;
   ParticipantQuit: string;
   Participants: TJSONArray;
-  LocalDate: TDateTime;
-  CheckInDate: string;
   i: integer;
-  PartListItem: TListBoxItem;
-  Marker: TMarker;
   Bounds: TBounds;
   MapLat: Double;
   MapLong: Double;
@@ -2117,7 +2071,6 @@ var
   LocalDate: TDateTime;
   CheckInDate: string;
   i: integer;
-  PartListItem: TListBoxItem;
   Marker: TMarker;
   Bounds: TBounds;
 begin
