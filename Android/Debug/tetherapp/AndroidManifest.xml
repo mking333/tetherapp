@@ -9,6 +9,7 @@
     <uses-sdk android:minSdkVersion="9" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -39,6 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter> 
         </activity>
+        <activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <receiver android:name="com.embarcadero.firemonkey.notifications.FMXNotificationAlarm" />
     </application>
 </manifest>   

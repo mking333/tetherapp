@@ -188,7 +188,6 @@ type
     VertScrollBox3: TVertScrollBox;
     Timer2: TTimer;
     BannerAd1: TBannerAd;
-    ColorAnimation1: TColorAnimation;
     btnSignUp1: TButton;
     Label14: TLabel;
     Layout1: TLayout;
@@ -324,6 +323,7 @@ type
     procedure spMeClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BannerAd1DidLoad(Sender: TObject);
+    procedure BannerAd1DidFail(Sender: TObject; const Error: string);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -1246,6 +1246,12 @@ begin
     mapTrip.MapOptions.ShowBicycling := True;
 end;
 
+procedure THeaderFooterwithNavigation.BannerAd1DidFail(Sender: TObject;
+  const Error: string);
+begin
+  BannerAd1.Visible := False;
+end;
+
 procedure THeaderFooterwithNavigation.BannerAd1DidLoad(Sender: TObject);
 begin
   BannerAd1.Visible := True;
@@ -1254,16 +1260,17 @@ end;
 procedure THeaderFooterwithNavigation.btnAddShareClick(Sender: TObject);
 begin
   mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('Hello, you have been invited on a trip by ' + edtName.Text);
+  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + edtName.Text);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The trip is going to: ' + lblName.Text);
+  mmoShareInfo.Lines.Add('The trip is going to ' + lblName.Text);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('Use the TripTether app with these settings to join the trip:');
-  mmoShareInfo.Lines.Add('   Trip ID: ' + edtTripID.Text);
-  mmoShareInfo.Lines.Add('   PIN: ' + edtTripPIN.Text);
+  mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
+  mmoShareInfo.Lines.Add('  Trip ID: ' + edtTripID.Text);
+  mmoShareInfo.Lines.Add('  PIN: ' + edtTripPIN.Text);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available for Android on the Google Play Store.');
-  mmoShareInfo.Lines.Add('The TripTether app is available for iOS on the Apple App Store.');
+  mmoShareInfo.Lines.Add('The TripTether app is available: ');
+  mmoShareInfo.Lines.Add('  for Android on the Google Play Store');
+  mmoShareInfo.Lines.Add('  for iOS on the Apple App Store');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';
@@ -1522,7 +1529,7 @@ begin
       SignUpRequest.Execute;
     except
       on E: Exception do begin
-        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
         cpNetworkError.Visible := True;
       end;
     end;
@@ -1699,7 +1706,7 @@ begin
       SignInRequest.Execute;
     except
       on E: Exception do begin
-        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
         cpNetworkError.Visible := True;
       end;
     end;
@@ -1908,16 +1915,17 @@ begin
   end;
 
   mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('Hello, you have been invited on a trip by ' + SignInName);
+  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + SignInName);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The trip is planned to go to: ' + edtTripName.Text);
+  mmoShareInfo.Lines.Add('The trip is planned to go to ' + edtTripName.Text);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('Use the TripTether app with these settings to join the trip:');
-  mmoShareInfo.Lines.Add('   Trip ID: ' + IntToStr(NewTripID));
-  mmoShareInfo.Lines.Add('   PIN: ' + NewTripPin);
+  mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
+  mmoShareInfo.Lines.Add('  Trip ID: ' + IntToStr(NewTripID));
+  mmoShareInfo.Lines.Add('  PIN: ' + NewTripPin);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available for Android on the Google Play Store.');
-  mmoShareInfo.Lines.Add('The TripTether app is available for iOS on the Apple App Store.');
+  mmoShareInfo.Lines.Add('The TripTether app is available: ');
+  mmoShareInfo.Lines.Add('  for Android on the Google Play Store');
+  mmoShareInfo.Lines.Add('  for iOS on the Apple App Store');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';
