@@ -324,6 +324,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure BannerAd1DidLoad(Sender: TObject);
     procedure BannerAd1DidFail(Sender: TObject; const Error: string);
+    procedure mapTripBeforeNavigate(Sender: TObject;
+      var Params: TTMSFMXWebGMapsCustomWebBrowserBeforeNavigateParams);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -1149,6 +1151,13 @@ begin
 
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
   cpNetworkError.Visible := True;
+end;
+
+procedure THeaderFooterwithNavigation.mapTripBeforeNavigate(Sender: TObject;
+  var Params: TTMSFMXWebGMapsCustomWebBrowserBeforeNavigateParams);
+begin
+  if Params.URL.Contains('http') then
+    Params.Cancel := True;
 end;
 
 procedure THeaderFooterwithNavigation.spCheckInChange(Sender: TObject);
