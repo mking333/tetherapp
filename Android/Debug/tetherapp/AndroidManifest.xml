@@ -26,7 +26,9 @@
         android:debuggable="True" 
         android:largeHeap="False"
         android:icon="@drawable/ic_launcher"
-        android:theme="@android:style/Theme.NoTitleBar">
+        android:theme="@android:style/Theme.NoTitleBar"
+        android:hardwareAccelerated="true">
+        <meta-data android:name="com.google.android.gms.version" android:value="4323000"/>
         <!-- Our activity is a subclass of the built-in NativeActivity framework class.
              This will take care of integrating with our NDK code. -->
         <activity android:name="com.embarcadero.firemonkey.FMXNativeActivity"
@@ -40,7 +42,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter> 
         </activity>
-        <activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+	<activity android:name="com.google.android.gms.ads.AdActivity" 
+		android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/> 
         <receiver android:name="com.embarcadero.firemonkey.notifications.FMXNotificationAlarm" />
     </application>
 </manifest>   
