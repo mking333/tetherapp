@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.28</string>
+	<string>1.0.31</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
@@ -23,7 +23,7 @@
 	<key>CFBundleAllowMixedLocalizations</key>
 	<string>YES</string>
 	<key>CFBundleExecutable</key>
-	<string>triptether</string>
+	<string>tetherapp</string>
 	<key>CFBundleResourceSpecification</key>
 	<string>ResourceRules.plist</string>
 	<key>UIDeviceFamily</key>
