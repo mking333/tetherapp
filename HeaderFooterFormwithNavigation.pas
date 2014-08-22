@@ -1277,9 +1277,10 @@ begin
   mmoShareInfo.Lines.Add('  Trip ID: ' + edtTripID.Text);
   mmoShareInfo.Lines.Add('  PIN: ' + edtTripPIN.Text);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available: ');
-  mmoShareInfo.Lines.Add('  for Android on the Google Play Store');
-  mmoShareInfo.Lines.Add('  for iOS on the Apple App Store');
+  mmoShareInfo.Lines.Add('The TripTether app is available at ');
+  mmoShareInfo.Lines.Add('  http://www.triptether.com');
+  mmoShareInfo.Lines.Add('  Google Play Store');
+  mmoShareInfo.Lines.Add('  Apple App Store');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';
@@ -1932,9 +1933,10 @@ begin
   mmoShareInfo.Lines.Add('  Trip ID: ' + IntToStr(NewTripID));
   mmoShareInfo.Lines.Add('  PIN: ' + NewTripPin);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available: ');
-  mmoShareInfo.Lines.Add('  for Android on the Google Play Store');
-  mmoShareInfo.Lines.Add('  for iOS on the Apple App Store');
+  mmoShareInfo.Lines.Add('The TripTether app is available at ');
+  mmoShareInfo.Lines.Add('  http://www.triptether.com');
+  mmoShareInfo.Lines.Add('  Google Play Store');
+  mmoShareInfo.Lines.Add('  Apple App Store');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';

@@ -9,11 +9,11 @@
 	<key>CFBundleDisplayName</key>
 	<string>TripTether</string>
 	<key>CFBundleIdentifier</key>
-	<string>tetherapp</string>
+	<string>com.triptether.mapping</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.25</string>
+	<string>1.0.28</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
@@ -23,7 +23,7 @@
 	<key>CFBundleAllowMixedLocalizations</key>
 	<string>YES</string>
 	<key>CFBundleExecutable</key>
-	<string>tetherapp</string>
+	<string>triptether</string>
 	<key>CFBundleResourceSpecification</key>
 	<string>ResourceRules.plist</string>
 	<key>UIDeviceFamily</key>
@@ -56,5 +56,9 @@
 	<string>ResourceRules.plist</string>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
+	<key>DTPlatformBuild</key>
+	<string>11D167</string>
+	<key>DTXcodeBuild</key>
+	<string>5B130a</string>
 </dict>
 </plist>

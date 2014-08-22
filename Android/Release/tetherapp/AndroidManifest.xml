@@ -23,7 +23,7 @@
         android:restoreAnyVersion="False" 
         android:label="TripTether" 
         android:installLocation="preferExternal" 
-        android:debuggable="True" 
+        android:debuggable="False" 
         android:largeHeap="False"
         android:icon="@drawable/ic_launcher"
         android:theme="@android:style/Theme.NoTitleBar"
