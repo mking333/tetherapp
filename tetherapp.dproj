@@ -239,8 +239,8 @@
         <PF_DevAppStore>2P6AU6VY59</PF_DevAppStore>
         <BT_BuildType>AppStore</BT_BuildType>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>32</VerInfo_Build>
-        <VerInfo_Keys>CFBundleName=TripTether;CFBundleDevelopmentRegion=en;CFBundleDisplayName=TripTether;CFBundleIdentifier=com.triptether.mapping;CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.0.32;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad</VerInfo_Keys>
+        <VerInfo_Build>34</VerInfo_Build>
+        <VerInfo_Keys>CFBundleName=TripTether;CFBundleDevelopmentRegion=en;CFBundleDisplayName=TripTether;CFBundleIdentifier=com.triptether.mapping;CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.0.34;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_UIDeviceFamily>iPhoneAndiPad</VerInfo_UIDeviceFamily>
         <PF_DevAdHoc>2P6AU6VY59</PF_DevAdHoc>
@@ -334,9 +334,9 @@
                 <Platform value="Win32">True</Platform>
             </Platforms>
             <Deployment>
-                <DeployFile LocalName="iOSDevice\Debug\ResourceRules.plist" Configuration="Debug" Class="ProjectiOSDeviceResourceRules">
-                    <Platform Name="iOSDevice">
-                        <RemoteName>ResourceRules.plist</RemoteName>
+                <DeployFile LocalName="iOSSimulator\Debug\tetherapp.info.plist" Configuration="Debug" Class="ProjectiOSSimulatorInfoPList">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Info.plist</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -399,6 +399,12 @@
                 </DeployFile>
                 <DeployFile LocalName="C:\Projects\tetherapp\images\triptether120x120.png" Configuration="Debug" Class="iPhone_AppIcon120">
                     <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether36x36.png" Configuration="Release" Class="Android_LauncherIcon36">
+                    <Platform Name="Android">
+                        <RemoteName>ic_launcher.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -590,21 +596,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="iOSDevice\Debug\tetherapp.entitlements" Configuration="Debug" Class="ProjectiOSEntitlements">
-                    <Platform Name="iOSDevice">
-                        <RemoteName>Entitlements.plist</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="iOSDevice\Debug\tetherapp.dSYM" Configuration="Debug" Class="ProjectiOSDeviceDebug">
                     <Platform Name="iOSDevice">
                         <RemoteName>tetherapp</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="iOSSimulator\Release\tetherapp.entitlements" Configuration="Release" Class="ProjectiOSEntitlements">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Entitlements.plist</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -614,8 +608,20 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="iOSSimulator\Release\tetherapp.entitlements" Configuration="Release" Class="ProjectiOSEntitlements">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Entitlements.plist</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="C:\Projects\tetherapp\images\triptether80x80.png" Configuration="Debug" Class="iPad_SpotLight80">
                     <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="iOSDevice\Debug\tetherapp.entitlements" Configuration="Debug" Class="ProjectiOSEntitlements">
+                    <Platform Name="iOSDevice">
+                        <RemoteName>Entitlements.plist</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -768,6 +774,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether72x72.png" Configuration="Release" Class="Android_LauncherIcon72">
+                    <Platform Name="Android">
+                        <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="iOSDevice\Release\tetherapp.dSYM" Configuration="Release" Class="ProjectiOSDeviceDebug">
                     <Platform Name="iOSDevice">
                         <RemoteName>tetherapp</RemoteName>
@@ -826,6 +838,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="iOSDevice\Debug\ResourceRules.plist" Configuration="Debug" Class="ProjectiOSDeviceResourceRules">
+                    <Platform Name="iOSDevice">
+                        <RemoteName>ResourceRules.plist</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="C:\Projects\tetherapp\images\triptether144x144.png" Configuration="Release" Class="iPad_AppIcon144">
                     <Platform Name="iOSDevice">
                         <Overwrite>true</Overwrite>
@@ -839,12 +857,6 @@
                 </DeployFile>
                 <DeployFile LocalName="C:\Projects\tetherapp\images\triptether114x114.png" Configuration="Release" Class="iPhone_AppIcon114">
                     <Platform Name="iOSDevice">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="iOSSimulator\Debug\tetherapp.info.plist" Configuration="Debug" Class="ProjectiOSSimulatorInfoPList">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Info.plist</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
