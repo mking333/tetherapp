@@ -243,6 +243,11 @@ type
     spTags: TSpeedButton;
     spMe: TSpeedButton;
     spFlag: TSpeedButton;
+    TabInfo: TTabItem;
+    ToolBar8: TToolBar;
+    Label30: TLabel;
+    spBackToMap: TSpeedButton;
+    mapInfo: TTMSFMXWebGMaps;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -326,6 +331,7 @@ type
     procedure BannerAd1DidFail(Sender: TObject; const Error: string);
     procedure mapTripBeforeNavigate(Sender: TObject;
       var Params: TTMSFMXWebGMapsCustomWebBrowserBeforeNavigateParams);
+    procedure spBackToMapClick(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -476,7 +482,7 @@ begin
   RestClient1.BaseURL := APIBASEURL;
   mapTrip.APIKey := 'AIzaSyAzsMIUBfOpqymD1ND4W6XGipTuue9JCDA';
 
-  BannerAd1.AdUnitID := 'TEST';
+  BannerAd1.AdUnitID := 'ca-app-pub-6999292982718554/1498844825';
 
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   edtNameSetting.Text := ini.ReadString('login', 'name', '');
@@ -503,7 +509,7 @@ begin
     if TabControl1.ActiveTab = TabMap then
     begin
       mapTrip.Visible := False;
-      Panel14.Visible := False;
+      //Panel14.Visible := False;
     end;
 
     frmLaunch.Show;
@@ -680,6 +686,9 @@ begin
         lblStarted.Text := 'Leader will start trip.';
         lblLeader.Text := UserName;
         btnCheckIn.Enabled := false;
+        Notes := Notes + sLineBreak + sLineBreak + 'This trip has not started yet.';
+        Notes := Notes + sLineBreak + 'You can not check in.';
+        Notes := Notes + sLineBreak + 'The trip will start with the leader joins.';
       end
       else
       begin
@@ -698,6 +707,8 @@ begin
         lblStarted.Text := FinishingDate;
         lblLeader.Text := UserName;
         btnCheckIn.Enabled := false;
+        Notes := Notes + sLineBreak + sLineBreak + 'This trip has finished.';
+        Notes := Notes + sLineBreak + 'You can not check in.';
       end;
 
       if Leader = 'yes' then
@@ -1140,7 +1151,7 @@ begin
   end;
 
   TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
-  Panel14.Visible := True;
+  //Panel14.Visible := True;
   mapTrip.Visible := True;
 end;
 
@@ -1157,7 +1168,16 @@ procedure THeaderFooterwithNavigation.mapTripBeforeNavigate(Sender: TObject;
   var Params: TTMSFMXWebGMapsCustomWebBrowserBeforeNavigateParams);
 begin
   if Params.URL.Contains('http') then
+  begin
+    mapTrip.Visible := False;
+    //Panel14.Visible := False;
+
+    TabControl1.SetActiveTabWithTransition(TabInfo, TTabTransition.Slide, TTabTransitionDirection.Normal);
+    mapInfo.Visible := True;
+    mapInfo.URL := Params.URL;
+
     Params.Cancel := True;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.spCheckInChange(Sender: TObject);
@@ -1247,6 +1267,14 @@ begin
     mapTrip.MapOptions.ShowPanoramio := True;
 end;
 
+procedure THeaderFooterwithNavigation.spBackToMapClick(Sender: TObject);
+begin
+  mapInfo.Visible := False;
+  mapTrip.Visible := True;
+  //Panel14.Visible := True;
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+end;
+
 procedure THeaderFooterwithNavigation.spBikesClick(Sender: TObject);
 begin
   if mapTrip.MapOptions.ShowBicycling then
@@ -1299,7 +1327,7 @@ end;
 procedure THeaderFooterwithNavigation.btnBackCheckClick(Sender: TObject);
 begin
   mapTrip.Visible := False;
-  Panel14.Visible := False;
+  //Panel14.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabCheck, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
@@ -2085,7 +2113,7 @@ begin
 
   if TabControl1.ActiveTab <> TabMap then
   begin
-    Panel14.Visible := True;
+    //Panel14.Visible := True;
     mapTrip.Visible := True;
     TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
   end;
