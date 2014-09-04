@@ -202,7 +202,6 @@ type
     VertScrollBox4: TVertScrollBox;
     VertScrollBox5: TVertScrollBox;
     Rectangle7: TRectangle;
-    Label18: TLabel;
     TabNewTripNotes: TTabItem;
     Rectangle8: TRectangle;
     ToolBar7: TToolBar;
@@ -248,6 +247,7 @@ type
     Label30: TLabel;
     spBackToMap: TSpeedButton;
     mapInfo: TTMSFMXWebGMaps;
+    Label18: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -366,9 +366,9 @@ type
   end;
 
 const
-//  APIBASEURL = 'http://192.168.2.201';
+//  APIBASEURL = 'http://192.168.2.205:8080';
   APIBASEURL = 'https://www.triptether.com';
-
+//  APIBASEURL = 'http://www.triptether.net';
 //var
 //  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
 
@@ -506,11 +506,11 @@ procedure THeaderFooterwithNavigation.FormKeyUp(Sender: TObject; var Key: Word;
 begin
   if Key = vkHardwareBack then
   begin
-    if TabControl1.ActiveTab = TabMap then
-    begin
+    //if (TabControl1.ActiveTab = TabMap) or (TabControl1.ActiveTab = TabInfo) then
+    //begin
       mapTrip.Visible := False;
-      //Panel14.Visible := False;
-    end;
+      mapInfo.Visible := False;
+    //end;
 
     frmLaunch.Show;
 
@@ -525,6 +525,9 @@ end;
 
 procedure THeaderFooterwithNavigation.Image1Click(Sender: TObject);
 begin
+  mapTrip.Visible := False;
+  mapInfo.Visible := False;
+
   frmLaunch.Show;
 end;
 
@@ -1270,9 +1273,9 @@ end;
 procedure THeaderFooterwithNavigation.spBackToMapClick(Sender: TObject);
 begin
   mapInfo.Visible := False;
+  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Reversed);
   mapTrip.Visible := True;
   //Panel14.Visible := True;
-  TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.spBikesClick(Sender: TObject);
@@ -2114,8 +2117,8 @@ begin
   if TabControl1.ActiveTab <> TabMap then
   begin
     //Panel14.Visible := True;
-    mapTrip.Visible := True;
     TabControl1.SetActiveTabWithTransition(TabMap, TTabTransition.Slide, TTabTransitionDirection.Normal);
+    mapTrip.Visible := True;
   end;
 end;
 
