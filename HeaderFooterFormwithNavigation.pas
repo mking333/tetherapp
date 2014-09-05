@@ -384,6 +384,8 @@ var
 begin
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
+  cpSignUpSuccess.Visible := False;
+  cpSignInError.Visible := False;
 
   CleanMap;
   AutoZoomTrip := True;
@@ -1723,6 +1725,11 @@ procedure THeaderFooterwithNavigation.btnSaveSignInClick(Sender: TObject);
 var
   ini: TIniFile;
 begin
+  cpSignUpSuccess.Visible := False;
+  cpSignInError.Visible := False;
+  cpNetworkError.Visible := False;
+  cpJoinError.Visible := False;
+
   if (edtSignIn.Text = '') or (edtPassword.Text = '') then
   begin
     cpSignUpSuccess.Visible := False;

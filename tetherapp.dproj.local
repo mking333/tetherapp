@@ -6,6 +6,6 @@
     <Transaction>2014/07/18 11:16:46.000.724,C:\Projects\tetherapp\Launch.pas=C:\Projects\tetherapp\Unit1.pas</Transaction>
     <Transaction>2014/07/18 11:16:46.000.724,C:\Projects\tetherapp\Launch.fmx=C:\Projects\tetherapp\Unit1.fmx</Transaction>
   </Transactions>
-	<MobileDevice>D5OKCY022956</MobileDevice>
+	<MobileDevice>iPad</MobileDevice>
 	<BT_BuildType>AppStore</BT_BuildType>
 </BorlandProject>

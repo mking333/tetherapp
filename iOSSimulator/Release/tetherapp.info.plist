@@ -7,9 +7,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>tetherapp</string>
+	<string>TripTether</string>
 	<key>CFBundleIdentifier</key>
-	<string>tetherapp</string>
+	<string>com.triptether.mapping</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
