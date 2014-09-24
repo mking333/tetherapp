@@ -99,7 +99,6 @@ type
     Label9: TLabel;
     QuitRequest: TRESTRequest;
     QuitResponse: TRESTResponse;
-    btnNewTrip: TSpeedButton;
     btnSignUp: TButton;
     Label10: TLabel;
     Label11: TLabel;
@@ -160,7 +159,6 @@ type
     MapRequest: TRESTRequest;
     MapResponse: TRESTResponse;
     mapTrip: TTMSFMXWebGMaps;
-    btnAddShare: TSpeedButton;
     edtEmailSetting: TEdit;
     Label34: TLabel;
     edtNameSetting: TEdit;
@@ -248,6 +246,8 @@ type
     spBackToMap: TSpeedButton;
     mapInfo: TTMSFMXWebGMaps;
     Label18: TLabel;
+    Image2: TImage;
+    Image3: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -332,6 +332,8 @@ type
     procedure mapTripBeforeNavigate(Sender: TObject;
       var Params: TTMSFMXWebGMapsCustomWebBrowserBeforeNavigateParams);
     procedure spBackToMapClick(Sender: TObject);
+    procedure dteTripDepartChange(Sender: TObject);
+    procedure tmeTripDepartChange(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -1196,6 +1198,7 @@ end;
 
 procedure THeaderFooterwithNavigation.spWeatherClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   if mapTrip.MapOptions.ShowWeather then
   begin
     mapTrip.MapOptions.ShowWeather := False;
@@ -1226,11 +1229,13 @@ end;
 
 procedure THeaderFooterwithNavigation.spTagsClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   MapUpdate(self);
 end;
 
 procedure THeaderFooterwithNavigation.spTrafficClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   if mapTrip.MapOptions.ShowTraffic then
     mapTrip.MapOptions.ShowTraffic := False
   else
@@ -1239,11 +1244,13 @@ end;
 
 procedure THeaderFooterwithNavigation.spFlagClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   MapName(self, 'Flag', 18);
 end;
 
 procedure THeaderFooterwithNavigation.spFollowClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   MapUpdate(self);
 end;
 
@@ -1261,11 +1268,13 @@ end;
 
 procedure THeaderFooterwithNavigation.spMeClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   MapName(self, 'Me', 18);
 end;
 
 procedure THeaderFooterwithNavigation.spPicturesClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   if mapTrip.MapOptions.ShowPanoramio then
     mapTrip.MapOptions.ShowPanoramio := False
   else
@@ -1282,6 +1291,7 @@ end;
 
 procedure THeaderFooterwithNavigation.spBikesClick(Sender: TObject);
 begin
+  spMapOptionsClick(self);
   if mapTrip.MapOptions.ShowBicycling then
     mapTrip.MapOptions.ShowBicycling := False
   else
@@ -1302,18 +1312,19 @@ end;
 procedure THeaderFooterwithNavigation.btnAddShareClick(Sender: TObject);
 begin
   mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + edtName.Text);
+  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + edtName.Text + ' (' + edtEmail.Text + ')!');
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The trip is going to ' + lblName.Text);
+  mmoShareInfo.Lines.AddStrings(mmoNotes.Lines);
+  //mmoShareInfo.Lines.Add('The trip is going to ' + lblName.Text);
   mmoShareInfo.Lines.Add('');
   mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
   mmoShareInfo.Lines.Add('  Trip ID: ' + edtTripID.Text);
   mmoShareInfo.Lines.Add('  PIN: ' + edtTripPIN.Text);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available at ');
-  mmoShareInfo.Lines.Add('  http://www.triptether.com');
-  mmoShareInfo.Lines.Add('  Google Play Store');
-  mmoShareInfo.Lines.Add('  Apple App Store');
+  mmoShareInfo.Lines.Add('The TripTether app is available at...');
+  mmoShareInfo.Lines.Add('  TripTether: http://www.triptether.com');
+  mmoShareInfo.Lines.Add('  Google Play: https://play.google.com/store/apps/details?id=com.triptether.mapping');
+  mmoShareInfo.Lines.Add('  App Store: https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';
@@ -1532,6 +1543,14 @@ begin
   lbLegs.EndUpdate;
 end;
 
+procedure THeaderFooterwithNavigation.dteTripDepartChange(Sender: TObject);
+begin
+  if dteTripDepart.Date > dteTripArrive.Date then
+  begin
+    dteTripArrive.Date := dteTripDepart.Date;
+  end;
+end;
+
 procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabSignUp, TTabTransition.Slide, TTabTransitionDirection.Normal);
@@ -1620,7 +1639,7 @@ end;
 procedure THeaderFooterwithNavigation.btnNewTripDetails2Click(Sender: TObject);
 begin
   mmoTripNotes.Lines.Clear;
-  mmoTripNotes.Lines.Add('Trip to ' + edtTripName.Text + ' created by ' + edtNameSetting.Text);
+  mmoTripNotes.Lines.Add('Trip to ' + edtTripName.Text + ', created by ' + edtNameSetting.Text + '.');
   mmoTripNotes.Lines.Add('');
   mmoTripNotes.Lines.Add('Going to ' + edtTripLocation.Text + ', ' + edtTripCity.Text);
   mmoTripNotes.Lines.Add('Departing on ' + DateToStr(dteTripDepart.Date) + ' at ' + TimeToStr(tmeTripDepart.Time));
@@ -1805,6 +1824,14 @@ begin
     MapUpdate(self);
 end;
 
+procedure THeaderFooterwithNavigation.tmeTripDepartChange(Sender: TObject);
+begin
+  if (dteTripDepart.Date = dteTripArrive.Date) and (tmeTripDepart.Time > tmeTripArrive.Time) then
+  begin
+    tmeTripArrive.Time := tmeTripDepart.Time;
+  end;
+end;
+
 procedure THeaderFooterwithNavigation.btnJoinClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide);
@@ -1963,18 +1990,19 @@ begin
   end;
 
   mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + SignInName);
+  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + SignInName + ' (' + SignInEmail + ')!');
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The trip is planned to go to ' + edtTripName.Text);
+  mmoShareInfo.Lines.AddStrings(mmoTripNotes.Lines);
+  //mmoShareInfo.Lines.Add('The trip is planned to go to ' + edtTripName.Text);
   mmoShareInfo.Lines.Add('');
   mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
   mmoShareInfo.Lines.Add('  Trip ID: ' + IntToStr(NewTripID));
   mmoShareInfo.Lines.Add('  PIN: ' + NewTripPin);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available at ');
-  mmoShareInfo.Lines.Add('  http://www.triptether.com');
-  mmoShareInfo.Lines.Add('  Google Play Store');
-  mmoShareInfo.Lines.Add('  Apple App Store');
+  mmoShareInfo.Lines.Add('The TripTether app is available at...');
+  mmoShareInfo.Lines.Add('  TripTether: http://www.triptether.com');
+  mmoShareInfo.Lines.Add('  Google Play: https://play.google.com/store/apps/details?id=com.triptether.mapping');
+  mmoShareInfo.Lines.Add('  App Store: https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';

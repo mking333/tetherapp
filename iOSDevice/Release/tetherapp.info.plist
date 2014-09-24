@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.39</string>
+	<string>1.0.48</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
@@ -55,10 +55,14 @@
 	<key>CFBundleResourceSpecification</key>
 	<string>ResourceRules.plist</string>
 	<key>MinimumOSVersion</key>
-	<string>6.0</string>
+	<string>7.0</string>
 	<key>DTPlatformBuild</key>
 	<string>11D167</string>
+	<key>DTBuildSDK</key>
+	<string>11D167</string>
 	<key>DTXcodeBuild</key>
-	<string>5B130a</string>
+	<string>5B1008</string>
+	<key>DTXcode</key>
+	<string>0511</string>
 </dict>
 </plist>

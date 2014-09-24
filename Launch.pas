@@ -39,8 +39,6 @@ type
     Label6: TLabel;
     btnTOUx: TSpeedButton;
     btnPPx: TSpeedButton;
-    Layout3: TLayout;
-    Panel1: TPanel;
     btnJoin: TColorButton;
     Label7: TLabel;
     Timer1: TTimer;
@@ -282,6 +280,12 @@ begin
     btnResume.Visible := True
   else
     btnResume.Visible := False;
+
+  if HasAgreed <> 'Yes' then
+  begin
+    rcOpaque.Visible := true;
+    rcAgree.Visible := true;
+  end;
 end;
 
 procedure TfrmLaunch.Timer1Timer(Sender: TObject);
