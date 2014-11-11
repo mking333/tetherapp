@@ -19,9 +19,8 @@ EXPORTED {
 		_UnwindCppFrame;
 		UnwindCppPersonalityCommon;
 		_Unwind_DeleteException;
-		ANativeActivity_onCreate;
 		TMethodImplementationIntercept;
 		ExecJNI;
-		AppDestroy;
+		ANativeActivity_onCreate;
 	local: *;
 };

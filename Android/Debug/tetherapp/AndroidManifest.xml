@@ -25,7 +25,7 @@
         android:debuggable="True" 
         android:largeHeap="False"
         android:icon="@drawable/ic_launcher"
-        android:theme="@android:style/Theme.NoTitleBar"
+        android:theme="@style/AppTheme"
         android:hardwareAccelerated="true">
         <meta-data android:name="com.google.android.gms.version" android:value="4323000"/>
         <!-- Our activity is a subclass of the built-in NativeActivity framework class.

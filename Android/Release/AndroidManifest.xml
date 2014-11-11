@@ -2,8 +2,8 @@
 <!-- BEGIN_INCLUDE(manifest) -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.triptether.mapping"
-        android:versionCode="2"
-        android:versionName="1.1.0">
+        android:versionCode="5"
+        android:versionName="1.1.50">
 
     <!-- This is the platform API where NativeActivity was introduced. -->
     <uses-sdk android:minSdkVersion="9" />
@@ -25,7 +25,7 @@
         android:debuggable="False" 
         android:largeHeap="False"
         android:icon="@drawable/ic_launcher"
-        android:theme="@android:style/Theme.NoTitleBar"
+        android:theme="@style/AppTheme"
         android:hardwareAccelerated="true">
         <meta-data android:name="com.google.android.gms.version" android:value="4323000"/>
         <!-- Our activity is a subclass of the built-in NativeActivity framework class.

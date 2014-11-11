@@ -270,10 +270,10 @@ var
 begin
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
   HasAgreed := ini.ReadString('termsandconditions', 'agreed', 'No');
-  NameSetting := ini.ReadString('login', 'name', 'No');
-  EmailSetting := ini.ReadString('login', 'email', 'No');
+  NameSetting := ini.ReadString('login', 'name', 'Nickname');
+  EmailSetting := ini.ReadString('login', 'email', 'name@host.com');
   TripID := ini.ReadString('login', 'trip', '');
-  TripPin := ini.ReadString('login', 'pin', '');
+  TripPin := ini.ReadString('login', 'pin', '1234567');
   ini.Free;
 
   if (TripID.Length > 0) and (TripPIN.Length > 0) then

@@ -20,7 +20,8 @@ uses
   FMX.TMSWebGMapsCommonFunctions,
   FMX.TMSWebGMapsPolygons, FMX.TMSWebGMapsPolylines,
   FMX.TMSWebGMapsDirections, FMX.TMSWebGMapsReverseGeocoding, FMX.TMSWebGMapsWebUtil,
-  FMX.Advertising, FMX.Ani, FMX.Colors;
+  FMX.Advertising, FMX.Ani, FMX.Colors, FMX.EditBox, FMX.SpinBox,
+  FMX.Controls.Presentation;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -248,6 +249,7 @@ type
     Label18: TLabel;
     Image2: TImage;
     Image3: TImage;
+    TMSFMXWebGMapsGeocoding1: TTMSFMXWebGMapsGeocoding;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -368,9 +370,10 @@ type
   end;
 
 const
-//  APIBASEURL = 'http://192.168.2.205:8080';
   APIBASEURL = 'https://www.triptether.com';
 //  APIBASEURL = 'http://www.triptether.net';
+//  APIBASEURL = 'http://192.168.2.205:8080';
+
 //var
 //  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
 
@@ -383,6 +386,7 @@ uses Launch;
 procedure THeaderFooterwithNavigation.JoinTrip(Sender: TObject);
 var
   ini: TIniFile;
+  strEmail: string;
 begin
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
@@ -403,7 +407,15 @@ begin
   else
   begin
     if edtName.Text = '' then
+    begin
       edtName.Text := edtEMail.Text;
+      if Pos('@', edtName.Text) > 0 then
+      begin
+        strEmail := edtName.Text;
+        Delete(strEmail, Pos('@', strEmail), MaxInt);
+        edtName.Text := strEmail;
+      end;
+    end;
 
     edtEMailSetting.Text := edtEMail.Text;
     edtNameSetting.Text := edtName.Text;
@@ -489,14 +501,14 @@ begin
   BannerAd1.AdUnitID := 'ca-app-pub-6999292982718554/1498844825';
 
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-  edtNameSetting.Text := ini.ReadString('login', 'name', '');
-  edtEmailSetting.Text := ini.ReadString('login', 'email', '');
-  spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 5);
+  edtNameSetting.Text := ini.ReadString('login', 'name', 'Nickname');
+  edtEmailSetting.Text := ini.ReadString('login', 'email', 'name@host.com');
+  spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 1);
 
   edtTripID.Text := ini.ReadString('login', 'trip', '');
   edtTripPin.Text := ini.ReadString('login', 'pin', '');
-  edtEMail.Text := ini.ReadString('login', 'email', '');
-  edtName.Text := ini.ReadString('login', 'name', '');
+  edtEMail.Text := ini.ReadString('login', 'email', 'Nickname');
+  edtName.Text := ini.ReadString('login', 'name', 'name@host.com');
 
   edtSignIn.Text := ini.ReadString('signin', 'email', '');
   edtPassword.Text := ini.ReadString('signin', 'pw', '');
@@ -1312,19 +1324,18 @@ end;
 procedure THeaderFooterwithNavigation.btnAddShareClick(Sender: TObject);
 begin
   mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + edtName.Text + ' (' + edtEmail.Text + ')!');
-  mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.AddStrings(mmoNotes.Lines);
-  //mmoShareInfo.Lines.Add('The trip is going to ' + lblName.Text);
+  mmoShareInfo.Lines.Add('You have been invited on a trip to "' + lblName.Text + '" by ' + edtName.Text + ' (' + edtEmail.Text + ')!');
   mmoShareInfo.Lines.Add('');
   mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
   mmoShareInfo.Lines.Add('  Trip ID: ' + edtTripID.Text);
   mmoShareInfo.Lines.Add('  PIN: ' + edtTripPIN.Text);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available at...');
-  mmoShareInfo.Lines.Add('  TripTether: http://www.triptether.com');
-  mmoShareInfo.Lines.Add('  Google Play: https://play.google.com/store/apps/details?id=com.triptether.mapping');
-  mmoShareInfo.Lines.Add('  App Store: https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4');
+  //mmoShareInfo.Lines.AddStrings(mmoNotes.Lines);
+  //mmoShareInfo.Lines.Add('The trip is going to ' + lblName.Text);
+  //mmoShareInfo.Lines.Add('');
+  mmoShareInfo.Lines.Add('Get the TripTether app at http://www.triptether.com');
+  //mmoShareInfo.Lines.Add('<a href="https://play.google.com/store/apps/details?id=com.triptether.mapping">Google Play</a>');
+  //mmoShareInfo.Lines.Add('<a href="https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4">App Store</a>');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';
@@ -1640,7 +1651,7 @@ procedure THeaderFooterwithNavigation.btnNewTripDetails2Click(Sender: TObject);
 begin
   mmoTripNotes.Lines.Clear;
   mmoTripNotes.Lines.Add('Trip to ' + edtTripName.Text + ', created by ' + edtNameSetting.Text + '.');
-  mmoTripNotes.Lines.Add('');
+  //mmoTripNotes.Lines.Add('');
   mmoTripNotes.Lines.Add('Going to ' + edtTripLocation.Text + ', ' + edtTripCity.Text);
   mmoTripNotes.Lines.Add('Departing on ' + DateToStr(dteTripDepart.Date) + ' at ' + TimeToStr(tmeTripDepart.Time));
 
@@ -1990,19 +2001,18 @@ begin
   end;
 
   mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('You have been invited on a trip by ' + SignInName + ' (' + SignInEmail + ')!');
-  mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.AddStrings(mmoTripNotes.Lines);
-  //mmoShareInfo.Lines.Add('The trip is planned to go to ' + edtTripName.Text);
+  mmoShareInfo.Lines.Add('You have been invited on a trip to "' + edtTripName.Text + '" by ' + SignInName + ' (' + SignInEmail + ')!');
   mmoShareInfo.Lines.Add('');
   mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
   mmoShareInfo.Lines.Add('  Trip ID: ' + IntToStr(NewTripID));
   mmoShareInfo.Lines.Add('  PIN: ' + NewTripPin);
   mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('The TripTether app is available at...');
-  mmoShareInfo.Lines.Add('  TripTether: http://www.triptether.com');
-  mmoShareInfo.Lines.Add('  Google Play: https://play.google.com/store/apps/details?id=com.triptether.mapping');
-  mmoShareInfo.Lines.Add('  App Store: https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4');
+  //mmoShareInfo.Lines.AddStrings(mmoTripNotes.Lines);
+  //mmoShareInfo.Lines.Add('The trip is planned to go to ' + edtTripName.Text);
+  //mmoShareInfo.Lines.Add('');
+  mmoShareInfo.Lines.Add('Get the TripTether app at http://www.triptether.com');
+  //mmoShareInfo.Lines.Add('Google Play: https://play.google.com/store/apps/details?id=com.triptether.mapping');
+  //mmoShareInfo.Lines.Add('App Store: https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4');
   mmoShareInfo.Lines.Add('');
 
   ShowShareSheetAction1.Caption := 'TripTether';

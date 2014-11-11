@@ -3,36 +3,38 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-    <string>tetherapp</string>
+        <string>TripTether</string>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+        <string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>TripTether</string>
+        <string>TripTether</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.triptether.mapping</string>
+        <string>com.triptether.mapping</string>
 	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
+        <string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.48</string>
+	<string>1.1.53</string>
 	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+        <string>APPL</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+        <string>????</string>
 	<key>LSRequiresIPhoneOS</key>
-	<string>true</string>
+        <string>true</string>
 	<key>CFBundleAllowMixedLocalizations</key>
-	<string>YES</string>
+        <string>YES</string>
 	<key>CFBundleExecutable</key>
-	<string>tetherapp</string>
+        <string>tetherapp</string>
 	<key>CFBundleResourceSpecification</key>
-	<string>ResourceRules.plist</string>
+        <string>ResourceRules.plist</string>
 	<key>UIDeviceFamily</key>
 	<array>
 	      <integer>1</integer>
 	      <integer>2</integer>
 	</array>
+	<key>UIBackgroundModes</key>
+        <string>location</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 	<string>triptether57x57</string>
@@ -56,13 +58,5 @@
 	<string>ResourceRules.plist</string>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
-	<key>DTPlatformBuild</key>
-	<string>11D167</string>
-	<key>DTBuildSDK</key>
-	<string>11D167</string>
-	<key>DTXcodeBuild</key>
-	<string>5B1008</string>
-	<key>DTXcode</key>
-	<string>0511</string>
 </dict>
 </plist>
