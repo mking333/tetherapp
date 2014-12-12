@@ -100,14 +100,12 @@ type
     Destination: TLabel;
     Location: TLabel;
     edtTripName: TEdit;
-    edtTripCity: TEdit;
     btnNewTripDetails: TButton;
     btnBackToJoin: TSpeedButton;
     SignInRequest: TRESTRequest;
     SignInResponse: TRESTResponse;
     NewTripRequest: TRESTRequest;
     NewTripResponse: TRESTResponse;
-    Label26: TLabel;
     edtTripLocation: TEdit;
     TabNewTripDetails: TTabItem;
     ToolBar6: TToolBar;
@@ -1580,7 +1578,7 @@ begin
   mmoTripNotes.Lines.Clear;
   mmoTripNotes.Lines.Add('Trip to ' + edtTripName.Text + ', created by ' + edtNameSetting.Text + '.');
   //mmoTripNotes.Lines.Add('');
-  mmoTripNotes.Lines.Add('Going to ' + edtTripLocation.Text + ', ' + edtTripCity.Text);
+  mmoTripNotes.Lines.Add('Going to ' + edtTripLocation.Text);
   mmoTripNotes.Lines.Add('Departing on ' + DateToStr(dteTripDepart.Date) + ' at ' + TimeToStr(tmeTripDepart.Time));
 
   TabControl1.SetActiveTabWithTransition(TabNewTripNotes, TTabTransition.Slide, TTabTransitionDirection.Normal);
@@ -1588,18 +1586,17 @@ end;
 
 procedure THeaderFooterwithNavigation.btnNewTripDetailsClick(Sender: TObject);
 begin
-  if (edtTripLocation.Text = '') or (edtTripCity.Text = '') then
+  if edtTripLocation.Text = '' then
   begin
     cpLocationNotFound.Visible := True;
-    edtTripLocation.TextPrompt := 'Enter an address.';
-    edtTripCity.TextPrompt := 'Enter city name.';
+    edtTripLocation.TextPrompt := 'Enter a location.';
   end
   else
   begin
     if edtTripName.Text = '' then
       edtTripName.Text := edtTripLocation.Text;
 
-    geoNewTrip.Address := edtTripLocation.Text + ', ' + edtTripCity.Text;
+    geoNewTrip.Address := edtTripLocation.Text;
     if geoNewTrip.LaunchGeocoding = erOk then
     begin
       TripLat := geoNewTrip.ResultLatitude; //FloatToStr(geoNewTrip.ResultLatitude);
@@ -1627,7 +1624,7 @@ begin
   NewTripRequest.Params.ParameterByName('email').Value := SignInEMail;
   NewTripRequest.Params.ParameterByName('token').Value := SignInToken;
   NewTripRequest.Params.ParameterByName('name').Value := edtTripName.Text;
-  NewTripRequest.Params.ParameterByName('location').Value := edtTripLocation.Text + ' ' + edtTripCity.Text;
+  NewTripRequest.Params.ParameterByName('location').Value := edtTripLocation.Text;
   NewTripRequest.Params.ParameterByName('notes').Value := mmoTripNotes.Text;
   NewTripRequest.Params.ParameterByName('lat').Value := FloatToStr(TripLat);
   NewTripRequest.Params.ParameterByName('long').Value := FloatToStr(TripLong);
