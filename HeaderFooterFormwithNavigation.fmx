@@ -479,12 +479,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
                 859A88DE93274FAAD9725973D5EB5ADD4530CA75CDB20C0250E52AB1ACBB0CA3
                 E6D2F5AA9B7377D530DC35A24620DC46BDEE616678EAD5AAB7CA79AD52F356EA
                 555FBD5AF155EB755FB55A0D54AA157FA95C0E94CBE550A1540A1572B9866272
-                DE23E797D392BE7DC45A7A6277FDD01371FEAD9FC0FB3879B97D0FC39CFBE33E
+                DE23E797D35261FB88957E6277FDD01371FEAD9FC0FB3879B97D0FC39CFBE33E
                 74EEDFB634DD343482AE08F09D8CE39C9362493653C0249F164A47B4124B04AC
                 C4409278ECCEB2AABA59EE2C9175E03949DE48C46E0F06ED471F7DF4A294B18B
                 C6B244491029DCCD8811AFD20931227D3E30E26C46A4CF9459934564DAB66649
                 2E174BC84AA99015C5724ACB4A59B14449A11FE80DCE9D5AAD9C3951962EC729
-                045FB64476306BE870AD7EFC854475FC8B8FD4F77E776C25FB0C856250164122
+                045FB64476306BE870AD7EFC854475EE8B8FD4F77E776C25FB0C856250164122
                 FEDEF9B130C1C858C49839DCBE6A8BFD303BE860D9D9BF380E669653CE00CD39
                 46F19DC723732E8EDFC70CD39D5E53F378443934A2D5AA29CE9BCB170590D70F
                 F6229A70C4E776EF56B07B8AE756523D9E82C6A865C9D2B552C96409ABABD5AA
@@ -498,7 +498,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
                 B3170D9EEB99D16E9354DB243D36052D2608D6D34F3F6DADD2E18BEAFC73D965
                 03E43CCDD1278C40E7F88E1E3D2A099DE27C43133A45CC77ECD8E17C3E97EDDD
                 BBD7990B9D21E60C065BE80C6EC7F9CC6DDB74B058BCE44EFE17FB8535E0FF07
-                E0CA965FBC36392D0000000049454E44AE426082}
+                F6A2966320C90F320000000049454E44AE426082}
               FileName = 'C:\Projects\tetherapp\images\triptether100x100.png'
             end>
           Align = Left
@@ -520,43 +520,43 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               PNG = {
                 89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
                 6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                0485494441545847ED976D28BD7718C77FE7381CF22C79364C58698C1296FE89
-                F02F5E782A464999566B2CAD64ADEC851732DE9024BC91506AD96A9AC717B6A8
-                497B430B4B3236F2CC3C9C3FCEB9F6BD7ECE39ADE3783C9E5EF8D6A7FBFCAE73
-                FF7EF7755FBFEBBAEEFB16AF7AD52348ABDDFB81688F18BDE94A29F5C717AB57
-                072DD5AB8396EAC53BA8D01F6F2337F01E7005D6E014EC8325B0072EE9EC6C67
-                5EA55286EA87771291EE8D52E9F6EB6D22E8035AC03418033F811FC1001805BF
-                8126E00E9E54CEE02BB001B8A1DEC4DFE033600FAED55D1AF555B201FDE01C98
-                3A721D67A00738802B65A9839C63BC7DA617BF2D3AD006EC805959FAA8FB14A4
-                5DFCBCBB944AA542AD56F31A5F5E581E56BE60179846E5122A958A6262622833
-                3393F2F2F28CF6BABA3ADADEDEA6D0D0D03F31E602BB244BB698ABD5783103D6
-                D6D6949F9F4F4D4D4D545252226D2E2E2E34333343E7E7E7B4BABA6A3CB7B4B4
-                141726AAAFAFD7E126B8682EE9BE5BCC7DEE6D6060A0282F2F17ADADADC2CFCF
-                4FFEE1E8E828BABBBB45595999484E4E160A85421C1C1CA0CF9D092B2B2BE1E6
-                E62682828204222A6C6C6C447B7BBB989D9D55C0C1CF31FD2EBDF65A7D04B6B3
-                B2B2645458898989C6C8ACACAC48DBE8E828050404507A7A3AD5D6D6524A4A0A
-                85858549FBEEEE2E4D4E4E92ABABAB619E1678817B4BA53FB2B87A6D373737C5
-                CECE8E38393911919191C2DEDE5EF8F8F8888E8E0E313E3E2E4F9C9E9E16EEEE
-                EE32CA232323D2363F3F2FA3EBEFEF2FE0A0B0B5B565B3726D6D2D00C7751E58
-                A4848484B7151515EF7A7B7B293E3E9EB0BD949B9B4BA7A7A73272959595322A
-                1E1E1EB4B4B4246D1B1B1BD2E6E4E444D87E19512E9AB1B1315A5E5E960583FF
-                13797D8BD5D6D696B6B5B5A5D9DFDFA7E0E06079614F4F4FE9083BD9D9D94988
-                28A5A5A551737333555555516A6A2A2D2E2E9256ABA5FEFE7E423ECA79838383
-                725E4B4B0B8F3FE0F5EF2BE31623B9D7ECECEC0E819AB7C9D7D757C4C6C68AE2
-                E262B9A5D1D1D162787858383B3B8BA2A222D1D7D727E71D1F1F73EF13DEDEDE
-                C2C1C141E006C5D4D4944C818989892D9CC2EDC672E1866DD04ABEE70240BEC9
-                08B0E2E2E26454387A88B0B4353636121CA0F0F07019254E8BEAEA6AEAEAEAA2
-                B9B9391A18189073C037BCF6438A5FA734050505D21116E71E37E5A4A4246A68
-                68A0C2C242B9B59C879C83E87784B64328265A58589073F84610D57FB0D6FB72
-                550BF4FF2A66FD8524FFD9CBCB2BB3A6A6867B99DC6A8D46C31116515151D286
-                3490763470D9FFB82F1E1D1DC9FFD6D7D7051CE47306605BD1AFFB7042417CCB
-                7D10CD596E53464686B1927372720C5B47434343B270B2B3B3395AD2C64F17E4
-                218FFFC5981F9B0F2F9D4EE70F077F0F0909E157278A8888A09E9E1EB9959C73
-                6CBB816350001E4F878787DE787C7D879F3A8E8E2142B784CB5B0D1E5D9E6002
-                9873E22AFE00170FF027125F6C019873C69455F0217872C5016E19E69C32C045
-                F10978B03797BB885FC9DE0076C29C731A90079EFD1B3B1D987EE1BD035F03D3
-                7EFA2CE2087D0C36812172FCEDC11FF12F4AB1E017F0057811913327FEA87FF6
-                9C7BD5CD12E23F7DC1B6C0D88D12400000000049454E44AE426082}
+                0486494441545847ED975B28B56914C79FBD6D36394BCE06A398D2309430E94B
+                84AFB8702A8692329AD2301753324D990B1732DC9024DC48283599A9D1385E98
+                891AE9BBA1094332CC9033E3B03FECBDE6BF1E7BEFA66D3B6EA70BFFFAF5EE67
+                EDF779DEF5AE67ADF5BEAF78D5AB1E415AEDDE8F447BC4E84D574AA93FBE58BD
+                3A68A95E1DB4542FDE4185FE781BB9810F802BB006A7601F2C813D704967673B
+                732A9532443FBC9388746F944AB7DF6E13411FD00CA6C028F819FC04FAC108F8
+                1D340277F0A472065F830DC00DF526FE065F007B70ADEED2A8AF920DE803E7C0
+                D491EB3803DDC0015C294B1DE41CE3ED33BDF86DD181566007CCCAD247DDE720
+                F5E2E7DDA5542A156AB59AD7F8EAC2F2B0F205BBC0342A9750A954141D1D4D19
+                1919949B9B6BB4D7D6D6D2F6F636858484FC893117D82559B2C55CADC68B19B0
+                B6B6A6BCBC3C6A6C6CA4E2E26269737171A1E9E9693A3F3FA7D5D555E3B92525
+                25B830517575B50E37C1457349F7DD62EE736F030303457979B9686969117E7E
+                7EF20F474747D1D5D525CACACA44525292502814E2E0E0007DEE4C5859590937
+                373711141424105161636323DADADAC4C2C282020E9662FA5D7AEDB5FA046C67
+                6666CAA8B01212128C9159595991B69191110A0808A0B4B434AAA9A9A1E4E464
+                0A0D0D95F6DDDD5D9A989820575757C33C2DF002F7964A7F6471F5DA6E6E6E8A
+                9D9D1D7172722222222284BDBDBDF0F1F111EDEDED626C6C4C9E38353525DCDD
+                DD6594878787A56D6E6E4E46D7DFDF5FC041616B6BCB66E5DADA5A008EEB3CB0
+                48F1F1F16F4B4B4BDFF7F4F4505C5C1C617B292727874E4F4F65E42A2A2A6454
+                3C3C3C68696949DA363636A4CDC9C989B0FD32A25C34A3A3A3B4BCBC2C0B06FF
+                27F0FA16ABB5B535756B6B4BB3BFBF4FC1C1C1F2C29E9E9ED21176B2A3A38310
+                514A4D4DA5A6A626AAACACA49494145A5C5C24AD564B7D7D7D847C94F3060606
+                E4BCE6E6661E7FC4EBDF57C62D4672AFD9D9D91D02356F93AFAFAF8889891145
+                4545724BA3A2A2C4D0D09070767616858585A2B7B757CE3B3E3EE6DE27BCBDBD
+                85838383C00D8AC9C9499902E3E3E35B3885DB8DE5C20DDBA095FCC005807C93
+                1160C5C6C6CAA870F41061696B6868203840616161324A9C16555555D4D9D949
+                B3B3B3D4DFDF2FE7806F79ED8714BF4E69F2F3F3A5232CCE3D6ECA898989545F
+                5F4F050505726B390F3907EBEAEA086D87504C343F3F2FE7F08D20AAFF60AD0F
+                E5AA16E8FF55CCFA0B49FE8B979757061AAD989999915BADD16838C222323252
+                DA9006D28E062EFB1FF7C5A3A323F9DFFAFABA80837C4E3F6C2BFA751F4E2888
+                EFB80FA239CB6D4A4F4F3756727676B661EB68707050164E565616474BDAF8E9
+                823CE4F1BF18F363F3E1A5D3E9FCE1E03BE422BF3A51787838757777CBADE49C
+                63DB0D1C837CF0783A3C3CF4C6E3EB7BFCD471740C11BA255CDE6AF0E8F204E3
+                C09C1357F107B878803F91F862F3C09C33A6AC828FC1932B1670CB30E794012E
+                8ACFC083BDB9DC45FC4AF606B013E69CD3805CF0ECDFD869C0F40BEF3DF80698
+                F6D3671147E853B0090C91E36F0FFE887F518A01BF822FC18B889C39F147FDB3
+                E7DCAB6E9610FF01EEBEB69992BC4A9F0000000049454E44AE426082}
               FileName = 'C:\Projects\tetherapp\images\flag_new.png'
             end>
           Align = Right
@@ -564,7 +564,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.Width = 44.000000000000000000
           Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
-          OnClick = btnNewTripClick
+          OnClick = btnSaveSignInClick
         end
       end
       object VertScrollBox1: TVertScrollBox
@@ -579,11 +579,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 0
           KeyboardType = NumberPad
-          Position.X = 88.000000000000000000
-          Position.Y = 20.000000000000000000
+          Position.X = 118.000000000000000000
+          Position.Y = 35.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
-          Size.Width = 220.000000000000000000
+          Size.Width = 153.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
         end
@@ -591,8 +591,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 1
           KeyboardType = NumberPad
-          Position.X = 88.000000000000000000
-          Position.Y = 65.000000000000000000
+          Position.X = 118.000000000000000000
+          Position.Y = 82.000000000000000000
           Margins.Left = 90.000000000000000000
           Margins.Right = 10.000000000000000000
           Size.Width = 153.000000000000000000
@@ -600,67 +600,28 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.PlatformDefault = False
           TextPrompt = '7 digit PIN'
         end
-        object edtName: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 2
-          Position.X = 88.000000000000000000
-          Position.Y = 110.000000000000000000
-          Size.Width = 222.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your nickname'
-        end
-        object edtEMail: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
-          KeyboardType = EmailAddress
-          Position.X = 88.000000000000000000
-          Position.Y = 155.000000000000000000
-          Margins.Left = 90.000000000000000000
-          Margins.Right = 10.000000000000000000
-          Size.Width = 221.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your email address'
-        end
-        object Label21: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 115.000000000000000000
-          Size.Width = 71.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Name'
-        end
         object Label4: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 20.000000000000000000
+          Position.X = 40.000000000000000000
+          Position.Y = 36.000000000000000000
           Size.Width = 71.000000000000000000
           Size.Height = 30.000000000000000000
           Size.PlatformDefault = False
           Text = 'Trip ID'
         end
-        object Label5: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 155.000000000000000000
-          Size.Width = 71.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'eMail'
-        end
         object Label6: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 70.000000000000000000
+          Position.X = 40.000000000000000000
+          Position.Y = 88.000000000000000000
           Size.Width = 71.000000000000000000
           Size.Height = 21.000000000000000000
           Size.PlatformDefault = False
           Text = 'PIN'
         end
         object Layout1: TLayout
-          Position.Y = 256.000000000000000000
+          Position.Y = 208.000000000000000000
           Size.Width = 318.000000000000000000
-          Size.Height = 97.000000000000000000
+          Size.Height = 89.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 8
+          TabOrder = 4
           object cpNetworkError: TCalloutPanel
             Align = Center
             Padding.Top = 11.000000000000000000
@@ -730,13 +691,86 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Text = 'Check your trip info and try again.'
             end
           end
+          object cpSignError: TCalloutPanel
+            Padding.Top = 11.000000000000000000
+            Position.X = 8.000000000000000000
+            Position.Y = -2.000000000000000000
+            Size.Width = 305.000000000000000000
+            Size.Height = 91.000000000000000000
+            Size.PlatformDefault = False
+            Visible = False
+            TabOrder = 3
+            CalloutWidth = 23.000000000000000000
+            CalloutLength = 11.000000000000000000
+            object lblSignMessage: TLabel
+              StyledSettings = [Family]
+              Position.X = 8.000000000000000000
+              Position.Y = 19.000000000000000000
+              Size.Width = 289.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              TextSettings.FontColor = claRed
+              TextSettings.HorzAlign = Center
+              Text = 'Oops, you weren'#39't able to sign in.'
+            end
+            object lblSignErrorMessage: TLabel
+              StyledSettings = [Family]
+              Position.X = 8.000000000000000000
+              Position.Y = 50.000000000000000000
+              Size.Width = 289.000000000000000000
+              Size.Height = 26.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              TextSettings.FontColor = claRed
+              TextSettings.HorzAlign = Center
+              Text = 'Check your user info and try again.'
+            end
+          end
+          object cpNewTripError: TCalloutPanel
+            Align = Horizontal
+            Padding.Top = 11.000000000000000000
+            Position.X = 13.000000000000000000
+            Position.Y = 1.000000000000000000
+            Size.Width = 305.000000000000000000
+            Size.Height = 90.000000000000000000
+            Size.PlatformDefault = False
+            Visible = False
+            TabOrder = 4
+            CalloutWidth = 23.000000000000000000
+            CalloutLength = 11.000000000000000000
+            object Label31: TLabel
+              StyledSettings = [Family]
+              Position.X = 8.000000000000000000
+              Position.Y = 19.000000000000000000
+              Size.Width = 289.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              TextSettings.FontColor = claRed
+              TextSettings.HorzAlign = Center
+              Text = 'Oops, could not create the trip.'
+            end
+            object Label32: TLabel
+              StyledSettings = [Family]
+              Position.X = 8.000000000000000000
+              Position.Y = 51.000000000000000000
+              Size.Width = 289.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Style = [fsBold]
+              TextSettings.FontColor = claRed
+              TextSettings.HorzAlign = Center
+              Text = 'Check your trip info and try again.'
+            end
+          end
         end
         object Layout2: TLayout
-          Position.Y = 200.000000000000000000
+          Position.Y = 152.000000000000000000
           Size.Width = 318.000000000000000000
           Size.Height = 54.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 9
+          TabOrder = 5
           object btnJoinTrip: TButton
             Align = Center
             Size.Width = 177.000000000000000000
@@ -762,7 +796,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object TopToolBar4: TToolBar
         Align = MostTop
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -770,7 +804,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -781,7 +815,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           StyledSettings = [Family, Size, Style]
           Position.X = 232.000000000000000000
           Size.Width = 88.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Text = 'Check In'
           TextSettings.FontColor = claIvory
@@ -791,7 +825,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Left
           StyledSettings = [Family, Size, Style]
           Size.Width = 66.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Text = 'Quit'
           TextSettings.FontColor = claIvory
@@ -801,7 +835,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Panel2: TPanel
         Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 504.000000000000000000
+        Size.Height = 500.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         object Rectangle3: TRectangle
@@ -809,7 +843,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Fill.Color = claIvory
           Sides = []
           Size.Width = 320.000000000000000000
-          Size.Height = 504.000000000000000000
+          Size.Height = 500.000000000000000000
           Size.PlatformDefault = False
         end
         object mmoNotes: TMemo
@@ -822,7 +856,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Right = 20.000000000000000000
           Margins.Bottom = 10.000000000000000000
           Size.Width = 280.000000000000000000
-          Size.Height = 259.000000000000000000
+          Size.Height = 255.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           ReadOnly = True
@@ -1010,49 +1044,49 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               PNG = {
                 89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
                 6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                052C494441545847ED976B6C145514C7FFF3DADDB2EFDDB68B5413318194148A
-                2D15A31883F18BC680F2811002820231111331443E982008DF347E402526C620
-                1225910F1251D488800F14238A8F04528A505E5A4ABBBBDD17DDEEECCEBD9ED9
-                BD941D765B76DB42D0F4979CCCCCB9E7CEFCE7DC7BCF9DC138FF450C23F609E7
-                316E9A700D892C8EB72CE30247CBB8C0D172CB0B94C4F18690CD463B54559E2A
-                2EAB42927C796D150BA482A500F63B388C109DBAC845D937FAE91096A077D28D
-                B285C8AB8C85C08A60501E32A07DA143FD9BC3168BC3D64F96BE0C5B2203AD3B
-                07DB51066D15BD8426BA0C4B35857A58186C5349D0FB2446A7231FCE288691D0
-                1F3894B9856C0FCD98086450EFC94239554ECC7096862D4AD95C266E53966A04
-                961D67E60F3519BABE5705BF53B806F935E0C789A669C8691AFC5D17D1D67916
-                0DBA2E5A0B24E8166E597E5A4A463FA40730E11EC41428CB78DC3CBFDE5C2B69
-                64932605996CDF4F2BE06EE11A64B7D78DBAD75FC38C7B67D38D250C0C0CE0C7
-                B7B6E2E19D1FC16B5875E472E8D2389B235D3A7756B8061995C05CDBEC15C958
-                FC1D8FDBA30A579E3E45C1F9CD1BD1F2E823C253201289A06BE533683A7F4178
-                AE62C8D24EEDE89127E92196A1AC466049A1E675A1E75C53A6A86C620816BB6B
-                321A5B4A928A603088DCAC566BACB0647DFD227DFEFCD24E5560119859F96C33
-                26D6B7826E7EADD968EE2952F98DA7D639A124DE34CFC4904A6FB050840DA228
-                BE27CCCC5552EB2C4FE475FEC758A81EE5CCE1F34239D12E22AFC2A351D46732
-                65FB988650A8996FDC6813E155631128D706A6D11BA3D858208033AA8A7D7A06
-                DF1D3F0E5ADD22BA40F7A51EECBD9CC2CFB92CD25EAFA5AF693C180C44020187
-                08AF1A8B40C3ED7672CA54B19DA6F9FD27CDBFD6B56BD1B27831642A2FC504A8
-                EDC1356BE05AB408BBE3314BDF82F954C5E3293F372AE05A8167B9CB85624B34
-                3460C1D2A568A0A3DFEFCF979762EC763BEAEAEAD0D2D686FB962FC7996CD6D2
-                9F399D295F30684D7B1558042A9AF605CC0C098BD1C35C4D4D745AD1168BC6C6
-                46446B6BC1684A5CB987A46927316F5E5A84548D45A0E3D8B16F98AE7750A132
-                8B158EF7C53063E64CD15A19939B9B91A64563F64FF4C5B86418BB28EB23DE73
-                2D02A54D9B983C30F06632D5CFA4543FA6D390568B5751E1C86461F6F740F9DE
-                D1DE7E48348D8892C9CB2391CFBDD1E819DA22E0EBBE04E3E0B7F96C54020F47
-                201F380895FAE622BD291E8FAFA797CE89E6115122B066DDBAF3E80D6F90BB7B
-                601AFBEA6BB0DFFE10AD434362606CDF01E5E4A97C3FDBC59E7D8E73A77F11CD
-                2366C84AAE2F796A7B32915CE671BB6573D2ABCFAF86DC4ABBD635AB380FD546
-                E3BD1DE0870EE72F594EEAD1ECF25CF9836DA595BD4A4A3278855C2ABDC19335
-                CE49B45094DE30D896ADE017FE11AD45D0F067DF7E17F8EC4B98B1B43032722A
-                B9622CC4990C2970C29E5D177822B9241789F7221A83F457278C973703B47314
-                C3767F0AF9E33DF459D30733CE178B6D57586ABF681E35D7DDAC59E3ACC5099E
-                DEE696EC35E6B5F4C0FD90B6BC0A389DE03F1D015FFD02E8C3301F0BCE0E4870
-                2E903B0E270B8ED133ECBF83C92BE18BED5A8D97462D3CC741FF00FC74677E58
-                25128855AB21D1F04B54F7B8AE1F95195F2877FE1E115DC784EB66D084AAACCA
-                DCB7AD4F72BEDE63BE147D6D221800C2E17CA3AEE72236BB6D8E9CECEA105D6E
-                3E0CB7D7189AF78DB8E2D5B9E2E5572CABF83AB9E61DD547E99841C9B231B85E
-                8AC345BFA12E3E005B98A1A68DFC158DC44D81C4680C135E34E0DACFE09C2EDC
-                E3FCBF30E71C43D02D2E6F20C0BF361362EEB911C7E80000000049454E44AE42
-                6082}
+                052D494441545847ED975B6C145518C7FF73DBDDB2BBECADBB5B5B4DC4072C16
+                8A2D15A31883F145634079208480A0404CC4440C910713E5F6A6F10195981883
+                4894441E24A28811012F2846142F09A480506E4ABBD76EDBA5BB9DDD39C76FB6
+                87B2C36E4BB72D88A6BFE4CBCC7CE73B67FEF39D33DF99C138FF450C23F509E7
+                296E9A700D8A2C8E372DE30247CBB8C0D172D30B94C4F1BA90CB254FA8AA3C59
+                5C568424790BDA862D900A9602D86FE330C274EA221765DFE8A5435C82DE4603
+                E5FA23AF301602870583F290016D8F0EF52F0E5B2A055B6F276C994BB075F741
+                EBC8C37684415B410FA1892E435249A11E1206DB6412F47E04369D8E7C28A318
+                4642BFE75066F7677B70C64420837A4F0ECAA9726286B20C6C49CAE612314C59
+                2A1158769E992FDC60E8FA6E15FC76E11AE017BF0FC71BA620AF69F05D6C474B
+                DB59D4E9BA68ED274A430465F969A927F921DD8009F700A64059C6E3E6F9B5D6
+                5A4923ABAD0D30D9BE8FDE80BB856B809D1E3782AFBF8669F7CEA4812564B359
+                FCF0D6663CBCFD23780CAB8E7C1E1735CE6649917367856B805109CCB7CC5C16
+                8B45DE09F943AA7015E854149CDFB80E4D8F3E223CFD2412095C5CFE0C1ACE5F
+                109E2B18B2B45D3B72F849BA89652A2B115852A87930FC5CF55DD354561386C5
+                EE9884FAA692A4221008203FA3D91A2B2C160A2DD0E7CE2DED540116817DCB9F
+                6D444DA81934F8D566A3B5A748E5379E6AE7849278D3423561959E60BE081B40
+                51BC4F98991B4EADB3DC91077D8FB17008E5CCE1F54039DE2A22AFC0934984FA
+                FACAF6310DE170235FB7CE26C22BC62250AEF64FA12746B131BF1F6754157BF5
+                3E7C7BEC18E8ED16D1FD7444A2D87D298D9FF239643C1E4B5FD37820E04FF8FD
+                0E115E31168186DBEDE494A9623B4DEBFB0F5A7FCDAB57A369E142C8545E8AF1
+                53DB83AB56C1B560017676A52C7DFBCDAB2A1327965F1BC3E06A8167B9CB8562
+                EBAEABC3BCC58B5147479FCF57282FC5D8ED7604834134B5B4E0BEA54B712697
+                B3F4674E67DA1B0858D35E0116818AA6ED8199216129BA99ABA1814E87B5C5A2
+                BEBE1EC9EA6A305A1297C79034ED24E6CCC988908AB108741C3DFA35D3F51354
+                A8CC6285639D294C9B3E5DB40E8F498D8DC8D04B63F68FB67770C9307650D647
+                BCE75A044A1B3630399B7D3396EE6552BA1753694A2BC5A3A870F4E560F60F39
+                9CDF395A5B0F8AA61151B2787922F17938993C435B04BC1D111807BE29646338
+                F07802F2FE0350A96F3E114BF3AEAE97E9A1F3A279449408AC5AB3E63C62F1B5
+                724714A6B12FBF02FBF577D13A382406C6D66D504E9E2AF4B3B547F73ACE9DFE
+                59348F98412BB9BEE8A9ADB1686C49281894CD45AF3EBF127233ED5A57BDC505
+                A8361AEF6D033F78A870C9F25254B3CBB3E50FB69456F60A29C9E065F2E9CCDA
+                90A29D93E845516271B04D9BC12FFC2D5A8BA0E9CFBDFD2EF0D9173063BB3A53
+                7D72BA67D95888331954E0845D3B2EF0EE9E45F944570CC914A43FDB60BCB211
+                A09DA318B6F353C81FEFA2CF9A4E9871BE546AABC2D2FB44F3A8B9E666CDEA67
+                2CECE6992D6EC95E655E4B0FDC0F69D3AB80D309FEE361F0952F803E0C0BB1E0
+                6CBF04E73CF9C4A19E7EC7E819F2DFC1647DBCBD55ABF2C8899ED82C27FD03F0
+                D36D856995482056AC8444D32F51DDE3BA7E44667CBEDCF65B4274BD71509555
+                0DF72DEB3B5C3579E6AAE16C622D6793A672E6A673BACEDAAAE3CC5D7BA708FF
+                7760B8B5CAD03C6F44148FCE150FBF6C39C5DBC635CFA83E4AC70CCAA48DC1F5
+                52042EFA0D75F12C6C7186AA16F25F732DDF30488CC630E14503AE7D0CCEA9C2
+                3DCEFF0B73CD3104DCE2F23A02FC039A8B63BD184FA2E90000000049454E44AE
+                426082}
               FileName = 'C:\Projects\tetherapp\images\part_new.png'
             end>
           Align = Right
@@ -1482,7 +1516,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         TabOrder = 2
         object btnSaveSignIn: TButton
           Position.X = 71.000000000000000000
-          Position.Y = 112.000000000000000000
+          Position.Y = 40.000000000000000000
           Size.Width = 177.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
@@ -1492,7 +1526,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         end
         object btnSignUp1: TButton
           Position.X = 71.000000000000000000
-          Position.Y = 320.000000000000000000
+          Position.Y = 200.000000000000000000
           Size.Width = 177.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
@@ -1536,48 +1570,10 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Text = 'Check your sign in info and try again.'
           end
         end
-        object edtPassword: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 4
-          Password = True
-          Position.X = 104.000000000000000000
-          Position.Y = 62.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your sign in password'
-        end
-        object edtSignIn: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 5
-          KeyboardType = EmailAddress
-          Position.X = 104.000000000000000000
-          Position.Y = 14.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your sign in email'
-        end
-        object Label10: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 14.000000000000000000
-          Size.Width = 65.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'eMail'
-        end
-        object Label11: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 62.000000000000000000
-          Size.Width = 82.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Password'
-        end
         object Label14: TLabel
           StyledSettings = [Family, Size, FontColor]
-          Position.X = 8.000000000000000000
-          Position.Y = 245.000000000000000000
+          Position.X = 16.000000000000000000
+          Position.Y = 125.000000000000000000
           Size.Width = 305.000000000000000000
           Size.Height = 73.000000000000000000
           Size.PlatformDefault = False
@@ -1667,7 +1663,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object ToolBar3: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -1675,7 +1671,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -1684,8 +1680,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToJoin3: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
@@ -1694,9 +1690,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox7: TVertScrollBox
         Align = HorzCenter
-        Position.Y = 44.000000000000000000
+        Position.Y = 48.000000000000000000
         Size.Width = 320.000000000000000000
-        Size.Height = 504.000000000000000000
+        Size.Height = 500.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         object btnSignUpGo: TButton
@@ -1752,7 +1748,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 104.000000000000000000
           Position.Y = 62.000000000000000000
           Size.Width = 201.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextPrompt = 'Your sign in password'
         end
@@ -1763,7 +1759,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 104.000000000000000000
           Position.Y = 14.000000000000000000
           Size.Width = 201.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextPrompt = 'Your sign in email'
         end
@@ -1790,7 +1786,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 104.000000000000000000
           Position.Y = 110.000000000000000000
           Size.Width = 201.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextPrompt = 'Password confirmation'
         end
@@ -1979,7 +1975,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object ToolBar6: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -1987,7 +1983,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -1996,8 +1992,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToNewTrip: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
@@ -2007,9 +2003,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object VertScrollBox3: TVertScrollBox
         Align = HorzCenter
         Position.X = 1.000000000000000000
-        Position.Y = 44.000000000000000000
+        Position.Y = 48.000000000000000000
         Size.Width = 318.000000000000000000
-        Size.Height = 504.000000000000000000
+        Size.Height = 500.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         object Label28: TLabel
@@ -2029,34 +2025,34 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Text = 'Arrive At'
         end
         object dteTripArrive: TDateEdit
-          Date = 41946.000000000000000000
+          Date = 41984.000000000000000000
           TodayDefault = True
           Position.X = 116.000000000000000000
           Position.Y = 65.000000000000000000
           Size.Width = 97.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 47
+          TabOrder = 55
         end
         object dteTripDepart: TDateEdit
-          Date = 41946.000000000000000000
+          Date = 41984.000000000000000000
           TodayDefault = True
           OnChange = dteTripDepartChange
           Position.X = 116.000000000000000000
           Position.Y = 20.000000000000000000
           Size.Width = 97.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 48
+          TabOrder = 56
         end
         object tmeTripArrive: TTimeEdit
           Time = 0.416666666666666700
           Position.X = 230.000000000000000000
           Position.Y = 65.000000000000000000
           Size.Width = 81.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 49
+          TabOrder = 57
         end
         object tmeTripDepart: TTimeEdit
           Time = 0.375000000000000000
@@ -2064,9 +2060,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Position.X = 232.000000000000000000
           Position.Y = 20.000000000000000000
           Size.Width = 81.000000000000000000
-          Size.Height = 30.000000000000000000
+          Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 50
+          TabOrder = 58
         end
         object btnNewTripDetails2: TButton
           Position.X = 72.000000000000000000
@@ -2112,7 +2108,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
-          Text = 'Settings'
+          Text = 'User Setup'
         end
       end
       object VertScrollBox4: TVertScrollBox
@@ -2124,7 +2120,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         TabOrder = 1
         object btnSettingsDone: TButton
           Position.X = 64.000000000000000000
-          Position.Y = 166.000000000000000000
+          Position.Y = 184.000000000000000000
           Size.Width = 177.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
@@ -2132,7 +2128,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Text = 'Done'
           OnClick = btnSettingsDoneClick
         end
-        object edtEmailSetting: TEdit
+        object edtEMailSetting: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 1
           KeyboardType = EmailAddress
@@ -2144,27 +2140,16 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextPrompt = 'Your email address'
-          OnChange = edtEmailSettingChange
         end
         object edtNameSetting: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 2
+          TabOrder = 3
           Position.X = 80.000000000000000000
           Position.Y = 68.000000000000000000
           Size.Width = 225.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           TextPrompt = 'Your nickname'
-          OnChange = edtNameSettingChange
-        end
-        object Label13: TLabel
-          Margins.Left = 10.000000000000000000
-          Position.X = 16.000000000000000000
-          Position.Y = 116.000000000000000000
-          Size.Width = 121.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Check In Every'
         end
         object Label34: TLabel
           Position.X = 16.000000000000000000
@@ -2182,29 +2167,23 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.PlatformDefault = False
           Text = 'Name'
         end
-        object spCheckIn: TSpinBox
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 6
-          Cursor = crIBeam
-          Min = 1.000000000000000000
-          Max = 60.000000000000000000
-          Value = 1.000000000000000000
-          Position.X = 142.000000000000000000
-          Position.Y = 116.000000000000000000
-          Margins.Left = 10.000000000000000000
-          Margins.Right = 10.000000000000000000
-          Size.Width = 100.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          OnChange = spCheckInChange
-        end
-        object Label18: TLabel
-          Position.X = 256.000000000000000000
-          Position.Y = 120.000000000000000000
-          Size.Width = 49.000000000000000000
+        object Label38: TLabel
+          Position.X = 16.000000000000000000
+          Position.Y = 121.000000000000000000
+          Size.Width = 71.000000000000000000
           Size.Height = 21.000000000000000000
           Size.PlatformDefault = False
-          Text = 'Mins'
+          Text = 'PW'
+        end
+        object edtPWSetting: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          Position.X = 80.000000000000000000
+          Position.Y = 116.000000000000000000
+          Size.Width = 225.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Choose a password'
         end
       end
     end
@@ -2226,14 +2205,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Padding.Right = 10.000000000000000000
         Padding.Bottom = 10.000000000000000000
         Size.Width = 320.000000000000000000
-        Size.Height = 443.000000000000000000
+        Size.Height = 439.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TextSettings.WordWrap = True
       end
       object ToolBar5: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         TintColor = claCornflowerblue
@@ -2241,7 +2220,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -2252,7 +2231,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           StyledSettings = [Family, Size, Style]
           Position.X = 254.000000000000000000
           Size.Width = 66.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Text = 'Join'
           TextSettings.FontColor = claIvory
@@ -2261,8 +2240,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object SpeedButton3: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
@@ -2271,7 +2250,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object Panel13: TPanel
         Align = Top
-        Position.Y = 44.000000000000000000
+        Position.Y = 48.000000000000000000
         Size.Width = 320.000000000000000000
         Size.Height = 61.000000000000000000
         Size.PlatformDefault = False
@@ -2281,7 +2260,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Center
           Enabled = True
           Size.Width = 305.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Text = 'Click to share trip info'
           Visible = True
@@ -2308,7 +2287,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object ToolBar7: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -2316,7 +2295,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -2325,8 +2304,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToTrip: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
@@ -2336,7 +2315,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object VertScrollBox6: TVertScrollBox
         Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 504.000000000000000000
+        Size.Height = 500.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         object mmoTripNotes: TMemo
@@ -2348,7 +2327,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Bottom = 10.000000000000000000
           Position.X = 20.000000000000000000
           Position.Y = 10.000000000000000000
-          Size.Width = 10.000000000000000000
+          Size.Width = 280.000000000000000000
           Size.Height = 177.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
@@ -2356,7 +2335,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object Layout3: TLayout
           Align = Top
           Position.Y = 197.000000000000000000
-          Size.Width = 50.000000000000000000
+          Size.Width = 320.000000000000000000
           Size.Height = 164.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
@@ -2366,50 +2345,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Size.Height = 159.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
-            object cpNewTripError: TCalloutPanel
-              Align = Horizontal
-              Padding.Top = 11.000000000000000000
-              Position.X = 22.000000000000000000
-              Position.Y = 57.000000000000000000
-              Size.Width = 305.000000000000000000
-              Size.Height = 90.000000000000000000
-              Size.PlatformDefault = False
-              Visible = False
-              TabOrder = 0
-              CalloutWidth = 23.000000000000000000
-              CalloutLength = 11.000000000000000000
-              object Label31: TLabel
-                StyledSettings = [Family]
-                Position.X = 8.000000000000000000
-                Position.Y = 19.000000000000000000
-                Size.Width = 289.000000000000000000
-                Size.Height = 30.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.Font.Style = [fsBold]
-                TextSettings.FontColor = claRed
-                TextSettings.HorzAlign = Center
-                Text = 'Oops, could not create the trip.'
-              end
-              object Label32: TLabel
-                StyledSettings = [Family]
-                Position.X = 8.000000000000000000
-                Position.Y = 51.000000000000000000
-                Size.Width = 289.000000000000000000
-                Size.Height = 25.000000000000000000
-                Size.PlatformDefault = False
-                TextSettings.Font.Style = [fsBold]
-                TextSettings.FontColor = claRed
-                TextSettings.HorzAlign = Center
-                Text = 'Check your trip info and try again.'
-              end
-            end
             object btnNewTripCreate: TButton
               Position.X = 89.000000000000000000
               Position.Y = 10.000000000000000000
               Size.Width = 177.000000000000000000
               Size.Height = 44.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 1
+              TabOrder = 0
               Text = 'Create Trip'
               OnClick = btnNewTripCreateClick
             end
@@ -2429,7 +2371,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Text = 'TabCheck'
       object ToolBar8: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -2437,7 +2379,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -2446,8 +2388,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object spBackToMap: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'

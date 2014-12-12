@@ -21,7 +21,8 @@ uses
   FMX.TMSWebGMapsPolygons, FMX.TMSWebGMapsPolylines,
   FMX.TMSWebGMapsDirections, FMX.TMSWebGMapsReverseGeocoding, FMX.TMSWebGMapsWebUtil,
   FMX.Advertising, FMX.Ani, FMX.Colors, FMX.EditBox, FMX.SpinBox,
-  FMX.Controls.Presentation;
+  FMX.Controls.Presentation,
+  Launch;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -57,7 +58,6 @@ type
     btnBackCheck: TSpeedButton;
     btnQuit: TSpeedButton;
     ChangeTabAction3: TChangeTabAction;
-    Label13: TLabel;
     Panel2: TPanel;
     mmoNotes: TMemo;
     TabCheck: TTabItem;
@@ -71,7 +71,6 @@ type
     Panel6: TPanel;
     edtStatus: TEdit;
     lbParticipants: TListBox;
-    spCheckIn: TSpinBox;
     ListBox2: TListBox;
     ListBoxItem4: TListBoxItem;
     ListBoxItem5: TListBoxItem;
@@ -85,11 +84,9 @@ type
     lblLeader: TLabel;
     btnMap: TSpeedButton;
     btnDirections: TSpeedButton;
-    edtEMail: TEdit;
     edtTripID: TEdit;
     edtTripPIN: TEdit;
     Label4: TLabel;
-    Label5: TLabel;
     Label6: TLabel;
     btnJoinTrip: TButton;
     btnSettings: TSpeedButton;
@@ -101,10 +98,6 @@ type
     QuitRequest: TRESTRequest;
     QuitResponse: TRESTResponse;
     btnSignUp: TButton;
-    Label10: TLabel;
-    Label11: TLabel;
-    edtSignIn: TEdit;
-    edtPassword: TEdit;
     TabSignUp: TTabItem;
     TabNewTrip: TTabItem;
     ToolBar3: TToolBar;
@@ -141,8 +134,6 @@ type
     btnSaveSignIn: TButton;
     NewTripPartRequest: TRESTRequest;
     NewTripPartResponse: TRESTResponse;
-    Label21: TLabel;
-    edtName: TEdit;
     Action1: TAction;
     ShowShareSheetAction1: TShowShareSheetAction;
     TabNewTripShare: TTabItem;
@@ -160,7 +151,7 @@ type
     MapRequest: TRESTRequest;
     MapResponse: TRESTResponse;
     mapTrip: TTMSFMXWebGMaps;
-    edtEmailSetting: TEdit;
+    edtEMailSetting: TEdit;
     Label34: TLabel;
     edtNameSetting: TEdit;
     Label35: TLabel;
@@ -246,10 +237,14 @@ type
     Label30: TLabel;
     spBackToMap: TSpeedButton;
     mapInfo: TTMSFMXWebGMaps;
-    Label18: TLabel;
     Image2: TImage;
     Image3: TImage;
     TMSFMXWebGMapsGeocoding1: TTMSFMXWebGMapsGeocoding;
+    Label38: TLabel;
+    edtPWSetting: TEdit;
+    cpSignError: TCalloutPanel;
+    lblSignMessage: TLabel;
+    lblSignErrorMessage: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -302,8 +297,6 @@ type
     procedure spWeatherClick(Sender: TObject);
     procedure spBikesClick(Sender: TObject);
     procedure spPicturesClick(Sender: TObject);
-    procedure edtNameSettingChange(Sender: TObject);
-    procedure edtEmailSettingChange(Sender: TObject);
     procedure TabTripGesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure TabCheckGesture(Sender: TObject;
@@ -336,6 +329,8 @@ type
     procedure spBackToMapClick(Sender: TObject);
     procedure dteTripDepartChange(Sender: TObject);
     procedure tmeTripDepartChange(Sender: TObject);
+    function RandomPassword(PLen: Integer): string;
+    function IsValidEmail(const Value: string): Boolean;
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -350,43 +345,51 @@ type
     CheckingIn: boolean;
     MappingIn: boolean;
 
+    CheckInMin: integer;
+
     UserPin: string;
 
     SignInUserId: integer;
-    SignInEmail: string;
+    SignInEMail: string;
     SignInName: string;
+    SignInPW: string;
     SignInToken: string;
 
+    TripID: string;
+    TripPIN: string;
     TripLat: double;
     TripLong: double;
     TripFoundLatLong: boolean;
 
-    NewTripId: integer;
+    NewTripID: integer;
     NewTripName: string;
     NewTripToken: string;
-    NewTripPin: string;
+    NewTripPIN: string;
   public
     { Public declarations }
   end;
 
 const
-  APIBASEURL = 'https://www.triptether.com';
+//  APIBASEURL = 'https://www.triptether.com';
 //  APIBASEURL = 'http://www.triptether.net';
-//  APIBASEURL = 'http://192.168.2.205:8080';
+  APIBASEURL = 'http://192.168.2.205:8080';
 
 //var
 //  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
+
+var
+  frmLaunch: TfrmLaunch;
+  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
 
 implementation
 
 
 {$R *.fmx}
 
-uses Launch;
 procedure THeaderFooterwithNavigation.JoinTrip(Sender: TObject);
 var
   ini: TIniFile;
-  strEmail: string;
+  strEMail: string;
 begin
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
@@ -397,42 +400,36 @@ begin
   AutoZoomTrip := True;
   ParticipantsCount := 0;
 
-  if (edtTripID.Text = '') or (edtTripPIN.Text = '') or (edtEMail.Text = '') then
+  if (edtTripID.Text = '') or (edtTripPIN.Text = '') or (SignInEMail = '') then
   begin
       cpJoinError.Visible := True;
       edtTripID.TextPrompt := 'Enter id from email.';
       edtTripPIN.TextPrompt := 'Enter PIN from email: 1234567';
-      edtEMail.TextPrompt := 'Enter your email address: name@host.com';
   end
   else
   begin
-    if edtName.Text = '' then
+    if SignInName = '' then
     begin
-      edtName.Text := edtEMail.Text;
-      if Pos('@', edtName.Text) > 0 then
+      SignInName := SignInEMail;
+      if Pos('@', SignInName) > 0 then
       begin
-        strEmail := edtName.Text;
-        Delete(strEmail, Pos('@', strEmail), MaxInt);
-        edtName.Text := strEmail;
+        strEMail := SignInName;
+        Delete(strEMail, Pos('@', strEMail), MaxInt);
+        SignInName := strEMail;
       end;
     end;
-
-    edtEMailSetting.Text := edtEMail.Text;
-    edtNameSetting.Text := edtName.Text;
 
     ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
     ini.WriteString('login', 'trip', edtTripID.Text);
     ini.WriteString('login', 'pin', edtTripPIN.Text);
-    ini.WriteString('login', 'email', edtEMail.Text);
-    ini.WriteString('login', 'name', edtName.Text);
     ini.Free;
 
     //LocationSensor1.Active := True;
     JoinRequest.Resource := 'apis/[id]/join.json';
     JoinRequest.Resource := JoinRequest.Resource.Replace('[id]', edtTripID.Text);
-    JoinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
     JoinRequest.Params.ParameterByName('pin').Value := edtTripPIN.Text;
-    JoinRequest.Params.ParameterByName('name').Value := edtName.Text;
+    JoinRequest.Params.ParameterByName('email').Value := SignInEMail;
+    JoinRequest.Params.ParameterByName('name').Value := SignInName;
     try
       JoinRequest.Execute
     except
@@ -501,20 +498,26 @@ begin
   BannerAd1.AdUnitID := 'ca-app-pub-6999292982718554/1498844825';
 
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-  edtNameSetting.Text := ini.ReadString('login', 'name', 'Nickname');
-  edtEmailSetting.Text := ini.ReadString('login', 'email', 'name@host.com');
-  spCheckIn.Value := ini.ReadInteger('settings', 'checkin', 1);
-
-  edtTripID.Text := ini.ReadString('login', 'trip', '');
-  edtTripPin.Text := ini.ReadString('login', 'pin', '');
-  edtEMail.Text := ini.ReadString('login', 'email', 'Nickname');
-  edtName.Text := ini.ReadString('login', 'name', 'name@host.com');
-
-  edtSignIn.Text := ini.ReadString('signin', 'email', '');
-  edtPassword.Text := ini.ReadString('signin', 'pw', '');
+  SignInEMail := ini.ReadString('signin', 'email', '');
+  SignInPW := ini.ReadString('signin', 'pw', '');
   SignInName := ini.ReadString('signin', 'name', '');
 
+  CheckInMin := ini.ReadInteger('settings', 'checkin', 1);
+
+  TripID := ini.ReadString('login', 'trip', '');
+  TripPIN := ini.ReadString('login', 'pin', '');
+
   ini.Free;
+
+  edtNameSetting.Text := SignInName;
+  edtEmailSetting.Text := SignInEMail;
+  edtPWSetting.Text := SignInPW;
+
+  edtTripID.Text := TripID;
+  edtTripPIN.Text := TripPIN;
+
+  if (SignInEMail = '') or (SignInPW = '') or (SignInName = '')  then
+    TabControl1.SetActiveTabWithTransition(TabSettings, TTabTransition.None, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.FormKeyUp(Sender: TObject; var Key: Word;
@@ -563,8 +566,9 @@ var
   User: TJSONObject;
   Result: string;
 begin
-  cpSignUpSuccess.Visible := False;
-  cpSignInError.Visible := False;
+  cpJoinError.Visible := False;
+  cpNetworkError.Visible := False;
+  cpSignError.Visible := False;
 
   if assigned(SignInResponse.JSONValue) then
   begin
@@ -573,7 +577,34 @@ begin
     Result := User.Get('result').JsonValue.ToString.Replace('"', '');
     if Result <> 'success' then
     begin
-      cpSignInError.Visible := True;
+      if Result = 'password error' then
+      begin
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+        lblSignErrorMessage.Text := 'Check your user info and try again.';
+        cpSignError.Visible := True;
+      end;
+      if Result = 'user not found' then
+      begin
+        SignUpRequest.Params.ParameterByName('email').Value := SignInEMail;
+        SignUpRequest.Params.ParameterByName('pw').Value := SignInPW;
+        SignUpRequest.Params.ParameterByName('confirm').Value := SignInPW;
+        SignUpRequest.Params.ParameterByName('name').Value := SignInName;
+        try
+          SignUpRequest.Execute;
+        except
+          on E: Exception do begin
+            TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Reversed);
+            cpNetworkError.Visible := True;
+          end;
+        end
+      end;
+      if Result = 'confirmation error' then
+      begin
+        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None,
+           TTabTransitionDirection.Reversed);
+        lblSignErrorMessage.Text := 'You must confirm your user login.';
+        cpSignError.Visible := True;
+      end;
     end
     else
     begin
@@ -581,7 +612,7 @@ begin
 
       SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
       //SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
-      SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
+      SignInEMail := User.Get('email').JsonValue.ToString.Replace('"', '');
       SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
 
       TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide);
@@ -605,13 +636,14 @@ begin
     Result := User.Get('result').JsonValue.ToString.Replace('"', '');
     if Result <> 'success' then
     begin
-      lblSignUpError.Text := 'Check your sign up info and try again.';
+      lblSignErrorMessage.Text := 'Check your sign up info and try again.';
       if Result = 'duplicate user' then
-        lblSignUpError.Text := 'Email already used, try another.';
+        lblSignErrorMessage.Text := 'Email already used, try another.';
       if Result = 'password error' then
-        lblSignUpError.Text := 'Password must be at least 8 characters.';
+        lblSignErrorMessage.Text := 'Password must be at least 8 characters.';
 
-      cpSignUpError.Visible := True;
+      cpSignError.Visible := True;
+      TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide);
     end
     else
     begin
@@ -619,18 +651,10 @@ begin
 
       SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
       //SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
-      SignInEmail := User.Get('email').JsonValue.ToString.Replace('"', '');
+      //SignInEMail := User.Get('email').JsonValue.ToString.Replace('"', '');
       SignInToken := User.Get('token').JsonValue.ToString.Replace('"', '');
 
-      edtSignIn.Text := SignInEmail;
-      edtPassword.Text := '';
-
-      TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.Slide);
-      btnSignUp.Visible := False;
-      btnSignUp1.Visible := False;
-      Label14.Visible := False;
-      cpSignInError.Visible := False;
-      cpSignUpSuccess.Visible := True;
+      TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide);
     end;
   end;
 end;
@@ -992,25 +1016,6 @@ begin
   cpNetworkError.Visible := True;
 end;
 
-procedure THeaderFooterwithNavigation.edtEmailSettingChange(Sender: TObject);
-var
-  ini: TIniFile;
-begin
-  ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteString('login', 'email', edtEmailSetting.Text);
-  ini.Free;
-end;
-
-procedure THeaderFooterwithNavigation.edtNameSettingChange(Sender: TObject);
-var
-  ini: TIniFile;
-begin
-  ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteString('login', 'name', edtNameSetting.Text);
-  ini.WriteString('signin', 'name', edtNameSetting.Text);
-  ini.Free;
-end;
-
 procedure THeaderFooterwithNavigation.MappingRequestAfterExecute(
   Sender: TCustomRESTRequest);
 var
@@ -1204,7 +1209,7 @@ var
   ini: TIniFile;
 begin
   ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-  ini.WriteInteger('settings', 'checkin', Trunc(spCheckIn.Value));
+  ini.WriteInteger('settings', 'checkin', CheckInMin);
   ini.Free;
 end;
 
@@ -1324,7 +1329,7 @@ end;
 procedure THeaderFooterwithNavigation.btnAddShareClick(Sender: TObject);
 begin
   mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('You have been invited on a trip to "' + lblName.Text + '" by ' + edtName.Text + ' (' + edtEmail.Text + ')!');
+  mmoShareInfo.Lines.Add('You have been invited on a trip to "' + lblName.Text + '" by ' + SignInName + ' (' + SignInEMail + ')!');
   mmoShareInfo.Lines.Add('');
   mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
   mmoShareInfo.Lines.Add('  Trip ID: ' + edtTripID.Text);
@@ -1571,40 +1576,16 @@ procedure THeaderFooterwithNavigation.btnSignUpGoClick(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  if (edtSignUpEmail.Text = '') or (edtSignUpPW.Text.Length < 8) or (edtSignUpConfirm.Text.Length < 8) or (edtSignUpPW.Text <> edtSignUpConfirm.Text) then
-  begin
-    lblSignUpError.Text := 'Check your sign up info and try again.';
-    if edtSignUpPW.Text.Length < 8 then
-      lblSignUpError.Text := 'Password must at least 8 characters.';
-    if edtSignUpPW.Text <> edtSignUpConfirm.Text then
-      lblSignUpError.Text := 'Confirm PW should be same as password.';
-
-    cpSignUpError.Visible := True;
-    edtSignUpEmail.TextPrompt := 'Your email address.';
-    edtSignUpPW.TextPrompt := 'Choose password.';
-    edtSignUpConfirm.TextPrompt := 'Type password again.';
-  end
-  else
-  begin
-    SignInName := edtNameSetting.Text;
-
-    ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-    ini.WriteString('signin', 'email', edtSignUpEmail.Text);
-    ini.WriteString('signin', 'pw', edtSignUpPW.Text);
-    ini.WriteString('signin', 'name', SignInName);
-    ini.Free;
-
-    SignUpRequest.Params.ParameterByName('email').Value := edtSignUpEmail.Text;
-    SignUpRequest.Params.ParameterByName('pw').Value := edtSignUpPW.Text;
-    SignUpRequest.Params.ParameterByName('confirm').Value := edtSignUpConfirm.Text;
-    SignUpRequest.Params.ParameterByName('name').Value := SignInName;
-    try
-      SignUpRequest.Execute;
-    except
-      on E: Exception do begin
-        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
-        cpNetworkError.Visible := True;
-      end;
+  SignUpRequest.Params.ParameterByName('email').Value := SignInEMail;
+  SignUpRequest.Params.ParameterByName('pw').Value := SignInPW;
+  SignUpRequest.Params.ParameterByName('confirm').Value := SignInPW;
+  SignUpRequest.Params.ParameterByName('name').Value := SignInName;
+  try
+    SignUpRequest.Execute;
+  except
+    on E: Exception do begin
+      TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+      cpNetworkError.Visible := True;
     end;
   end;
 end;
@@ -1619,7 +1600,7 @@ begin
 
   QuitRequest.Resource := 'apis/[id]/quit.json';
   QuitRequest.Resource := QuitRequest.Resource.Replace('[id]', edtTripID.Text);
-  QuitRequest.Params.ParameterByName('email').Value := edtEMail.Text;
+  QuitRequest.Params.ParameterByName('email').Value := SignInEMail;
   QuitRequest.Params.ParameterByName('pin').Value := UserPin;
   QuitRequest.Params.ParameterByName('token').Value := TripToken;
   try
@@ -1696,7 +1677,7 @@ var
 begin
   NewTripRequest.Resource := 'apis/[id]/new_trip.json';
   NewTripRequest.Resource := NewTripRequest.Resource.Replace('[id]', IntToStr(SignInUserID));
-  NewTripRequest.Params.ParameterByName('email').Value := SignInEmail;
+  NewTripRequest.Params.ParameterByName('email').Value := SignInEMail;
   NewTripRequest.Params.ParameterByName('token').Value := SignInToken;
   NewTripRequest.Params.ParameterByName('name').Value := edtTripName.Text;
   NewTripRequest.Params.ParameterByName('location').Value := edtTripLocation.Text + ' ' + edtTripCity.Text;
@@ -1760,25 +1741,15 @@ begin
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
 
-  if (edtSignIn.Text = '') or (edtPassword.Text = '') then
+  if (SignInEMail = '') or (SignInPW = '') then
   begin
     cpSignUpSuccess.Visible := False;
     cpSignInError.Visible := True;
-    edtSignIn.TextPrompt := 'TripTether login email.';
-    edtPassword.TextPrompt := 'TripTether password.';
   end
   else
   begin
-    SignInName := edtNameSetting.Text;
-
-    ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
-    ini.WriteString('signin', 'email', edtSignIn.Text);
-    ini.WriteString('signin', 'pw', edtPassword.Text);
-    ini.WriteString('signin', 'name', SignInName);
-    ini.Free;
-
-    SignInRequest.Params.ParameterByName('email').Value := edtSignIn.Text;
-    SignInRequest.Params.ParameterByName('pw').Value := edtPassword.Text;
+    SignInRequest.Params.ParameterByName('email').Value := SignInEMail;
+    SignInRequest.Params.ParameterByName('pw').Value := SignInPW;
     SignInRequest.Params.ParameterByName('name').Value := SignInName;
     try
       SignInRequest.Execute;
@@ -1822,7 +1793,7 @@ var
   minute_diff: integer;
 begin
   minute_diff := MinutesBetween(Now, StartTime);
-  if (spCheckIn.Value = 1) or (minute_diff mod Trunc(spCheckIn.Value) = 0) then
+  if (CheckInMin = 1) or (minute_diff mod CheckInMin = 0) then
   begin
     CheckIn(self, '', 1);
     //edtStatus.Text := '';
@@ -1850,10 +1821,8 @@ end;
 
 procedure THeaderFooterwithNavigation.btnJoinNewTripClick(Sender: TObject);
 begin
-  edtEmail.Text := SignInEmail;
-  edtName.Text := SignInName;
-  edtTripID.Text := IntToStr(NewTripId);
-  edtTripPin.Text := NewTripPin;
+  edtTripID.Text := IntToStr(NewTripID);
+  edtTripPin.Text := NewTripPIN;
 
   JoinTrip(self);
 end;
@@ -1864,10 +1833,45 @@ begin
 end;
 
 procedure THeaderFooterwithNavigation.btnSettingsDoneClick(Sender: TObject);
+var
+  ini: TIniFile;
+  strEMail: string;
 begin
-  edtName.Text := edtNameSetting.Text;
-  edtEMail.Text := edtEMailSetting.Text;
-  TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+  if edtNameSetting.Text = '' then
+  begin
+    edtNameSetting.Text := edtEMailSetting.Text;
+    if Pos('@', edtNameSetting.Text) > 0 then
+    begin
+      strEMail := edtNameSetting.Text;
+      Delete(strEMail, Pos('@', strEMail), MaxInt);
+      edtNameSetting.Text := strEMail;
+    end
+    else
+    begin
+      edtNameSetting.Text := edtEMailSetting.Text;
+    end;
+  end;
+
+  if edtPWSetting.Text = '' then
+    edtPWSetting.Text := RandomPassword(8);
+
+  if (IsValidEmail(edtEMailSetting.Text)) and (edtNameSetting.Text > '') then
+  begin
+    ini := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'tether.ini'));
+    ini.WriteString('signin', 'email', edtEmailSetting.Text);
+    ini.WriteString('signin', 'name', edtNameSetting.Text);
+    ini.WriteString('signin', 'pw', edtPWSetting.Text);
+    ini.Free;
+
+    SignInEMail := edtEMailSetting.Text;
+    SignInName := edtNameSetting.Text;
+    SignInPW := edtPWSetting.Text;
+
+    TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None,
+       TTabTransitionDirection.Reversed);
+  end
+  else
+    ShowMessage('Please enter a valid email address.');
 end;
 
 procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string; StatusCount: integer);
@@ -1897,7 +1901,7 @@ begin
 
     CheckinRequest.Resource := 'apis/[id]/checkin.json';
     CheckinRequest.Resource := CheckinRequest.Resource.Replace('[id]', edtTripID.Text);
-    CheckinRequest.Params.ParameterByName('email').Value := edtEMail.Text;
+    CheckinRequest.Params.ParameterByName('email').Value := SignInEMail;
     CheckinRequest.Params.ParameterByName('pin').Value := UserPin;
     CheckinRequest.Params.ParameterByName('token').Value := TripToken;
     CheckinRequest.Params.ParameterByName('lat').Value := FloatToStrF(CurrentLat, ffGeneral, 10, 6);
@@ -1924,8 +1928,8 @@ begin
 
     MapRequest.Resource := 'apis/[id]/mapping.json';
     MapRequest.Resource := MapRequest.Resource.Replace('[id]', edtTripID.Text);
-    MapRequest.Params.ParameterByName('email').Value := edtEMail.Text;
     MapRequest.Params.ParameterByName('pin').Value := UserPin;
+    MapRequest.Params.ParameterByName('email').Value := SignInEMail;
     MapRequest.Params.ParameterByName('token').Value := TripToken;
     try
       MapRequest.Execute;
@@ -1977,17 +1981,22 @@ begin
     Result := Trip.Get('result').JsonValue.ToString.Replace('"', '');
     if Result <> 'success' then
     begin
-      cpNewTripError.Visible := True;
-      NewTripId := 0;
+      if Result = 'password error' then
+        cpSignError.Visible := True
+      else
+        cpNewTripError.Visible := True;
+
+      NewTripID := 0;
+      TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.None, TTabTransitionDirection.Normal);
     end
     else
     begin
       cpNewTripError.Visible := False;
 
-      NewTripId := StrToInt(Trip.Get('trip_id').JsonValue.ToString);
+      NewTripID := StrToInt(Trip.Get('trip_id').JsonValue.ToString);
       NewTripName := Trip.Get('name').JsonValue.ToString.Replace('"', '');
       NewTripToken := Trip.Get('token').JsonValue.ToString.Replace('"', '');
-      NewTripPin := Trip.Get('pin').JsonValue.ToString.Replace('"', '');
+      NewTripPIN := Trip.Get('pin').JsonValue.ToString.Replace('"', '');
 
       NewTripPartRequest.Resource := 'apis/[id]/add_part.json';
       NewTripPartRequest.Resource := NewTripPartRequest.Resource.Replace('[id]', IntToStr(NewTripID));
@@ -1995,31 +2004,31 @@ begin
 
       NewTripPartRequest.Params.ParameterByName('name').Value := SignInName;
       NewTripPartRequest.Params.ParameterByName('leader').Value := 'yes';
-      NewTripPartRequest.Params.ParameterByName('email').Value := SignInEmail;
+      NewTripPartRequest.Params.ParameterByName('email').Value := SignInEMail;
       NewTripPartRequest.Execute;
+
+      mmoShareInfo.Lines.Clear;
+      mmoShareInfo.Lines.Add('You have been invited on a trip to "' + edtTripName.Text + '" by ' + SignInName + ' (' + SignInEMail + ')!');
+      mmoShareInfo.Lines.Add('');
+      mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
+      mmoShareInfo.Lines.Add('  Trip ID: ' + IntToStr(NewTripID));
+      mmoShareInfo.Lines.Add('  PIN: ' + NewTripPIN);
+      mmoShareInfo.Lines.Add('');
+      //mmoShareInfo.Lines.AddStrings(mmoTripNotes.Lines);
+      //mmoShareInfo.Lines.Add('The trip is planned to go to ' + edtTripName.Text);
+      //mmoShareInfo.Lines.Add('');
+      mmoShareInfo.Lines.Add('Get the TripTether app at http://www.triptether.com');
+      //mmoShareInfo.Lines.Add('Google Play: https://play.google.com/store/apps/details?id=com.triptether.mapping');
+      //mmoShareInfo.Lines.Add('App Store: https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4');
+      mmoShareInfo.Lines.Add('');
+
+      ShowShareSheetAction1.Caption := 'TripTether';
+      ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
+
+      btnJoinNewTrip.Visible := True;
+      TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
     end;
   end;
-
-  mmoShareInfo.Lines.Clear;
-  mmoShareInfo.Lines.Add('You have been invited on a trip to "' + edtTripName.Text + '" by ' + SignInName + ' (' + SignInEmail + ')!');
-  mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('Use TripTether with these settings to join:');
-  mmoShareInfo.Lines.Add('  Trip ID: ' + IntToStr(NewTripID));
-  mmoShareInfo.Lines.Add('  PIN: ' + NewTripPin);
-  mmoShareInfo.Lines.Add('');
-  //mmoShareInfo.Lines.AddStrings(mmoTripNotes.Lines);
-  //mmoShareInfo.Lines.Add('The trip is planned to go to ' + edtTripName.Text);
-  //mmoShareInfo.Lines.Add('');
-  mmoShareInfo.Lines.Add('Get the TripTether app at http://www.triptether.com');
-  //mmoShareInfo.Lines.Add('Google Play: https://play.google.com/store/apps/details?id=com.triptether.mapping');
-  //mmoShareInfo.Lines.Add('App Store: https://itunes.apple.com/us/app/triptether/id916256484?mt=8&uo=4');
-  mmoShareInfo.Lines.Add('');
-
-  ShowShareSheetAction1.Caption := 'TripTether';
-  ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
-
-  btnJoinNewTrip.Visible := True;
-  TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
 procedure THeaderFooterwithNavigation.MapName(Sender: TObject; SelectName: string; ZoomLevel: integer);
@@ -2368,6 +2377,39 @@ begin
   Timer2.Enabled := False;
   LocationSensor1.Active := False;
   //LocationSensor1.Sensor.Stop;
+end;
+
+function THeaderFooterwithNavigation.RandomPassword(PLen: Integer): string;
+var
+  str: string;
+begin
+  Randomize;
+  //string with all possible chars
+  str    := 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  Result := '';
+  repeat
+    Result := Result + str[Random(Length(str)) + 1];
+  until (Length(Result) = PLen)
+end;
+
+function THeaderFooterwithNavigation.IsValidEmail(const Value: string): Boolean;
+var
+  i: Integer;
+  NamePart, ServerPart: string;
+begin
+  Result := False;
+
+  i := Pos('@', Value);
+  if i = 0 then Exit;
+
+  NamePart := Copy(Value, 1, i - 1);
+  ServerPart := Copy(Value, i + 1, Length(Value));
+  if (Length(NamePart) = 0) or ((Length(ServerPart) < 5)) then Exit;
+
+  i := Pos('.', ServerPart);
+  if (i = 0) or (i > (Length(ServerPart) - 2)) then Exit;
+
+  Result:= True;
 end;
 
 end.

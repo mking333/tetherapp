@@ -6,20 +6,13 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   System.IOUtils, System.INIFiles,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.Layouts, FMX.StdCtrls, FMX.Colors, FMX.Memo, FMX.Effects, FMX.Edit,
-  HeaderFooterFormwithNavigation;
+  FMX.Layouts, FMX.StdCtrls, FMX.Colors, FMX.Memo, FMX.Effects, FMX.Edit;
 type
   TfrmLaunch = class(TForm)
     Image1: TImage;
     Layout1: TLayout;
     Image2: TImage;
     Layout2: TLayout;
-    btnResume: TColorButton;
-    Label1: TLabel;
-    btnNewTrip: TColorButton;
-    Label2: TLabel;
-    btnSignUp: TColorButton;
-    Label3: TLabel;
     btnTOU: TSpeedButton;
     btnPP: TSpeedButton;
     rcOpaque: TRectangle;
@@ -31,7 +24,7 @@ type
     ShadowEffect2: TShadowEffect;
     Memo2: TMemo;
     Button2: TButton;
-    rcAgree: TRectangle;
+    rcAbout: TRectangle;
     ShadowEffect3: TShadowEffect;
     btnAgree: TButton;
     Label4: TLabel;
@@ -39,12 +32,10 @@ type
     Label6: TLabel;
     btnTOUx: TSpeedButton;
     btnPPx: TSpeedButton;
-    btnJoin: TColorButton;
-    Label7: TLabel;
     Timer1: TTimer;
-    procedure btnResumeClick(Sender: TObject);
-    procedure btnNewTripClick(Sender: TObject);
-    procedure btnSignUpClick(Sender: TObject);
+    btnAbout: TSpeedButton;
+    Label1: TLabel;
+    btnBack: TSpeedButton;
     procedure btnTOUClick(Sender: TObject);
     procedure btnPPClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -53,24 +44,9 @@ type
     procedure FormActivate(Sender: TObject);
     procedure btnTOUxClick(Sender: TObject);
     procedure btnPPxClick(Sender: TObject);
-    procedure btnJoinClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure btnResumeMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure btnJoinMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure btnNewTripMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure btnSignUpMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure btnResumeMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure btnJoinMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure btnNewTripMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
-    procedure btnSignUpMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
+    procedure btnAboutClick(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
   private
     { Private declarations }
     HasAgreed: string;
@@ -82,21 +58,23 @@ type
     { Public declarations }
   end;
 
-var
-  frmLaunch: TfrmLaunch;
-  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
-
 implementation
 
 {$R *.fmx}
 
+uses HeaderFooterFormwithNavigation;
 
+procedure TfrmLaunch.btnAboutClick(Sender: TObject);
+begin
+  rcOpaque.Visible := true;
+  rcAbout.Visible := true;
+end;
 
 procedure TfrmLaunch.btnAgreeClick(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  rcAgree.Visible := false;
+  rcAbout.Visible := false;
   rcOpaque.Visible := false;
 
   HasAgreed := 'Yes';
@@ -107,6 +85,12 @@ begin
   ini.Free;
 end;
 
+procedure TfrmLaunch.btnBackClick(Sender: TObject);
+begin
+  HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabJoin;
+  HeaderFooterwithNavigation.Show;
+end;
+
 procedure TfrmLaunch.btnPPClick(Sender: TObject);
 begin
   rcOpaque.Visible := true;
@@ -115,7 +99,7 @@ end;
 
 procedure TfrmLaunch.btnPPxClick(Sender: TObject);
 begin
-  rcAgree.Visible := false;
+  rcAbout.Visible := false;
   rcPP.Visible := true;
 end;
 
@@ -127,7 +111,7 @@ end;
 
 procedure TfrmLaunch.btnTOUxClick(Sender: TObject);
 begin
-  rcAgree.Visible := false;
+  rcAbout.Visible := false;
   rcTOU.Visible := true;
 end;
 
@@ -143,127 +127,6 @@ begin
   rcOpaque.Visible := false;
 end;
 
-procedure TfrmLaunch.btnResumeClick(Sender: TObject);
-begin
-  if HasAgreed = 'Yes' then
-  begin
-    if (NameSetting = 'No') or (EmailSetting = 'No') then
-    begin
-      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabSettings;
-      HeaderFooterwithNavigation.Show;
-    end
-    else
-    begin
-      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabJoin;
-      HeaderFooterwithNavigation.Show;
-      HeaderFooterwithNavigation.JoinTrip(self);
-    end;
-  end
-  else
-  begin
-    rcOpaque.Visible := true;
-    rcAgree.Visible := true;
-  end;
-end;
-
-procedure TfrmLaunch.btnResumeMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnResume.Color := TAlphaColorRec.RoyalBlue;
-end;
-
-procedure TfrmLaunch.btnResumeMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnResume.Color := TAlphaColorRec.Cornflowerblue;
-end;
-
-procedure TfrmLaunch.btnJoinClick(Sender: TObject);
-begin
-  if HasAgreed = 'Yes' then
-  begin
-    if (NameSetting = 'No') or (EmailSetting = 'No') then
-    begin
-      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabSettings;
-      HeaderFooterwithNavigation.Show;
-    end
-    else
-    begin
-      HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabJoin;
-      HeaderFooterwithNavigation.Show;
-    end;
-  end
-  else
-  begin
-    rcOpaque.Visible := true;
-    rcAgree.Visible := true;
-  end;
-end;
-
-procedure TfrmLaunch.btnJoinMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnJoin.Color := TAlphaColorRec.RoyalBlue;
-end;
-
-procedure TfrmLaunch.btnJoinMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnJoin.Color := TAlphaColorRec.Cornflowerblue;
-end;
-
-procedure TfrmLaunch.btnNewTripClick(Sender: TObject);
-begin
-  if HasAgreed = 'Yes' then
-  begin
-    HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabSignIn;
-    HeaderFooterwithNavigation.Show;
-  end
-  else
-  begin
-    rcOpaque.Visible := true;
-    rcAgree.Visible := true;
-  end;
-end;
-
-procedure TfrmLaunch.btnNewTripMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnNewTrip.Color := TAlphaColorRec.RoyalBlue;
-end;
-
-procedure TfrmLaunch.btnNewTripMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnNewTrip.Color := TAlphaColorRec.Cornflowerblue;
-end;
-
-procedure TfrmLaunch.btnSignUpClick(Sender: TObject);
-begin
-  if HasAgreed = 'Yes' then
-  begin
-    HeaderFooterwithNavigation.TabControl1.ActiveTab := HeaderFooterwithNavigation.TabSignUp;
-    HeaderFooterwithNavigation.Show;
-  end
-  else
-  begin
-    rcOpaque.Visible := true;
-    rcAgree.Visible := true;
-  end;
-end;
-
-procedure TfrmLaunch.btnSignUpMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnSignUp.Color := TAlphaColorRec.RoyalBlue;
-end;
-
-procedure TfrmLaunch.btnSignUpMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  btnSignUp.Color := TAlphaColorRec.Lightskyblue;
-end;
-
 procedure TfrmLaunch.FormActivate(Sender: TObject);
 var
   ini: TIniFile;
@@ -276,22 +139,20 @@ begin
   TripPin := ini.ReadString('login', 'pin', '1234567');
   ini.Free;
 
-  if (TripID.Length > 0) and (TripPIN.Length > 0) then
-    btnResume.Visible := True
-  else
-    btnResume.Visible := False;
-
+{
   if HasAgreed <> 'Yes' then
   begin
+
     rcOpaque.Visible := true;
     rcAgree.Visible := true;
   end;
+}
 end;
 
 procedure TfrmLaunch.Timer1Timer(Sender: TObject);
 begin
   Timer1.Enabled := False;
-  HeaderFooterwithNavigation := THeaderFooterwithNavigation.Create(frmLaunch);
+  btnAgreeClick(self);
 end;
 
 end.

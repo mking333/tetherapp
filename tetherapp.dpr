@@ -2,11 +2,11 @@ program tetherapp;
 
 uses
   System.StartUpCopy,
-{$IF Defined(IOS) and Defined(CPUARM)}
+  {$IF Defined(IOS) and Defined(CPUARM)}
   IdSSLOpenSSLHeaders_Static,
-{$ELSE}
+  {$ELSE}
   IdSSLOpenSSLHeaders,
-{$ENDIF}
+  {$ENDIF }
   FMX.Forms,
   HeaderFooterFormwithNavigation in 'HeaderFooterFormwithNavigation.pas' {HeaderFooterwithNavigation},
   Launch in 'Launch.pas' {frmLaunch};
@@ -18,6 +18,7 @@ begin
   IdOpenSSLSetLibPath('/usr/lib/');
 {$ENDIF}
   Application.Initialize;
+  Application.CreateForm(THeaderFooterwithNavigation, HeaderFooterwithNavigation);
   Application.CreateForm(TfrmLaunch, frmLaunch);
   Application.Run;
 end.
