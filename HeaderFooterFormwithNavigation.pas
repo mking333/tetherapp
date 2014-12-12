@@ -32,10 +32,7 @@ type
     ActionList1: TActionList;
     ChangeTabAction1: TChangeTabAction;
     ChangeTabAction2: TChangeTabAction;
-    TabSignIn: TTabItem;
     TabSettings: TTabItem;
-    TopToolBar3: TToolBar;
-    Label1: TLabel;
     TopToolBar2: TToolBar;
     Label2: TLabel;
     ChangeTabAction4: TChangeTabAction;
@@ -97,11 +94,7 @@ type
     Label9: TLabel;
     QuitRequest: TRESTRequest;
     QuitResponse: TRESTResponse;
-    btnSignUp: TButton;
-    TabSignUp: TTabItem;
     TabNewTrip: TTabItem;
-    ToolBar3: TToolBar;
-    Label19: TLabel;
     ToolBar4: TToolBar;
     Label20: TLabel;
     Destination: TLabel;
@@ -110,8 +103,6 @@ type
     edtTripCity: TEdit;
     btnNewTripDetails: TButton;
     btnBackToJoin: TSpeedButton;
-    btnBackToJoin2: TSpeedButton;
-    btnBackToJoin3: TSpeedButton;
     SignInRequest: TRESTRequest;
     SignInResponse: TRESTResponse;
     NewTripRequest: TRESTRequest;
@@ -128,10 +119,6 @@ type
     dteTripArrive: TDateEdit;
     tmeTripArrive: TTimeEdit;
     Label29: TLabel;
-    cpSignInError: TCalloutPanel;
-    Label24: TLabel;
-    Label25: TLabel;
-    btnSaveSignIn: TButton;
     NewTripPartRequest: TRESTRequest;
     NewTripPartResponse: TRESTResponse;
     Action1: TAction;
@@ -178,19 +165,15 @@ type
     VertScrollBox3: TVertScrollBox;
     Timer2: TTimer;
     BannerAd1: TBannerAd;
-    btnSignUp1: TButton;
-    Label14: TLabel;
     Layout1: TLayout;
     Layout2: TLayout;
     Image1: TImage;
     Rectangle1: TRectangle;
-    Rectangle2: TRectangle;
     Rectangle3: TRectangle;
     Rectangle4: TRectangle;
     Rectangle5: TRectangle;
     Rectangle6: TRectangle;
     VertScrollBox4: TVertScrollBox;
-    VertScrollBox5: TVertScrollBox;
     Rectangle7: TRectangle;
     TabNewTripNotes: TTabItem;
     Rectangle8: TRectangle;
@@ -204,25 +187,8 @@ type
     cpNewTripError: TCalloutPanel;
     Label31: TLabel;
     Label32: TLabel;
-    Rectangle9: TRectangle;
-    VertScrollBox7: TVertScrollBox;
-    btnSignUpGo: TButton;
-    cpSignUpError: TCalloutPanel;
-    Label37: TLabel;
-    lblSignUpError: TLabel;
-    edtSignUpPW: TEdit;
-    edtSignUpEMail: TEdit;
-    Label39: TLabel;
-    Label41: TLabel;
-    edtSignUpConfirm: TEdit;
-    Label42: TLabel;
     SignUpResponse: TRESTResponse;
     SignUpRequest: TRESTRequest;
-    cpSignUpSuccess: TCalloutPanel;
-    Label43: TLabel;
-    Label44: TLabel;
-    Label45: TLabel;
-    Label46: TLabel;
     spFollow: TSpeedButton;
     spPictures: TSpeedButton;
     spMapOptions: TSpeedButton;
@@ -278,14 +244,11 @@ type
       const Item: TListBoxItem);
     procedure StartUpdating(Sender: TObject);
     procedure StopUpdating(Sender: TObject);
-    procedure btnNewTripClick(Sender: TObject);
-    procedure btnSignUpClick(Sender: TObject);
     procedure btnSaveSignInClick(Sender: TObject);
     procedure btnNewTripDetailsClick(Sender: TObject);
     procedure btnBackToNewClick(Sender: TObject);
     procedure btnBackToJoinClick(Sender: TObject);
     procedure btnBackToJoin2Click(Sender: TObject);
-    procedure btnBackToJoin3Click(Sender: TObject);
     procedure SignInRequestAfterExecute(Sender: TCustomRESTRequest);
     procedure btnNewTripCreateClick(Sender: TObject);
     procedure NewTripRequestAfterExecute(Sender: TCustomRESTRequest);
@@ -393,8 +356,7 @@ var
 begin
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
-  cpSignUpSuccess.Visible := False;
-  cpSignInError.Visible := False;
+  cpSignError.Visible := False;
 
   CleanMap;
   AutoZoomTrip := True;
@@ -608,7 +570,7 @@ begin
     end
     else
     begin
-      cpSignInError.Visible := False;
+      cpSignError.Visible := False;
 
       SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
       //SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
@@ -627,7 +589,7 @@ var
   User: TJSONObject;
   Result: string;
 begin
-  cpSignUpError.Visible := False;
+  cpSignError.Visible := False;
 
   if assigned(SignUpResponse.JSONValue) then
   begin
@@ -647,7 +609,7 @@ begin
     end
     else
     begin
-      cpSignUpError.Visible := False;
+      cpSignError.Visible := False;
 
       SignInUserId := StrToInt(User.Get('user_id').JsonValue.ToString);
       //SignInName := User.Get('name').JsonValue.ToString.Replace('"', '');
@@ -1567,11 +1529,6 @@ begin
   end;
 end;
 
-procedure THeaderFooterwithNavigation.btnSignUpClick(Sender: TObject);
-begin
-  TabControl1.SetActiveTabWithTransition(TabSignUp, TTabTransition.Slide, TTabTransitionDirection.Normal);
-end;
-
 procedure THeaderFooterwithNavigation.btnSignUpGoClick(Sender: TObject);
 var
   ini: TIniFile;
@@ -1616,16 +1573,6 @@ end;
 procedure THeaderFooterwithNavigation.btnMapClick(Sender: TObject);
 begin
   MapName(self, 'Auto', 12);
-end;
-
-procedure THeaderFooterwithNavigation.btnNewTripClick(Sender: TObject);
-begin
-{
-  if (edtSignIn.Text.Length > 0) and (edtPassword.Text.Length > 0) then
-    TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide)
-  else
-}
-    TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.Slide);
 end;
 
 procedure THeaderFooterwithNavigation.btnNewTripDetails2Click(Sender: TObject);
@@ -1707,11 +1654,6 @@ begin
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
-procedure THeaderFooterwithNavigation.btnBackToJoin3Click(Sender: TObject);
-begin
-  TabControl1.SetActiveTabWithTransition(TabSignIn, TTabTransition.Slide, TTabTransitionDirection.Reversed);
-end;
-
 procedure THeaderFooterwithNavigation.btnBackToJoinClick(Sender: TObject);
 begin
   TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
@@ -1736,15 +1678,13 @@ procedure THeaderFooterwithNavigation.btnSaveSignInClick(Sender: TObject);
 var
   ini: TIniFile;
 begin
-  cpSignUpSuccess.Visible := False;
-  cpSignInError.Visible := False;
+  cpSignError.Visible := False;
   cpNetworkError.Visible := False;
   cpJoinError.Visible := False;
 
   if (SignInEMail = '') or (SignInPW = '') then
   begin
-    cpSignUpSuccess.Visible := False;
-    cpSignInError.Visible := True;
+    cpSignError.Visible := True;
   end
   else
   begin

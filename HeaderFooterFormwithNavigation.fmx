@@ -999,7 +999,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Text = 'TabCheck'
       object ToolBar2: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -1007,7 +1007,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -1016,8 +1016,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackTrip: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
@@ -1028,7 +1028,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           StyledSettings = [Family, Size, Style]
           Position.X = 265.000000000000000000
           Size.Width = 55.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Text = 'Map'
           TextSettings.FontColor = claIvory
@@ -1092,14 +1092,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Right
           Position.X = 221.000000000000000000
           Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           OnClick = btnAddShareClick
         end
       end
       object Panel4: TPanel
         Align = Top
-        Position.Y = 44.000000000000000000
+        Position.Y = 48.000000000000000000
         Size.Width = 320.000000000000000000
         Size.Height = 61.000000000000000000
         Size.PlatformDefault = False
@@ -1116,7 +1116,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             TabOrder = 0
             Margins.Left = 10.000000000000000000
             Size.Width = 246.000000000000000000
-            Size.Height = 30.000000000000000000
+            Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextPrompt = 'Enter a comment...'
           end
@@ -1124,8 +1124,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnSend: TSpeedButton
           Align = Right
           Position.X = 256.000000000000000000
+          Position.Y = 6.000000000000000000
           Size.Width = 64.000000000000000000
-          Size.Height = 61.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Text = 'Send'
           OnClick = btnSendClick
@@ -1137,7 +1138,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         OnGesture = TabCheckGesture
         Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 443.000000000000000000
+        Size.Height = 439.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         AlternatingRowBackground = True
@@ -1160,7 +1161,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Text = 'TabMap'
       object ToolBar1: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -1168,7 +1169,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -1177,8 +1178,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackCheck: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
@@ -1189,7 +1190,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           StyledSettings = [Family, Size, Style]
           Position.X = 224.000000000000000000
           Size.Width = 96.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           Text = 'Directions'
           TextSettings.FontColor = claIvory
@@ -1198,9 +1199,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object spMapOptions: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Position.X = 44.000000000000000000
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Position.X = 48.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'detailstoolbutton'
           Text = 'spMapOptions'
@@ -1210,7 +1211,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Panel14: TPanel
         Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 504.000000000000000000
+        Size.Height = 500.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         object mapTrip: TTMSFMXWebGMaps
@@ -1447,356 +1448,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Text = 'Find Flag'
           TextSettings.Font.Size = 15.000000000000000000
           OnClick = spFlagClick
-        end
-      end
-    end
-    object TabSignIn: TTabItem
-      CustomIcon = <
-        item
-        end>
-      IsSelected = False
-      Size.Width = 8.000000000000000000
-      Size.Height = 8.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'TabSignIn'
-      object Rectangle2: TRectangle
-        Align = Contents
-        Fill.Color = claIvory
-        Sides = []
-        Size.Width = 320.000000000000000000
-        Size.Height = 548.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object TopToolBar3: TToolBar
-        Size.Width = 320.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        TintColor = claCornflowerblue
-        object Label1: TLabel
-          Align = Contents
-          StyledSettings = [Family, Size, Style]
-          Size.Width = 320.000000000000000000
-          Size.Height = 48.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.FontColor = claIvory
-          TextSettings.HorzAlign = Center
-          Text = 'Sign In To Create a Trip'
-        end
-        object btnBackToJoin2: TSpeedButton
-          Align = Left
-          IconTintColor = claIvory
-          Size.Width = 48.000000000000000000
-          Size.Height = 48.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'arrowlefttoolbutton'
-          Text = 'Back'
-          OnClick = btnBackToJoin2Click
-        end
-        object btnSignUp: TButton
-          Align = Right
-          IconTintColor = claIvory
-          Position.X = 272.000000000000000000
-          Size.Width = 48.000000000000000000
-          Size.Height = 48.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'composetoolbutton'
-          TabOrder = 1
-          Text = 'Sign Up'
-          OnClick = btnSignUpClick
-        end
-      end
-      object VertScrollBox5: TVertScrollBox
-        Align = HorzCenter
-        Position.Y = 48.000000000000000000
-        Size.Width = 320.000000000000000000
-        Size.Height = 500.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        object btnSaveSignIn: TButton
-          Position.X = 71.000000000000000000
-          Position.Y = 40.000000000000000000
-          Size.Width = 177.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          Text = 'Sign In'
-          OnClick = btnSaveSignInClick
-        end
-        object btnSignUp1: TButton
-          Position.X = 71.000000000000000000
-          Position.Y = 200.000000000000000000
-          Size.Width = 177.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 1
-          Text = 'Sign Up'
-          OnClick = btnSignUpClick
-        end
-        object cpSignInError: TCalloutPanel
-          Padding.Top = 11.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 158.000000000000000000
-          Size.Width = 305.000000000000000000
-          Size.Height = 91.000000000000000000
-          Size.PlatformDefault = False
-          Visible = False
-          TabOrder = 3
-          CalloutWidth = 23.000000000000000000
-          CalloutLength = 11.000000000000000000
-          object Label24: TLabel
-            StyledSettings = [Family]
-            Position.X = 8.000000000000000000
-            Position.Y = 19.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.FontColor = claRed
-            TextSettings.HorzAlign = Center
-            Text = 'Oops, you weren'#39't able to sign in.'
-          end
-          object Label25: TLabel
-            StyledSettings = [Family]
-            Position.X = 8.000000000000000000
-            Position.Y = 50.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 26.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.FontColor = claRed
-            TextSettings.HorzAlign = Center
-            Text = 'Check your sign in info and try again.'
-          end
-        end
-        object Label14: TLabel
-          StyledSettings = [Family, Size, FontColor]
-          Position.X = 16.000000000000000000
-          Position.Y = 125.000000000000000000
-          Size.Width = 305.000000000000000000
-          Size.Height = 73.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Style = [fsItalic]
-          TextSettings.HorzAlign = Center
-          Text = 
-            'If you don'#39't already have a TripTether login you can sign up for' +
-            ' one.'
-        end
-        object cpSignUpSuccess: TCalloutPanel
-          Padding.Top = 11.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 158.000000000000000000
-          Size.Width = 305.000000000000000000
-          Size.Height = 155.000000000000000000
-          Size.PlatformDefault = False
-          Visible = False
-          TabOrder = 2
-          CalloutWidth = 23.000000000000000000
-          CalloutLength = 11.000000000000000000
-          object Label43: TLabel
-            StyledSettings = [Family]
-            Position.X = 8.000000000000000000
-            Position.Y = 19.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.FontColor = claGreen
-            TextSettings.HorzAlign = Center
-            Text = 'You have successfully signed up.'
-          end
-          object Label44: TLabel
-            StyledSettings = [Family]
-            Position.X = 8.000000000000000000
-            Position.Y = 48.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.FontColor = claGreen
-            TextSettings.HorzAlign = Center
-            Text = 'Check your email for a confirmation link.'
-          end
-          object Label45: TLabel
-            StyledSettings = [Family]
-            Position.X = 8.000000000000000000
-            Position.Y = 118.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.HorzAlign = Center
-            Text = 'You must confirm your email to sign in.'
-          end
-          object Label46: TLabel
-            StyledSettings = [Family, Size, FontColor]
-            Position.X = 8.000000000000000000
-            Position.Y = 88.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 29.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.HorzAlign = Center
-            Text = 'Note:'
-          end
-        end
-      end
-    end
-    object TabSignUp: TTabItem
-      CustomIcon = <
-        item
-        end>
-      IsSelected = False
-      Size.Width = 8.000000000000000000
-      Size.Height = 8.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'TabSignUp'
-      object Rectangle9: TRectangle
-        Align = Contents
-        Fill.Color = claIvory
-        Sides = []
-        Size.Width = 320.000000000000000000
-        Size.Height = 548.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object ToolBar3: TToolBar
-        Size.Width = 320.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        TintColor = claCornflowerblue
-        object Label19: TLabel
-          Align = Contents
-          StyledSettings = [Family, Size, Style]
-          Size.Width = 320.000000000000000000
-          Size.Height = 48.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.FontColor = claIvory
-          TextSettings.HorzAlign = Center
-          Text = 'TripTether Sign Up'
-        end
-        object btnBackToJoin3: TSpeedButton
-          Align = Left
-          IconTintColor = claIvory
-          Size.Width = 48.000000000000000000
-          Size.Height = 48.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'arrowlefttoolbutton'
-          Text = 'Back'
-          OnClick = btnBackToJoin3Click
-        end
-      end
-      object VertScrollBox7: TVertScrollBox
-        Align = HorzCenter
-        Position.Y = 48.000000000000000000
-        Size.Width = 320.000000000000000000
-        Size.Height = 500.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        object btnSignUpGo: TButton
-          Position.X = 71.000000000000000000
-          Position.Y = 160.000000000000000000
-          Size.Width = 177.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          Text = 'Sign Up'
-          OnClick = btnSignUpGoClick
-        end
-        object cpSignUpError: TCalloutPanel
-          Padding.Top = 11.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 206.000000000000000000
-          Size.Width = 305.000000000000000000
-          Size.Height = 90.000000000000000000
-          Size.PlatformDefault = False
-          Visible = False
-          TabOrder = 1
-          CalloutWidth = 23.000000000000000000
-          CalloutLength = 11.000000000000000000
-          object Label37: TLabel
-            StyledSettings = [Family]
-            Position.X = 8.000000000000000000
-            Position.Y = 19.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.FontColor = claRed
-            TextSettings.HorzAlign = Center
-            Text = 'Oops, you weren'#39't able to sign up.'
-          end
-          object lblSignUpError: TLabel
-            StyledSettings = [Family]
-            Position.X = 8.000000000000000000
-            Position.Y = 50.000000000000000000
-            Size.Width = 289.000000000000000000
-            Size.Height = 25.000000000000000000
-            Size.PlatformDefault = False
-            TextSettings.Font.Style = [fsBold]
-            TextSettings.FontColor = claRed
-            TextSettings.HorzAlign = Center
-            Text = 'Check your sign up info and try again.'
-          end
-        end
-        object edtSignUpPW: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
-          Password = True
-          Position.X = 104.000000000000000000
-          Position.Y = 62.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your sign in password'
-        end
-        object edtSignUpEMail: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 4
-          KeyboardType = EmailAddress
-          Position.X = 104.000000000000000000
-          Position.Y = 14.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your sign in email'
-        end
-        object Label39: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 14.000000000000000000
-          Size.Width = 65.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'eMail'
-        end
-        object Label41: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 62.000000000000000000
-          Size.Width = 82.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Password'
-        end
-        object edtSignUpConfirm: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 2
-          Password = True
-          Position.X = 104.000000000000000000
-          Position.Y = 110.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Password confirmation'
-        end
-        object Label42: TLabel
-          Position.X = 10.000000000000000000
-          Position.Y = 110.000000000000000000
-          Size.Width = 82.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'PW Again'
         end
       end
     end
@@ -2463,7 +2114,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     object ChangeTabAction4: TChangeTabAction
       Category = 'Tab'
       CustomText = 'Sign In'
-      Tab = TabSignIn
     end
     object ChangeTabAction5: TChangeTabAction
       Category = 'Tab'

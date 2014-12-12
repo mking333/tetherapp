@@ -1,7 +1,4 @@
-﻿[Label1]
-Coordinates=873,410,53,58
-
-[ToolBar1]
+﻿[ToolBar1]
 Coordinates=109,524,67,36
 
 [ChangeTabAction1]
@@ -12,9 +9,6 @@ Coordinates=544,320,124,36
 
 [ChangeTabAction5]
 Coordinates=544,375,124,36
-
-[TopToolBar3]
-Coordinates=10,524,89,36
 
 [TabControl1]
 Coordinates=1087,478,85,36
@@ -44,9 +38,6 @@ Coordinates=482,10,89,80
 [Label2]
 Coordinates=936,410,53,58
 
-[TabSignIn]
-Coordinates=260,478,73,36
-
 [ChangeTabAction6]
 Coordinates=706,1,124,36
 
@@ -72,7 +63,7 @@ Coordinates=999,410,89,36
 Coordinates=706,331,78,36
 
 []
-Coordinates=634,478,95,36
+Coordinates=260,478,73,36
 
 [btnQuit]
 Coordinates=581,10,96,58
