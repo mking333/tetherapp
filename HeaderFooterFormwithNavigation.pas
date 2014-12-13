@@ -107,16 +107,6 @@ type
     NewTripRequest: TRESTRequest;
     NewTripResponse: TRESTResponse;
     edtTripLocation: TEdit;
-    TabNewTripDetails: TTabItem;
-    ToolBar6: TToolBar;
-    Label27: TLabel;
-    btnBackToNewTrip: TSpeedButton;
-    Label28: TLabel;
-    tmeTripDepart: TTimeEdit;
-    dteTripDepart: TDateEdit;
-    dteTripArrive: TDateEdit;
-    tmeTripArrive: TTimeEdit;
-    Label29: TLabel;
     NewTripPartRequest: TRESTRequest;
     NewTripPartResponse: TRESTResponse;
     Action1: TAction;
@@ -160,7 +150,6 @@ type
     Label16: TLabel;
     Label17: TLabel;
     VertScrollBox2: TVertScrollBox;
-    VertScrollBox3: TVertScrollBox;
     Timer2: TTimer;
     BannerAd1: TBannerAd;
     Layout1: TLayout;
@@ -169,7 +158,6 @@ type
     Rectangle1: TRectangle;
     Rectangle3: TRectangle;
     Rectangle4: TRectangle;
-    Rectangle5: TRectangle;
     Rectangle6: TRectangle;
     VertScrollBox4: TVertScrollBox;
     Rectangle7: TRectangle;
@@ -180,7 +168,6 @@ type
     btnBackToTrip: TSpeedButton;
     VertScrollBox6: TVertScrollBox;
     mmoTripNotes: TMemo;
-    btnNewTripDetails2: TButton;
     btnNewTripCreate: TButton;
     cpNewTripError: TCalloutPanel;
     Label31: TLabel;
@@ -209,6 +196,12 @@ type
     cpSignError: TCalloutPanel;
     lblSignMessage: TLabel;
     lblSignErrorMessage: TLabel;
+    Label29: TLabel;
+    dteTripArrive: TDateEdit;
+    tmeTripArrive: TTimeEdit;
+    tmeTripDepart: TTimeEdit;
+    dteTripDepart: TDateEdit;
+    Label28: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -1604,7 +1597,14 @@ begin
       TripFoundLatLong := true;
       cpLocationNotFound.Visible := false;
 
-      TabControl1.SetActiveTabWithTransition(TabNewTripDetails, TTabTransition.Slide, TTabTransitionDirection.Normal);
+      mmoTripNotes.Lines.Clear;
+      mmoTripNotes.Lines.Add('Trip to ' + edtTripName.Text + ', created by ' + edtNameSetting.Text + '.');
+      //mmoTripNotes.Lines.Add('');
+      mmoTripNotes.Lines.Add('Going to ' + edtTripLocation.Text);
+      mmoTripNotes.Lines.Add('Departing on ' + DateToStr(dteTripDepart.Date) + ' at ' + TimeToStr(tmeTripDepart.Time));
+
+      TabControl1.SetActiveTabWithTransition(TabNewTripNotes,
+         TTabTransition.Slide, TTabTransitionDirection.Normal);
     end
     else begin
       TripFoundLatLong := false;
@@ -1663,7 +1663,7 @@ end;
 
 procedure THeaderFooterwithNavigation.btnBackToTripClick(Sender: TObject);
 begin
-  TabControl1.SetActiveTabWithTransition(TabNewTripDetails, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+  TabControl1.SetActiveTabWithTransition(TabNewTrip, TTabTransition.Slide, TTabTransitionDirection.Reversed);
 end;
 
 procedure THeaderFooterwithNavigation.btnBackTripClick(Sender: TObject);
