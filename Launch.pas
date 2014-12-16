@@ -34,7 +34,6 @@ type
     btnPPx: TSpeedButton;
     Timer1: TTimer;
     btnAbout: TSpeedButton;
-    Label1: TLabel;
     btnBack: TSpeedButton;
     procedure btnTOUClick(Sender: TObject);
     procedure btnPPClick(Sender: TObject);

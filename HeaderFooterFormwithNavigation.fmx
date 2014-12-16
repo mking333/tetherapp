@@ -2,7 +2,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   Left = 0
   Top = 0
   Caption = 'Tether'
-  ClientHeight = 548
+  ClientHeight = 574
   ClientWidth = 320
   FormFactor.Width = 1440
   FormFactor.Height = 900
@@ -15,17 +15,17 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Align = Client
     FullSize = True
     Size.Width = 320.000000000000000000
-    Size.Height = 548.000000000000000000
+    Size.Height = 574.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 7
+    TabIndex = 0
     TabOrder = 0
     TabPosition = None
     object TabJoin: TTabItem
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -36,7 +36,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Fill.Color = claIvory
         Sides = []
         Size.Width = 320.000000000000000000
-        Size.Height = 548.000000000000000000
+        Size.Height = 574.000000000000000000
         Size.PlatformDefault = False
       end
       object TopToolBar1: TToolBar
@@ -54,7 +54,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
-          Text = 'Join a Trip'
+          Text = 'Join A Trip'
         end
         object btnSettings: TSpeedButton
           Align = Right
@@ -479,12 +479,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
                 859A88DE93274FAAD9725973D5EB5ADD4530CA75CDB20C0250E52AB1ACBB0CA3
                 E6D2F5AA9B7377D530DC35A24620DC46BDEE616678EAD5AAB7CA79AD52F356EA
                 555FBD5AF155EB755FB55A0D54AA157FA95C0E94CBE550A1540A1572B9866272
-                DE23E797D3526EFB8895796277FDD01371FEAD9FC0FB3879B97D0FC39CFBE33E
+                DE23E797D35276FB8895796277FDD01371FEAD9FC0FB3879B97D0FC39CFBE33E
                 74EEDFB634DD343482AE08F09D8CE39C9362493653C0249F164A47B4124B04AC
                 C4409278ECCEB2AABA59EE2C9175E03949DE48C46E0F06ED471F7DF4A294B18B
                 C6B244491029DCCD8811AFD20931227D3E30E26C46A4CF9459934564DAB66649
                 2E174BC84AA99015C5724ACB4A59B14449A11FE80DCE9D5AAD9C3951962EC729
-                045FB64476306BE870AD7EFC854475E18B8FD4F77E776C25FB0C856250164122
+                045FB64476306BE870AD7EFC854475F18B8FD4F77E776C25FB0C856250164122
                 FEDEF9B130C1C858C49839DCBE6A8BFD303BE860D9D9BF380E669653CE00CD39
                 46F19DC723732E8EDFC70CD39D5E53F378443934A2D5AA29CE9BCB170590D70F
                 F6229A70C4E776EF56B07B8AE756523D9E82C6A865C9D2B552C96409ABABD5AA
@@ -498,7 +498,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
                 B3170D9EEB99D16E9354DB243D36052D2608D6D34F3F6DADD2E18BEAFC73D965
                 03E43CCDD1278C40E7F88E1E3D2A099DE27C43133A45CC77ECD8E17C3E97EDDD
                 BBD7990B9D21E60C065BE80C6EC7F9CC6DDB74B058BCE44EFE17FB8535E0FF07
-                FC18966475FF94B50000000049454E44AE426082}
+                FA879664AC423B5A0000000049454E44AE426082}
               FileName = 'C:\Projects\tetherapp\images\triptether100x100.png'
             end>
           Align = Left
@@ -510,118 +510,25 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.PlatformDefault = False
           OnClick = Image1Click
         end
-        object Image2: TImage
-          MultiResBitmap.Height = 40
-          MultiResBitmap.Width = 40
-          MultiResBitmap = <
-            item
-              Width = 40
-              Height = 40
-              PNG = {
-                89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
-                6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                0487494441545847ED975B28B56914C79FBD6DA79C256783514C69184A98F425
-                C2575C38154349194D69988B2999A64C7221C30D49C28D845293991A8DE38599
-                A891BE1B9A3021C30C39330EFBC3DE6BFEEBB1F76EDAB6E376BAF0AF5FEF7ED6
-                7E9FE75DEF7AD65AEFFB8A57BDEA11A4D1ECFD48B4478CCE74A594BAE38BD5AB
-                83E6EAD54173F5E21D54E88EB7912BF800B8004B700AF6C112D803977476B633
-                A752298375C33B8948FB46A974FDED3611F406CD600A8C829FC14FA01F8C80DF
-                412370034F2A27F035D800DC506FE26FF005B003D7EA2E8DFA2A59813E700E8C
-                1DB98E33D00DECC19532D741CE31DE3EE38BDF162D6805B6C0A4CC7DD47D0E52
-                2E7EDE5D4AA552616D6DCD6B7C75617958F9805D601C954BA8542A8A8A8AA2F4
-                F474CAC9C931D86B6B6B697B7B9B828383FFC4980BEC92CCD962AE56C3C5F458
-                5A5A526E6E2E35363652515191B4393B3BD3F4F4349D9F9FD3EAEAAAE1DCE2E2
-                625C98A8AAAA4A8B9BE0A2B9A4FB6E31F7B9B7010101A2ACAC4CB4B4B4085F5F
-                5FF987838383E8EAEA12A5A5A52231315128140A717070803E77262C2C2C84AB
-                ABAB080C0C1488A8B0B2B2126D6D6D6271715101074B30FD2EBDF65A7D02B633
-                3232645458F1F1F186C8ACACAC48DBC8C808F9FBFB536A6A2AD5D4D450525212
-                85848448FBEEEE2E4D4C4C908B8B8B7E9E0678827B4BA53BB2B87A6D363737C5
-                CECE8E38393911E1E1E1C2CECE4E787B7B8BF6F676313636264F9C9A9A126E6E
-                6E32CAC3C3C3D236373727A3EBE7E727E0A0B0B1B161B3726D6DCD1FC7751E98
-                A5B8B8B8B7252525EF7B7A7A28363696B0BD949D9D4DA7A7A73272E5E5E5322A
-                EEEEEEB4B4B4246D1B1B1BD2E6E8E848D87E19512E9AD1D1515A5E5E960583FF
-                E3797DB3D5DADA9AB2B5B5A5DEDFDFA7A0A02079610F0F0FE9083BD9D1D14188
-                28A5A4A450535313555454507272322D2C2C9046A3A1BEBE3E423ECA79030303
-                725E7373338F3FE2F5EF2BC31623B9D76C6D6D0F81356F938F8F8F888E8E1685
-                8585724B232323C5D0D09070727212050505A2B7B757CE3B3E3EE6DE27BCBCBC
-                84BDBDBDC00D8AC9C9499902E3E3E35B3885DB8DF9C20D5BA195FCC005807C93
-                1160C5C4C4C8A870F41061696B6868203840A1A1A1324A9C16959595D4D9D949
-                B3B3B3D4DFDF2FE7806F79ED8714BF4EA9F3F2F2A4232CCE3D6ECA090909545F
-                5F4FF9F9F9726B390F3907EBEAEA086D87504C343F3F2FE7F08D20AAFF60AD0F
-                E5AA66E8FF55CCFA0B49FE8BA7A7677A7575B5989999915BAD56AB39C2222222
-                42DA9006D28E062EFB1FF7C5A3A323F9DFFAFABA80837C4E3F6C2BBA751F4E28
-                88EFB80FA239CB6D4A4B4B3354725656967EEB68707050164E666626474BDAF8
-                E9823CE4F1BF18F363F3E1A5D56AFDE0E03BE422BF3A51585818757777CBADE4
-                9C63DB0D1C833CF0783A3C3CF4C2E3EB7BFCD47274F411BA255CDED6E0D1E501
-                C6812927AEE20F70F1007F22F1C5E68129678C59051F8327570CE09661CA293D
-                5C149F81077B73B98BF895EC0D60274C39A70639E0D9BFB15381F117DE7BF00D
-                30EEA7CF228ED0A76013E823C7DF1EFC11FFA2140D7E055F8217113953E28FFA
-                67CFB957DD2C21FE03EAF8B699AC08F8F60000000049454E44AE426082}
-              FileName = 'C:\Projects\tetherapp\images\flag_new.png'
-            end>
-          Align = Right
-          Position.X = 228.000000000000000000
-          Size.Width = 44.000000000000000000
-          Size.Height = 48.000000000000000000
-          Size.PlatformDefault = False
-          OnClick = btnSaveSignInClick
-        end
       end
       object VertScrollBox1: TVertScrollBox
         Align = HorzCenter
         Position.X = 1.000000000000000000
         Position.Y = 48.000000000000000000
         Size.Width = 317.000000000000000000
-        Size.Height = 500.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        object edtTripID: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 0
-          KeyboardType = NumberPad
-          Position.X = 118.000000000000000000
-          Position.Y = 35.000000000000000000
-          Margins.Left = 90.000000000000000000
-          Margins.Right = 10.000000000000000000
-          Size.Width = 153.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-        end
-        object edtTripPIN: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 1
-          KeyboardType = NumberPad
-          Position.X = 118.000000000000000000
-          Position.Y = 82.000000000000000000
-          Margins.Left = 90.000000000000000000
-          Margins.Right = 10.000000000000000000
-          Size.Width = 153.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = '7 digit PIN'
-        end
-        object Label4: TLabel
-          Position.X = 40.000000000000000000
-          Position.Y = 36.000000000000000000
-          Size.Width = 71.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Trip ID'
-        end
-        object Label6: TLabel
-          Position.X = 40.000000000000000000
-          Position.Y = 88.000000000000000000
-          Size.Width = 71.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'PIN'
-        end
         object Layout1: TLayout
-          Position.Y = 208.000000000000000000
-          Size.Width = 318.000000000000000000
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 266.000000000000000000
+          Size.Width = 307.000000000000000000
           Size.Height = 89.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 4
+          TabOrder = 0
           object cpNetworkError: TCalloutPanel
             Align = Center
             Padding.Top = 11.000000000000000000
@@ -765,20 +672,96 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
           end
         end
-        object Layout2: TLayout
-          Position.Y = 152.000000000000000000
-          Size.Width = 318.000000000000000000
-          Size.Height = 54.000000000000000000
+        object HorzScrollBox7: THorzScrollBox
+          Align = Top
+          Size.Width = 317.000000000000000000
+          Size.Height = 201.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 5
-          object btnJoinTrip: TButton
-            Align = Center
-            Size.Width = 177.000000000000000000
-            Size.Height = 49.000000000000000000
+          TabOrder = 1
+          object Label6: TLabel
+            Position.X = 40.000000000000000000
+            Position.Y = 83.000000000000000000
+            Size.Width = 71.000000000000000000
+            Size.Height = 21.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'PIN'
+          end
+          object Label4: TLabel
+            Position.X = 40.000000000000000000
+            Position.Y = 31.000000000000000000
+            Size.Width = 71.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Trip ID'
+          end
+          object edtTripPIN: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 6
+            KeyboardType = NumberPad
+            Position.X = 118.000000000000000000
+            Position.Y = 77.000000000000000000
+            Margins.Left = 90.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Size.Width = 153.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = '7 digit PIN'
+          end
+          object edtTripID: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 0
+            KeyboardType = NumberPad
+            Position.X = 118.000000000000000000
+            Position.Y = 30.000000000000000000
+            Margins.Left = 90.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Size.Width = 153.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+          end
+          object Layout2: TLayout
+            Align = Bottom
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Margins.Bottom = 10.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 136.000000000000000000
+            Size.Width = 307.000000000000000000
+            Size.Height = 55.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 5
+            object btnJoinTrip: TButton
+              Align = Client
+              Size.Width = 307.000000000000000000
+              Size.Height = 55.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Text = 'Join The Trip'
+              OnClick = JoinTrip
+            end
+          end
+        end
+        object Layout3: TLayout
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 206.000000000000000000
+          Size.Width = 307.000000000000000000
+          Size.Height = 55.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object btnNewTrip: TButton
+            Align = Client
+            Size.Width = 307.000000000000000000
+            Size.Height = 55.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
-            Text = 'Join the Trip'
-            OnClick = JoinTrip
+            Text = 'Create A New Trip'
+            OnClick = btnSaveSignInClick
           end
         end
       end
@@ -793,6 +776,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'TabTrip'
+      object Rectangle3: TRectangle
+        Align = Contents
+        Fill.Color = claIvory
+        Sides = []
+        Size.Width = 320.000000000000000000
+        Size.Height = 574.000000000000000000
+        Size.PlatformDefault = False
+      end
       object TopToolBar4: TToolBar
         Align = MostTop
         Size.Width = 320.000000000000000000
@@ -808,7 +799,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
-          Text = 'Trip'
+          Text = 'Trip Info'
         end
         object btnCheckIn: TSpeedButton
           Align = Right
@@ -832,31 +823,22 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = btnQuitClick
         end
       end
-      object Panel2: TPanel
+      object VertScrollBox5: TVertScrollBox
         Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 500.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        object Rectangle3: TRectangle
-          Align = Contents
-          Fill.Color = claIvory
-          Sides = []
-          Size.Width = 320.000000000000000000
-          Size.Height = 500.000000000000000000
-          Size.PlatformDefault = False
-        end
         object mmoNotes: TMemo
           Touch.GestureManager = GestureManager1
           Touch.InteractiveGestures = []
           OnGesture = TabTripGesture
           Align = Client
-          Margins.Left = 20.000000000000000000
-          Margins.Top = 10.000000000000000000
-          Margins.Right = 20.000000000000000000
-          Margins.Bottom = 10.000000000000000000
-          Size.Width = 280.000000000000000000
-          Size.Height = 255.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           ReadOnly = True
@@ -867,7 +849,13 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Touch.InteractiveGestures = []
           OnGesture = TabTripGesture
           Align = Top
-          Size.Width = 320.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.Height = 225.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
@@ -877,7 +865,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           DefaultItemStyles.GroupFooterStyle = ''
           object ListBoxItem4: TListBoxItem
             Selectable = False
-            Size.Width = 320.000000000000000000
+            Size.Width = 310.000000000000000000
             Size.Height = 44.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -889,7 +877,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Margins.Right = 10.000000000000000000
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
-              Size.Width = 210.000000000000000000
+              Size.Width = 200.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Style = [fsBold]
@@ -899,7 +887,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object ListBoxItem5: TListBoxItem
             Selectable = False
             Position.Y = 44.000000000000000000
-            Size.Width = 320.000000000000000000
+            Size.Width = 310.000000000000000000
             Size.Height = 44.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 1
@@ -911,7 +899,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Margins.Right = 10.000000000000000000
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
-              Size.Width = 210.000000000000000000
+              Size.Width = 200.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Style = [fsBold]
@@ -921,7 +909,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object ListBoxItem6: TListBoxItem
             Selectable = False
             Position.Y = 88.000000000000000000
-            Size.Width = 320.000000000000000000
+            Size.Width = 310.000000000000000000
             Size.Height = 44.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 2
@@ -933,7 +921,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Margins.Right = 10.000000000000000000
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
-              Size.Width = 210.000000000000000000
+              Size.Width = 200.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Style = [fsBold]
@@ -943,7 +931,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object lbiStartFinish: TListBoxItem
             Selectable = False
             Position.Y = 132.000000000000000000
-            Size.Width = 320.000000000000000000
+            Size.Width = 310.000000000000000000
             Size.Height = 44.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 3
@@ -955,7 +943,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Margins.Right = 10.000000000000000000
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
-              Size.Width = 210.000000000000000000
+              Size.Width = 200.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Style = [fsBold]
@@ -965,7 +953,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           object ListBoxItem9: TListBoxItem
             Selectable = False
             Position.Y = 176.000000000000000000
-            Size.Width = 320.000000000000000000
+            Size.Width = 310.000000000000000000
             Size.Height = 44.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 4
@@ -977,7 +965,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
               Margins.Right = 10.000000000000000000
               Position.X = 100.000000000000000000
               Position.Y = 7.000000000000000000
-              Size.Width = 210.000000000000000000
+              Size.Width = 200.000000000000000000
               Size.Height = 30.000000000000000000
               Size.PlatformDefault = False
               TextSettings.Font.Style = [fsBold]
@@ -997,6 +985,14 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'TabCheck'
+      object Rectangle2: TRectangle
+        Align = Contents
+        Fill.Color = claIvory
+        Sides = []
+        Size.Width = 320.000000000000000000
+        Size.Height = 574.000000000000000000
+        Size.PlatformDefault = False
+      end
       object ToolBar2: TToolBar
         Size.Width = 320.000000000000000000
         Size.Height = 48.000000000000000000
@@ -1034,118 +1030,89 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           TextSettings.FontColor = claIvory
           OnClick = btnMapClick
         end
-        object Image3: TImage
-          MultiResBitmap.Height = 40
-          MultiResBitmap.Width = 40
-          MultiResBitmap = <
-            item
-              Width = 40
-              Height = 40
-              PNG = {
-                89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
-                6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-                0539494441545847ED975B6C145518C7FF73DB6DBBBBDD5BBBBBB49A080F502C
-                145B2A463106E38BC680F2400801418598888918220F242A97378D0F5E1F3441
-                244A220F10310811012F284614BC410A08E5A6ED6EBBBBDD5EE8EECEEE9CE337
-                BB87D261DBB2DB02A2E92FF93233DFF9CE99FF9CF3CD776630CE7F11C3487CCA
-                79829B265CC3228BE32DCBB8C0B1322E70ACDCF2022571BC216432F193AA2A4F
-                16972521499E9CB6A20552C15200FBED1C46904E9DE4A2D937FAE91095A0B7D2
-                40997CE415AE87C0A260501E34A0EDD6A1FEC5614B2460EBEF822D7909B69E34
-                B47016B6230CDA0A7A084D741991520AF58830D82693A00FDB61D3E9C847328A
-                6124F43B0E654E7EB687E7BA086450EFCE40393D9498912C095B9C6673A91866
-                484A1138E43A336FB0DED0F55D2AF81DC235C0CF3E2F4ED44F4556D3E06D6B47
-                73EB39D4EABA68CD13A62182B2FC94D41BFF986EC0847B0053A02CE331F3FC5A
-                B956D0C86A6AFC4CB6EFA337E02EE11A6087DB85EAD75FC3F47B66D1C01252A9
-                14BE7FFB1D3CB4F513B80DAB8E6C166D1A67B3A5C8F973C235C09804669B673D
-                1DE98CBC17F20554E1CAD1A528B8B0711D1A1F795878F2C46231B42D7F06F517
-                2E0ACF150C59DAAA1D39FC04DDC4B294A5082C28D4BC3AF85CE0CEE92A0B0561
-                B1491351D75830A9F0FBFDC8CE6CB2C60A8B04020BF579F30A3B958045607AF9
-                B30D08059A40835F6D36CA3D451A7AE3A9725414C49B160A05557A8205226C00
-                45F13C6ECE5C31B5CE72475EED7D94050394E18556E6714339D12222AFC0E371
-                04D2E921FB988660B081AF5B6713E12563112857F9A6D21363B0319F0F675515
-                7BF534BE397E1CF4768BE83CE14807765DEAC38FD90C926EB7A5AF69DCEFF7C5
-                7CBE32115E32168186CBE5E0345383ED0CE5F76F947F4DAB57A371D122C8545E
-                06E3A3B60756AD8273E142ECE84E58FAE6CDA32A959543E746115C2DF01C773A
-                31D87A6A6B317FC912D4D2D1EBF5E6CACB60EC763BAAABABD1D8DC8C7B972DC3
-                D94CC6D29F391C7D1EBFDF3AED256011A868DA6E9833242C413773D6D7D36951
-                5B2CEAEAEA10AFAA02A394B83C86A469A730776E5284948C4560D9B1635F315D
-                3F4985CA2C5638DE95C0F41933446B714C6C6840925E1AB37FF8EF362E19C636
-                9AF551EFB91681D2860D4C4EA5DE8AF4F533A9AF1FD368494BC5ADA8284B6760
-                F60F55B8BE2D6B6939289A464541F2F258ECF309F1F859DA22E00947601CF83A
-                371BC5C0A331C8FB0F40A5BED958671FEFEE7E891E3A2B9A474581C0F2356B2E
-                A033FA8A1CEE8069EC8B2FC18EFE2A5A8787C4C0D8BC05CAA9D3B97EB6F68EBD
-                65E7CFFC249A47CDB0955C5FFCE4E64838B234140CCA66D2ABCFAF84DC44BBD6
-                556F710EAA8DC6075BC00F1ECA5DB2ACD4A1D9E539F2479B0A2B7B890CFB61B9
-                76D294A36E8EF9522AE595FBFBC17FFF0352F34C48EE4A1121A0E5CFBCFB3EA4
-                3D7B212553E84EA5D2E599EC6275FBD6BCDA3152B0C497A9D8B9ED22EFE95D9C
-                8D7577229E80F4672B8C973702B4730C86EDF80CF2F69DF459D30533CE9B486C
-                5658DF3ED13C66AEB959B3BA998B7A7872934BB2979BD7D2FDF7417AE355C0E1
-                00FFE130F8CA17401F86B95870B65F8263BE7CF2506FDE317646FC7730591F6D
-                6FD1CADD72ACB773B683FE01F899D6DCB24A24102B5642EA8C42A2BAC775FD88
-                CCF802B9F59798E87AF3A02AAB1AAE09EBDB9CA12C738638ABACE16CE234CE5C
-                744ED7295B5594B96AA688F07F0786DBCA0DCDFD66BBE2D6B9E2E6972DA3785A
-                B9E61ED347E9758366D2C6E05CDB0E27FD863A790AB628437933F9AF99CB370D
-                12A33154BC68C0B98FC1314DB8C7F97F61E61C83DF252E6F20C03F960760F2D9
-                5713F90000000049454E44AE426082}
-              FileName = 'C:\Projects\tetherapp\images\part_new.png'
-            end>
-          Align = Right
-          Position.X = 221.000000000000000000
-          Size.Width = 44.000000000000000000
-          Size.Height = 48.000000000000000000
-          Size.PlatformDefault = False
-          OnClick = btnAddShareClick
-        end
       end
-      object Panel4: TPanel
-        Align = Top
-        Position.Y = 48.000000000000000000
+      object VertScrollBox7: TVertScrollBox
+        Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 61.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
-        object Panel6: TPanel
-          Align = Client
-          Size.Width = 256.000000000000000000
-          Size.Height = 61.000000000000000000
+        TabOrder = 2
+        object HorzScrollBox10: THorzScrollBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           object edtStatus: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            Align = Fit
+            Align = VertCenter
             TabOrder = 0
-            Margins.Left = 10.000000000000000000
-            Size.Width = 246.000000000000000000
+            Position.X = 5.000000000000000000
+            Position.Y = 9.000000000000000000
+            Margins.Left = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Size.Width = -24.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextPrompt = 'Enter a comment...'
           end
+          object btnSend: TSpeedButton
+            Align = Right
+            Position.X = -14.000000000000000000
+            Size.Width = 64.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Send'
+            OnClick = btnSendClick
+          end
         end
-        object btnSend: TSpeedButton
-          Align = Right
-          Position.X = 256.000000000000000000
-          Size.Width = 64.000000000000000000
-          Size.Height = 61.000000000000000000
+        object lbParticipants: TListBox
+          Touch.GestureManager = GestureManager1
+          Touch.InteractiveGestures = []
+          OnGesture = TabCheckGesture
+          Align = Client
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.PlatformDefault = False
-          Text = 'Send'
-          OnClick = btnSendClick
+          TabOrder = 1
+          AlternatingRowBackground = True
+          DisableFocusEffect = True
+          DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
+          DefaultItemStyles.GroupHeaderStyle = ''
+          DefaultItemStyles.GroupFooterStyle = ''
+          OnItemClick = lbParticipantsItemClick
         end
-      end
-      object lbParticipants: TListBox
-        Touch.GestureManager = GestureManager1
-        Touch.InteractiveGestures = []
-        OnGesture = TabCheckGesture
-        Align = Client
-        Size.Width = 320.000000000000000000
-        Size.Height = 439.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        AlternatingRowBackground = True
-        DisableFocusEffect = True
-        DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
-        DefaultItemStyles.GroupHeaderStyle = ''
-        DefaultItemStyles.GroupFooterStyle = ''
-        OnItemClick = lbParticipantsItemClick
+        object Layout4: TLayout
+          Align = Bottom
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 55.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Button2: TButton
+            Align = Client
+            Size.Width = 40.000000000000000000
+            Size.Height = 55.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Share The Trip'
+            OnClick = btnAddShareClick
+          end
+        end
       end
     end
     object TabMap: TTabItem
@@ -1210,7 +1177,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object Panel14: TPanel
         Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 500.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
         object mapTrip: TTMSFMXWebGMaps
@@ -1331,9 +1298,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object pnlMapOptions: TPanel
         Align = Left
-        Position.Y = 44.000000000000000000
+        Position.Y = 48.000000000000000000
         Size.Width = 105.000000000000000000
-        Size.Height = 366.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         Visible = False
         TabOrder = 1
@@ -1342,33 +1309,20 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Fill.Color = claIvory
           Sides = [Right]
           Size.Width = 105.000000000000000000
-          Size.Height = 366.000000000000000000
+          Size.Height = 530.000000000000000000
           Size.PlatformDefault = False
-        end
-        object spBikes: TSpeedButton
-          StaysPressed = True
-          Align = Top
-          StyledSettings = [Family, Style, FontColor]
-          Position.Y = 220.000000000000000000
-          Size.Width = 105.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'buttonstyle'
-          Text = 'Bikes'
-          TextSettings.Font.Size = 15.000000000000000000
-          OnClick = spBikesClick
+          Visible = False
         end
         object spFollow: TSpeedButton
           StaysPressed = True
           Align = Top
           StyledSettings = [Family, Style, FontColor]
           IsPressed = True
-          Position.Y = 88.000000000000000000
           Size.Width = 105.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'buttonstyle'
-          Text = 'Follow'
+          Text = 'Follow Trip'
           TextSettings.Font.Size = 15.000000000000000000
           OnClick = spFollowClick
         end
@@ -1376,59 +1330,19 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           StaysPressed = True
           Align = Top
           StyledSettings = [Family, Style, FontColor]
-          Position.Y = 176.000000000000000000
-          Size.Width = 105.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'buttonstyle'
-          Text = 'Traffic'
-          TextSettings.Font.Size = 15.000000000000000000
-          OnClick = spTrafficClick
-        end
-        object spWeather: TSpeedButton
-          StaysPressed = True
-          Align = Top
-          StyledSettings = [Family, Style, FontColor]
-          Position.Y = 264.000000000000000000
-          Size.Width = 105.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'buttonstyle'
-          Text = 'Weather'
-          TextSettings.Font.Size = 15.000000000000000000
-          OnClick = spWeatherClick
-        end
-        object spPictures: TSpeedButton
-          StaysPressed = True
-          Align = Top
-          StyledSettings = [Family, Style, FontColor]
-          Position.Y = 308.000000000000000000
-          Size.Width = 105.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'buttonstyle'
-          Text = 'Pictures'
-          TextSettings.Font.Size = 15.000000000000000000
-          OnClick = spPicturesClick
-        end
-        object spTags: TSpeedButton
-          StaysPressed = True
-          Align = Top
-          StyledSettings = [Family, Style, FontColor]
-          IsPressed = True
           Position.Y = 132.000000000000000000
           Size.Width = 105.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'buttonstyle'
-          Text = 'Show Tags'
+          Text = 'Show Traffic'
           TextSettings.Font.Size = 15.000000000000000000
-          OnClick = spTagsClick
+          OnClick = spTrafficClick
         end
         object spMe: TSpeedButton
           Align = Top
           StyledSettings = [Family, Style, FontColor]
-          Position.Y = 44.000000000000000000
+          Position.Y = 88.000000000000000000
           Size.Width = 105.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
@@ -1440,11 +1354,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object spFlag: TSpeedButton
           Align = Top
           StyledSettings = [Family, Style, FontColor]
+          Position.Y = 44.000000000000000000
           Size.Width = 105.000000000000000000
           Size.Height = 44.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'buttonstyle'
-          Text = 'Find Flag'
+          Text = 'Destination'
           TextSettings.Font.Size = 15.000000000000000000
           OnClick = spFlagClick
         end
@@ -1465,7 +1380,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Fill.Color = claIvory
         Sides = []
         Size.Width = 320.000000000000000000
-        Size.Height = 548.000000000000000000
+        Size.Height = 574.000000000000000000
         Size.PlatformDefault = False
       end
       object ToolBar4: TToolBar
@@ -1497,31 +1412,23 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox2: TVertScrollBox
         Align = HorzCenter
-        Position.X = 1.000000000000000000
         Position.Y = 48.000000000000000000
-        Size.Width = 317.000000000000000000
-        Size.Height = 500.000000000000000000
+        Size.Width = 320.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        object btnNewTripDetails: TButton
-          Position.X = 72.000000000000000000
-          Position.Y = 220.000000000000000000
-          Size.Width = 177.000000000000000000
-          Size.Height = 44.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          Text = 'Next'
-          OnClick = btnNewTripDetailsClick
-        end
         object cpLocationNotFound: TCalloutPanel
+          Align = Top
           Padding.Top = 11.000000000000000000
-          Position.X = 8.000000000000000000
-          Position.Y = 201.000000000000000000
-          Size.Width = 305.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 214.000000000000000000
+          Size.Width = 310.000000000000000000
           Size.Height = 90.000000000000000000
           Size.PlatformDefault = False
           Visible = False
-          TabOrder = 1
+          TabOrder = 0
           CalloutWidth = 23.000000000000000000
           CalloutLength = 11.000000000000000000
           object Label23: TLabel
@@ -1549,97 +1456,166 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Text = 'Try again with a specific location and city.'
           end
         end
-        object Destination: TLabel
-          Position.X = 8.000000000000000000
-          Position.Y = 20.000000000000000000
-          Size.Width = 89.000000000000000000
-          Size.Height = 30.000000000000000000
+        object HorzScrollBox1: THorzScrollBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 113.000000000000000000
           Size.PlatformDefault = False
-          Text = 'Trip Name'
+          TabOrder = 51
+          object Destination: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 18.000000000000000000
+            Size.Width = 89.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Trip Name'
+          end
+          object edtTripLocation: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 1
+            Position.X = 104.000000000000000000
+            Position.Y = 64.000000000000000000
+            Size.Width = 201.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Address or location'
+          end
+          object edtTripName: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 2
+            Position.X = 104.000000000000000000
+            Position.Y = 16.000000000000000000
+            Size.Width = 201.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Trip description'
+          end
+          object Location: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 66.000000000000000000
+            Size.Width = 82.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Location'
+          end
         end
-        object edtTripLocation: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
-          Position.X = 104.000000000000000000
-          Position.Y = 65.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 32.000000000000000000
+        object HorzScrollBox2: THorzScrollBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 155.000000000000000000
+          Size.Width = 310.000000000000000000
+          Size.Height = 105.000000000000000000
           Size.PlatformDefault = False
-          TextPrompt = 'Address or location name'
+          TabOrder = 52
+          Visible = False
+          object dteTripArrive: TDateEdit
+            Date = 41989.000000000000000000
+            TodayDefault = True
+            Position.X = 104.000000000000000000
+            Position.Y = 58.000000000000000000
+            Size.Width = 105.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
+          object dteTripDepart: TDateEdit
+            Date = 41989.000000000000000000
+            TodayDefault = True
+            OnChange = dteTripDepartChange
+            Position.X = 104.000000000000000000
+            Position.Y = 10.000000000000000000
+            Size.Width = 105.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+          end
+          object Label28: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 13.000000000000000000
+            Size.Width = 82.000000000000000000
+            Size.Height = 21.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Depart At'
+          end
+          object Label29: TLabel
+            Position.X = 8.000000000000000000
+            Position.Y = 61.000000000000000000
+            Size.Width = 82.000000000000000000
+            Size.Height = 21.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Arrive At'
+          end
+          object tmeTripArrive: TTimeEdit
+            Time = 0.375000000000000000
+            Position.X = 224.000000000000000000
+            Position.Y = 58.000000000000000000
+            Size.Width = 81.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 4
+          end
+          object tmeTripDepart: TTimeEdit
+            Time = 0.375000000000000000
+            OnChange = tmeTripDepartChange
+            Position.X = 224.000000000000000000
+            Position.Y = 10.000000000000000000
+            Size.Width = 81.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 5
+          end
         end
-        object edtTripName: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 4
-          Position.X = 104.000000000000000000
-          Position.Y = 20.000000000000000000
-          Size.Width = 201.000000000000000000
-          Size.Height = 32.000000000000000000
+        object HorzScrollBox3: THorzScrollBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 155.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
-          TextPrompt = 'Trip description'
+          TabOrder = 53
+          object btnNewTripDetails: TButton
+            Align = Client
+            Size.Width = 50.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Next'
+            OnClick = btnNewTripDetailsClick
+          end
         end
-        object Location: TLabel
-          Position.X = 8.000000000000000000
-          Position.Y = 65.000000000000000000
-          Size.Width = 82.000000000000000000
-          Size.Height = 30.000000000000000000
+        object HorzScrollBox4: THorzScrollBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 123.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 27.000000000000000000
           Size.PlatformDefault = False
-          Text = 'Location'
-        end
-        object Label29: TLabel
-          Position.X = 8.000000000000000000
-          Position.Y = 166.000000000000000000
-          Size.Width = 82.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Arrive At'
-        end
-        object dteTripArrive: TDateEdit
-          Date = 41986.000000000000000000
-          TodayDefault = True
-          Position.X = 116.000000000000000000
-          Position.Y = 161.000000000000000000
-          Size.Width = 97.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 57
-        end
-        object tmeTripArrive: TTimeEdit
-          Time = 0.416666666666666700
-          Position.X = 230.000000000000000000
-          Position.Y = 161.000000000000000000
-          Size.Width = 81.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 59
-        end
-        object tmeTripDepart: TTimeEdit
-          Time = 0.375000000000000000
-          OnChange = tmeTripDepartChange
-          Position.X = 230.000000000000000000
-          Position.Y = 116.000000000000000000
-          Size.Width = 81.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 60
-        end
-        object dteTripDepart: TDateEdit
-          Date = 41986.000000000000000000
-          TodayDefault = True
-          OnChange = dteTripDepartChange
-          Position.X = 116.000000000000000000
-          Position.Y = 116.000000000000000000
-          Size.Width = 97.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 58
-        end
-        object Label28: TLabel
-          Position.X = 8.000000000000000000
-          Position.Y = 121.000000000000000000
-          Size.Width = 82.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Depart At'
+          TabOrder = 54
+          object CheckBox1: TCheckBox
+            Align = Center
+            Size.Width = 151.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Set Trip Times'
+            OnChange = CheckBox1Change
+          end
         end
       end
     end
@@ -1658,7 +1634,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Fill.Color = claIvory
         Sides = []
         Size.Width = 320.000000000000000000
-        Size.Height = 548.000000000000000000
+        Size.Height = 574.000000000000000000
         Size.PlatformDefault = False
       end
       object TopToolBar2: TToolBar
@@ -1682,75 +1658,100 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Align = HorzCenter
         Position.Y = 48.000000000000000000
         Size.Width = 320.000000000000000000
-        Size.Height = 500.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        object btnSettingsDone: TButton
-          Position.X = 64.000000000000000000
-          Position.Y = 184.000000000000000000
-          Size.Width = 177.000000000000000000
-          Size.Height = 44.000000000000000000
+        object HorzScrollBox8: THorzScrollBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 161.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Text = 'Done'
-          OnClick = btnSettingsDoneClick
+          object Label34: TLabel
+            Position.X = 16.000000000000000000
+            Position.Y = 20.000000000000000000
+            Size.Width = 49.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'eMail'
+          end
+          object edtEMailSetting: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 1
+            KeyboardType = EmailAddress
+            Position.X = 80.000000000000000000
+            Position.Y = 20.000000000000000000
+            Margins.Left = 90.000000000000000000
+            Margins.Right = 10.000000000000000000
+            Size.Width = 224.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Your email address'
+          end
+          object Label35: TLabel
+            Position.X = 16.000000000000000000
+            Position.Y = 73.000000000000000000
+            Size.Width = 71.000000000000000000
+            Size.Height = 21.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Name'
+          end
+          object edtNameSetting: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 7
+            Position.X = 80.000000000000000000
+            Position.Y = 68.000000000000000000
+            Size.Width = 225.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Your nickname'
+          end
+          object Label38: TLabel
+            Position.X = 16.000000000000000000
+            Position.Y = 121.000000000000000000
+            Size.Width = 71.000000000000000000
+            Size.Height = 21.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'PW'
+          end
+          object edtPWSetting: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 2
+            Position.X = 80.000000000000000000
+            Position.Y = 116.000000000000000000
+            Size.Width = 225.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            TextPrompt = 'Choose a password'
+          end
         end
-        object edtEMailSetting: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
+        object HorzScrollBox9: THorzScrollBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 176.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 55.000000000000000000
+          Size.PlatformDefault = False
           TabOrder = 1
-          KeyboardType = EmailAddress
-          Position.X = 80.000000000000000000
-          Position.Y = 20.000000000000000000
-          Margins.Left = 90.000000000000000000
-          Margins.Right = 10.000000000000000000
-          Size.Width = 224.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your email address'
-        end
-        object edtNameSetting: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
-          Position.X = 80.000000000000000000
-          Position.Y = 68.000000000000000000
-          Size.Width = 225.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Your nickname'
-        end
-        object Label34: TLabel
-          Position.X = 16.000000000000000000
-          Position.Y = 20.000000000000000000
-          Size.Width = 49.000000000000000000
-          Size.Height = 30.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'eMail'
-        end
-        object Label35: TLabel
-          Position.X = 16.000000000000000000
-          Position.Y = 73.000000000000000000
-          Size.Width = 71.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'Name'
-        end
-        object Label38: TLabel
-          Position.X = 16.000000000000000000
-          Position.Y = 121.000000000000000000
-          Size.Width = 71.000000000000000000
-          Size.Height = 21.000000000000000000
-          Size.PlatformDefault = False
-          Text = 'PW'
-        end
-        object edtPWSetting: TEdit
-          Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 2
-          Position.X = 80.000000000000000000
-          Position.Y = 116.000000000000000000
-          Size.Width = 225.000000000000000000
-          Size.Height = 32.000000000000000000
-          Size.PlatformDefault = False
-          TextPrompt = 'Choose a password'
+          object btnSettingsDone: TButton
+            Align = Client
+            Size.Width = 50.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Done'
+            OnClick = btnSettingsDoneClick
+          end
         end
       end
     end
@@ -1764,24 +1765,19 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'TabNewTripShare'
-      object mmoShareInfo: TMemo
-        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-        Align = Client
-        Padding.Left = 10.000000000000000000
-        Padding.Top = 10.000000000000000000
-        Padding.Right = 10.000000000000000000
-        Padding.Bottom = 10.000000000000000000
+      object Rectangle5: TRectangle
+        Align = Contents
+        Fill.Color = claIvory
+        Sides = []
         Size.Width = 320.000000000000000000
-        Size.Height = 439.000000000000000000
+        Size.Height = 574.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 0
-        TextSettings.WordWrap = True
       end
       object ToolBar5: TToolBar
         Size.Width = 320.000000000000000000
         Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 0
         TintColor = claCornflowerblue
         object Label22: TLabel
           Align = Contents
@@ -1815,22 +1811,51 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           OnClick = SpeedButton3Click
         end
       end
-      object Panel13: TPanel
-        Align = Top
-        Position.Y = 48.000000000000000000
+      object VertScrollBox3: TVertScrollBox
+        Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 61.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 2
-        object SpeedButton1: TSpeedButton
-          Action = ShowShareSheetAction1
-          Align = Center
-          Enabled = True
-          Size.Width = 305.000000000000000000
-          Size.Height = 48.000000000000000000
+        TabOrder = 1
+        object HorzScrollBox6: THorzScrollBox
+          Align = Bottom
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
-          Text = 'Click to share trip info'
-          Visible = True
+          TabOrder = 0
+          object Button1: TButton
+            Action = ShowShareSheetAction1
+            Align = Client
+            Enabled = True
+            Size.Width = 50.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Click To Share Trip Info'
+            Visible = True
+          end
+        end
+        object mmoShareInfo: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          Align = Client
+          Padding.Left = 10.000000000000000000
+          Padding.Top = 10.000000000000000000
+          Padding.Right = 10.000000000000000000
+          Padding.Bottom = 10.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          TextSettings.WordWrap = True
         end
       end
     end
@@ -1838,7 +1863,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -1849,7 +1874,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Fill.Color = claIvory
         Sides = []
         Size.Width = 320.000000000000000000
-        Size.Height = 548.000000000000000000
+        Size.Height = 574.000000000000000000
         Size.PlatformDefault = False
       end
       object ToolBar7: TToolBar
@@ -1882,46 +1907,40 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       object VertScrollBox6: TVertScrollBox
         Align = Client
         Size.Width = 320.000000000000000000
-        Size.Height = 500.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         object mmoTripNotes: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-          Align = Top
-          Margins.Left = 20.000000000000000000
-          Margins.Top = 10.000000000000000000
-          Margins.Right = 20.000000000000000000
-          Margins.Bottom = 10.000000000000000000
-          Position.X = 20.000000000000000000
-          Position.Y = 10.000000000000000000
-          Size.Width = 280.000000000000000000
-          Size.Height = 177.000000000000000000
+          Align = Client
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
         end
-        object Layout3: TLayout
-          Align = Top
-          Position.Y = 197.000000000000000000
-          Size.Width = 320.000000000000000000
-          Size.Height = 164.000000000000000000
+        object HorzScrollBox5: THorzScrollBox
+          Align = Bottom
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 40.000000000000000000
+          Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
-          object Layout4: TLayout
-            Align = Center
-            Size.Width = 346.000000000000000000
-            Size.Height = 159.000000000000000000
+          object btnNewTripCreate: TButton
+            Align = Client
+            Size.Width = 50.000000000000000000
+            Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
-            object btnNewTripCreate: TButton
-              Position.X = 89.000000000000000000
-              Position.Y = 10.000000000000000000
-              Size.Width = 177.000000000000000000
-              Size.Height = 44.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 0
-              Text = 'Create Trip'
-              OnClick = btnNewTripCreateClick
-            end
+            Text = 'Create Trip'
+            OnClick = btnNewTripCreateClick
           end
         end
       end
@@ -2287,13 +2306,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       item
         Control = ListBox2
-        Collection = <
-          item
-            GestureID = sgiLeft
-          end
-          item
-            GestureID = sgiRight
-          end>
+        Collection = <>
       end
       item
         Control = lbParticipants

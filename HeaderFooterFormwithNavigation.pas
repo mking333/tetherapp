@@ -55,7 +55,6 @@ type
     btnBackCheck: TSpeedButton;
     btnQuit: TSpeedButton;
     ChangeTabAction3: TChangeTabAction;
-    Panel2: TPanel;
     mmoNotes: TMemo;
     TabCheck: TTabItem;
     ToolBar2: TToolBar;
@@ -63,32 +62,13 @@ type
     btnBackTrip: TSpeedButton;
     ChangeTabAction7: TChangeTabAction;
     ChangeTabAction8: TChangeTabAction;
-    Panel4: TPanel;
     btnSend: TSpeedButton;
-    Panel6: TPanel;
-    edtStatus: TEdit;
     lbParticipants: TListBox;
-    ListBox2: TListBox;
-    ListBoxItem4: TListBoxItem;
-    ListBoxItem5: TListBoxItem;
-    ListBoxItem6: TListBoxItem;
-    lbiStartFinish: TListBoxItem;
-    lblName: TLabel;
-    lblDeparting: TLabel;
-    lblArriving: TLabel;
-    lblStarted: TLabel;
-    ListBoxItem9: TListBoxItem;
-    lblLeader: TLabel;
     btnMap: TSpeedButton;
     btnDirections: TSpeedButton;
-    edtTripID: TEdit;
-    edtTripPIN: TEdit;
-    Label4: TLabel;
-    Label6: TLabel;
     btnJoinTrip: TButton;
     btnSettings: TSpeedButton;
     Label3: TLabel;
-    btnSettingsDone: TButton;
     cpJoinError: TCalloutPanel;
     Label7: TLabel;
     Label9: TLabel;
@@ -97,16 +77,12 @@ type
     TabNewTrip: TTabItem;
     ToolBar4: TToolBar;
     Label20: TLabel;
-    Destination: TLabel;
-    Location: TLabel;
-    edtTripName: TEdit;
     btnNewTripDetails: TButton;
     btnBackToJoin: TSpeedButton;
     SignInRequest: TRESTRequest;
     SignInResponse: TRESTResponse;
     NewTripRequest: TRESTRequest;
     NewTripResponse: TRESTResponse;
-    edtTripLocation: TEdit;
     NewTripPartRequest: TRESTRequest;
     NewTripPartResponse: TRESTResponse;
     Action1: TAction;
@@ -115,8 +91,6 @@ type
     mmoShareInfo: TMemo;
     ToolBar5: TToolBar;
     Label22: TLabel;
-    Panel13: TPanel;
-    SpeedButton1: TSpeedButton;
     cpLocationNotFound: TCalloutPanel;
     Label23: TLabel;
     Label33: TLabel;
@@ -126,12 +100,6 @@ type
     MapRequest: TRESTRequest;
     MapResponse: TRESTResponse;
     mapTrip: TTMSFMXWebGMaps;
-    edtEMailSetting: TEdit;
-    Label34: TLabel;
-    edtNameSetting: TEdit;
-    Label35: TLabel;
-    spBikes: TSpeedButton;
-    spWeather: TSpeedButton;
     pnlMapOptions: TPanel;
     spTraffic: TSpeedButton;
     Panel14: TPanel;
@@ -156,7 +124,6 @@ type
     Layout2: TLayout;
     Image1: TImage;
     Rectangle1: TRectangle;
-    Rectangle3: TRectangle;
     Rectangle4: TRectangle;
     Rectangle6: TRectangle;
     VertScrollBox4: TVertScrollBox;
@@ -168,19 +135,14 @@ type
     btnBackToTrip: TSpeedButton;
     VertScrollBox6: TVertScrollBox;
     mmoTripNotes: TMemo;
-    btnNewTripCreate: TButton;
     cpNewTripError: TCalloutPanel;
     Label31: TLabel;
     Label32: TLabel;
     SignUpResponse: TRESTResponse;
     SignUpRequest: TRESTRequest;
     spFollow: TSpeedButton;
-    spPictures: TSpeedButton;
     spMapOptions: TSpeedButton;
     Rectangle10: TRectangle;
-    Layout3: TLayout;
-    Layout4: TLayout;
-    spTags: TSpeedButton;
     spMe: TSpeedButton;
     spFlag: TSpeedButton;
     TabInfo: TTabItem;
@@ -188,11 +150,7 @@ type
     Label30: TLabel;
     spBackToMap: TSpeedButton;
     mapInfo: TTMSFMXWebGMaps;
-    Image2: TImage;
-    Image3: TImage;
     TMSFMXWebGMapsGeocoding1: TTMSFMXWebGMapsGeocoding;
-    Label38: TLabel;
-    edtPWSetting: TEdit;
     cpSignError: TCalloutPanel;
     lblSignMessage: TLabel;
     lblSignErrorMessage: TLabel;
@@ -202,6 +160,56 @@ type
     tmeTripDepart: TTimeEdit;
     dteTripDepart: TDateEdit;
     Label28: TLabel;
+    Destination: TLabel;
+    edtTripName: TEdit;
+    Location: TLabel;
+    edtTripLocation: TEdit;
+    HorzScrollBox1: THorzScrollBox;
+    HorzScrollBox2: THorzScrollBox;
+    HorzScrollBox3: THorzScrollBox;
+    HorzScrollBox4: THorzScrollBox;
+    CheckBox1: TCheckBox;
+    HorzScrollBox5: THorzScrollBox;
+    btnNewTripCreate: TButton;
+    VertScrollBox3: TVertScrollBox;
+    HorzScrollBox6: THorzScrollBox;
+    Button1: TButton;
+    HorzScrollBox7: THorzScrollBox;
+    Label6: TLabel;
+    Label4: TLabel;
+    edtTripPIN: TEdit;
+    edtTripID: TEdit;
+    HorzScrollBox8: THorzScrollBox;
+    Label34: TLabel;
+    edtEMailSetting: TEdit;
+    Label35: TLabel;
+    edtNameSetting: TEdit;
+    Label38: TLabel;
+    edtPWSetting: TEdit;
+    HorzScrollBox9: THorzScrollBox;
+    btnSettingsDone: TButton;
+    VertScrollBox5: TVertScrollBox;
+    ListBox2: TListBox;
+    ListBoxItem4: TListBoxItem;
+    lblName: TLabel;
+    ListBoxItem5: TListBoxItem;
+    lblDeparting: TLabel;
+    ListBoxItem6: TListBoxItem;
+    lblArriving: TLabel;
+    lbiStartFinish: TListBoxItem;
+    lblStarted: TLabel;
+    ListBoxItem9: TListBoxItem;
+    lblLeader: TLabel;
+    Rectangle3: TRectangle;
+    Rectangle2: TRectangle;
+    VertScrollBox7: TVertScrollBox;
+    HorzScrollBox10: THorzScrollBox;
+    edtStatus: TEdit;
+    Layout3: TLayout;
+    btnNewTrip: TButton;
+    Layout4: TLayout;
+    Button2: TButton;
+    Rectangle5: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -285,6 +293,7 @@ type
     procedure tmeTripDepartChange(Sender: TObject);
     function RandomPassword(PLen: Integer): string;
     function IsValidEmail(const Value: string): Boolean;
+    procedure CheckBox1Change(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -672,9 +681,16 @@ begin
       end;
       if Arrive <> '' then
       begin
-        LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Arrive, True));
-        ArrivingDate := FormatDateTime('ddddd t', LocalDate);
-        lblArriving.Text := ArrivingDate;
+        if Arrive = Depart then
+        begin
+          lblArriving.Text := '-';
+        end
+        else
+        begin
+          LocalDate := TTimeZone.Local.ToLocalTime(XMLTimeToDateTime(Arrive, True));
+          ArrivingDate := FormatDateTime('ddddd t', LocalDate);
+          lblArriving.Text := ArrivingDate;
+        end;
       end;
       if Start = '' then
       begin
@@ -816,13 +832,10 @@ begin
     Marker.Longitude := TripLong;
     Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/flag_dest.png?t=1';
-    if spTags.IsPressed then
-    begin
-      Marker.MapLabel.Text := '<b> ' + Name + ' </b>';
-      Marker.MapLabel.Color := TAlphaColorRec.Red;
-      Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
-      Marker.MapLabel.FontColor := TAlphaColorRec.White;
-    end;
+    Marker.MapLabel.Text := '<b> ' + Name + ' </b>';
+    Marker.MapLabel.Color := TAlphaColorRec.Red;
+    Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+    Marker.MapLabel.FontColor := TAlphaColorRec.White;
     mapTrip.CreateMapMarker(Marker);
     //mapTrip.Markers.Add(DestLat, DestLong, Name, 'http://www.triptether.com/images/flag_dest.png', true, true, true, true, false, 0);
 
@@ -840,13 +853,10 @@ begin
       Marker.Icon := 'http://www.triptether.com/images/participant.png?t=1'
     else
       Marker.Icon := 'http://www.triptether.com/images/participant6.png?t=1';
-    if spTags.IsPressed then
-    begin
-      if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
-        Marker.MapLabel.Text := ParticipantName
-      else
-        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-    end;
+    if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+      Marker.MapLabel.Text := ParticipantName
+    else
+      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
     mapTrip.CreateMapMarker(Marker);
 
 
@@ -919,13 +929,10 @@ begin
           end
           else
             Marker.Icon := 'http://www.triptether.com/images/participantq.png?t=1';
-          if spTags.IsPressed then
-          begin
-            if ParticipantStatus = '' then
-              Marker.MapLabel.Text := ParticipantName
-            else
-              Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-          end;
+          if ParticipantStatus = '' then
+            Marker.MapLabel.Text := ParticipantName
+          else
+            Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
           mapTrip.CreateMapMarker(Marker);
         end;
 
@@ -1029,13 +1036,10 @@ begin
       Marker.Longitude := DestLong;
       Marker.Draggable := false;
       Marker.Icon := 'http://www.triptether.com/images/flag_dest.png?t=1';
-      if spTags.IsPressed then
-      begin
-        Marker.MapLabel.Text := '<b> ' + Name + ' </b>';
-        Marker.MapLabel.Color := TAlphaColorRec.Red;
-        Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
-        Marker.MapLabel.FontColor := TAlphaColorRec.White;
-      end;
+      Marker.MapLabel.Text := '<b> ' + Name + ' </b>';
+      Marker.MapLabel.Color := TAlphaColorRec.Red;
+      Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+      Marker.MapLabel.FontColor := TAlphaColorRec.White;
       mapTrip.CreateMapMarker(Marker);
 
       Bounds.NorthEast.Latitude := DestLat;
@@ -1081,13 +1085,10 @@ begin
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png?t=1';
       end;
-      if spTags.IsPressed then
-      begin
-        if ParticipantStatus = '' then
-          Marker.MapLabel.Text := ParticipantName
-        else
-          Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-      end;
+      if ParticipantStatus = '' then
+        Marker.MapLabel.Text := ParticipantName
+      else
+        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
       mapTrip.CreateMapMarker(Marker);
 
       if SelectedName = '' then
@@ -1811,6 +1812,11 @@ begin
     ShowMessage('Please enter a valid email address.');
 end;
 
+procedure THeaderFooterwithNavigation.CheckBox1Change(Sender: TObject);
+begin
+  HorzScrollBox2.Visible := CheckBox1.IsChecked;
+end;
+
 procedure THeaderFooterwithNavigation.CheckIn(Sender: TObject; Status: string; StatusCount: integer);
 begin
   if Status = '' then
@@ -2175,13 +2181,10 @@ begin
     Marker.Longitude := TripLong;
     Marker.Draggable := false;
     Marker.Icon := 'http://www.triptether.com/images/flag_dest.png?t=1';
-    if spTags.IsPressed then
-    begin
-      Marker.MapLabel.Text := '<b> ' + Name + ' </b>';
-      Marker.MapLabel.Color := TAlphaColorRec.Red;
-      Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
-      Marker.MapLabel.FontColor := TAlphaColorRec.White;
-    end;
+    Marker.MapLabel.Text := '<b> ' + Name + ' </b>';
+    Marker.MapLabel.Color := TAlphaColorRec.Red;
+    Marker.MapLabel.BorderColor := TAlphaColorRec.Black;
+    Marker.MapLabel.FontColor := TAlphaColorRec.White;
     mapTrip.CreateMapMarker(Marker);
 
     Bounds := TBounds.Create;
@@ -2198,13 +2201,10 @@ begin
       Marker.Icon := 'http://www.triptether.com/images/participant.png?t=1'
     else
       Marker.Icon := 'http://www.triptether.com/images/participant6.png?t=1';
-    if spTags.IsPressed then
-    begin
-      if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
-        Marker.MapLabel.Text := ParticipantName
-      else
-        Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-    end;
+    if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+      Marker.MapLabel.Text := ParticipantName
+    else
+      Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
     mapTrip.CreateMapMarker(Marker);
 
     if ParticipantLat > TripLat then
@@ -2262,13 +2262,10 @@ begin
         end
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png?t=1';
-          if spTags.IsPressed then
-          begin
-            if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
+          if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
             Marker.MapLabel.Text := ParticipantName
           else
             Marker.MapLabel.Text := ParticipantName + ': ' + ParticipantStatus;
-          end;
         mapTrip.CreateMapMarker(Marker);
       end;
 
