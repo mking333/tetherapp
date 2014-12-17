@@ -94,7 +94,6 @@ type
     cpLocationNotFound: TCalloutPanel;
     Label23: TLabel;
     Label33: TLabel;
-    btnJoinNewTrip: TSpeedButton;
     SpeedButton3: TSpeedButton;
     geoNewTrip: TTMSFMXWebGMapsGeocoding;
     MapRequest: TRESTRequest;
@@ -208,8 +207,23 @@ type
     Layout3: TLayout;
     btnNewTrip: TButton;
     Layout4: TLayout;
-    Button2: TButton;
+    btnInvite2: TButton;
     Rectangle5: TRectangle;
+    Layout5: TLayout;
+    btnShowMap: TButton;
+    Layout6: TLayout;
+    btnInvite: TButton;
+    ListBoxItem1: TListBoxItem;
+    lblLocation: TLabel;
+    Rectangle9: TRectangle;
+    Rectangle11: TRectangle;
+    Rectangle12: TRectangle;
+    Rectangle13: TRectangle;
+    Rectangle14: TRectangle;
+    Rectangle15: TRectangle;
+    Rectangle16: TRectangle;
+    Rectangle17: TRectangle;
+    Rectangle18: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -294,6 +308,7 @@ type
     function RandomPassword(PLen: Integer): string;
     function IsValidEmail(const Value: string): Boolean;
     procedure CheckBox1Change(Sender: TObject);
+    procedure mmoShareInfoChange(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -334,8 +349,8 @@ type
 
 const
 //  APIBASEURL = 'https://www.triptether.com';
-//  APIBASEURL = 'http://www.triptether.net';
-  APIBASEURL = 'http://192.168.2.205:8080';
+  APIBASEURL = 'http://www.triptether.net';
+//  APIBASEURL = 'http://192.168.2.205:8080';
 
 //var
 //  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -628,6 +643,7 @@ var
   Trip: TJSONObject;
   Name: TJSONValue;
   UserName: string;
+  Location: string;
   Notes: string;
   Depart: string;
   Arrive: string;
@@ -659,6 +675,7 @@ begin
 
       Name := Trip.Get('name').JsonValue;
       UserName := Trip.Get('user').JsonValue.ToString.Replace('"', '');
+      Location := Trip.Get('location').JsonValue.ToString.Replace('"', '');
       Notes := Trip.Get('notes').JsonValue.ToString.Replace('"', '');
       Depart := Trip.Get('depart').JsonValue.ToString.Replace('"', '');
       Arrive := Trip.Get('arrive').JsonValue.ToString.Replace('"', '');
@@ -672,6 +689,7 @@ begin
 
       TripToken := Token.ToString.Replace('"', '');
       lblName.Text := Name.ToString.Replace('"', '');
+      lblLocation.Text := Location;
 
       if Depart <> '' then
       begin
@@ -1300,7 +1318,7 @@ begin
   ShowShareSheetAction1.Caption := 'TripTether';
   ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
 
-  btnJoinNewTrip.Visible := False;
+  //btnJoinNewTrip.Visible := False;
   TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
 end;
 
@@ -1693,7 +1711,7 @@ begin
       SignInRequest.Execute;
     except
       on E: Exception do begin
-        TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
+        // TabControl1.SetActiveTabWithTransition(TabJoin, TTabTransition.Slide, TTabTransitionDirection.Reversed);
         cpNetworkError.Visible := True;
       end;
     end;
@@ -1968,8 +1986,11 @@ begin
       ShowShareSheetAction1.Caption := 'TripTether';
       ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
 
-      btnJoinNewTrip.Visible := True;
-      TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
+      edtTripID.Text := IntToStr(NewTripID);
+      edtTripPin.Text := NewTripPIN;
+      JoinTrip(self);
+      //btnJoinNewTrip.Visible := True;
+      //TabControl1.SetActiveTabWithTransition(TabNewTripShare, TTabTransition.Slide, TTabTransitionDirection.Normal);
     end;
   end;
 end;
@@ -2295,6 +2316,11 @@ begin
 
     ParticipantsCount := Participants.Count;
   end;
+end;
+
+procedure THeaderFooterwithNavigation.mmoShareInfoChange(Sender: TObject);
+begin
+  ShowShareSheetAction1.TextMessage := mmoShareInfo.Text;
 end;
 
 procedure THeaderFooterwithNavigation.StartUpdating(Sender: TObject);
