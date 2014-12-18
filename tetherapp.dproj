@@ -269,12 +269,13 @@
         <DCC_DebugInformation>false</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android)'!=''">
-        <VerInfo_Keys>package=com.triptether.mapping;label=TripTether;versionCode=5;versionName=1.2.50;persistent=False;restoreAnyVersion=False;installLocation=preferExternal;largeHeap=False;theme=TitleBar;hardwareAccelerated=true</VerInfo_Keys>
-        <PF_KeyStorePass>852D47C0645855D8A342711DD129E36881D0051BA043979397B40FAB8E363C94DB04A3D7E3401C39C1CC5752FACFC338BAF83613042722C3164B45C2E5BA22DBC90AF35DEE8EA8D2D3C73B1072218589</PF_KeyStorePass>
+        <PF_AliasKeyPass>852D47C05F900799CF647131D12CE37981B20541A00D978D97E60FBE8E6C3C8ADB57A3DEE3551C63C1E35725FAC7C317BA95360204642291163A459CE5B722BEC916F341D513FACCBFF83B1072218589</PF_AliasKeyPass>
+        <VerInfo_Keys>package=com.triptether.mapping;label=TripTether;versionCode=6;versionName=1.2.50;persistent=False;restoreAnyVersion=False;installLocation=preferExternal;largeHeap=False;theme=TitleBar;hardwareAccelerated=true</VerInfo_Keys>
+        <PF_KeyStorePass>852D0DA36405559EA3757169D17BE32C819C055DA057979397B50FF08E723CD8DB05A38FE3431C4DC1CC572EFA9CC37ABAF83612047422E0166545C2E5F1228CC90AB93CEE8EA8D2D3C73B1072218589</PF_KeyStorePass>
         <AUP_CALL_PHONE>false</AUP_CALL_PHONE>
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
         <BT_BuildType>AppStore</BT_BuildType>
-        <VerInfo_Build>5</VerInfo_Build>
+        <VerInfo_Build>6</VerInfo_Build>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice)'!=''">
         <DCC_AdditionalSwitches>--ios-version-min:6.0</DCC_AdditionalSwitches>
@@ -284,8 +285,8 @@
         <PF_DevAppStore>2P6AU6VY59</PF_DevAppStore>
         <BT_BuildType>Adhoc</BT_BuildType>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>55</VerInfo_Build>
-        <VerInfo_Keys>CFBundleName=TripTether;CFBundleDevelopmentRegion=en;CFBundleDisplayName=TripTether;CFBundleIdentifier=com.triptether.mapping;CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.2.55;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad;UIBackgroundModes=location</VerInfo_Keys>
+        <VerInfo_Build>56</VerInfo_Build>
+        <VerInfo_Keys>CFBundleName=TripTether;CFBundleDevelopmentRegion=en;CFBundleDisplayName=TripTether;CFBundleIdentifier=com.triptether.mapping;CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.2.56;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad;UIBackgroundModes=location</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_UIDeviceFamily>iPhoneAndiPad</VerInfo_UIDeviceFamily>
         <PF_DevAdHoc>2P6AU6VY59</PF_DevAdHoc>
@@ -381,9 +382,9 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment>
-                <DeployFile LocalName="iOSDevice\Debug\tetherapp.dSYM" Configuration="Debug" Class="ProjectiOSDeviceDebug">
-                    <Platform Name="iOSDevice">
-                        <RemoteName>tetherapp</RemoteName>
+                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether768x1004.png" Configuration="Debug" Class="iPad_Launch768">
+                    <Platform Name="iOSSimulator">
+                        <RemoteName>Default~ipad.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -411,13 +412,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="c:\program files (x86)\embarcadero\studio\15.0\lib\android\debug\mips\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeMipsFile">
+                <DeployFile LocalName="c:\program files (x86)\embarcadero\studio\14.0\lib\android\release\x86\libnative-activity.so" Configuration="Release" Class="AndroidLibnativeX86File">
                     <Platform Name="Android">
                         <RemoteName>libtetherapp.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="c:\program files (x86)\embarcadero\studio\14.0\lib\android\release\x86\libnative-activity.so" Configuration="Release" Class="AndroidLibnativeX86File">
+                <DeployFile LocalName="c:\program files (x86)\embarcadero\studio\15.0\lib\android\debug\mips\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeMipsFile">
                     <Platform Name="Android">
                         <RemoteName>libtetherapp.so</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -490,6 +491,11 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="Android\Release\styles.xml" Configuration="Release" Class="AndroidSplashStyles">
+                    <Platform Name="Android">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="c:\program files (x86)\embarcadero\studio\15.0\lib\android\release\mips\libnative-activity.so" Configuration="Release" Class="AndroidLibnativeMipsFile">
                     <Platform Name="Android">
                         <RemoteName>libtetherapp.so</RemoteName>
@@ -541,12 +547,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Configuration="Debug" Class="iPhone_AppIcon180">
+                <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Configuration="Release" Class="iPhone_AppIcon180">
                     <Platform Name="iOSDevice">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Configuration="Release" Class="iPhone_AppIcon180">
+                <DeployFile LocalName="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Configuration="Debug" Class="iPhone_AppIcon180">
                     <Platform Name="iOSDevice">
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -586,6 +592,11 @@
                 </DeployFile>
                 <DeployFile LocalName="C:\Projects\tetherapp\images\triptether76x76.png" Configuration="Release" Class="iPad_AppIcon76">
                     <Platform Name="iOSDevice">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android\Release\splash_image_def.xml" Configuration="Release" Class="AndroidSplashImageDef">
+                    <Platform Name="Android">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1206,9 +1217,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="C:\Projects\tetherapp\images\triptether768x1004.png" Configuration="Debug" Class="iPad_Launch768">
-                    <Platform Name="iOSSimulator">
-                        <RemoteName>Default~ipad.png</RemoteName>
+                <DeployFile LocalName="iOSDevice\Debug\tetherapp.dSYM" Configuration="Debug" Class="ProjectiOSDeviceDebug">
+                    <Platform Name="iOSDevice">
+                        <RemoteName>tetherapp</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
