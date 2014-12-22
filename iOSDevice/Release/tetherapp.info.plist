@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
         <string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.55</string>
+	<string>1.2.58</string>
 	<key>CFBundlePackageType</key>
         <string>APPL</string>
 	<key>CFBundleSignature</key>
@@ -74,6 +74,10 @@
 	<string>ResourceRules.plist</string>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
+	<key>DTPlatformBuild</key>
+	<string>12B411</string>
+	<key>DTXcodeBuild</key>
+	<string>6A1052d</string>
 	<key>UILaunchImages</key>
 	<array>
 		<dict>

@@ -3,8 +3,12 @@
 <plist version="1.0">
 <dict>
 	
+	<key>application-identifier</key>
+	<string>2P6AU6VY59.com.triptether.mapping</string>
 	
-	
-	
+	<key>keychain-access-groups</key>
+	<array>
+		<string>2P6AU6VY59.com.triptether.mapping</string>
+	</array>
 </dict>
 </plist>

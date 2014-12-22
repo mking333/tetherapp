@@ -18,7 +18,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Size.Height = 574.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 6
+    TabIndex = 1
     TabOrder = 0
     TabPosition = None
     object TabJoin: TTabItem
@@ -599,9 +599,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
           end
           object cpSignError: TCalloutPanel
+            Align = Center
             Padding.Top = 11.000000000000000000
-            Position.X = 8.000000000000000000
-            Position.Y = -2.000000000000000000
             Size.Width = 305.000000000000000000
             Size.Height = 91.000000000000000000
             Size.PlatformDefault = False
@@ -635,10 +634,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             end
           end
           object cpNewTripError: TCalloutPanel
-            Align = Horizontal
+            Align = Center
             Padding.Top = 11.000000000000000000
-            Position.X = 13.000000000000000000
-            Position.Y = 1.000000000000000000
             Size.Width = 305.000000000000000000
             Size.Height = 90.000000000000000000
             Size.PlatformDefault = False
@@ -696,7 +693,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           end
           object edtTripPIN: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 11
+            TabOrder = 13
             KeyboardType = NumberPad
             Position.X = 118.000000000000000000
             Position.Y = 77.000000000000000000
@@ -790,7 +787,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -849,22 +846,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        object mmoNotes: TMemo
-          Touch.GestureManager = GestureManager1
-          Touch.InteractiveGestures = []
-          OnGesture = TabTripGesture
-          Align = Client
-          Margins.Left = 5.000000000000000000
-          Margins.Top = 5.000000000000000000
-          Margins.Right = 5.000000000000000000
-          Margins.Bottom = 5.000000000000000000
-          Size.Width = 310.000000000000000000
-          Size.Height = 108.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          ReadOnly = True
-          TextSettings.WordWrap = True
-        end
         object ListBox2: TListBox
           Touch.GestureManager = GestureManager1
           Touch.InteractiveGestures = []
@@ -879,7 +860,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.Width = 310.000000000000000000
           Size.Height = 268.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 1
+          TabOrder = 0
+          OnClick = ListBox2Click
           DisableFocusEffect = True
           DefaultItemStyles.ItemStyle = 'listboxitemnodetail'
           DefaultItemStyles.GroupHeaderStyle = ''
@@ -1027,7 +1009,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.Width = 310.000000000000000000
           Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 3
+          TabOrder = 2
           object Rectangle9: TRectangle
             Align = Client
             Fill.Color = claCornflowerblue
@@ -1059,7 +1041,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Size.Width = 310.000000000000000000
           Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 2
+          TabOrder = 1
           object Rectangle11: TRectangle
             Align = Client
             Fill.Color = claCornflowerblue
@@ -1080,6 +1062,30 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             TextSettings.FontColor = claWhite
             TintColor = claCornflowerblue
             Visible = True
+          end
+        end
+        object Rectangle5: TRectangle
+          Align = Client
+          Size.Width = 320.000000000000000000
+          Size.Height = 118.000000000000000000
+          Size.PlatformDefault = False
+          Visible = False
+          object mmoNotes: TMemo
+            Touch.GestureManager = GestureManager1
+            Touch.InteractiveGestures = []
+            OnGesture = TabTripGesture
+            Align = Client
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Margins.Bottom = 5.000000000000000000
+            Size.Width = 310.000000000000000000
+            Size.Height = 108.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            OnClick = mmoNotesClick
+            ReadOnly = True
+            TextSettings.WordWrap = True
           end
         end
       end
@@ -1644,7 +1650,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           TabOrder = 52
           Visible = False
           object dteTripArrive: TDateEdit
-            Date = 41991.000000000000000000
+            Date = 41995.000000000000000000
             TodayDefault = True
             Position.X = 104.000000000000000000
             Position.Y = 58.000000000000000000
@@ -1654,7 +1660,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             TabOrder = 0
           end
           object dteTripDepart: TDateEdit
-            Date = 41991.000000000000000000
+            Date = 41995.000000000000000000
             TodayDefault = True
             OnChange = dteTripDepartChange
             Position.X = 104.000000000000000000
@@ -1839,7 +1845,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           end
           object edtNameSetting: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 12
+            TabOrder = 14
             Position.X = 80.000000000000000000
             Position.Y = 68.000000000000000000
             Size.Width = 225.000000000000000000
@@ -1958,8 +1964,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Top = 5.000000000000000000
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
-          Size.Width = 310.000000000000000000
-          Size.Height = 451.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
           CheckSpelling = True
@@ -1971,23 +1976,23 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Position.X = 5.000000000000000000
-          Position.Y = 466.000000000000000000
-          Size.Width = 310.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
           object Rectangle18: TRectangle
             Align = Client
             Fill.Color = claCornflowerblue
-            Size.Width = 310.000000000000000000
-            Size.Height = 55.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
           end
           object btnNewTripCreate: TButton
             Align = Client
             StyledSettings = [Family, Size, Style]
-            Size.Width = 310.000000000000000000
-            Size.Height = 55.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
             Text = 'Create Trip'

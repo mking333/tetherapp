@@ -214,6 +214,7 @@ type
     Rectangle15: TRectangle;
     Rectangle16: TRectangle;
     Rectangle18: TRectangle;
+    Rectangle5: TRectangle;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
@@ -298,6 +299,8 @@ type
     function RandomPassword(PLen: Integer): string;
     function IsValidEmail(const Value: string): Boolean;
     procedure CheckBox1Change(Sender: TObject);
+    procedure mmoNotesClick(Sender: TObject);
+    procedure ListBox2Click(Sender: TObject);
   private
     { Private declarations }
     AutoZoomTrip: boolean;
@@ -339,9 +342,9 @@ type
   end;
 
 const
-//  APIBASEURL = 'https://www.triptether.com';
+  APIBASEURL = 'https://www.triptether.com';
 //  APIBASEURL = 'http://www.triptether.net';
-  APIBASEURL = 'http://192.168.2.205:8080';
+//  APIBASEURL = 'http://192.168.2.205:8080';
 
 //var
 //  HeaderFooterwithNavigation: THeaderFooterwithNavigation;
@@ -440,6 +443,15 @@ procedure THeaderFooterwithNavigation.lbRoutesItemClick(
 begin
   DisplayRoute;
   DisplayRouteDetails;
+end;
+
+procedure THeaderFooterwithNavigation.ListBox2Click(Sender: TObject);
+begin
+  if Rectangle5.Visible = False then
+  begin
+    ListBox2.Visible := False;
+    Rectangle5.Visible := True;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
@@ -721,6 +733,8 @@ begin
         lblStarted.Text := StartingDate;
         lblLeader.Text := UserName;
         btnCheckIn.Enabled := true;
+        btnShowMap.Enabled := True;
+        btnInvite.Enabled := True;
       end;
       if Finish <> '' then
       begin
@@ -730,6 +744,8 @@ begin
         lblStarted.Text := FinishingDate;
         lblLeader.Text := UserName;
         btnCheckIn.Enabled := false;
+        btnShowMap.Enabled := False;
+        btnInvite.Enabled := False;
         Notes := Notes + sLineBreak + sLineBreak + 'This trip has finished.';
         Notes := Notes + sLineBreak + 'You can not check in.';
       end;
@@ -2323,6 +2339,15 @@ begin
     end;
 
     ParticipantsCount := Participants.Count;
+  end;
+end;
+
+procedure THeaderFooterwithNavigation.mmoNotesClick(Sender: TObject);
+begin
+  if ListBox2.Visible = False then
+  begin
+    Rectangle5.Visible := False;
+    ListBox2.Visible := True;
   end;
 end;
 

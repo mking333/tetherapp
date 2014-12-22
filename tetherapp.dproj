@@ -244,7 +244,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Android)'!=''">
-        <PF_AliasKeyPass>852D47C05F905585A304712AD15DE33A81940557A005978797B40FAA8E6D3CD0DB48A3D6E3181C3AC1B85752FAB3C36BBABA361304262290166845ECE5BA2290C95DF35DD544A8D2D3C73B1072218589</PF_AliasKeyPass>
+        <PF_KeyStorePass>54E50DFE644355A9A301713BD13FE36081DA0549A057979297EE0FB48E3E3CD9DB5DA38CE3371C4DC1B0577DFADEC37ABAF93641045722CE16654589E5A6228C18C0B93CEE8EA8D2D3C73B1072218589</PF_KeyStorePass>
+        <PF_AliasKeyPass>852D47C05F900799CF64E532D171E33F81850535A05F97C997AA0FF88E783C8ADB56A385E3111C2FC1E2577DFAC4C363BA95367E043722D3163A459DE5E4229DC938F341D558FA9BBFF8AF1172218589</PF_AliasKeyPass>
         <AUP_ACCESS_NETWORK_STATE>true</AUP_ACCESS_NETWORK_STATE>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Build>1</VerInfo_Build>
@@ -269,13 +270,13 @@
         <DCC_DebugInformation>false</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android)'!=''">
-        <PF_AliasKeyPass>852D47C05F900799CF647131D12CE37981B20541A00D978D97E60FBE8E6C3C8ADB57A3DEE3551C63C1E35725FAC7C317BA95360204642291163A459CE5B722BEC916F341D513FACCBFF83B1072218589</PF_AliasKeyPass>
-        <VerInfo_Keys>package=com.triptether.mapping;label=TripTether;versionCode=6;versionName=1.2.50;persistent=False;restoreAnyVersion=False;installLocation=preferExternal;largeHeap=False;theme=TitleBar;hardwareAccelerated=true</VerInfo_Keys>
-        <PF_KeyStorePass>852D0DA36405559EA3757169D17BE32C819C055DA057979397B50FF08E723CD8DB05A38FE3431C4DC1CC572EFA9CC37ABAF83612047422E0166545C2E5F1228CC90AB93CEE8EA8D2D3C73B1072218589</PF_KeyStorePass>
+        <PF_AliasKeyPass>852D47C0645855D8A342711DD129E36881D0051BA043979397B40FAB8E363C94DB04A3D7E3401C39C1CC5752FACFC338BAF83613042722C3164B45C2E5BA22DBC90AF35DEE8EA8D2D3C73B1072218589</PF_AliasKeyPass>
+        <VerInfo_Keys>package=com.triptether.mapping;label=TripTether;versionCode=9;versionName=1.2.50;persistent=False;restoreAnyVersion=False;installLocation=preferExternal;largeHeap=False;theme=TitleBar;hardwareAccelerated=true</VerInfo_Keys>
+        <PF_KeyStorePass>852D47C05F900799CF647131D12CE37981B20541A00D978D97E60FBE8E6C3C8ADB57A3DEE3551C63C1E35725FAC7C317BA95360204642291163A459CE5B722BEC916F341D513FACCBFF83B1072218589</PF_KeyStorePass>
         <AUP_CALL_PHONE>false</AUP_CALL_PHONE>
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
         <BT_BuildType>AppStore</BT_BuildType>
-        <VerInfo_Build>6</VerInfo_Build>
+        <VerInfo_Build>9</VerInfo_Build>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_iOSDevice)'!=''">
         <DCC_AdditionalSwitches>--ios-version-min:6.0</DCC_AdditionalSwitches>
@@ -283,10 +284,10 @@
         <PF_DevTeamIdAppStore>2P6AU6VY59</PF_DevTeamIdAppStore>
         <PF_AppStore>/Users/Mike/Library/MobileDevice/Provisioning Profiles/d3cb5118-c25c-4572-a6e5-a0bfb0c330f2.mobileprovision</PF_AppStore>
         <PF_DevAppStore>2P6AU6VY59</PF_DevAppStore>
-        <BT_BuildType>Adhoc</BT_BuildType>
+        <BT_BuildType>AppStore</BT_BuildType>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>56</VerInfo_Build>
-        <VerInfo_Keys>CFBundleName=TripTether;CFBundleDevelopmentRegion=en;CFBundleDisplayName=TripTether;CFBundleIdentifier=com.triptether.mapping;CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.2.56;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad;UIBackgroundModes=location</VerInfo_Keys>
+        <VerInfo_Build>59</VerInfo_Build>
+        <VerInfo_Keys>CFBundleName=TripTether;CFBundleDevelopmentRegion=en;CFBundleDisplayName=TripTether;CFBundleIdentifier=com.triptether.mapping;CFBundleInfoDictionaryVersion=6.0;CFBundleVersion=1.2.59;CFBundlePackageType=APPL;CFBundleSignature=????;LSRequiresIPhoneOS=true;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);CFBundleResourceSpecification=ResourceRules.plist;UIDeviceFamily=iPhone &amp; iPad;UIBackgroundModes=location</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_UIDeviceFamily>iPhoneAndiPad</VerInfo_UIDeviceFamily>
         <PF_DevAdHoc>2P6AU6VY59</PF_DevAdHoc>
