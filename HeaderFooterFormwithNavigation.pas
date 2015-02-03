@@ -304,6 +304,7 @@ type
   private
     { Private declarations }
     AutoZoomTrip: boolean;
+    FirstUpdate: boolean;
     ParticipantsCount: integer;
     SaveStatus: string;
     SaveStatusCount: integer;
@@ -459,6 +460,11 @@ procedure THeaderFooterwithNavigation.LocationSensor1LocationChanged(
 begin
   CurrentLat := NewLocation.Latitude; //(NewLocation.Latitude, ffGeneral, 10, 6);
   CurrentLong := NewLocation.Longitude; //FloatToStrF(NewLocation.Longitude, ffGeneral, 10, 6);
+  if Not FirstUpdate then
+  begin
+    CheckIn(self, '', 1);
+    FirstUpdate := True;
+  end;
 end;
 
 procedure THeaderFooterwithNavigation.FormCreate(Sender: TObject);
@@ -897,7 +903,7 @@ begin
     if ParticipantLocated then
       Marker.Icon := 'http://www.triptether.com/images/participant.png?t=1'
     else
-      Marker.Icon := 'http://www.triptether.com/images/participant6.png?t=1';
+      Marker.Icon := 'http://www.triptether.com/images/participantx.png?t=1';
     if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
       Marker.MapLabel.Text := ParticipantName
     else
@@ -970,7 +976,7 @@ begin
             if ParticipantLocated then
               Marker.Icon := 'http://www.triptether.com/images/participant3.png?t=1'
             else
-              Marker.Icon := 'http://www.triptether.com/images/participant6.png?t=1';
+              Marker.Icon := 'http://www.triptether.com/images/participantx.png?t=1';
           end
           else
             Marker.Icon := 'http://www.triptether.com/images/participantq.png?t=1';
@@ -2245,7 +2251,7 @@ begin
     if ParticipantLocated then
       Marker.Icon := 'http://www.triptether.com/images/participant.png?t=1'
     else
-      Marker.Icon := 'http://www.triptether.com/images/participant6.png?t=1';
+      Marker.Icon := 'http://www.triptether.com/images/participantx.png?t=1';
     if (ParticipantStatus = '') or (ParticipantStatus = 'null') then
       Marker.MapLabel.Text := ParticipantName
     else
@@ -2303,7 +2309,7 @@ begin
           if ParticipantLocated then
             Marker.Icon := 'http://www.triptether.com/images/participant3.png?t=1'
           else
-            Marker.Icon := 'http://www.triptether.com/images/participant6.png?t=1';
+            Marker.Icon := 'http://www.triptether.com/images/participantx.png?t=1';
         end
         else
           Marker.Icon := 'http://www.triptether.com/images/participantq.png?t=1';

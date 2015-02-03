@@ -12,16 +12,16 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="c:\program files (x86)\embarcadero\studio\14.0\lib\android\release\x86\libnative-activity.so" Condition="'$(Config)'=='Release'">
-            <RemoteDir>tetherapp\library\lib\x86\</RemoteDir>
+        <DeployFile Include="c:\program files (x86)\embarcadero\studio\15.0\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>tetherapp\library\lib\mips\</RemoteDir>
             <RemoteName>libtetherapp.so</RemoteName>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="c:\program files (x86)\embarcadero\studio\15.0\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp\library\lib\mips\</RemoteDir>
+        <DeployFile Include="c:\program files (x86)\embarcadero\studio\14.0\lib\android\release\x86\libnative-activity.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>tetherapp\library\lib\x86\</RemoteDir>
             <RemoteName>libtetherapp.so</RemoteName>
             <Operation>1</Operation>
             <LocalCommand/>
@@ -369,6 +369,14 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='iOSDevice'">
+        <DeployFile Include="iOSDevice\Debug\tetherapp.dSYM" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
+            <RemoteName>tetherapp</RemoteName>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="C:\Projects\tetherapp\images\triptether768x1004.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>Default~ipad.png</RemoteName>
@@ -465,7 +473,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>FM_ApplicationIcon_180x180.png</RemoteName>
             <Operation>0</Operation>
@@ -473,7 +481,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>FM_ApplicationIcon_180x180.png</RemoteName>
             <Operation>0</Operation>
@@ -923,14 +931,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="iOSDevice\Debug\tetherapp.dSYM" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
-            <RemoteName>tetherapp</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
         <DeployFile Include="Win32\Release\tetherapp.exe" Condition="'$(Config)'=='Release'">
@@ -955,14 +955,6 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win64'"/>
     <ItemGroup Condition="'$(Platform)'=='iOSSimulator'">
-        <DeployFile Include="C:\Projects\tetherapp\images\triptether768x1004.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>tetherapp.app\</RemoteDir>
-            <RemoteName>Default~ipad.png</RemoteName>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="C:\Projects\tetherapp\images\triptether2048x1536.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>Default-Landscape@2x~ipad.png</RemoteName>
@@ -1217,6 +1209,14 @@
             <RemoteDir>tetherapp.app\</RemoteDir>
             <RemoteName>Default-Landscape~ipad.png</RemoteName>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="C:\Projects\tetherapp\images\triptether768x1004.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>tetherapp.app\</RemoteDir>
+            <RemoteName>Default~ipad.png</RemoteName>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>

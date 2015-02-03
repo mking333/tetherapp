@@ -18,7 +18,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Size.Height = 574.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 4
     TabOrder = 0
     TabPosition = None
     object TabJoin: TTabItem
@@ -693,7 +693,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           end
           object edtTripPIN: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 13
+            TabOrder = 14
             KeyboardType = NumberPad
             Position.X = 118.000000000000000000
             Position.Y = 77.000000000000000000
@@ -787,7 +787,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -1160,7 +1160,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Bottom = 5.000000000000000000
           Position.X = 5.000000000000000000
           Position.Y = 5.000000000000000000
-          Size.Width = 310.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
@@ -1169,20 +1169,19 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = VertCenter
             TabOrder = 0
             Position.X = 5.000000000000000000
-            Position.Y = 11.000000000000000000
+            Position.Y = 9.000000000000000000
             Margins.Left = 5.000000000000000000
             Margins.Right = 5.000000000000000000
-            Size.Width = 236.000000000000000000
+            Size.Width = -24.000000000000000000
             Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextPrompt = 'Enter a comment...'
           end
           object btnSend: TSpeedButton
             Align = Right
-            Position.X = 246.000000000000000000
-            Position.Y = 4.000000000000000000
+            Position.X = -14.000000000000000000
             Size.Width = 64.000000000000000000
-            Size.Height = 48.000000000000000000
+            Size.Height = 50.000000000000000000
             Size.PlatformDefault = False
             Text = 'Send'
             OnClick = btnSendClick
@@ -1197,8 +1196,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Top = 5.000000000000000000
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
-          Size.Width = 310.000000000000000000
-          Size.Height = 386.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 1
           AlternatingRowBackground = True
@@ -1215,15 +1213,15 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Position.X = 5.000000000000000000
-          Position.Y = 466.000000000000000000
-          Size.Width = 310.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 40.000000000000000000
           Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 2
           object Rectangle14: TRectangle
             Align = Client
             Fill.Color = claCornflowerblue
-            Size.Width = 310.000000000000000000
+            Size.Width = 40.000000000000000000
             Size.Height = 55.000000000000000000
             Size.PlatformDefault = False
           end
@@ -1232,7 +1230,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Align = Client
             Enabled = True
             StyledSettings = [Family, Size, Style]
-            Size.Width = 310.000000000000000000
+            Size.Width = 40.000000000000000000
             Size.Height = 55.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
@@ -1498,7 +1496,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -1514,7 +1512,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object ToolBar4: TToolBar
         Size.Width = 320.000000000000000000
-        Size.Height = 44.000000000000000000
+        Size.Height = 48.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         TintColor = claCornflowerblue
@@ -1522,7 +1520,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Align = Contents
           StyledSettings = [Family, Size, Style]
           Size.Width = 320.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           TextSettings.FontColor = claIvory
           TextSettings.HorzAlign = Center
@@ -1531,8 +1529,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         object btnBackToJoin: TSpeedButton
           Align = Left
           IconTintColor = claIvory
-          Size.Width = 44.000000000000000000
-          Size.Height = 44.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'arrowlefttoolbutton'
           Text = 'Back'
@@ -1541,9 +1539,9 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       end
       object VertScrollBox2: TVertScrollBox
         Align = HorzCenter
-        Position.Y = 44.000000000000000000
+        Position.Y = 48.000000000000000000
         Size.Width = 320.000000000000000000
-        Size.Height = 530.000000000000000000
+        Size.Height = 526.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
         object cpLocationNotFound: TCalloutPanel
@@ -1593,7 +1591,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Bottom = 5.000000000000000000
           Position.X = 5.000000000000000000
           Position.Y = 5.000000000000000000
-          Size.Width = 40.000000000000000000
+          Size.Width = 310.000000000000000000
           Size.Height = 113.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 51
@@ -1611,7 +1609,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.X = 104.000000000000000000
             Position.Y = 64.000000000000000000
             Size.Width = 201.000000000000000000
-            Size.Height = 30.000000000000000000
+            Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextPrompt = 'Address or location'
             CheckSpelling = True
@@ -1622,7 +1620,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             Position.X = 104.000000000000000000
             Position.Y = 16.000000000000000000
             Size.Width = 201.000000000000000000
-            Size.Height = 30.000000000000000000
+            Size.Height = 32.000000000000000000
             Size.PlatformDefault = False
             TextPrompt = 'Trip description'
             CheckSpelling = True
@@ -1650,7 +1648,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           TabOrder = 52
           Visible = False
           object dteTripArrive: TDateEdit
-            Date = 41995.000000000000000000
+            Date = 42037.000000000000000000
             TodayDefault = True
             Position.X = 104.000000000000000000
             Position.Y = 58.000000000000000000
@@ -1660,7 +1658,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
             TabOrder = 0
           end
           object dteTripDepart: TDateEdit
-            Date = 41995.000000000000000000
+            Date = 42037.000000000000000000
             TodayDefault = True
             OnChange = dteTripDepartChange
             Position.X = 104.000000000000000000
@@ -1714,22 +1712,22 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Bottom = 5.000000000000000000
           Position.X = 5.000000000000000000
           Position.Y = 155.000000000000000000
-          Size.Width = 40.000000000000000000
+          Size.Width = 310.000000000000000000
           Size.Height = 55.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 53
           object Rectangle15: TRectangle
             Align = Client
             Fill.Color = claCornflowerblue
-            Size.Width = 50.000000000000000000
-            Size.Height = 50.000000000000000000
+            Size.Width = 310.000000000000000000
+            Size.Height = 55.000000000000000000
             Size.PlatformDefault = False
           end
           object btnNewTripDetails: TButton
             Align = Client
             StyledSettings = [Family, Size, Style]
-            Size.Width = 50.000000000000000000
-            Size.Height = 50.000000000000000000
+            Size.Width = 310.000000000000000000
+            Size.Height = 55.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 0
             Text = 'Next'
@@ -1744,7 +1742,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           Margins.Right = 5.000000000000000000
           Position.X = 5.000000000000000000
           Position.Y = 123.000000000000000000
-          Size.Width = 40.000000000000000000
+          Size.Width = 310.000000000000000000
           Size.Height = 27.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 54
@@ -1845,7 +1843,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           end
           object edtNameSetting: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
-            TabOrder = 14
+            TabOrder = 15
             Position.X = 80.000000000000000000
             Position.Y = 68.000000000000000000
             Size.Width = 225.000000000000000000
@@ -2068,7 +2066,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
   end
   object Timer2: TTimer
     Enabled = False
-    Interval = 15000
+    Interval = 10000
     OnTimer = Timer2Timer
     Left = 552
     Top = 128
@@ -2353,6 +2351,10 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Top = 516
     GestureData = <
       item
+        Control = ListBox2
+        Collection = <>
+      end
+      item
         Control = mmoNotes
         Collection = <
           item
@@ -2361,10 +2363,6 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
           item
             GestureID = sgiRight
           end>
-      end
-      item
-        Control = ListBox2
-        Collection = <>
       end
       item
         Control = lbParticipants
